@@ -1,1 +1,0 @@
-(function(){"use strict";var o={};o.backToTop={register:function(){var o=$("#back-to-top");$(window).scroll(function(){100<$(window).scrollTop()?o.fadeIn(1e3):o.fadeOut(1e3)}),o.click(function(){$("body").animate({scrollTop:0})})}},this.Theme=o}).call(this);
