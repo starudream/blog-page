@@ -1,5 +1,7 @@
 /* global NexT, CONFIG, Velocity */
 
+(function(){$('#build-date').text('0000-000000')})();
+
 NexT.boot = {};
 
 NexT.boot.registerEvents = function() {
