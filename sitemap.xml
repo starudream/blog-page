@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.starudream.cn/2020/04/10/7-deploy-hexo-with-github-actions/</loc>
+    
+    <lastmod>2020-04-10T02:55:50.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.starudream.cn/2020/01/19/6-crack-gitlab/</loc>
     
     <lastmod>2020-01-19T03:07:07.000Z</lastmod>
