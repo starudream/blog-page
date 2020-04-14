@@ -91,7 +91,7 @@
   <entry>
     <title>使用 Docker 部署 TeamSpeak 3</title>
     <url>/2020/04/14/9-deploy-teamspeak/</url>
-    <content><![CDATA[<h2 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name teamspeak \</span><br><span class="line">    --restart always \</span><br><span class="line">    -p 127.0.0.1:9987:9987/udp \</span><br><span class="line">    -e TS3SERVER_LICENSE=accept \</span><br><span class="line">    -e TS3SERVER_SERVERADMIN_PASSWORD=PLACEHOLD \</span><br><span class="line">    teamspeak:latest</span><br></pre></td></tr></table></figure>]]></content>
+    <content><![CDATA[<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name teamspeak \</span><br><span class="line">    --restart always \</span><br><span class="line">    -p 127.0.0.1:9987:9987/udp \</span><br><span class="line">    -e TS3SERVER_LICENSE=accept \</span><br><span class="line">    -e TS3SERVER_SERVERADMIN_PASSWORD=PLACEHOLD \</span><br><span class="line">    teamspeak:latest</span><br></pre></td></tr></table></figure><h2 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h2><p>使用以下命令查看 <code>Query Admin Account</code> 相关登录用户密码以及 <code>Privilege Key</code>。</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker logs teamspeak</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>技术</category>
       </categories>

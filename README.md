@@ -2,7 +2,7 @@
 
 ![DeployZone](https://img.shields.io/badge/DeployZone-UTC%2B8-lightgrey)
 ![DeployDate](https://img.shields.io/badge/DeployDate-2020.04.14-blue)
-![DeployTime](https://img.shields.io/badge/DeployTime-14.54.45-blue)
+![DeployTime](https://img.shields.io/badge/DeployTime-15.05.33-blue)
 [![License](https://img.shields.io/badge/license-Apache%20License%202.0-blue)](./LICENSE)
 
 ## Live
