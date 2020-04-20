@@ -5,8 +5,8 @@
 ## Deploy
 
 ![Zone](https://img.shields.io/badge/Zone-UTC%2B8-lightgrey)
-![Date](https://img.shields.io/badge/Date-2020.04.17-blue)
-![Time](https://img.shields.io/badge/Time-16.03.44-blue)
+![Date](https://img.shields.io/badge/Date-2020.04.20-blue)
+![Time](https://img.shields.io/badge/Time-11.55.00-blue)
 
 ## Live
 
