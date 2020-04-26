@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.starudream.cn/2020/04/26/11-use-grafana-monitor-vps/</loc>
+    
+    <lastmod>2020-04-26T02:22:58.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.starudream.cn/2020/04/15/10-disable-ipv6-linux/</loc>
     
     <lastmod>2020-04-15T01:39:33.000Z</lastmod>

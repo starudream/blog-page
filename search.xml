@@ -36,6 +36,48 @@
       </tags>
   </entry>
   <entry>
+    <title>使用 Grafana + Prometheus + Node-Exporter 监控机器</title>
+    <url>/2020/04/26/11-use-grafana-monitor-vps/</url>
+    <content><![CDATA[<h2 id="创建-Node-Exporter"><a href="#创建-Node-Exporter" class="headerlink" title="创建 Node-Exporter"></a>创建 Node-Exporter</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3Byb21ldGhldXMvbm9kZV9leHBvcnRlcg==" title="https://github.com/prometheus/node_exporter">https://github.com/prometheus/node_exporter<i class="fa fa-external-link"></i></span></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name node-exporter \</span><br><span class="line">    --restart always \</span><br><span class="line">    --net=<span class="string">"host"</span> \</span><br><span class="line">    --pid=<span class="string">"host"</span> \</span><br><span class="line">    -m 512m \</span><br><span class="line">    -v <span class="string">"/:/host:ro,rslave"</span> \</span><br><span class="line">    prom/node-exporter \</span><br><span class="line">    --path.rootfs=/host</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建-Prometheus"><a href="#创建-Prometheus" class="headerlink" title="创建 Prometheus"></a>创建 Prometheus</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3Byb21ldGhldXMvcHJvbWV0aGV1cw==" title="https://github.com/prometheus/prometheus">https://github.com/prometheus/prometheus<i class="fa fa-external-link"></i></span></li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># prometheus.yml</span></span><br><span class="line"><span class="attr">global:</span></span><br><span class="line">  <span class="attr">scrape_interval:</span> <span class="string">30s</span></span><br><span class="line">  <span class="attr">evaluation_interval:</span> <span class="string">60s</span></span><br><span class="line"><span class="attr">scrape_configs:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">job_name:</span> <span class="string">"prometheus"</span></span><br><span class="line">    <span class="attr">static_configs:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">targets:</span></span><br><span class="line">          <span class="bullet">-</span> <span class="string">"localhost:9090"</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">job_name:</span> <span class="string">"node"</span></span><br><span class="line">    <span class="attr">static_configs:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">targets:</span></span><br><span class="line">          <span class="bullet">-</span> <span class="string">"172.17.0.1:9100"</span>  <span class="comment"># local</span></span><br><span class="line">          <span class="bullet">-</span> <span class="string">"172.17.0.1:59100"</span> <span class="comment"># other</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>由于使用 <code>docker</code> 搭建 <code>prometheus</code> 访问宿主机需要使用 <code>172.17.0.1</code>，如果有多台机器，建议使用二进制安装，以避免所有机器都要进行映射。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name prometheus \</span><br><span class="line">    --restart always \</span><br><span class="line">    --user root \</span><br><span class="line">    -p 9090:9090 \</span><br><span class="line">    -m 2048m \</span><br><span class="line">    -v /opt/docker/prometheus/config/prometheus.yml:/etc/prometheus/prometheus.yml \</span><br><span class="line">    -v /opt/docker/prometheus/data:/prometheus \</span><br><span class="line">    prom/prometheus</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建-Grafana"><a href="#创建-Grafana" class="headerlink" title="创建 Grafana"></a>创建 Grafana</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dyYWZhbmEvZ3JhZmFuYQ==" title="https://github.com/grafana/grafana">https://github.com/grafana/grafana<i class="fa fa-external-link"></i></span></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name grafana \</span><br><span class="line">    --restart always \</span><br><span class="line">    --user root \</span><br><span class="line">    -p 3000:3000 \</span><br><span class="line">    -v /opt/docker/grafana:/var/lib/grafana \</span><br><span class="line">    grafana/grafana</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置-Grafana"><a href="#配置-Grafana" class="headerlink" title="配置 Grafana"></a>配置 Grafana</h2><h3 id="配置-DataSources"><a href="#配置-DataSources" class="headerlink" title="配置 DataSources"></a>配置 DataSources</h3><p>在地址 <code>{$server_url}/datasources/new</code> 选择 <code>Prometheus</code>，在 <code>URL</code> 处填写地址。</p>
+<ul>
+<li>如果使用 <code>docker</code> 部署 <code>Grafana</code>，需通过宿主机访问 <code>Prometheus</code>，所以地址可能是 <code>http://172.17.0.1:9090</code>。</li>
+</ul>
+<h3 id="导入-Dashboard"><a href="#导入-Dashboard" class="headerlink" title="导入 Dashboard"></a>导入 Dashboard</h3><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ncmFmYW5hLmNvbS9ncmFmYW5hL2Rhc2hib2FyZHMvODkxOQ==" title="https://grafana.com/grafana/dashboards/8919">https://grafana.com/grafana/dashboards/8919<i class="fa fa-external-link"></i></span></li>
+</ul>
+<p>这里推荐使用上面的模版，在地址 <code>{$server_url}/dashboard/import</code> 输入 id <code>8919</code> 然后保存即可。</p>
+<h2 id="预览"><a href="#预览" class="headerlink" title="预览"></a>预览</h2><p><img data-src="/images/11-1.png" alt="预览"></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>grafana</tag>
+        <tag>prometheus</tag>
+        <tag>vps</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Samba 文件共享</title>
     <url>/2019/11/28/2-samba/</url>
     <content><![CDATA[<h2 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt install samba</span><br></pre></td></tr></table></figure>

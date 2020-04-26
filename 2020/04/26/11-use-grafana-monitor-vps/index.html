@@ -24,22 +24,24 @@
     var CONFIG = {"hostname":"blog.starudream.cn","root":"/","scheme":"Pisces","version":"7.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":true,"nav":null,"activeClass":"disqus"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":true,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="验证是否开启 ipv61234# ifconfig -a | grep inet6inet6 fe80::42:b8ff:feb5:4214  prefixlen 64  scopeid 0x20&lt;link&gt;inet6 fe80::5054:ff:fec3:d3bb  prefixlen 64  scopeid 0x20&lt;link&gt;inet6 ::1  prefixlen">
+  <meta name="description" content="创建 Node-Exporter https:&#x2F;&#x2F;github.com&#x2F;prometheus&#x2F;node_exporter  123456789docker run -d \    --name node-exporter \    --restart always \    --net&#x3D;&quot;host&quot; \    --pid&#x3D;&quot;host&quot; \    -m 512m \    -v &quot;&#x2F;:&#x2F;host:r">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux 禁用 IPV6">
-<meta property="og:url" content="https://blog.starudream.cn/2020/04/15/10-disable-ipv6-linux/index.html">
+<meta property="og:title" content="使用 Grafana + Prometheus + Node-Exporter 监控机器">
+<meta property="og:url" content="https://blog.starudream.cn/2020/04/26/11-use-grafana-monitor-vps/index.html">
 <meta property="og:site_name" content="星辰狂澜&#39;s Blog">
-<meta property="og:description" content="验证是否开启 ipv61234# ifconfig -a | grep inet6inet6 fe80::42:b8ff:feb5:4214  prefixlen 64  scopeid 0x20&lt;link&gt;inet6 fe80::5054:ff:fec3:d3bb  prefixlen 64  scopeid 0x20&lt;link&gt;inet6 ::1  prefixlen">
+<meta property="og:description" content="创建 Node-Exporter https:&#x2F;&#x2F;github.com&#x2F;prometheus&#x2F;node_exporter  123456789docker run -d \    --name node-exporter \    --restart always \    --net&#x3D;&quot;host&quot; \    --pid&#x3D;&quot;host&quot; \    -m 512m \    -v &quot;&#x2F;:&#x2F;host:r">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-04-15T01:39:33.000Z">
-<meta property="article:modified_time" content="2020-04-15T01:39:33.000Z">
+<meta property="og:image" content="https://blog.starudream.cn/images/11-1.png">
+<meta property="article:published_time" content="2020-04-26T02:22:58.000Z">
+<meta property="article:modified_time" content="2020-04-26T02:22:58.000Z">
 <meta property="article:author" content="starudream">
-<meta property="article:tag" content="centos">
-<meta property="article:tag" content="ubuntu">
-<meta property="article:tag" content="ipv6">
+<meta property="article:tag" content="grafana">
+<meta property="article:tag" content="prometheus">
+<meta property="article:tag" content="vps">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.starudream.cn/images/11-1.png">
 
-<link rel="canonical" href="https://blog.starudream.cn/2020/04/15/10-disable-ipv6-linux/">
+<link rel="canonical" href="https://blog.starudream.cn/2020/04/26/11-use-grafana-monitor-vps/">
 
 
 <script id="page-configurations">
@@ -52,7 +54,7 @@
   };
 </script>
 
-  <title>Linux 禁用 IPV6 | 星辰狂澜's Blog</title>
+  <title>使用 Grafana + Prometheus + Node-Exporter 监控机器 | 星辰狂澜's Blog</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-103635131-2"></script>
     <script data-pjax>
@@ -205,7 +207,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2020/04/15/10-disable-ipv6-linux/">
+    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2020/04/26/11-use-grafana-monitor-vps/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -218,7 +220,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Linux 禁用 IPV6
+          使用 Grafana + Prometheus + Node-Exporter 监控机器
         </h1>
 
         <div class="post-meta">
@@ -228,7 +230,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-04-15 09:39:33" itemprop="dateCreated datePublished" datetime="2020-04-15T09:39:33+08:00">2020-04-15</time>
+              <time title="创建时间：2020-04-26 10:22:58" itemprop="dateCreated datePublished" datetime="2020-04-26T10:22:58+08:00">2020-04-26</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -256,8 +258,8 @@
       </span>
       <span class="post-meta-item-text">Disqus：</span>
     
-    <a title="disqus" href="/2020/04/15/10-disable-ipv6-linux/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/04/15/10-disable-ipv6-linux/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2020/04/26/11-use-grafana-monitor-vps/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/04/26/11-use-grafana-monitor-vps/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -272,19 +274,35 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="验证是否开启-ipv6"><a href="#验证是否开启-ipv6" class="headerlink" title="验证是否开启 ipv6"></a>验证是否开启 ipv6</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ifconfig -a | grep inet6</span></span><br><span class="line">inet6 fe80::42:b8ff:feb5:4214  prefixlen 64  scopeid 0x20&lt;link&gt;</span><br><span class="line">inet6 fe80::5054:ff:fec3:d3bb  prefixlen 64  scopeid 0x20&lt;link&gt;</span><br><span class="line">inet6 ::1  prefixlen 128  scopeid 0x10&lt;host&gt;</span><br></pre></td></tr></table></figure>
+        <h2 id="创建-Node-Exporter"><a href="#创建-Node-Exporter" class="headerlink" title="创建 Node-Exporter"></a>创建 Node-Exporter</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3Byb21ldGhldXMvbm9kZV9leHBvcnRlcg==" title="https://github.com/prometheus/node_exporter">https://github.com/prometheus/node_exporter<i class="fa fa-external-link"></i></span></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name node-exporter \</span><br><span class="line">    --restart always \</span><br><span class="line">    --net=<span class="string">"host"</span> \</span><br><span class="line">    --pid=<span class="string">"host"</span> \</span><br><span class="line">    -m 512m \</span><br><span class="line">    -v <span class="string">"/:/host:ro,rslave"</span> \</span><br><span class="line">    prom/node-exporter \</span><br><span class="line">    --path.rootfs=/host</span><br></pre></td></tr></table></figure>
 
-<p>出现 <code>inet6</code> 相关即为开启 <code>ipv6</code>。</p>
-<h2 id="修改内核模块配置"><a href="#修改内核模块配置" class="headerlink" title="修改内核模块配置"></a>修改内核模块配置</h2><p>编辑 <code>/etc/default/grub</code> 文件并在 <code>GRUB_CMDLINE_LINUX</code> 中添加 <code>ipv6.disable=1</code>。</p>
-<p>如果是 <code>Ubuntu</code> 可能还有 <code>GRUB_CMDLINE_LINUX_DEFAULT</code>，同样也需要添加 <code>ipv6.disable=1</code>。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># cat /etc/default/grub</span></span><br><span class="line">......</span><br><span class="line">GRUB_CMDLINE_LINUX=<span class="string">"crashkernel=auto console=ttyS0 console=tty0 panic=5 net.ifnames=0 biosdevname=0 intel_idle.max_cstate=1 intel_pstate=disable"</span></span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+<h2 id="创建-Prometheus"><a href="#创建-Prometheus" class="headerlink" title="创建 Prometheus"></a>创建 Prometheus</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3Byb21ldGhldXMvcHJvbWV0aGV1cw==" title="https://github.com/prometheus/prometheus">https://github.com/prometheus/prometheus<i class="fa fa-external-link"></i></span></li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># prometheus.yml</span></span><br><span class="line"><span class="attr">global:</span></span><br><span class="line">  <span class="attr">scrape_interval:</span> <span class="string">30s</span></span><br><span class="line">  <span class="attr">evaluation_interval:</span> <span class="string">60s</span></span><br><span class="line"><span class="attr">scrape_configs:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">job_name:</span> <span class="string">"prometheus"</span></span><br><span class="line">    <span class="attr">static_configs:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">targets:</span></span><br><span class="line">          <span class="bullet">-</span> <span class="string">"localhost:9090"</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">job_name:</span> <span class="string">"node"</span></span><br><span class="line">    <span class="attr">static_configs:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">targets:</span></span><br><span class="line">          <span class="bullet">-</span> <span class="string">"172.17.0.1:9100"</span>  <span class="comment"># local</span></span><br><span class="line">          <span class="bullet">-</span> <span class="string">"172.17.0.1:59100"</span> <span class="comment"># other</span></span><br></pre></td></tr></table></figure>
 
-<p>修改后为</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># cat /etc/default/grub</span></span><br><span class="line">......</span><br><span class="line">GRUB_CMDLINE_LINUX=<span class="string">"crashkernel=auto console=ttyS0 console=tty0 panic=5 net.ifnames=0 biosdevname=0 intel_idle.max_cstate=1 intel_pstate=disable ipv6.disable=1"</span></span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+<ul>
+<li>由于使用 <code>docker</code> 搭建 <code>prometheus</code> 访问宿主机需要使用 <code>172.17.0.1</code>，如果有多台机器，建议使用二进制安装，以避免所有机器都要进行映射。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name prometheus \</span><br><span class="line">    --restart always \</span><br><span class="line">    --user root \</span><br><span class="line">    -p 9090:9090 \</span><br><span class="line">    -m 2048m \</span><br><span class="line">    -v /opt/docker/prometheus/config/prometheus.yml:/etc/prometheus/prometheus.yml \</span><br><span class="line">    -v /opt/docker/prometheus/data:/prometheus \</span><br><span class="line">    prom/prometheus</span><br></pre></td></tr></table></figure>
 
-<h2 id="应用更改"><a href="#应用更改" class="headerlink" title="应用更改"></a>应用更改</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># CentOS</span></span><br><span class="line">grub2-mkconfig -o /boot/grub2/grub.cfg</span><br><span class="line"><span class="comment"># Ubuntu</span></span><br><span class="line">update-grub</span><br></pre></td></tr></table></figure>
+<h2 id="创建-Grafana"><a href="#创建-Grafana" class="headerlink" title="创建 Grafana"></a>创建 Grafana</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dyYWZhbmEvZ3JhZmFuYQ==" title="https://github.com/grafana/grafana">https://github.com/grafana/grafana<i class="fa fa-external-link"></i></span></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name grafana \</span><br><span class="line">    --restart always \</span><br><span class="line">    --user root \</span><br><span class="line">    -p 3000:3000 \</span><br><span class="line">    -v /opt/docker/grafana:/var/lib/grafana \</span><br><span class="line">    grafana/grafana</span><br></pre></td></tr></table></figure>
 
-<h2 id="重启"><a href="#重启" class="headerlink" title="重启"></a>重启</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shutdown -r now</span><br></pre></td></tr></table></figure>
+<h2 id="配置-Grafana"><a href="#配置-Grafana" class="headerlink" title="配置 Grafana"></a>配置 Grafana</h2><h3 id="配置-DataSources"><a href="#配置-DataSources" class="headerlink" title="配置 DataSources"></a>配置 DataSources</h3><p>在地址 <code>{$server_url}/datasources/new</code> 选择 <code>Prometheus</code>，在 <code>URL</code> 处填写地址。</p>
+<ul>
+<li>如果使用 <code>docker</code> 部署 <code>Grafana</code>，需通过宿主机访问 <code>Prometheus</code>，所以地址可能是 <code>http://172.17.0.1:9090</code>。</li>
+</ul>
+<h3 id="导入-Dashboard"><a href="#导入-Dashboard" class="headerlink" title="导入 Dashboard"></a>导入 Dashboard</h3><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ncmFmYW5hLmNvbS9ncmFmYW5hL2Rhc2hib2FyZHMvODkxOQ==" title="https://grafana.com/grafana/dashboards/8919">https://grafana.com/grafana/dashboards/8919<i class="fa fa-external-link"></i></span></li>
+</ul>
+<p>这里推荐使用上面的模版，在地址 <code>{$server_url}/dashboard/import</code> 输入 id <code>8919</code> 然后保存即可。</p>
+<h2 id="预览"><a href="#预览" class="headerlink" title="预览"></a>预览</h2><p><img data-src="/images/11-1.png" alt="预览"></p>
 
     </div>
 
@@ -320,7 +338,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://blog.starudream.cn/2020/04/15/10-disable-ipv6-linux/" title="Linux 禁用 IPV6">https://blog.starudream.cn/2020/04/15/10-disable-ipv6-linux/</a>
+    <a href="https://blog.starudream.cn/2020/04/26/11-use-grafana-monitor-vps/" title="使用 Grafana + Prometheus + Node-Exporter 监控机器">https://blog.starudream.cn/2020/04/26/11-use-grafana-monitor-vps/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！
@@ -331,9 +349,9 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/centos/" rel="tag"># centos</a>
-              <a href="/tags/ubuntu/" rel="tag"># ubuntu</a>
-              <a href="/tags/ipv6/" rel="tag"># ipv6</a>
+              <a href="/tags/grafana/" rel="tag"># grafana</a>
+              <a href="/tags/prometheus/" rel="tag"># prometheus</a>
+              <a href="/tags/vps/" rel="tag"># vps</a>
           </div>
 
         
@@ -342,13 +360,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/04/14/9-deploy-teamspeak/" rel="prev" title="使用 Docker 部署 TeamSpeak 3">
-      <i class="fa fa-chevron-left"></i> 使用 Docker 部署 TeamSpeak 3
+    <a href="/2020/04/15/10-disable-ipv6-linux/" rel="prev" title="Linux 禁用 IPV6">
+      <i class="fa fa-chevron-left"></i> Linux 禁用 IPV6
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/04/26/11-use-grafana-monitor-vps/" rel="next" title="使用 Grafana + Prometheus + Node-Exporter 监控机器">
-      使用 Grafana + Prometheus + Node-Exporter 监控机器 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -414,7 +429,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#验证是否开启-ipv6"><span class="nav-number">1.</span> <span class="nav-text">验证是否开启 ipv6</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改内核模块配置"><span class="nav-number">2.</span> <span class="nav-text">修改内核模块配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用更改"><span class="nav-number">3.</span> <span class="nav-text">应用更改</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重启"><span class="nav-number">4.</span> <span class="nav-text">重启</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建-Node-Exporter"><span class="nav-number">1.</span> <span class="nav-text">创建 Node-Exporter</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建-Prometheus"><span class="nav-number">2.</span> <span class="nav-text">创建 Prometheus</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建-Grafana"><span class="nav-number">3.</span> <span class="nav-text">创建 Grafana</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置-Grafana"><span class="nav-number">4.</span> <span class="nav-text">配置 Grafana</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置-DataSources"><span class="nav-number">4.1.</span> <span class="nav-text">配置 DataSources</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#导入-Dashboard"><span class="nav-number">4.2.</span> <span class="nav-text">导入 Dashboard</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#预览"><span class="nav-number">5.</span> <span class="nav-text">预览</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -651,7 +666,7 @@ window.addEventListener('pjax:success', () => {
       quicklink({
         timeout : 3000,
         priority: true,
-        ignores : [uri => uri.includes('#'),uri => uri === 'https://blog.starudream.cn/2020/04/15/10-disable-ipv6-linux/',]
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://blog.starudream.cn/2020/04/26/11-use-grafana-monitor-vps/',]
       });
       });
   </script>
@@ -668,9 +683,9 @@ window.addEventListener('pjax:success', () => {
 </script>
 <script>
   var disqus_config = function() {
-    this.page.url = "https://blog.starudream.cn/2020/04/15/10-disable-ipv6-linux/";
-    this.page.identifier = "2020/04/15/10-disable-ipv6-linux/";
-    this.page.title = "Linux 禁用 IPV6";
+    this.page.url = "https://blog.starudream.cn/2020/04/26/11-use-grafana-monitor-vps/";
+    this.page.identifier = "2020/04/26/11-use-grafana-monitor-vps/";
+    this.page.title = "使用 Grafana + Prometheus + Node-Exporter 监控机器";
     };
   NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
     if (window.DISQUS) {
