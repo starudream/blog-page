@@ -271,8 +271,8 @@
 
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh get-docker.sh</span><br></pre></td></tr></table></figure>
 
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p><strong>腾讯云镜像 <code>repo</code> 内地址仍是 <code>download.docker.com</code> 所有使用该脚本没有效果</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i <span class="string">'s|download.docker.com|mirrors.cloud.tencent.com/docker-ce|'</span> /etc/yum.repos.d/docker-ce.repo</span><br></pre></td></tr></table></figure>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p><strong>腾讯云镜像 <code>repo</code> 内地址仍是 <code>download.docker.com</code> 所有使用该脚本没有效果，可以使用阿里云公网下载完成后替换镜像源</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i <span class="string">'s|https://mirrors.aliyun.com|http://mirrors.tencentyun.com|'</span> /etc/yum.repos.d/docker-ce.repo</span><br></pre></td></tr></table></figure>
 
       
     </div>
