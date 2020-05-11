@@ -139,7 +139,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">19</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">20</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -149,7 +149,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">12</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">13</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -283,6 +283,8 @@
 
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh get-docker.sh</span><br></pre></td></tr></table></figure>
 
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /etc/docker</span><br><span class="line">cat &lt;&lt;EOF &gt;  /etc/docker/daemon.json</span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">"exec-opts"</span>: [</span><br><span class="line">        <span class="string">"native.cgroupdriver=systemd"</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="string">"registry-mirrors"</span>: [</span><br><span class="line">        <span class="string">"http://f1361db2.m.daocloud.io"</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="string">"log-driver"</span>: <span class="string">"json-file"</span>,</span><br><span class="line">    <span class="string">"log-opts"</span>: &#123;</span><br><span class="line">        <span class="string">"max-size"</span>: <span class="string">"100m"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">"storage-driver"</span>: <span class="string">"overlay2"</span>,</span><br><span class="line">    <span class="string">"storage-opts"</span>: [</span><br><span class="line">        <span class="string">"overlay2.override_kernel_check=true"</span></span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+
 <h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> docker.service</span><br><span class="line">systemctl start docker.service</span><br><span class="line"></span><br><span class="line">docker version</span><br></pre></td></tr></table></figure>
 
 <h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p><strong>腾讯云镜像 <code>repo</code> 内地址仍是 <code>download.docker.com</code> ，所以使用该脚本没有效果，但是可以使用阿里云公网下载完成后替换镜像源</strong></p>
@@ -345,7 +347,10 @@
     <a href="/2020/04/26/11-use-grafana-monitor-vps/" rel="prev" title="使用 Grafana + Prometheus + Node-Exporter 监控机器">
       <i class="fa fa-chevron-left"></i> 使用 Grafana + Prometheus + Node-Exporter 监控机器
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/05/09/13-install-kubernetes/" rel="next" title="CentOS 安装 kubernetes">
+      CentOS 安装 kubernetes <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -411,7 +416,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#下载安装脚本"><span class="nav-number">1.</span> <span class="nav-text">下载安装脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置安装版本（nightly-test-stable）"><span class="nav-number">2.</span> <span class="nav-text">设置安装版本（nightly &#x2F; test &#x2F; stable）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置下载镜像源"><span class="nav-number">3.</span> <span class="nav-text">设置下载镜像源</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#阿里云公网"><span class="nav-number">3.1.</span> <span class="nav-text">阿里云公网</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#阿里云内网"><span class="nav-number">3.2.</span> <span class="nav-text">阿里云内网</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置-repo-文件名"><span class="nav-number">4.</span> <span class="nav-text">设置 repo 文件名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">5.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行"><span class="nav-number">6.</span> <span class="nav-text">运行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">7.</span> <span class="nav-text">其他</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#下载安装脚本"><span class="nav-number">1.</span> <span class="nav-text">下载安装脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置安装版本（nightly-test-stable）"><span class="nav-number">2.</span> <span class="nav-text">设置安装版本（nightly &#x2F; test &#x2F; stable）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置下载镜像源"><span class="nav-number">3.</span> <span class="nav-text">设置下载镜像源</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#阿里云公网"><span class="nav-number">3.1.</span> <span class="nav-text">阿里云公网</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#阿里云内网"><span class="nav-number">3.2.</span> <span class="nav-text">阿里云内网</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置-repo-文件名"><span class="nav-number">4.</span> <span class="nav-text">设置 repo 文件名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">5.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">6.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行"><span class="nav-number">7.</span> <span class="nav-text">运行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">8.</span> <span class="nav-text">其他</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -427,7 +432,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -440,7 +445,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

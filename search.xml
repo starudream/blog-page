@@ -90,6 +90,8 @@
 
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sh get-docker.sh</span><br></pre></td></tr></table></figure>
 
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir -p /etc/docker</span><br><span class="line">cat &lt;&lt;EOF &gt;  /etc/docker/daemon.json</span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">"exec-opts"</span>: [</span><br><span class="line">        <span class="string">"native.cgroupdriver=systemd"</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="string">"registry-mirrors"</span>: [</span><br><span class="line">        <span class="string">"http://f1361db2.m.daocloud.io"</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="string">"log-driver"</span>: <span class="string">"json-file"</span>,</span><br><span class="line">    <span class="string">"log-opts"</span>: &#123;</span><br><span class="line">        <span class="string">"max-size"</span>: <span class="string">"100m"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">"storage-driver"</span>: <span class="string">"overlay2"</span>,</span><br><span class="line">    <span class="string">"storage-opts"</span>: [</span><br><span class="line">        <span class="string">"overlay2.override_kernel_check=true"</span></span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+
 <h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> docker.service</span><br><span class="line">systemctl start docker.service</span><br><span class="line"></span><br><span class="line">docker version</span><br></pre></td></tr></table></figure>
 
 <h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p><strong>腾讯云镜像 <code>repo</code> 内地址仍是 <code>download.docker.com</code> ，所以使用该脚本没有效果，但是可以使用阿里云公网下载完成后替换镜像源</strong></p>
@@ -100,6 +102,58 @@
       </categories>
       <tags>
         <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CentOS 安装 kubernetes</title>
+    <url>/2020/05/09/13-install-kubernetes/</url>
+    <content><![CDATA[<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><h3 id="安装-Docker"><a href="#安装-Docker" class="headerlink" title="安装 Docker"></a>安装 Docker</h3><p>上一篇文章 <a href="https://blog.starudream.cn/2020/05/09/12-install-docker/">安装 docker</a></p>
+<h3 id="修改主机名"><a href="#修改主机名" class="headerlink" title="修改主机名"></a>修改主机名</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hostnamectl <span class="built_in">set</span>-hostname k8s-master</span><br></pre></td></tr></table></figure>
+
+<h3 id="修改-etc-hosts"><a href="#修改-etc-hosts" class="headerlink" title="修改 /etc/hosts"></a>修改 /etc/hosts</h3><figure class="highlight accesslog"><table><tr><td class="code"><pre><span class="line"><span class="number">192.168.140.28</span> api.k8s.local k8s-master</span><br></pre></td></tr></table></figure>
+
+<h3 id="关闭-swap"><a href="#关闭-swap" class="headerlink" title="关闭 swap"></a>关闭 swap</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">swapoff -a</span><br></pre></td></tr></table></figure>
+
+<p>注释 <code>/etc/fstab</code> 文件中 <code>swap</code> 分区。</p>
+<h3 id="添加内核参数"><a href="#添加内核参数" class="headerlink" title="添加内核参数"></a>添加内核参数</h3><p>修改 <code>/etc/sysctl.conf</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">fs.file-max = 1000000</span><br><span class="line"></span><br><span class="line">net.ipv4.ip_forward = 1</span><br><span class="line">net.bridge.bridge-nf-call-iptables = 1</span><br><span class="line">net.bridge.bridge-nf-call-ip6tables = 1</span><br></pre></td></tr></table></figure>
+
+<h2 id="添加-repo-源"><a href="#添加-repo-源" class="headerlink" title="添加 repo 源"></a>添加 repo 源</h2><h3 id="谷歌"><a href="#谷歌" class="headerlink" title="谷歌"></a>谷歌</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cat &lt;&lt;EOF &gt; /etc/yum.repos.d/kubernetes.repo</span><br><span class="line">[kubernetes]</span><br><span class="line">name=Kubernetes</span><br><span class="line">baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=1</span><br><span class="line">repo_gpgcheck=1</span><br><span class="line">gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg</span><br><span class="line">       https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+
+<h3 id="阿里云公网"><a href="#阿里云公网" class="headerlink" title="阿里云公网"></a>阿里云公网</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sed -i <span class="string">'s|packages.cloud.google.com|mirrors.aliyun.com/kubernetes|'</span> /etc/yum.repos.d/kubernetes.repo</span><br></pre></td></tr></table></figure>
+
+<h3 id="阿里云内网"><a href="#阿里云内网" class="headerlink" title="阿里云内网"></a>阿里云内网</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sed -i <span class="string">'s|https://packages.cloud.google.com|http://mirrors.cloud.aliyuncs.com/kubernetes|'</span> /etc/yum.repos.d/kubernetes.repo</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum install -y kubeadm kubelet kubectl</span><br><span class="line"></span><br><span class="line">systemctl <span class="built_in">enable</span> kubelet</span><br><span class="line"></span><br><span class="line"><span class="built_in">source</span> &lt;(kubectl completion bash)</span><br></pre></td></tr></table></figure>
+
+<h2 id="初始化-master-节点"><a href="#初始化-master-节点" class="headerlink" title="初始化 master 节点"></a>初始化 master 节点</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">kubeadm init \</span><br><span class="line">    --kubernetes-version=1.18.2 \</span><br><span class="line">    --apiserver-advertise-address=192.168.140.28 \</span><br><span class="line">    --apiserver-bind-port 6443 \</span><br><span class="line">    --pod-network-cidr=10.244.0.0/16 \</span><br><span class="line">    --image-repository registry.aliyuncs.com/google_containers</span><br></pre></td></tr></table></figure>
+
+<p>当出现 <code>Your Kubernetes control-plane has initialized successfully!</code> 即安装成功，并且在下面有相关配置。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir -p <span class="variable">$HOME</span>/.kube</span><br><span class="line">sudo cp -i /etc/kubernetes/admin.conf <span class="variable">$HOME</span>/.kube/config</span><br><span class="line">sudo chown $(id -u):$(id -g) <span class="variable">$HOME</span>/.kube/config</span><br></pre></td></tr></table></figure>
+
+<p>还有最后一条命令在添加 k8s node 节点时使用到</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">kubeadm join 192.168.140.28:6443 --token xxx --discovery-token-ca-cert-hash sha256:xxx</span><br></pre></td></tr></table></figure>
+
+<p>如果忘了保存，可以使用以下命令重新获取到</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">kubeadm token create --<span class="built_in">print</span>-join-command</span><br></pre></td></tr></table></figure>
+
+<p>这时可以使用以下命令查看节点</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">kubectl get node</span><br><span class="line"></span><br><span class="line">kubectl get pod -A</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">NAME         STATUS     ROLES    AGE     <span class="keyword">VERSION</span></span><br><span class="line">k8s-<span class="keyword">master</span>   <span class="title">NotReady</span>   <span class="keyword">master</span>   <span class="title">8m56s</span>   v1.<span class="number">18.2</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="安装-Calico-网络"><a href="#安装-Calico-网络" class="headerlink" title="安装 Calico 网络"></a>安装 Calico 网络</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget --unlink -qO calico.yaml https://docs.projectcalico.org/v3.14/manifests/calico.yaml</span><br><span class="line"><span class="comment"># 10.244.0.0/16 这个地址需要与上面的 kubeadm init --pod-network-cidr 参数值一致</span></span><br><span class="line">sed -i -e <span class="string">"s|192.168.0.0/16|10.244.0.0/16|g"</span> calico.yaml</span><br><span class="line">kubectl apply -f calico.yaml</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装-Dashboard"><a href="#安装-Dashboard" class="headerlink" title="安装 Dashboard"></a>安装 Dashboard</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget --unlink -qO dashboard.yaml https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml</span><br><span class="line">kubectl apply -f dashboard.yaml</span><br></pre></td></tr></table></figure>
+
+<h2 id="添加-node-节点"><a href="#添加-node-节点" class="headerlink" title="添加 node 节点"></a>添加 node 节点</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">kubeadm config images pull --image-repository registry.aliyuncs.com/google_containers</span><br><span class="line">kubeadm join 192.168.140.28:6443 --token xxx --discovery-token-ca-cert-hash sha256:xxx</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>centos</tag>
+        <tag>kubernetes</tag>
       </tags>
   </entry>
   <entry>
