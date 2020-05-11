@@ -6,11 +6,7 @@
 
 ![Zone](https://img.shields.io/badge/Zone-UTC%2B8-lightgrey)
 ![Date](https://img.shields.io/badge/Date-2020.05.11-blue)
-![Time](https://img.shields.io/badge/Time-08.08.26-blue)
-
-## Live
-
-![Netlify](https://img.shields.io/netlify/abb0069f-648a-4cd9-90f8-2c61429babf3)
+![Time](https://img.shields.io/badge/Time-14.04.11-blue)
 
 ## License
 

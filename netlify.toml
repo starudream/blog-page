@@ -1,4 +1,0 @@
-[[redirects]]
-  from = "https://blog-starudream.netlify.com/*"
-  to = "https://blog.starudream.cn/:splat"
-  force = true
