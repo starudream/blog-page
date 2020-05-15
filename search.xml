@@ -145,9 +145,29 @@
 <p>这边看到状态为 <code>NotReady</code> 是因为未安装网络组件。</p>
 <h2 id="安装-Calico-网络"><a href="#安装-Calico-网络" class="headerlink" title="安装 Calico 网络"></a>安装 Calico 网络</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget --unlink -qO calico.yaml https://docs.projectcalico.org/v3.14/manifests/calico.yaml</span><br><span class="line"><span class="comment"># 10.244.0.0/16 这个地址需要与上面的 kubeadm init --pod-network-cidr 参数值一致</span></span><br><span class="line">sed -i -e <span class="string">"s|192.168.0.0/16|10.244.0.0/16|g"</span> calico.yaml</span><br><span class="line">kubectl apply -f calico.yaml</span><br></pre></td></tr></table></figure>
 
+<p>完成这步之后会看到节点的状态变为 <code>Ready</code>。</p>
 <h2 id="安装-Dashboard"><a href="#安装-Dashboard" class="headerlink" title="安装 Dashboard"></a>安装 Dashboard</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget --unlink -qO dashboard.yaml https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml</span><br><span class="line">kubectl apply -f dashboard.yaml</span><br></pre></td></tr></table></figure>
 
-<h2 id="添加-node-节点"><a href="#添加-node-节点" class="headerlink" title="添加 node 节点"></a>添加 node 节点</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">kubeadm config images pull --image-repository registry.aliyuncs.com/google_containers</span><br><span class="line">kubeadm join 192.168.140.28:6443 --token xxx --discovery-token-ca-cert-hash sha256:xxx</span><br></pre></td></tr></table></figure>
+<p>一般这样是无法通过外网访问，建议在测试环境下修改 <code>kubernetes-dashboard</code> 的 <code>ClusterIP</code> 为 <code>NodePort</code> 将端口暴露出去。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">kubectl -n kubernetes-dashboard edit service kubernetes-dashboard</span><br></pre></td></tr></table></figure>
+
+<p>修改之后，查看 <code>services</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">kubernetes-dashboard   kubernetes-dashboard        NodePort    10.106.39.19    &lt;none&gt;        443:31570/TCP            36m</span><br></pre></td></tr></table></figure>
+
+<p>之后访问 <code>https://${ip}:31570</code> 发现需要 <code>token</code>，下面创建一个管理员用户。</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># admin-user.yaml</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">ServiceAccount</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">admin-user</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">kubernetes-dashboard</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">rbac.authorization.k8s.io/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">ClusterRoleBinding</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">admin-user</span></span><br><span class="line"><span class="attr">roleRef:</span></span><br><span class="line">  <span class="attr">apiGroup:</span> <span class="string">rbac.authorization.k8s.io</span></span><br><span class="line">  <span class="attr">kind:</span> <span class="string">ClusterRole</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">cluster-admin</span></span><br><span class="line"><span class="attr">subjects:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">kind:</span> <span class="string">ServiceAccount</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">admin-user</span></span><br><span class="line">    <span class="attr">namespace:</span> <span class="string">kubernetes-dashboard</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight nsis"><table><tr><td class="code"><pre><span class="line">kubectl apply -f <span class="literal">admin</span>-<span class="literal">user</span>.yaml</span><br></pre></td></tr></table></figure>
+
+<p>最后查看 <code>token</code>，找到 <code>admin-user</code> 复制 <code>token</code> 即可以管理员身份访问。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">k describe secrets -n kubernetes-dashboard</span><br></pre></td></tr></table></figure>
+
+<h2 id="添加-node-节点"><a href="#添加-node-节点" class="headerlink" title="添加 node 节点"></a>添加 node 节点</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">kubeadm join 192.168.140.28:6443 --token xxx --discovery-token-ca-cert-hash sha256:xxx</span><br></pre></td></tr></table></figure>
+
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="master-参与工作（单机部署）"><a href="#master-参与工作（单机部署）" class="headerlink" title="master 参与工作（单机部署）"></a>master 参与工作（单机部署）</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">kubectl taint nodes --all node-role.kubernetes.io/master-</span><br></pre></td></tr></table></figure>
+
+<h3 id="命令补全"><a href="#命令补全" class="headerlink" title="命令补全"></a>命令补全</h3><p>将下面这段加入 <code>.bash_profile</code> 中，以使用自动补全功能。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># complete</span></span><br><span class="line"><span class="built_in">source</span> /usr/share/bash-completion/bash_completion</span><br><span class="line"><span class="built_in">source</span> /root/.kube/completion.bash.inc</span><br><span class="line"></span><br><span class="line"><span class="comment"># alias</span></span><br><span class="line"><span class="built_in">alias</span> k=<span class="string">'kubectl'</span></span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>技术</category>
