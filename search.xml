@@ -232,6 +232,32 @@
       </tags>
   </entry>
   <entry>
+    <title>Linux 创建虚拟网卡</title>
+    <url>/2020/05/18/15-install-virtual-network/</url>
+    <content><![CDATA[<h2 id="安装相关依赖"><a href="#安装相关依赖" class="headerlink" title="安装相关依赖"></a>安装相关依赖</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt install -y uml-utilities bridge-utils</span><br></pre></td></tr></table></figure>
+
+<h2 id="添加网桥"><a href="#添加网桥" class="headerlink" title="添加网桥"></a>添加网桥</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brctl addbr br0</span><br></pre></td></tr></table></figure>
+
+<h2 id="激活网桥"><a href="#激活网桥" class="headerlink" title="激活网桥"></a>激活网桥</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ip link <span class="built_in">set</span> br0 up</span><br></pre></td></tr></table></figure>
+
+<h2 id="添加虚拟网卡"><a href="#添加虚拟网卡" class="headerlink" title="添加虚拟网卡"></a>添加虚拟网卡</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ip link <span class="built_in">set</span> tap0 up</span><br></pre></td></tr></table></figure>
+
+<h2 id="将虚拟网卡添加到指定网桥上"><a href="#将虚拟网卡添加到指定网桥上" class="headerlink" title="将虚拟网卡添加到指定网桥上"></a>将虚拟网卡添加到指定网桥上</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brctl addif br0 tap0</span><br></pre></td></tr></table></figure>
+
+<h2 id="给网桥配制ip地址"><a href="#给网桥配制ip地址" class="headerlink" title="给网桥配制ip地址"></a>给网桥配制ip地址</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ifconfig br0 172.24.16.10 up</span><br></pre></td></tr></table></figure>
+
+<h2 id="移除"><a href="#移除" class="headerlink" title="移除"></a>移除</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brctl delif br0 tap0</span><br><span class="line"></span><br><span class="line">tunctl -d tap0</span><br><span class="line"></span><br><span class="line">brctl delbr br0</span><br></pre></td></tr></table></figure>
+
+<h2 id="brctl"><a href="#brctl" class="headerlink" title="brctl"></a>brctl</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Usage: brctl [commands]</span><br><span class="line">commands:</span><br><span class="line">  addbr          &lt;bridge&gt;                  add bridge</span><br><span class="line">  delbr          &lt;bridge&gt;                  delete bridge</span><br><span class="line">  addif          &lt;bridge&gt; &lt;device&gt;         add interface to bridge</span><br><span class="line">  delif          &lt;bridge&gt; &lt;device&gt;         delete interface from bridge</span><br><span class="line">  hairpin        &lt;bridge&gt; &lt;port&gt; &#123;on|off&#125;  turn hairpin on/off</span><br><span class="line">  setageing      &lt;bridge&gt; &lt;time&gt;           <span class="built_in">set</span> ageing time</span><br><span class="line">  setbridgeprio  &lt;bridge&gt; &lt;prio&gt;           <span class="built_in">set</span> bridge priority</span><br><span class="line">  setfd          &lt;bridge&gt; &lt;time&gt;           <span class="built_in">set</span> bridge forward delay</span><br><span class="line">  sethello       &lt;bridge&gt; &lt;time&gt;           <span class="built_in">set</span> hello time</span><br><span class="line">  setmaxage      &lt;bridge&gt; &lt;time&gt;           <span class="built_in">set</span> max message age</span><br><span class="line">  setpathcost    &lt;bridge&gt; &lt;port&gt; &lt;cost&gt;    <span class="built_in">set</span> path cost</span><br><span class="line">  setportprio    &lt;bridge&gt; &lt;port&gt; &lt;prio&gt;    <span class="built_in">set</span> port priority</span><br><span class="line">  show           [ &lt;bridge&gt; ]              show a list of bridges</span><br><span class="line">  showmacs       &lt;bridge&gt;                  show a list of mac addrs</span><br><span class="line">  showstp        &lt;bridge&gt;                  show bridge stp info</span><br><span class="line">  stp            &lt;bridge&gt; &#123;on|off&#125;         turn stp on/off</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Samba 文件共享</title>
     <url>/2019/11/28/2-samba/</url>
     <content><![CDATA[<h2 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt install samba</span><br></pre></td></tr></table></figure>
