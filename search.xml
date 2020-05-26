@@ -258,6 +258,54 @@
       </tags>
   </entry>
   <entry>
+    <title>基于 docker 安装 Gitea 和 Drone/Drone-Runner</title>
+    <url>/2020/05/26/16-install-gitea-and-drone/</url>
+    <content><![CDATA[<h2 id="1-安装-docker-并拉取相关镜像"><a href="#1-安装-docker-并拉取相关镜像" class="headerlink" title="1. 安装 docker 并拉取相关镜像"></a>1. 安装 docker 并拉取相关镜像</h2><ul>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9odWIuZG9ja2VyLmNvbS9yL2dpdGVhL2dpdGVh" title="https://hub.docker.com/r/gitea/gitea">gitea/gitea<i class="fa fa-external-link"></i></span></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9odWIuZG9ja2VyLmNvbS9yL2Ryb25lL2Ryb25l" title="https://hub.docker.com/r/drone/drone">drone/drone<i class="fa fa-external-link"></i></span></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9odWIuZG9ja2VyLmNvbS9yL2Ryb25lL2Ryb25lLXJ1bm5lci1kb2NrZXI=" title="https://hub.docker.com/r/drone/drone-runner-docker">drone/drone-runner-docker<i class="fa fa-external-link"></i></span></p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker pull gitea/gitea</span><br><span class="line">docker pull drone/drone</span><br><span class="line">docker pull drone/drone-runner-docker</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-安装-Gitea"><a href="#2-安装-Gitea" class="headerlink" title="2. 安装 Gitea"></a>2. 安装 Gitea</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name gitea \</span><br><span class="line">    --restart always \</span><br><span class="line">    -p 53022:22 \</span><br><span class="line">    -p 53080:3000 \</span><br><span class="line">    -m 400m \</span><br><span class="line">    -v /opt/docker/gitea/data:/data \</span><br><span class="line">    gitea/gitea:1.11.5</span><br></pre></td></tr></table></figure>
+
+<p>按照步骤完成安装 <code>Gitea</code> 后，打开 <code>https://git.52xckl.cn/user/settings/applications</code> 页面。</p>
+<p>应用名称：<code>drone</code>，重定向 URL：<code>https://drone.52xckl.cn/login</code> 填写完成后点击创建应用获取 <code>客户端 ID</code> 与 <code>客户端密钥</code>。</p>
+<h2 id="3-创建-drone-与-drone-runner"><a href="#3-创建-drone-与-drone-runner" class="headerlink" title="3. 创建 drone 与 drone-runner"></a>3. 创建 <code>drone</code> 与 <code>drone-runner</code></h2><ul>
+<li><code>${CLIENT_ID}</code> -&gt; <code>客户端 ID</code></li>
+<li><code>${CLIENT_SECRET}</code> -&gt; <code>客户端密钥</code></li>
+<li><code>${RPC_SECRET}</code> -&gt; <code>drone 与 drone-runner 通讯的密钥，随机生成即可</code></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name drone \</span><br><span class="line">    --restart always \</span><br><span class="line">    -m 200m \</span><br><span class="line">    -p 54080:80 \</span><br><span class="line">    -e DRONE_GITEA_SERVER=https://git.52xckl.cn \</span><br><span class="line">    -e DRONE_GITEA_CLIENT_ID=<span class="variable">$&#123;CLIENT_ID&#125;</span> \</span><br><span class="line">    -e DRONE_GITEA_CLIENT_SECRET=<span class="variable">$&#123;CLIENT_SECRET&#125;</span>= \</span><br><span class="line">    -e DRONE_RPC_SECRET=<span class="variable">$&#123;RPC_SECRET&#125;</span> \</span><br><span class="line">    -e DRONE_SERVER_HOST=drone.52xckl.cn \</span><br><span class="line">    -e DRONE_SERVER_PROTO=https \</span><br><span class="line">    -v /opt/docker/drone/data:/var/lib/drone \</span><br><span class="line">    drone/drone:1.7.0</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name drone-runner \</span><br><span class="line">    --link drone:drone \</span><br><span class="line">    --restart always \</span><br><span class="line">    -m 200m \</span><br><span class="line">    -e DRONE_RUNNER_NAME=runner-001 \</span><br><span class="line">    -e DRONE_RPC_PROTO=http \</span><br><span class="line">    -e DRONE_RPC_HOST=drone \</span><br><span class="line">    -e DRONE_RPC_SECRET=<span class="variable">$&#123;RPC_SECRET&#125;</span> \</span><br><span class="line">    -v /var/run/docker.sock:/var/run/docker.sock \</span><br><span class="line">    drone/drone-runner-docker:1.3.0</span><br></pre></td></tr></table></figure>
+
+<p>最后 <code>docker logs -f --tail 10 drone-runner</code> 显示 <code>successfully pinged the remote server</code> 即为成功。</p>
+<h2 id="4-测试"><a href="#4-测试" class="headerlink" title="4. 测试"></a>4. 测试</h2><p>首先打开 <code>https://drone.52xckl.cn/</code> 完成 <code>OAuth2</code> 认证并激活项目。</p>
+<p>在激活的项目中创建名为 <code>.drone.yml</code> 的文件：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">kind:</span> <span class="string">pipeline</span></span><br><span class="line"><span class="attr">name:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">type:</span> <span class="string">docker</span></span><br><span class="line"><span class="attr">steps:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">test</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">golang:1.14-alpine</span></span><br><span class="line">    <span class="attr">commands:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">CGO_ENABLED=0</span> <span class="string">GO111MODULE=on</span> <span class="string">go</span> <span class="string">test</span> <span class="string">-count=1</span> <span class="string">-cover</span> <span class="string">-v</span> <span class="string">./...</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">CGO_ENABLED=0</span> <span class="string">GO111MODULE=on</span> <span class="string">go</span> <span class="string">run</span> <span class="string">.</span></span><br></pre></td></tr></table></figure>
+
+<p>这段是 <code>Go</code> 相关项目的，如果编写该文件请查询相关官方文档。</p>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ul>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmdpdGVhLmlvL2VuLXVzLw==" title="https://docs.gitea.io/en-us/">gitea<i class="fa fa-external-link"></i></span></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9yZWFkbWUuZHJvbmUuaW8v" title="https://readme.drone.io/">drone<i class="fa fa-external-link"></i></span></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>gitea</tag>
+        <tag>drone</tag>
+        <tag>drone-runner</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Samba 文件共享</title>
     <url>/2019/11/28/2-samba/</url>
     <content><![CDATA[<h2 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt install samba</span><br></pre></td></tr></table></figure>

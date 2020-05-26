@@ -134,7 +134,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">23</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">26</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -144,7 +144,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">15</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">16</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -193,6 +193,121 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2020/05/26/16-install-gitea-and-drone/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="starudream">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰狂澜's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/26/16-install-gitea-and-drone/" class="post-title-link" itemprop="url">基于 docker 安装 Gitea 和 Drone/Drone-Runner</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-26 14:11:29" itemprop="dateCreated datePublished" datetime="2020-05-26T14:11:29+08:00">2020-05-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2020/05/26/16-install-gitea-and-drone/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/05/26/16-install-gitea-and-drone/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1-安装-docker-并拉取相关镜像"><a href="#1-安装-docker-并拉取相关镜像" class="headerlink" title="1. 安装 docker 并拉取相关镜像"></a>1. 安装 docker 并拉取相关镜像</h2><ul>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9odWIuZG9ja2VyLmNvbS9yL2dpdGVhL2dpdGVh" title="https://hub.docker.com/r/gitea/gitea">gitea/gitea<i class="fa fa-external-link"></i></span></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9odWIuZG9ja2VyLmNvbS9yL2Ryb25lL2Ryb25l" title="https://hub.docker.com/r/drone/drone">drone/drone<i class="fa fa-external-link"></i></span></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9odWIuZG9ja2VyLmNvbS9yL2Ryb25lL2Ryb25lLXJ1bm5lci1kb2NrZXI=" title="https://hub.docker.com/r/drone/drone-runner-docker">drone/drone-runner-docker<i class="fa fa-external-link"></i></span></p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker pull gitea/gitea</span><br><span class="line">docker pull drone/drone</span><br><span class="line">docker pull drone/drone-runner-docker</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-安装-Gitea"><a href="#2-安装-Gitea" class="headerlink" title="2. 安装 Gitea"></a>2. 安装 Gitea</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name gitea \</span><br><span class="line">    --restart always \</span><br><span class="line">    -p 53022:22 \</span><br><span class="line">    -p 53080:3000 \</span><br><span class="line">    -m 400m \</span><br><span class="line">    -v /opt/docker/gitea/data:/data \</span><br><span class="line">    gitea/gitea:1.11.5</span><br></pre></td></tr></table></figure>
+
+<p>按照步骤完成安装 <code>Gitea</code> 后，打开 <code>https://git.52xckl.cn/user/settings/applications</code> 页面。</p>
+<p>应用名称：<code>drone</code>，重定向 URL：<code>https://drone.52xckl.cn/login</code> 填写完成后点击创建应用获取 <code>客户端 ID</code> 与 <code>客户端密钥</code>。</p>
+<h2 id="3-创建-drone-与-drone-runner"><a href="#3-创建-drone-与-drone-runner" class="headerlink" title="3. 创建 drone 与 drone-runner"></a>3. 创建 <code>drone</code> 与 <code>drone-runner</code></h2><ul>
+<li><code>${CLIENT_ID}</code> -&gt; <code>客户端 ID</code></li>
+<li><code>${CLIENT_SECRET}</code> -&gt; <code>客户端密钥</code></li>
+<li><code>${RPC_SECRET}</code> -&gt; <code>drone 与 drone-runner 通讯的密钥，随机生成即可</code></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name drone \</span><br><span class="line">    --restart always \</span><br><span class="line">    -m 200m \</span><br><span class="line">    -p 54080:80 \</span><br><span class="line">    -e DRONE_GITEA_SERVER=https://git.52xckl.cn \</span><br><span class="line">    -e DRONE_GITEA_CLIENT_ID=<span class="variable">$&#123;CLIENT_ID&#125;</span> \</span><br><span class="line">    -e DRONE_GITEA_CLIENT_SECRET=<span class="variable">$&#123;CLIENT_SECRET&#125;</span>= \</span><br><span class="line">    -e DRONE_RPC_SECRET=<span class="variable">$&#123;RPC_SECRET&#125;</span> \</span><br><span class="line">    -e DRONE_SERVER_HOST=drone.52xckl.cn \</span><br><span class="line">    -e DRONE_SERVER_PROTO=https \</span><br><span class="line">    -v /opt/docker/drone/data:/var/lib/drone \</span><br><span class="line">    drone/drone:1.7.0</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name drone-runner \</span><br><span class="line">    --link drone:drone \</span><br><span class="line">    --restart always \</span><br><span class="line">    -m 200m \</span><br><span class="line">    -e DRONE_RUNNER_NAME=runner-001 \</span><br><span class="line">    -e DRONE_RPC_PROTO=http \</span><br><span class="line">    -e DRONE_RPC_HOST=drone \</span><br><span class="line">    -e DRONE_RPC_SECRET=<span class="variable">$&#123;RPC_SECRET&#125;</span> \</span><br><span class="line">    -v /var/run/docker.sock:/var/run/docker.sock \</span><br><span class="line">    drone/drone-runner-docker:1.3.0</span><br></pre></td></tr></table></figure>
+
+<p>最后 <code>docker logs -f --tail 10 drone-runner</code> 显示 <code>successfully pinged the remote server</code> 即为成功。</p>
+<h2 id="4-测试"><a href="#4-测试" class="headerlink" title="4. 测试"></a>4. 测试</h2><p>首先打开 <code>https://drone.52xckl.cn/</code> 完成 <code>OAuth2</code> 认证并激活项目。</p>
+<p>在激活的项目中创建名为 <code>.drone.yml</code> 的文件：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">kind:</span> <span class="string">pipeline</span></span><br><span class="line"><span class="attr">name:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">type:</span> <span class="string">docker</span></span><br><span class="line"><span class="attr">steps:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">test</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">golang:1.14-alpine</span></span><br><span class="line">    <span class="attr">commands:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">CGO_ENABLED=0</span> <span class="string">GO111MODULE=on</span> <span class="string">go</span> <span class="string">test</span> <span class="string">-count=1</span> <span class="string">-cover</span> <span class="string">-v</span> <span class="string">./...</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">CGO_ENABLED=0</span> <span class="string">GO111MODULE=on</span> <span class="string">go</span> <span class="string">run</span> <span class="string">.</span></span><br></pre></td></tr></table></figure>
+
+<p>这段是 <code>Go</code> 相关项目的，如果编写该文件请查询相关官方文档。</p>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ul>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmdpdGVhLmlvL2VuLXVzLw==" title="https://docs.gitea.io/en-us/">gitea<i class="fa fa-external-link"></i></span></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9yZWFkbWUuZHJvbmUuaW8v" title="https://readme.drone.io/">drone<i class="fa fa-external-link"></i></span></p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -650,116 +765,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2020/04/26/11-use-grafana-monitor-vps/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="starudream">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰狂澜's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/26/11-use-grafana-monitor-vps/" class="post-title-link" itemprop="url">使用 Grafana + Prometheus + Node-Exporter 监控机器</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-04-26 10:22:58" itemprop="dateCreated datePublished" datetime="2020-04-26T10:22:58+08:00">2020-04-26</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2020/04/26/11-use-grafana-monitor-vps/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/04/26/11-use-grafana-monitor-vps/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="创建-Node-Exporter"><a href="#创建-Node-Exporter" class="headerlink" title="创建 Node-Exporter"></a>创建 Node-Exporter</h2><ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3Byb21ldGhldXMvbm9kZV9leHBvcnRlcg==" title="https://github.com/prometheus/node_exporter">https://github.com/prometheus/node_exporter<i class="fa fa-external-link"></i></span></li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name node-exporter \</span><br><span class="line">    --restart always \</span><br><span class="line">    --net host \</span><br><span class="line">    --pid host \</span><br><span class="line">    -m 512m \</span><br><span class="line">    -v /:/host:ro,rslave \</span><br><span class="line">    prom/node-exporter:latest \</span><br><span class="line">    --path.rootfs=/host</span><br></pre></td></tr></table></figure>
-
-<h2 id="创建-Prometheus"><a href="#创建-Prometheus" class="headerlink" title="创建 Prometheus"></a>创建 Prometheus</h2><ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3Byb21ldGhldXMvcHJvbWV0aGV1cw==" title="https://github.com/prometheus/prometheus">https://github.com/prometheus/prometheus<i class="fa fa-external-link"></i></span></li>
-</ul>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># prometheus.yml</span></span><br><span class="line"><span class="attr">global:</span></span><br><span class="line">  <span class="attr">scrape_interval:</span> <span class="string">30s</span></span><br><span class="line">  <span class="attr">evaluation_interval:</span> <span class="string">60s</span></span><br><span class="line"><span class="attr">scrape_configs:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">job_name:</span> <span class="string">"prometheus"</span></span><br><span class="line">    <span class="attr">static_configs:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">targets:</span></span><br><span class="line">          <span class="bullet">-</span> <span class="string">"127.0.0.1:9090"</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">job_name:</span> <span class="string">"node"</span></span><br><span class="line">    <span class="attr">static_configs:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">targets:</span></span><br><span class="line">          <span class="bullet">-</span> <span class="string">"127.0.0.1:9100"</span>  <span class="comment"># local</span></span><br><span class="line">          <span class="bullet">-</span> <span class="string">"127.0.0.2:9100"</span> <span class="comment"># other</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name prometheus \</span><br><span class="line">    --restart always \</span><br><span class="line">    --user root \</span><br><span class="line">    -p 9090:9090 \</span><br><span class="line">    -m 2048m \</span><br><span class="line">    -v /opt/docker/prometheus/config/prometheus.yml:/etc/prometheus/prometheus.yml \</span><br><span class="line">    -v /opt/docker/prometheus/data:/prometheus \</span><br><span class="line">    prom/prometheus:latest</span><br></pre></td></tr></table></figure>
-
-<h2 id="创建-Grafana"><a href="#创建-Grafana" class="headerlink" title="创建 Grafana"></a>创建 Grafana</h2><ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dyYWZhbmEvZ3JhZmFuYQ==" title="https://github.com/grafana/grafana">https://github.com/grafana/grafana<i class="fa fa-external-link"></i></span></li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name grafana \</span><br><span class="line">    --restart always \</span><br><span class="line">    --user root \</span><br><span class="line">    -p 3000:3000 \</span><br><span class="line">    -v /opt/docker/grafana:/var/lib/grafana \</span><br><span class="line">    grafana/grafana:latest</span><br></pre></td></tr></table></figure>
-
-<h2 id="配置-Grafana"><a href="#配置-Grafana" class="headerlink" title="配置 Grafana"></a>配置 Grafana</h2><h3 id="配置-DataSources"><a href="#配置-DataSources" class="headerlink" title="配置 DataSources"></a>配置 DataSources</h3><p>在地址 <code>{$server_url}/datasources/new</code> 选择 <code>Prometheus</code>，在 <code>URL</code> 处填写地址。</p>
-<ul>
-<li>如果使用 <code>docker</code> 部署 <code>Grafana</code>，需通过宿主机访问 <code>Prometheus</code>，所以地址可能是 <code>http://172.17.0.1:9090</code>。</li>
-</ul>
-<h3 id="导入-Dashboard"><a href="#导入-Dashboard" class="headerlink" title="导入 Dashboard"></a>导入 Dashboard</h3><ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9ncmFmYW5hLmNvbS9ncmFmYW5hL2Rhc2hib2FyZHMvODkxOQ==" title="https://grafana.com/grafana/dashboards/8919">https://grafana.com/grafana/dashboards/8919<i class="fa fa-external-link"></i></span></li>
-</ul>
-<p>这里推荐使用上面的模版，在地址 <code>{$server_url}/dashboard/import</code> 输入 id <code>8919</code> 然后保存即可。</p>
-<h2 id="预览"><a href="#预览" class="headerlink" title="预览"></a>预览</h2><p><img data-src="/images/11-1.png" alt="预览"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -827,7 +836,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -840,7 +849,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-count">26</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
