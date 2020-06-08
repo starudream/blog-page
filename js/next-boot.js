@@ -1,6 +1,6 @@
 /* global NexT, CONFIG, Velocity */
 
-(function(){$('#build-date').text('0601-081325')})();
+(function(){$('#build-date').text('0608-081335')})();
 
 NexT.boot = {};
 
