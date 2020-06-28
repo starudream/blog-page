@@ -330,6 +330,19 @@
       </tags>
   </entry>
   <entry>
+    <title>在 Chrome 地址栏中显示完整网址</title>
+    <url>/2020/06/28/18-show-full-path-in-chrome/</url>
+    <content><![CDATA[<p>打开 <code>chrome://flags/#omnibox-context-menu-show-full-urls</code> 地址，将 <code>Context menu show full URLs</code> 设置为 <code>Enabled</code>。</p>
+<p>重启 <code>Chrome</code> 后，再地址栏右击勾选“总是显示完整网址”。</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>chrome</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Samba 文件共享</title>
     <url>/2019/11/28/2-samba/</url>
     <content><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt install samba</span><br></pre></td></tr></table></figure>
