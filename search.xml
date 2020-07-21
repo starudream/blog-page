@@ -75,7 +75,7 @@
       </tags>
   </entry>
   <entry>
-    <title>安装 docker</title>
+    <title>安装 Docker</title>
     <url>/2020/05/09/12-install-docker/</url>
     <content><![CDATA[<h2 id="下载安装脚本"><a href="#下载安装脚本" class="headerlink" title="下载安装脚本"></a>下载安装脚本</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -fsSL https://get.docker.com -o get-docker.sh</span><br></pre></td></tr></table></figure>
 
@@ -105,7 +105,7 @@
       </tags>
   </entry>
   <entry>
-    <title>CentOS 安装 kubernetes</title>
+    <title>CentOS 安装 Kubernetes</title>
     <url>/2020/05/09/13-install-kubernetes/</url>
     <content><![CDATA[<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><h3 id="安装-Docker"><a href="#安装-Docker" class="headerlink" title="安装 Docker"></a>安装 Docker</h3><p>上一篇文章 <a href="https://blog.starudream.cn/2020/05/09/12-install-docker/">安装 docker</a></p>
 <h3 id="修改主机名"><a href="#修改主机名" class="headerlink" title="修改主机名"></a>修改主机名</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hostnamectl <span class="built_in">set</span>-hostname k8s-master</span><br></pre></td></tr></table></figure>
@@ -340,6 +340,33 @@
       </categories>
       <tags>
         <tag>chrome</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在 Prometheus 中使用钉钉机器人</title>
+    <url>/2020/07/21/19-use-dingtalk-in-prometheus/</url>
+    <content><![CDATA[<h2 id="启动-prometheus-webhook-dingtalk"><a href="#启动-prometheus-webhook-dingtalk" class="headerlink" title="启动 prometheus-webhook-dingtalk"></a>启动 <code>prometheus-webhook-dingtalk</code></h2><ul>
+<li><code>/data/prometheus-webhook-dingtalk/config/config.yml</code></li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">timeout:</span> <span class="string">10s</span></span><br><span class="line"></span><br><span class="line"><span class="attr">default_message:</span></span><br><span class="line">  <span class="attr">title:</span> <span class="string">'<span class="template-variable">&#123;&#123; template "legacy.title" . &#125;&#125;</span>'</span></span><br><span class="line">  <span class="attr">text:</span> <span class="string">'<span class="template-variable">&#123;&#123; template "legacy.content" . &#125;&#125;</span>'</span></span><br><span class="line"></span><br><span class="line"><span class="attr">targets:</span></span><br><span class="line">  <span class="attr">webhook1:</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">https://oapi.dingtalk.com/robot/send?access_token=xxx</span></span><br><span class="line">    <span class="attr">secret:</span> <span class="string">yyy</span></span><br><span class="line">    <span class="attr">mention:</span></span><br><span class="line">      <span class="attr">all:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name prometheus-webhook-dingtalk \</span><br><span class="line">    --restart always \</span><br><span class="line">    -p 8060:8060 \</span><br><span class="line">    -v /data/prometheus-webhook-dingtalk/config:/etc/prometheus-webhook-dingtalk \</span><br><span class="line">    timonwong/prometheus-webhook-dingtalk</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改-prometheus-配置文件"><a href="#修改-prometheus-配置文件" class="headerlink" title="修改 prometheus 配置文件"></a>修改 <code>prometheus</code> 配置文件</h2><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">route:</span></span><br><span class="line">  <span class="attr">receiver:</span> <span class="string">"dingtalk1"</span></span><br><span class="line"></span><br><span class="line"><span class="attr">receivers:</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">dingtalk1</span></span><br><span class="line">  <span class="attr">webhook_configs:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">send_resolved:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">http://127.0.0.1:8060/dingtalk/webhook1/send</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly90aGVvLmltL2Jsb2cvMjAxNy8xMC8xNi9yZWxlYXNlLXByb21ldGhldXMtYWxlcnRtYW5hZ2VyLXdlYmhvb2stZm9yLWRpbmd0YWxrLw==" title="https://theo.im/blog/2017/10/16/release-prometheus-alertmanager-webhook-for-dingtalk/">theo.im/blog<i class="fa fa-external-link"></i></span></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RpbW9ud29uZy9wcm9tZXRoZXVzLXdlYmhvb2stZGluZ3RhbGs=" title="https://github.com/timonwong/prometheus-webhook-dingtalk">timonwong/prometheus-webhook-dingtalk<i class="fa fa-external-link"></i></span></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>prometheus</tag>
+        <tag>dingtalk</tag>
       </tags>
   </entry>
   <entry>
