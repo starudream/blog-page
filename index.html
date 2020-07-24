@@ -134,7 +134,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">30</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">32</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -144,7 +144,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">19</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">20</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -193,6 +193,104 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2020/07/24/20-backup-and-restore-ubuntu-image/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="starudream">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰狂澜's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/24/20-backup-and-restore-ubuntu-image/" class="post-title-link" itemprop="url">备份还原 ubuntu 镜像</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-24 14:19:20" itemprop="dateCreated datePublished" datetime="2020-07-24T14:19:20+08:00">2020-07-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2020/07/24/20-backup-and-restore-ubuntu-image/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/07/24/20-backup-and-restore-ubuntu-image/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h2><p>通过以下命令查看磁盘</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">diskutil list</span><br></pre></td></tr></table></figure>
+
+<p>运行下面的命令进行打包，将 <code>N</code> 替换为上面查到的号码，等待完成即可。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dd bs=1m <span class="keyword">if</span>=/dev/rdiskN of=ubuntu.img</span><br></pre></td></tr></table></figure>
+
+<h3 id="压缩"><a href="#压缩" class="headerlink" title="压缩"></a>压缩</h3><p>一般来说，上面打包的生成的 <code>.img</code> 大小为 <code>TF</code> 卡容量，若写入小容量卡会发生错误，所以要清除无用的空间。</p>
+<p>如果是 <code>linux</code> 系统，可以跳过这一步，直接执行下方的命令，<code>windows</code> 以及 <code>mac</code> 可使用 <code>docker</code> 来执行。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it --rm --privileged -v $(<span class="built_in">pwd</span>):/shrink ubuntu:20.04</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">apt update</span><br><span class="line">apt install parted</span><br><span class="line"><span class="built_in">cd</span> /shrink</span><br><span class="line">./pishrink.sh in.img out.img</span><br></pre></td></tr></table></figure>
+
+<p>等待完成后，发现 <code>.img</code> 有明显的缩小。</p>
+<h2 id="恢复"><a href="#恢复" class="headerlink" title="恢复"></a>恢复</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dd bs=1m <span class="keyword">if</span>=ubuntu.img of=/dev/rdiskN</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0RyZXdzaWYvUGlTaHJpbms=" title="https://github.com/Drewsif/PiShrink">Drewsif/PiShrink<i class="fa fa-external-link"></i></span></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -577,101 +675,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2020/05/18/15-install-virtual-network/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="starudream">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰狂澜's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/18/15-install-virtual-network/" class="post-title-link" itemprop="url">Linux 创建虚拟网卡</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-05-18 11:58:21" itemprop="dateCreated datePublished" datetime="2020-05-18T11:58:21+08:00">2020-05-18</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2020/05/18/15-install-virtual-network/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/05/18/15-install-virtual-network/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="安装相关依赖"><a href="#安装相关依赖" class="headerlink" title="安装相关依赖"></a>安装相关依赖</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install -y uml-utilities bridge-utils</span><br></pre></td></tr></table></figure>
-
-<h2 id="添加网桥"><a href="#添加网桥" class="headerlink" title="添加网桥"></a>添加网桥</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brctl addbr br0</span><br></pre></td></tr></table></figure>
-
-<h2 id="激活网桥"><a href="#激活网桥" class="headerlink" title="激活网桥"></a>激活网桥</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip link <span class="built_in">set</span> br0 up</span><br></pre></td></tr></table></figure>
-
-<h2 id="添加虚拟网卡"><a href="#添加虚拟网卡" class="headerlink" title="添加虚拟网卡"></a>添加虚拟网卡</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip link <span class="built_in">set</span> tap0 up</span><br></pre></td></tr></table></figure>
-
-<h2 id="将虚拟网卡添加到指定网桥上"><a href="#将虚拟网卡添加到指定网桥上" class="headerlink" title="将虚拟网卡添加到指定网桥上"></a>将虚拟网卡添加到指定网桥上</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brctl addif br0 tap0</span><br></pre></td></tr></table></figure>
-
-<h2 id="给网桥配制ip地址"><a href="#给网桥配制ip地址" class="headerlink" title="给网桥配制ip地址"></a>给网桥配制ip地址</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ifconfig br0 172.24.16.10 up</span><br></pre></td></tr></table></figure>
-
-<h2 id="移除"><a href="#移除" class="headerlink" title="移除"></a>移除</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">brctl delif br0 tap0</span><br><span class="line"></span><br><span class="line">tunctl -d tap0</span><br><span class="line"></span><br><span class="line">brctl delbr br0</span><br></pre></td></tr></table></figure>
-
-<h2 id="brctl"><a href="#brctl" class="headerlink" title="brctl"></a>brctl</h2><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Usage: brctl [commands]</span><br><span class="line">commands:</span><br><span class="line">  addbr          &lt;bridge&gt;                  <span class="builtin-name">add</span> bridge</span><br><span class="line">  delbr          &lt;bridge&gt;                  delete bridge</span><br><span class="line">  addif          &lt;bridge&gt; &lt;device&gt;         <span class="builtin-name">add</span><span class="built_in"> interface </span><span class="keyword">to</span> bridge</span><br><span class="line">  delif          &lt;bridge&gt; &lt;device&gt;         delete<span class="built_in"> interface </span><span class="keyword">from</span> bridge</span><br><span class="line">  hairpin        &lt;bridge&gt; &lt;port&gt; &#123;on|off&#125;  turn hairpin on/off</span><br><span class="line">  setageing      &lt;bridge&gt; &lt;time&gt;           <span class="builtin-name">set</span> ageing time</span><br><span class="line">  setbridgeprio  &lt;bridge&gt; &lt;prio&gt;           <span class="builtin-name">set</span><span class="built_in"> bridge </span>priority</span><br><span class="line">  setfd          &lt;bridge&gt; &lt;time&gt;           <span class="builtin-name">set</span><span class="built_in"> bridge </span>forward delay</span><br><span class="line">  sethello       &lt;bridge&gt; &lt;time&gt;           <span class="builtin-name">set</span> hello time</span><br><span class="line">  setmaxage      &lt;bridge&gt; &lt;time&gt;           <span class="builtin-name">set</span> max message age</span><br><span class="line">  setpathcost    &lt;bridge&gt; &lt;port&gt; &lt;cost&gt;    <span class="builtin-name">set</span> path cost</span><br><span class="line">  setportprio    &lt;bridge&gt; &lt;port&gt; &lt;prio&gt;    <span class="builtin-name">set</span><span class="built_in"> port </span>priority</span><br><span class="line">  show           [ &lt;bridge&gt; ]              show a list of bridges</span><br><span class="line">  showmacs       &lt;bridge&gt;                  show a list of mac addrs</span><br><span class="line">  showstp        &lt;bridge&gt;                  show<span class="built_in"> bridge </span>stp info</span><br><span class="line">  stp            &lt;bridge&gt; &#123;on|off&#125;         turn stp on/off</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -743,7 +746,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -756,7 +759,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-count">32</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.starudream.cn/2020/07/24/20-backup-and-restore-ubuntu-image/</loc>
+    
+    <lastmod>2020-07-24T06:19:20.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.starudream.cn/2020/07/21/19-use-dingtalk-in-prometheus/</loc>
     
     <lastmod>2020-07-21T07:30:58.000Z</lastmod>

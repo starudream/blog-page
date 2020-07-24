@@ -134,7 +134,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">30</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">32</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -144,7 +144,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">19</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">20</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -193,6 +193,87 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2019/12/19/5-motify-theme-pisces/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="starudream">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰狂澜's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/19/5-motify-theme-pisces/" class="post-title-link" itemprop="url">修改主题 Pisces</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-12-19 16:35:12" itemprop="dateCreated datePublished" datetime="2019-12-19T16:35:12+08:00">2019-12-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%B8%BB%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">主题</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2019/12/19/5-motify-theme-pisces/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/12/19/5-motify-theme-pisces/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--- a/themes/next/layout/_scripts/pjax.swig</span></span><br><span class="line"><span class="comment">+++ b/themes/next/layout/_scripts/pjax.swig</span></span><br><span class="line">@@ -15,8 +15,8 @@ var pjax = new Pjax(&#123;</span><br><span class="line">   scrollTo : !CONFIG.bookmark.enable</span><br><span class="line"> &#125;);</span><br><span class="line"></span><br><span class="line"><span class="deletion">-window.addEventListener('pjax:success', () =&gt; &#123;</span></span><br><span class="line"><span class="deletion">-  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element =&gt; &#123;</span></span><br><span class="line"><span class="addition">+window.addEventListener('pjax:success', function() &#123;</span></span><br><span class="line"><span class="addition">+  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(function(element) &#123;</span></span><br><span class="line">     var code = element.text || element.textContent || element.innerHTML || '';</span><br><span class="line">     var parent = element.parentNode;</span><br><span class="line">     parent.removeChild(element);</span><br><span class="line"></span><br><span class="line"><span class="comment">--- a/themes/next/layout/_third-party/comments/disqus.swig</span></span><br><span class="line"><span class="comment">+++ b/themes/next/layout/_third-party/comments/disqus.swig</span></span><br><span class="line"><span class="meta">@@ -41,7 +41,7 @@</span></span><br><span class="line">         // load directly when there's no a scrollbar</span><br><span class="line">         window.addEventListener('load', loadComments, false);</span><br><span class="line">       &#125; else &#123;</span><br><span class="line"><span class="deletion">-        var disqus_scroll = () =&gt; &#123;</span></span><br><span class="line"><span class="addition">+        var disqus_scroll = function() &#123;</span></span><br><span class="line">           // offsetTop may changes because of manually resizing browser window or lazy loading images.</span><br><span class="line">           var offsetTop = document.getElementById('comments').offsetTop - window.innerHeight;</span><br><span class="line">           var scrollTop = window.scrollY;</span><br><span class="line"></span><br><span class="line"><span class="comment">--- a/themes/next/layout/_third-party/quicklink.swig</span></span><br><span class="line"><span class="comment">+++ b/themes/next/layout/_third-party/quicklink.swig</span></span><br><span class="line"><span class="meta">@@ -3,12 +3,12 @@</span></span><br><span class="line">   &lt;script src="&#123;&#123; quicklink_uri &#125;&#125;"&gt;&lt;/script&gt;</span><br><span class="line">   &lt;script&gt;</span><br><span class="line">     &#123;%- if page.quicklink.delay %&#125;</span><br><span class="line"><span class="deletion">-      window.addEventListener('load', () =&gt; &#123;</span></span><br><span class="line"><span class="addition">+      window.addEventListener('load', function() &#123;</span></span><br><span class="line">     &#123;%- endif %&#125;</span><br><span class="line">       quicklink(&#123;</span><br><span class="line">         timeout: &#123;&#123; page.quicklink.timeout &#125;&#125;,</span><br><span class="line">         priority: &#123;&#123; page.quicklink.priority &#125;&#125;,</span><br><span class="line"><span class="deletion">-        ignores: [uri =&gt; uri.includes('#'),uri =&gt; uri == '&#123;&#123; url | replace('index.html', '') &#125;&#125;',&#123;&#123; page.quicklink.ignores &#125;&#125;]</span></span><br><span class="line"><span class="addition">+        ignores: [function(uri) &#123; return uri.includes('#') &#125;, function(uri) &#123; return uri === '&#123;&#123; url | replace('index.html', '') &#125;&#125;' &#125;, &#123;&#123; page.quicklink.ignores &#125;&#125;]</span></span><br><span class="line">       &#125;);</span><br><span class="line">     &#123;%- if page.quicklink.delay %&#125;</span><br><span class="line">       &#125;);</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -629,7 +710,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -642,7 +723,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-count">32</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
