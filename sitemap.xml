@@ -2,163 +2,163 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://blog.starudream.cn/tags/index.html</loc>
+    <loc>https://blog.starudream.cn/2020/07/24/20-backup-and-restore-ubuntu-image/</loc>
     
-    <lastmod>2020-09-01</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.starudream.cn/2019/11/19/1-introduction/</loc>
-    
-    <lastmod>2020-09-01</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.starudream.cn/2020/04/15/10-disable-ipv6-linux/</loc>
-    
-    <lastmod>2020-09-01</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.starudream.cn/2020/04/26/11-use-grafana-monitor-vps/</loc>
-    
-    <lastmod>2020-09-01</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.starudream.cn/2020/05/09/12-install-docker/</loc>
-    
-    <lastmod>2020-09-01</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.starudream.cn/2020/05/09/13-install-kubernetes/</loc>
-    
-    <lastmod>2020-09-01</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.starudream.cn/2020/05/14/14-install-istio-with-k8s/</loc>
-    
-    <lastmod>2020-09-01</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.starudream.cn/2020/05/18/15-install-virtual-network/</loc>
-    
-    <lastmod>2020-09-01</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.starudream.cn/2020/05/26/16-install-gitea-and-drone/</loc>
-    
-    <lastmod>2020-09-01</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.starudream.cn/2020/05/29/17-use-winsw-to-deploy-windoes-service/</loc>
-    
-    <lastmod>2020-09-01</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.starudream.cn/2020/06/28/18-show-full-path-in-chrome/</loc>
-    
-    <lastmod>2020-09-01</lastmod>
+    <lastmod>2020-07-24</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.starudream.cn/2020/07/21/19-use-dingtalk-in-prometheus/</loc>
     
-    <lastmod>2020-09-01</lastmod>
+    <lastmod>2020-07-21</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.starudream.cn/2019/11/28/2-samba/</loc>
+    <loc>https://blog.starudream.cn/2020/06/28/18-show-full-path-in-chrome/</loc>
     
-    <lastmod>2020-09-01</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.starudream.cn/2020/07/24/20-backup-and-restore-ubuntu-image/</loc>
-    
-    <lastmod>2020-09-01</lastmod>
+    <lastmod>2020-06-28</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.starudream.cn/2019/12/12/3-gitkraken-crack/</loc>
+    <loc>https://blog.starudream.cn/2020/05/29/17-use-winsw-to-deploy-windoes-service/</loc>
     
-    <lastmod>2020-09-01</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.starudream.cn/2019/12/13/4-install-gitlab-and-gitlab-runner/</loc>
-    
-    <lastmod>2020-09-01</lastmod>
+    <lastmod>2020-05-29</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.starudream.cn/2019/12/19/5-motify-theme-pisces/</loc>
+    <loc>https://blog.starudream.cn/2020/05/26/16-install-gitea-and-drone/</loc>
     
-    <lastmod>2020-09-01</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.starudream.cn/2020/01/19/6-crack-gitlab/</loc>
-    
-    <lastmod>2020-09-01</lastmod>
+    <lastmod>2020-05-26</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.starudream.cn/2020/04/10/7-deploy-hexo-with-github-actions/</loc>
+    <loc>https://blog.starudream.cn/2020/05/18/15-install-virtual-network/</loc>
     
-    <lastmod>2020-09-01</lastmod>
+    <lastmod>2020-05-18</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.starudream.cn/2020/04/10/8-deploy-ssl-with-acme/</loc>
+    <loc>https://blog.starudream.cn/2020/05/14/14-install-istio-with-k8s/</loc>
     
-    <lastmod>2020-09-01</lastmod>
+    <lastmod>2020-05-14</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.starudream.cn/2020/05/09/13-install-kubernetes/</loc>
+    
+    <lastmod>2020-05-09</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.starudream.cn/2020/05/09/12-install-docker/</loc>
+    
+    <lastmod>2020-05-09</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.starudream.cn/2020/04/26/11-use-grafana-monitor-vps/</loc>
+    
+    <lastmod>2020-04-26</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.starudream.cn/2020/04/15/10-disable-ipv6-linux/</loc>
+    
+    <lastmod>2020-04-15</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.starudream.cn/2020/04/14/9-deploy-teamspeak/</loc>
     
-    <lastmod>2020-09-01</lastmod>
+    <lastmod>2020-04-14</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.starudream.cn/2020/04/10/8-deploy-ssl-with-acme/</loc>
+    
+    <lastmod>2020-04-10</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.starudream.cn/2020/04/10/7-deploy-hexo-with-github-actions/</loc>
+    
+    <lastmod>2020-04-10</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.starudream.cn/2020/01/19/6-crack-gitlab/</loc>
+    
+    <lastmod>2020-01-19</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.starudream.cn/2019/12/19/5-motify-theme-pisces/</loc>
+    
+    <lastmod>2019-12-19</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.starudream.cn/2019/12/13/4-install-gitlab-and-gitlab-runner/</loc>
+    
+    <lastmod>2019-12-13</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.starudream.cn/2019/12/12/3-gitkraken-crack/</loc>
+    
+    <lastmod>2019-12-12</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.starudream.cn/2019/11/28/2-samba/</loc>
+    
+    <lastmod>2019-11-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.starudream.cn/2019/11/19/1-introduction/</loc>
+    
+    <lastmod>2019-11-19</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.starudream.cn/about/index.html</loc>
     
-    <lastmod>2020-09-01</lastmod>
+    <lastmod>2019-11-19</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.starudream.cn/categories/index.html</loc>
     
-    <lastmod>2020-09-01</lastmod>
+    <lastmod>2019-11-19</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.starudream.cn/tags/index.html</loc>
+    
+    <lastmod>2019-11-19</lastmod>
     
   </url>
   
