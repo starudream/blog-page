@@ -1,7 +1,5 @@
 /* global NexT, CONFIG */
 
-(function(){console.log("0901-100618")})();
-
 NexT.boot = {};
 
 NexT.boot.registerEvents = function() {
