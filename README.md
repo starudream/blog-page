@@ -1,12 +1,12 @@
 # Blog
 
-![License](https://img.shields.io/badge/License-Apache%20License%202.0-blue)
+![License](https://img.shields.io/badge/License-Apache%20License%202.0-blue?style=for-the-badge)
 
 ## Deploy
 
-![Zone](https://img.shields.io/badge/Zone-UTC%2B8-lightgrey)
-![Date](https://img.shields.io/badge/Date-2020.10.14-blue)
-![Time](https://img.shields.io/badge/Time-12.14.24-blue)
+![Zone](https://img.shields.io/badge/Zone-UTC%2B8-lightgrey?style=for-the-badge)
+![Date](https://img.shields.io/badge/Date-2020.10.14-blue?style=for-the-badge)
+![Time](https://img.shields.io/badge/Time-12.18.58-blue?style=for-the-badge)
 
 ## License
 
