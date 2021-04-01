@@ -354,6 +354,20 @@
   </url>
   
   <url>
+    <loc>https://blog.starudream.cn/tags/github/</loc>
+    <lastmod>2021-04-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.starudream.cn/tags/hexo/</loc>
+    <lastmod>2021-04-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.starudream.cn/tags/acme/</loc>
     <lastmod>2021-04-01</lastmod>
     <changefreq>daily</changefreq>
@@ -376,20 +390,6 @@
   
   <url>
     <loc>https://blog.starudream.cn/tags/teamspeak/</loc>
-    <lastmod>2021-04-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.starudream.cn/tags/github/</loc>
-    <lastmod>2021-04-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.starudream.cn/tags/hexo/</loc>
     <lastmod>2021-04-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
