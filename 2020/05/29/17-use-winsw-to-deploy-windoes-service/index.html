@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.3.0">
+<meta name="generator" content="Hexo 5.4.0">
 
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
@@ -15,14 +15,14 @@
 
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
-  <script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
+  <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"blog.starudream.cn","root":"/","images":"/images","scheme":"Pisces","version":"8.2.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":true,"nav":null,"activeClass":"disqus"},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":true,"preload":false}};
+    var CONFIG = {"hostname":"blog.starudream.cn","root":"/","images":"/images","scheme":"Pisces","version":"8.3.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":true,"nav":null,"activeClass":"disqus"},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 <meta name="description" content="安装 winsw&#x2F;winsw  在 Release 页面下载最新版本以及示例配置文件。 将可执行文件和配置文件都复制到自定义的目录，并将文件名改为一致。 配置下面我使用 Frpc 作为演示。 123456789101112131415161718192021&lt;!-- frpc-service.xml --&gt;&lt;service&gt;    &lt;id&gt;frpc&lt;&#x2F;id">
 <meta property="og:type" content="article">
@@ -251,7 +251,7 @@
 
         </div>
       </div>
-        <div class="back-to-top animated" role="button">
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
           <i class="fa fa-arrow-up"></i>
           <span>0%</span>
         </div>
@@ -354,9 +354,12 @@
 <p>将可执行文件和配置文件都复制到自定义的目录，并将文件名改为一致。</p>
 <h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>下面我使用 <code>Frpc</code> 作为演示。</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- frpc-service.xml --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">service</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>frpc<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>Frpc Service<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">description</span>&gt;</span>A fast reverse proxy to help you expose a local server behind a NAT or firewall to the internet.<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">executable</span>&gt;</span>E:\Frp\frpc.exe<span class="tag">&lt;/<span class="name">executable</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">onfailure</span> <span class="attr">action</span>=<span class="string">&quot;restart&quot;</span> <span class="attr">delay</span>=<span class="string">&quot;5 sec&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">resetfailure</span>&gt;</span>1 day<span class="tag">&lt;/<span class="name">resetfailure</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">arguments</span>&gt;</span>-c E:\Frp\frpc.ini<span class="tag">&lt;/<span class="name">arguments</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">workingdirectory</span>&gt;</span>E:\Frp<span class="tag">&lt;/<span class="name">workingdirectory</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">priority</span>&gt;</span>AboveNormal<span class="tag">&lt;/<span class="name">priority</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">stoptimeout</span>&gt;</span>15 sec<span class="tag">&lt;/<span class="name">stoptimeout</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">stopparentprocessfirst</span>&gt;</span>false<span class="tag">&lt;/<span class="name">stopparentprocessfirst</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">startmode</span>&gt;</span>Automatic<span class="tag">&lt;/<span class="name">startmode</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">waithint</span>&gt;</span>15 sec<span class="tag">&lt;/<span class="name">waithint</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">sleeptime</span>&gt;</span>1 sec<span class="tag">&lt;/<span class="name">sleeptime</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">logpath</span>&gt;</span>E:\Frp\logs<span class="tag">&lt;/<span class="name">logpath</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">log</span> <span class="attr">mode</span>=<span class="string">&quot;roll-by-time&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">pattern</span>&gt;</span>yyyyMMdd<span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">log</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">service</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
 <p>相关配置的解读请参考下载的示例配置文件。</p>
 <h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 首先运行测试，看配置是否可以正常运行</span></span><br><span class="line">./frpc-service.exe testwait</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 Service</span></span><br><span class="line">./frpc-service.exe install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行 Service</span></span><br><span class="line">./frpc-service.exe start</span><br></pre></td></tr></table></figure>
+
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">A wrapper binary that can be used to host executables as Windows services</span><br><span class="line"></span><br><span class="line">Usage: winsw [/redirect file] &lt;command&gt; [&lt;args&gt;]</span><br><span class="line">       Missing arguments trigger the service mode</span><br><span class="line"></span><br><span class="line">Available commands:</span><br><span class="line">  install     install the service to Windows Service Controller</span><br><span class="line">  uninstall   uninstall the service</span><br><span class="line">  start       start the service (must be installed before)</span><br><span class="line">  stop        stop the service</span><br><span class="line">  stopwait    stop the service<span class="built_in"> and </span>wait until it&#x27;s actually stopped</span><br><span class="line">  restart     restart the service</span><br><span class="line">  restart!    self-restart (can be called from child processes)</span><br><span class="line">  status     <span class="built_in"> check </span>the current status of the service</span><br><span class="line">  test       <span class="built_in"> check </span>if the service can be started<span class="built_in"> and </span>then stopped</span><br><span class="line">  testwait    starts the service<span class="built_in"> and </span>waits until a key is pressed then stops the service</span><br><span class="line">  version     print the version info</span><br><span class="line">  help        print the help info (aliases: -h,--help,-?,/?)</span><br><span class="line"></span><br><span class="line">Extra options:</span><br><span class="line">  /redirect   redirect the wrapper&#x27;s STDOUT<span class="built_in"> and </span>STDERR to the specified file</span><br><span class="line"></span><br><span class="line">WinSW 2.9.0.0</span><br><span class="line">More info: https://github.com/kohsuke/winsw</span><br><span class="line">Bug tracker: https://github.com/kohsuke/winsw/issues</span><br></pre></td></tr></table></figure>
+
     </div>
 
     
@@ -521,12 +524,12 @@
   </footer>
 
   
-  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script>
 var pjax = new Pjax({
   selectors: [
@@ -597,7 +600,7 @@ document.addEventListener('pjax:success', () => {
 
     <div class="pjax">
 
-  <script src="//cdn.jsdelivr.net/npm/quicklink@2.0.0/dist/quicklink.umd.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.1.0/dist/quicklink.umd.js"></script>
   <script>
       window.addEventListener('load', () => {
       quicklink.listen({

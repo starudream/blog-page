@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.3.0">
+<meta name="generator" content="Hexo 5.4.0">
 
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
@@ -15,21 +15,21 @@
 
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
-  <script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
+  <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"blog.starudream.cn","root":"/","images":"/images","scheme":"Pisces","version":"8.2.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":true,"nav":null,"activeClass":"disqus"},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":true,"preload":false}};
+    var CONFIG = {"hostname":"blog.starudream.cn","root":"/","images":"/images","scheme":"Pisces","version":"8.3.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":true,"nav":null,"activeClass":"disqus"},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
-<meta name="description" content="安装 docker 并拉取相关镜像 gitea&#x2F;gitea  drone&#x2F;drone  drone&#x2F;drone-runner-docker   123docker pull gitea&#x2F;giteadocker pull drone&#x2F;dronedocker pull drone&#x2F;drone-runner-docker 安装 gitea12345678docker run -d \    --name">
+<meta name="description" content="安装 docker 并拉取相关镜像 gitea&#x2F;gitea  drone&#x2F;drone  drone&#x2F;drone-runner-docker   123docker pull gitea&#x2F;giteadocker pull drone&#x2F;dronedocker pull drone&#x2F;drone-runner-docker  安装 gitea12345678docker run -d \    --nam">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基于 Docker 安装 Gitea 和 Drone &#x2F; Drone-Runner">
 <meta property="og:url" content="https://blog.starudream.cn/2020/05/26/16-install-gitea-and-drone/index.html">
 <meta property="og:site_name" content="星辰狂澜&#39;s Blog">
-<meta property="og:description" content="安装 docker 并拉取相关镜像 gitea&#x2F;gitea  drone&#x2F;drone  drone&#x2F;drone-runner-docker   123docker pull gitea&#x2F;giteadocker pull drone&#x2F;dronedocker pull drone&#x2F;drone-runner-docker 安装 gitea12345678docker run -d \    --name">
+<meta property="og:description" content="安装 docker 并拉取相关镜像 gitea&#x2F;gitea  drone&#x2F;drone  drone&#x2F;drone-runner-docker   123docker pull gitea&#x2F;giteadocker pull drone&#x2F;dronedocker pull drone&#x2F;drone-runner-docker  安装 gitea12345678docker run -d \    --nam">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-05-26T06:11:29.000Z">
 <meta property="article:modified_time" content="2020-05-26T06:11:29.000Z">
@@ -252,7 +252,7 @@
 
         </div>
       </div>
-        <div class="back-to-top animated" role="button">
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
           <i class="fa fa-arrow-up"></i>
           <span>0%</span>
         </div>
@@ -357,7 +357,9 @@
 </li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker pull gitea/gitea</span><br><span class="line">docker pull drone/drone</span><br><span class="line">docker pull drone/drone-runner-docker</span><br></pre></td></tr></table></figure>
+
 <h2 id="安装-gitea"><a href="#安装-gitea" class="headerlink" title="安装 gitea"></a>安装 gitea</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name gitea \</span><br><span class="line">    --restart always \</span><br><span class="line">    -p 53022:22 \</span><br><span class="line">    -p 53080:3000 \</span><br><span class="line">    -m 400m \</span><br><span class="line">    -v /opt/docker/gitea/data:/data \</span><br><span class="line">    gitea/gitea:1.11.5</span><br></pre></td></tr></table></figure>
+
 <p>按照步骤完成安装 <code>Gitea</code> 后，打开 <code>https://git.52xckl.cn/user/settings/applications</code> 页面。</p>
 <p>应用名称：<code>drone</code>，重定向 URL：<code>https://drone.52xckl.cn/login</code> 填写完成后点击创建应用获取 <code>客户端 ID</code> 与 <code>客户端密钥</code>。</p>
 <h2 id="创建-drone-与-drone-runner"><a href="#创建-drone-与-drone-runner" class="headerlink" title="创建 drone 与 drone-runner"></a>创建 drone 与 drone-runner</h2><ul>
@@ -366,11 +368,14 @@
 <li><code>$&#123;RPC_SECRET&#125;</code> -&gt; <code>drone 与 drone-runner 通讯的密钥，随机生成即可</code></li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name drone \</span><br><span class="line">    --restart always \</span><br><span class="line">    -m 200m \</span><br><span class="line">    -p 54080:80 \</span><br><span class="line">    -e DRONE_GITEA_SERVER=https://git.52xckl.cn \</span><br><span class="line">    -e DRONE_GITEA_CLIENT_ID=<span class="variable">$&#123;CLIENT_ID&#125;</span> \</span><br><span class="line">    -e DRONE_GITEA_CLIENT_SECRET=<span class="variable">$&#123;CLIENT_SECRET&#125;</span>= \</span><br><span class="line">    -e DRONE_RPC_SECRET=<span class="variable">$&#123;RPC_SECRET&#125;</span> \</span><br><span class="line">    -e DRONE_SERVER_HOST=drone.52xckl.cn \</span><br><span class="line">    -e DRONE_SERVER_PROTO=https \</span><br><span class="line">    -v /opt/docker/drone/data:/var/lib/drone \</span><br><span class="line">    drone/drone:1.7.0</span><br></pre></td></tr></table></figure>
+
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name drone-runner \</span><br><span class="line">    --link drone:drone \</span><br><span class="line">    --restart always \</span><br><span class="line">    -m 200m \</span><br><span class="line">    -e DRONE_RUNNER_NAME=runner-001 \</span><br><span class="line">    -e DRONE_RPC_PROTO=http \</span><br><span class="line">    -e DRONE_RPC_HOST=drone \</span><br><span class="line">    -e DRONE_RPC_SECRET=<span class="variable">$&#123;RPC_SECRET&#125;</span> \</span><br><span class="line">    -v /var/run/docker.sock:/var/run/docker.sock \</span><br><span class="line">    drone/drone-runner-docker:1.3.0</span><br></pre></td></tr></table></figure>
+
 <p>最后 <code>docker logs -f --tail 10 drone-runner</code> 显示 <code>successfully pinged the remote server</code> 即为成功。</p>
 <h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>首先打开 <code>https://drone.52xckl.cn/</code> 完成 <code>OAuth2</code> 认证并激活项目。</p>
 <p>在激活的项目中创建名为 <code>.drone.yml</code> 的文件：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">kind:</span> <span class="string">pipeline</span></span><br><span class="line"><span class="attr">name:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">type:</span> <span class="string">docker</span></span><br><span class="line"><span class="attr">steps:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">test</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">golang:1.14-alpine</span></span><br><span class="line">    <span class="attr">commands:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">CGO_ENABLED=0</span> <span class="string">GO111MODULE=on</span> <span class="string">go</span> <span class="string">test</span> <span class="string">-count=1</span> <span class="string">-cover</span> <span class="string">-v</span> <span class="string">./...</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">CGO_ENABLED=0</span> <span class="string">GO111MODULE=on</span> <span class="string">go</span> <span class="string">run</span> <span class="string">.</span></span><br></pre></td></tr></table></figure>
+
 <p>这段是 <code>Go</code> 相关项目的，如果编写该文件请查询相关官方文档。</p>
 <h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ul>
 <li><p><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmdpdGVhLmlvL2VuLXVzLw==">gitea<i class="fa fa-external-link-alt"></i></span></p>
@@ -544,12 +549,12 @@
   </footer>
 
   
-  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script>
 var pjax = new Pjax({
   selectors: [
@@ -620,7 +625,7 @@ document.addEventListener('pjax:success', () => {
 
     <div class="pjax">
 
-  <script src="//cdn.jsdelivr.net/npm/quicklink@2.0.0/dist/quicklink.umd.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.1.0/dist/quicklink.umd.js"></script>
   <script>
       window.addEventListener('load', () => {
       quicklink.listen({

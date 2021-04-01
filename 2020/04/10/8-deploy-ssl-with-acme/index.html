@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.3.0">
+<meta name="generator" content="Hexo 5.4.0">
 
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
@@ -15,14 +15,14 @@
 
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
-  <script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
+  <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"blog.starudream.cn","root":"/","images":"/images","scheme":"Pisces","version":"8.2.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":true,"nav":null,"activeClass":"disqus"},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":true,"preload":false}};
+    var CONFIG = {"hostname":"blog.starudream.cn","root":"/","images":"/images","scheme":"Pisces","version":"8.3.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":true,"nav":null,"activeClass":"disqus"},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 <meta name="description" content="脚本12345678910111213~&#x2F;.acme.sh&#x2F;acme.sh \  --debug \  --issue \  --dns dns_dp \  -d *.starudream.cn~&#x2F;.acme.sh&#x2F;acme.sh \  --debug \  --install-cert \  -d *.starudream.cn \  --fullchain-file &amp;#x27;&#x2F;usr&#x2F;lo">
 <meta property="og:type" content="article">
@@ -252,7 +252,7 @@
 
         </div>
       </div>
-        <div class="back-to-top animated" role="button">
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
           <i class="fa fa-arrow-up"></i>
           <span>0%</span>
         </div>
@@ -349,7 +349,9 @@
     
     <div class="post-body" itemprop="articleBody">
         <h2 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">~/.acme.sh/acme.sh \</span><br><span class="line">  --debug \</span><br><span class="line">  --issue \</span><br><span class="line">  --dns dns_dp \</span><br><span class="line">  -d *.starudream.cn</span><br><span class="line"></span><br><span class="line">~/.acme.sh/acme.sh \</span><br><span class="line">  --debug \</span><br><span class="line">  --install-cert \</span><br><span class="line">  -d *.starudream.cn \</span><br><span class="line">  --fullchain-file <span class="string">&#x27;/usr/local/openresty/nginx/conf/ssl/*.starudream.cn.crt&#x27;</span> \</span><br><span class="line">  --key-file <span class="string">&#x27;/usr/local/openresty/nginx/conf/ssl/*.starudream.cn.key&#x27;</span> \</span><br><span class="line">  --reloadcmd <span class="string">&#x27;service nginx reload&#x27;</span></span><br></pre></td></tr></table></figure>
-<h2 id="nginx-配置文件"><a href="#nginx-配置文件" class="headerlink" title="nginx 配置文件"></a>nginx 配置文件</h2><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">  <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">  <span class="attribute">listen</span> [::]:<span class="number">80</span>;</span><br><span class="line">  <span class="attribute">listen</span> <span class="number">443</span> ssl http2;</span><br><span class="line">  <span class="attribute">listen</span> [::]:<span class="number">443</span> ssl http2;</span><br><span class="line">  <span class="attribute">ssl_certificate</span> /usr/local/openresty/nginx/conf/ssl/<span class="regexp">*.starudream.cn.crt</span>;</span><br><span class="line">  <span class="attribute">ssl_certificate_key</span> /usr/local/openresty/nginx/conf/ssl/<span class="regexp">*.starudream.cn.key</span>;</span><br><span class="line">  <span class="attribute">ssl_protocols</span> TLSv1 TLSv1.<span class="number">1</span> TLSv1.<span class="number">2</span> TLSv1.<span class="number">3</span>;</span><br><span class="line">  <span class="attribute">ssl_ciphers</span> TLS13-AES-<span class="number">256</span>-GCM-SHA384:TLS13-CHACHA20-POLY1305-SHA256:TLS13-AES-<span class="number">128</span>-GCM-SHA256:TLS13-AES-<span class="number">128</span>-CCM-<span class="number">8</span>-SHA256:TLS13-AES-<span class="number">128</span>-CCM-SHA256:EECDH+CHACHA20:EECDH+AES128:RSA+AES128:EECDH+AES256:RSA+AES256:EECDH+3DES:RSA+3DES:!MD5;</span><br><span class="line">  <span class="attribute">ssl_prefer_server_ciphers</span> <span class="literal">on</span>;</span><br><span class="line">  <span class="attribute">ssl_session_timeout</span> <span class="number">10m</span>;</span><br><span class="line">  <span class="attribute">ssl_session_cache</span> builtin:<span class="number">1000</span> shared:SSL:<span class="number">10m</span>;</span><br><span class="line">  <span class="attribute">ssl_buffer_size</span> <span class="number">1400</span>;</span><br><span class="line">  <span class="attribute">add_header</span> Strict-Transport-Security max-age=<span class="number">15768000</span>;</span><br><span class="line">  <span class="attribute">ssl_stapling</span> <span class="literal">on</span>;</span><br><span class="line">  <span class="attribute">ssl_stapling_verify</span> <span class="literal">on</span>;</span><br><span class="line">  <span class="attribute">server_name</span> test.starudream.cn;</span><br><span class="line">  <span class="attribute">access_log</span> /data/wwwlogs/test.starudream.cn_nginx.log combined;</span><br><span class="line">  <span class="attribute">index</span> index.html;</span><br><span class="line">  <span class="attribute">root</span> /data/wwwroot/default;</span><br><span class="line">  <span class="attribute">if</span> (<span class="variable">$ssl_protocol</span> = <span class="string">&quot;&quot;</span>) &#123; <span class="attribute">return</span> <span class="number">301</span> https://<span class="variable">$host</span><span class="variable">$request_uri</span>; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="nginx-配置文件"><a href="#nginx-配置文件" class="headerlink" title="nginx 配置文件"></a>nginx 配置文件</h2><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">  <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">  <span class="attribute">listen</span> [::]:<span class="number">80</span>;</span><br><span class="line">  <span class="attribute">listen</span> <span class="number">443</span> ssl http2;</span><br><span class="line">  <span class="attribute">listen</span> [::]:<span class="number">443</span> ssl http2;</span><br><span class="line">  <span class="attribute">ssl_certificate</span> /usr/local/openresty/nginx/conf/ssl/<span class="regexp">*.starudream.cn.crt</span>;</span><br><span class="line">  <span class="attribute">ssl_certificate_key</span> /usr/local/openresty/nginx/conf/ssl/<span class="regexp">*.starudream.cn.key</span>;</span><br><span class="line">  <span class="attribute">ssl_protocols</span> TLSv1 TLSv1.<span class="number">1</span> TLSv1.<span class="number">2</span> TLSv1.<span class="number">3</span>;</span><br><span class="line">  <span class="attribute">ssl_ciphers</span> TLS13-AES-<span class="number">256</span>-GCM-SHA384:TLS13-CHACHA20-POLY1305-SHA256:TLS13-AES-<span class="number">128</span>-GCM-SHA256:TLS13-AES-<span class="number">128</span>-CCM-<span class="number">8</span>-SHA256:TLS13-AES-<span class="number">128</span>-CCM-SHA256:EECDH+CHACHA20:EECDH+AES128:RSA+AES128:EECDH+AES256:RSA+AES256:EECDH+3DES:RSA+3DES:!MD5;</span><br><span class="line">  <span class="attribute">ssl_prefer_server_ciphers</span> <span class="literal">on</span>;</span><br><span class="line">  <span class="attribute">ssl_session_timeout</span> <span class="number">10m</span>;</span><br><span class="line">  <span class="attribute">ssl_session_cache</span> builtin:<span class="number">1000</span> shared:SSL:<span class="number">10m</span>;</span><br><span class="line">  <span class="attribute">ssl_buffer_size</span> <span class="number">1400</span>;</span><br><span class="line">  <span class="attribute">add_header</span> Strict-Transport-Security max-age=<span class="number">15768000</span>;</span><br><span class="line">  <span class="attribute">ssl_stapling</span> <span class="literal">on</span>;</span><br><span class="line">  <span class="attribute">ssl_stapling_verify</span> <span class="literal">on</span>;</span><br><span class="line">  <span class="attribute">server_name</span> test.starudream.cn;</span><br><span class="line">  <span class="attribute">access_log</span> /data/wwwlogs/test.starudream.cn_nginx.log combined;</span><br><span class="line">  <span class="attribute">index</span> index.html;</span><br><span class="line">  <span class="attribute">root</span> /data/wwwroot/default;</span><br><span class="line">  <span class="attribute">if</span> ($ssl_protocol = <span class="string">&quot;&quot;</span>) &#123; <span class="attribute">return</span> <span class="number">301</span> https://$host$request_uri; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
 <li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FjbWVzaC1vZmZpY2lhbC9hY21lLnNo">https://github.com/acmesh-official/acme.sh<i class="fa fa-external-link-alt"></i></span></li>
 </ul>
@@ -519,12 +521,12 @@
   </footer>
 
   
-  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script>
 var pjax = new Pjax({
   selectors: [
@@ -595,7 +597,7 @@ document.addEventListener('pjax:success', () => {
 
     <div class="pjax">
 
-  <script src="//cdn.jsdelivr.net/npm/quicklink@2.0.0/dist/quicklink.umd.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.1.0/dist/quicklink.umd.js"></script>
   <script>
       window.addEventListener('load', () => {
       quicklink.listen({

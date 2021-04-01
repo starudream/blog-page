@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.3.0">
+<meta name="generator" content="Hexo 5.4.0">
 
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
@@ -15,21 +15,21 @@
 
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
-  <script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
+  <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"blog.starudream.cn","root":"/","images":"/images","scheme":"Pisces","version":"8.2.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":true,"nav":null,"activeClass":"disqus"},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":true,"preload":false}};
+    var CONFIG = {"hostname":"blog.starudream.cn","root":"/","images":"/images","scheme":"Pisces","version":"8.3.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":true,"nav":null,"activeClass":"disqus"},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
-<meta name="description" content="准备安装 Docker上一篇文章 安装 docker 修改主机名1hostnamectl set-hostname k8s-master 修改 &#x2F;etc&#x2F;hosts1192.168.140.28 api.k8s.local k8s-master 关闭 swap1swapoff -a 注释 &#x2F;etc&#x2F;fstab 文件中 swap 分区。 添加内核参数修改 &#x2F;etc&#x2F;sysctl.conf 12345">
+<meta name="description" content="准备安装 Docker上一篇文章 安装 docker 修改主机名1hostnamectl set-hostname k8s-master  修改 &#x2F;etc&#x2F;hosts1192.168.140.28 api.k8s.local k8s-master  关闭 swap1swapoff -a  注释 &#x2F;etc&#x2F;fstab 文件中 swap 分区。 添加内核参数修改 &#x2F;etc&#x2F;sysctl.conf 12">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CentOS 安装 Kubernetes">
 <meta property="og:url" content="https://blog.starudream.cn/2020/05/09/13-install-kubernetes/index.html">
 <meta property="og:site_name" content="星辰狂澜&#39;s Blog">
-<meta property="og:description" content="准备安装 Docker上一篇文章 安装 docker 修改主机名1hostnamectl set-hostname k8s-master 修改 &#x2F;etc&#x2F;hosts1192.168.140.28 api.k8s.local k8s-master 关闭 swap1swapoff -a 注释 &#x2F;etc&#x2F;fstab 文件中 swap 分区。 添加内核参数修改 &#x2F;etc&#x2F;sysctl.conf 12345">
+<meta property="og:description" content="准备安装 Docker上一篇文章 安装 docker 修改主机名1hostnamectl set-hostname k8s-master  修改 &#x2F;etc&#x2F;hosts1192.168.140.28 api.k8s.local k8s-master  关闭 swap1swapoff -a  注释 &#x2F;etc&#x2F;fstab 文件中 swap 分区。 添加内核参数修改 &#x2F;etc&#x2F;sysctl.conf 12">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-05-09T09:59:12.000Z">
 <meta property="article:modified_time" content="2020-05-09T09:59:12.000Z">
@@ -251,7 +251,7 @@
 
         </div>
       </div>
-        <div class="back-to-top animated" role="button">
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
           <i class="fa fa-arrow-up"></i>
           <span>0%</span>
         </div>
@@ -348,46 +348,72 @@
     
     <div class="post-body" itemprop="articleBody">
         <h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><h3 id="安装-Docker"><a href="#安装-Docker" class="headerlink" title="安装 Docker"></a>安装 Docker</h3><p>上一篇文章 <a href="https://blog.starudream.cn/2020/05/09/12-install-docker/">安装 docker</a></p>
-<h3 id="修改主机名"><a href="#修改主机名" class="headerlink" title="修改主机名"></a>修改主机名</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hostnamectl <span class="built_in">set</span>-hostname k8s-master</span><br></pre></td></tr></table></figure>
+<h3 id="修改主机名"><a href="#修改主机名" class="headerlink" title="修改主机名"></a>修改主机名</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hostnamectl set-hostname k8s-master</span><br></pre></td></tr></table></figure>
+
 <h3 id="修改-etc-hosts"><a href="#修改-etc-hosts" class="headerlink" title="修改 /etc/hosts"></a>修改 /etc/hosts</h3><figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">192.168.140.28</span> api.k8s.local k8s-master</span><br></pre></td></tr></table></figure>
+
 <h3 id="关闭-swap"><a href="#关闭-swap" class="headerlink" title="关闭 swap"></a>关闭 swap</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">swapoff -a</span><br></pre></td></tr></table></figure>
+
 <p>注释 <code>/etc/fstab</code> 文件中 <code>swap</code> 分区。</p>
 <h3 id="添加内核参数"><a href="#添加内核参数" class="headerlink" title="添加内核参数"></a>添加内核参数</h3><p>修改 <code>/etc/sysctl.conf</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">fs.file-max = 1000000</span><br><span class="line"></span><br><span class="line">net.ipv4.ip_forward = 1</span><br><span class="line">net.bridge.bridge-nf-call-iptables = 1</span><br><span class="line">net.bridge.bridge-nf-call-ip6tables = 1</span><br></pre></td></tr></table></figure>
-<h2 id="添加-repo-源"><a href="#添加-repo-源" class="headerlink" title="添加 repo 源"></a>添加 repo 源</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cat &lt;&lt;EOF &gt; /etc/yum.repos.d/kubernetes.repo</span><br><span class="line">[kubernetes]</span><br><span class="line">name=Kubernetes</span><br><span class="line">baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=1</span><br><span class="line">repo_gpgcheck=1</span><br><span class="line">gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg</span><br><span class="line">       https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+
+<h2 id="添加-repo-源"><a href="#添加-repo-源" class="headerlink" title="添加 repo 源"></a>添加 repo 源</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cat &lt;&lt;<span class="string">EOF &gt; /etc/yum.repos.d/kubernetes.repo</span></span><br><span class="line"><span class="string">[kubernetes]</span></span><br><span class="line"><span class="string">name=Kubernetes</span></span><br><span class="line"><span class="string">baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64</span></span><br><span class="line"><span class="string">enabled=1</span></span><br><span class="line"><span class="string">gpgcheck=1</span></span><br><span class="line"><span class="string">repo_gpgcheck=1</span></span><br><span class="line"><span class="string">gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg</span></span><br><span class="line"><span class="string">       https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg</span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></table></figure>
+
 <h3 id="阿里云公网"><a href="#阿里云公网" class="headerlink" title="阿里云公网"></a>阿里云公网</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i <span class="string">&#x27;s|packages.cloud.google.com|mirrors.aliyun.com/kubernetes|&#x27;</span> /etc/yum.repos.d/kubernetes.repo</span><br></pre></td></tr></table></figure>
+
 <h3 id="阿里云内网"><a href="#阿里云内网" class="headerlink" title="阿里云内网"></a>阿里云内网</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i <span class="string">&#x27;s|https://packages.cloud.google.com|http://mirrors.cloud.aliyuncs.com/kubernetes|&#x27;</span> /etc/yum.repos.d/kubernetes.repo</span><br></pre></td></tr></table></figure>
+
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install -y kubeadm kubelet kubectl</span><br><span class="line"></span><br><span class="line">systemctl <span class="built_in">enable</span> kubelet</span><br></pre></td></tr></table></figure>
+
 <h2 id="初始化-master-节点"><a href="#初始化-master-节点" class="headerlink" title="初始化 master 节点"></a>初始化 master 节点</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">kubeadm init \</span><br><span class="line">    --kubernetes-version=1.18.2 \</span><br><span class="line">    --apiserver-advertise-address=192.168.140.28 \</span><br><span class="line">    --apiserver-bind-port 6443 \</span><br><span class="line">    --pod-network-cidr=10.244.0.0/16 \</span><br><span class="line">    --image-repository registry.aliyuncs.com/google_containers</span><br></pre></td></tr></table></figure>
+
 <p>当出现 <code>Your Kubernetes control-plane has initialized successfully!</code> 即安装成功，并且在下面有相关配置。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p <span class="variable">$HOME</span>/.kube</span><br><span class="line">sudo cp -i /etc/kubernetes/admin.conf <span class="variable">$HOME</span>/.kube/config</span><br><span class="line">sudo chown $(id -u):$(id -g) <span class="variable">$HOME</span>/.kube/config</span><br></pre></td></tr></table></figure>
+
 <p>还有最后一条命令在添加 k8s node 节点时使用到</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubeadm join 192.168.140.28:6443 --token xxx --discovery-token-ca-cert-hash sha256:xxx</span><br></pre></td></tr></table></figure>
+
 <p>如果忘了保存，可以使用以下命令重新获取到</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubeadm token create --<span class="built_in">print</span>-join-command</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubeadm token create --print-join-command</span><br></pre></td></tr></table></figure>
+
 <p>这时可以使用以下命令查看节点</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kubectl get node</span><br><span class="line"></span><br><span class="line">kubectl get pod -A</span><br></pre></td></tr></table></figure>
+
 <figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NAME         STATUS     ROLES    AGE     <span class="keyword">VERSION</span></span><br><span class="line">k8s-<span class="keyword">master</span>   <span class="title">NotReady</span>   <span class="keyword">master</span>   <span class="title">8m56s</span>   v1.<span class="number">18.2</span></span><br></pre></td></tr></table></figure>
+
 <p>这边看到状态为 <code>NotReady</code> 是因为未安装网络组件。</p>
 <h2 id="添加-node-节点"><a href="#添加-node-节点" class="headerlink" title="添加 node 节点"></a>添加 node 节点</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubeadm join 192.168.140.28:6443 --token xxx --discovery-token-ca-cert-hash sha256:xxx</span><br></pre></td></tr></table></figure>
+
 <h2 id="安装-Calico-网络"><a href="#安装-Calico-网络" class="headerlink" title="安装 Calico 网络"></a>安装 Calico 网络</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget --unlink -qO calico.yaml https://docs.projectcalico.org/v3.14/manifests/calico.yaml</span><br><span class="line"><span class="comment"># 10.244.0.0/16 这个地址需要与上面的 kubeadm init --pod-network-cidr 参数值一致</span></span><br><span class="line">sed -i -e <span class="string">&quot;s|192.168.0.0/16|10.244.0.0/16|g&quot;</span> calico.yaml</span><br><span class="line">kubectl apply -f calico.yaml</span><br></pre></td></tr></table></figure>
+
 <p>完成这步之后会看到节点的状态变为 <code>Ready</code>。</p>
 <h2 id="安装-Dashboard"><a href="#安装-Dashboard" class="headerlink" title="安装 Dashboard"></a>安装 Dashboard</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget --unlink -qO dashboard.yaml https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml</span><br><span class="line">kubectl apply -f dashboard.yaml</span><br></pre></td></tr></table></figure>
+
 <p>一般这样是无法通过外网访问，建议在测试环境下修改 <code>kubernetes-dashboard</code> 的 <code>ClusterIP</code> 为 <code>NodePort</code> 将端口暴露出去。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl edit service kubernetes-dashboard -n kubernetes-dashboard</span><br></pre></td></tr></table></figure>
+
 <p>修改之后，查看 <code>services</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubernetes-dashboard   kubernetes-dashboard        NodePort    10.106.39.19    &lt;none&gt;        443:31570/TCP            36m</span><br></pre></td></tr></table></figure>
+
 <p>之后访问 <code>https://$&#123;ip&#125;:31570</code> 发现需要 <code>token</code>，下面创建一个管理员用户。</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># admin-user.yaml</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">ServiceAccount</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">admin-user</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">kubernetes-dashboard</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">rbac.authorization.k8s.io/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">ClusterRoleBinding</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">admin-user</span></span><br><span class="line"><span class="attr">roleRef:</span></span><br><span class="line">  <span class="attr">apiGroup:</span> <span class="string">rbac.authorization.k8s.io</span></span><br><span class="line">  <span class="attr">kind:</span> <span class="string">ClusterRole</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">cluster-admin</span></span><br><span class="line"><span class="attr">subjects:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">kind:</span> <span class="string">ServiceAccount</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">admin-user</span></span><br><span class="line">    <span class="attr">namespace:</span> <span class="string">kubernetes-dashboard</span></span><br></pre></td></tr></table></figure>
+
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl apply -f admin-user.yaml</span><br></pre></td></tr></table></figure>
+
 <p>最后查看 <code>token</code>，找到 <code>admin-user</code> 复制 <code>token</code> 即可以管理员身份访问。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">k describe secrets -n kubernetes-dashboard</span><br></pre></td></tr></table></figure>
+
 <h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="master-参与工作（单机部署）"><a href="#master-参与工作（单机部署）" class="headerlink" title="master 参与工作（单机部署）"></a>master 参与工作（单机部署）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl taint nodes --all node-role.kubernetes.io/master-</span><br></pre></td></tr></table></figure>
+
 <h3 id="命令补全"><a href="#命令补全" class="headerlink" title="命令补全"></a>命令补全</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl completion bash &gt; /root/.kube/completion.bash.inc</span><br></pre></td></tr></table></figure>
+
 <p>如果使用 <code>k</code> 作为 <code>kubectl</code> 的别名，需要修改上面生成的文件，在文件末尾修改为</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> [[ $(<span class="built_in">type</span> -t compopt) = <span class="string">&quot;builtin&quot;</span> ]]; <span class="keyword">then</span></span><br><span class="line">    complete -o default -F __start_kubectl kubectl</span><br><span class="line">    complete -o default -F __start_kubectl k</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    complete -o default -o nospace -F __start_kubectl kubectl</span><br><span class="line">    complete -o default -o nospace -F __start_kubectl k</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
 <p>最后将下面这段加入 <code>.bash_profile</code> 中，以使用自动补全功能。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># complete</span></span><br><span class="line"><span class="built_in">source</span> /usr/share/bash-completion/bash_completion</span><br><span class="line"><span class="built_in">source</span> /root/.kube/completion.bash.inc</span><br><span class="line"></span><br><span class="line"><span class="comment"># alias</span></span><br><span class="line"><span class="built_in">alias</span> k=<span class="string">&#x27;kubectl&#x27;</span></span><br></pre></td></tr></table></figure>
+
     </div>
 
     
@@ -552,12 +578,12 @@
   </footer>
 
   
-  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script>
 var pjax = new Pjax({
   selectors: [
@@ -628,7 +654,7 @@ document.addEventListener('pjax:success', () => {
 
     <div class="pjax">
 
-  <script src="//cdn.jsdelivr.net/npm/quicklink@2.0.0/dist/quicklink.umd.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.1.0/dist/quicklink.umd.js"></script>
   <script>
       window.addEventListener('load', () => {
       quicklink.listen({
