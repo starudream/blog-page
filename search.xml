@@ -423,6 +423,21 @@
       </tags>
   </entry>
   <entry>
+    <title>Mac 源码安装 node 时 `No Xcode or CLT version detected!` 错误</title>
+    <url>/2021/06/18/21-mac-node-no-xcode-detected/</url>
+    <content><![CDATA[<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>重新安装 <code>Xcode Tools</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo rm -rf $(xcode-select -p)</span><br><span class="line">sudo xcode-select --install</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>mac</tag>
+        <tag>node</tag>
+        <tag>xcode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>GitKraken Crack</title>
     <url>/2019/12/12/3-gitkraken-crack/</url>
     <content><![CDATA[<h2 id="安装-npm-以及-asar"><a href="#安装-npm-以及-asar" class="headerlink" title="安装 npm 以及 asar"></a>安装 npm 以及 asar</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># download: https://nodejs.org/en/</span></span><br><span class="line">npm i -g asar</span><br></pre></td></tr></table></figure>
