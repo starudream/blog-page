@@ -564,22 +564,6 @@
       </tags>
   </entry>
   <entry>
-    <title>使用 Docker 部署 TeamSpeak 3</title>
-    <url>/2020/04/14/9-deploy-teamspeak/</url>
-    <content><![CDATA[<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name teamspeak \</span><br><span class="line">    --restart always \</span><br><span class="line">    -p 9987:9987/udp \</span><br><span class="line">    -v /opt/docker/teamspeak:/var/ts3server \</span><br><span class="line">    -e TS3SERVER_LICENSE=accept \</span><br><span class="line">    -e TS3SERVER_SERVERADMIN_PASSWORD=PLACEHOLD \</span><br><span class="line">    teamspeak:latest</span><br></pre></td></tr></table></figure>
-
-<h2 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h2><p>使用以下命令查看 <code>Query Admin Account</code> 相关登录用户密码以及 <code>Privilege Key</code>。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker logs teamspeak</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-        <tag>teamspeak</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>使用 ACME.sh 签发 SSL 泛域名证书</title>
     <url>/2020/04/10/8-deploy-ssl-with-acme/</url>
     <content><![CDATA[<h2 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">~/.acme.sh/acme.sh \</span><br><span class="line">  --debug \</span><br><span class="line">  --issue \</span><br><span class="line">  --dns dns_dp \</span><br><span class="line">  -d *.starudream.cn</span><br><span class="line"></span><br><span class="line">~/.acme.sh/acme.sh \</span><br><span class="line">  --debug \</span><br><span class="line">  --install-cert \</span><br><span class="line">  -d *.starudream.cn \</span><br><span class="line">  --fullchain-file <span class="string">&#x27;/usr/local/openresty/nginx/conf/ssl/*.starudream.cn.crt&#x27;</span> \</span><br><span class="line">  --key-file <span class="string">&#x27;/usr/local/openresty/nginx/conf/ssl/*.starudream.cn.key&#x27;</span> \</span><br><span class="line">  --reloadcmd <span class="string">&#x27;service nginx reload&#x27;</span></span><br></pre></td></tr></table></figure>
@@ -597,6 +581,22 @@
         <tag>acme</tag>
         <tag>ssl</tag>
         <tag>https</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用 Docker 部署 TeamSpeak 3</title>
+    <url>/2020/04/14/9-deploy-teamspeak/</url>
+    <content><![CDATA[<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name teamspeak \</span><br><span class="line">    --restart always \</span><br><span class="line">    -p 9987:9987/udp \</span><br><span class="line">    -v /opt/docker/teamspeak:/var/ts3server \</span><br><span class="line">    -e TS3SERVER_LICENSE=accept \</span><br><span class="line">    -e TS3SERVER_SERVERADMIN_PASSWORD=PLACEHOLD \</span><br><span class="line">    teamspeak:latest</span><br></pre></td></tr></table></figure>
+
+<h2 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h2><p>使用以下命令查看 <code>Query Admin Account</code> 相关登录用户密码以及 <code>Privilege Key</code>。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker logs teamspeak</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>teamspeak</tag>
       </tags>
   </entry>
 </search>
