@@ -392,6 +392,21 @@
       </tags>
   </entry>
   <entry>
+    <title>Mac 源码安装 node 时 `No Xcode or CLT version detected!` 错误</title>
+    <url>/2021/06/18/21-mac-node-no-xcode-detected/</url>
+    <content><![CDATA[<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>重新安装 <code>Xcode Tools</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo rm -rf $(xcode-select -p)</span><br><span class="line">sudo xcode-select --install</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>mac</tag>
+        <tag>node</tag>
+        <tag>xcode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>备份还原 ubuntu 镜像</title>
     <url>/2020/07/24/20-backup-and-restore-ubuntu-image/</url>
     <content><![CDATA[<h2 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h2><p>通过以下命令查看磁盘</p>
@@ -420,21 +435,6 @@
         <tag>ubuntu</tag>
         <tag>raspberry pi</tag>
         <tag>pishrink</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Mac 源码安装 node 时 `No Xcode or CLT version detected!` 错误</title>
-    <url>/2021/06/18/21-mac-node-no-xcode-detected/</url>
-    <content><![CDATA[<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>重新安装 <code>Xcode Tools</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo rm -rf $(xcode-select -p)</span><br><span class="line">sudo xcode-select --install</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>mac</tag>
-        <tag>node</tag>
-        <tag>xcode</tag>
       </tags>
   </entry>
   <entry>

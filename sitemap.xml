@@ -312,20 +312,6 @@
   </url>
   
   <url>
-    <loc>https://blog.starudream.cn/tags/raspberry-pi/</loc>
-    <lastmod>2021-10-31</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.starudream.cn/tags/pishrink/</loc>
-    <lastmod>2021-10-31</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.starudream.cn/tags/mac/</loc>
     <lastmod>2021-10-31</lastmod>
     <changefreq>daily</changefreq>
@@ -341,6 +327,20 @@
   
   <url>
     <loc>https://blog.starudream.cn/tags/xcode/</loc>
+    <lastmod>2021-10-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.starudream.cn/tags/raspberry-pi/</loc>
+    <lastmod>2021-10-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.starudream.cn/tags/pishrink/</loc>
     <lastmod>2021-10-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
