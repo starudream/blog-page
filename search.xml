@@ -1,6 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>无 Root 抓包 HTTPS 请求</title>
+    <url>/2022/05/09/android-packet-capture-without-root/</url>
+    <content><![CDATA[<p>适用于 <code>Android 12</code>，理论上适配低版本。</p>
+<p>测试环境 <code>MIUI13</code> <code>Android 12</code>。</p>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ul>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0ZCbGFja0JveC9CbGFja0JveC9yZWxlYXNlcy9sYXRlc3Q=">BlackBox<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1ZpUmIzL1RydXN0TWVBbHJlYWR5L3JlbGVhc2VzL2xhdGVzdA==">TrustMeAlready<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9wbGF5Lmdvb2dsZS5jb20vc3RvcmUvYXBwcy9kZXRhaWxzP2lkPWNvbS52bmV0LnRlY2g=">VNET<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9wYW4uYmFpZHUuY29tL3MvMXdKbXQ2YmdKRDFpVW1Hc1hyZ1RCclE=">百度云<i class="fa fa-external-link-alt"></i></span> <code>cn7g</code></p>
+</li>
+</ul>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>依次安装以上三个软件。</p>
+<p>打开 <code>BlackBox</code>，先点击右下角的加号，将需要抓包的软件和 <code>TrustMeAlready</code> 加入到虚拟机中，再点击右上角打开 <code>软件设置</code>。</p>
+<img data-src="/images/24-1.jpg" alt="BlackBox" style="max-height:600px;"/>
+
+<p>开启 <code>启用Xposed框架</code>。</p>
+<img data-src="/images/24-2.jpg" alt="软件设置" style="max-height:600px;"/>
+
+<p>终止 <code>BlackBox</code>。</p>
+<img data-src="/images/24-4.jpg" alt="BlackBox设置" style="max-height:600px;"/>
+
+<p>再次打开 <code>BlackBox</code> 的 <code>软件设置</code>，打开 <code>模块管理</code>，点击右下角的加号，选择 <code>TrustMeAlready</code>，并勾选。</p>
+<img data-src="/images/24-3.jpg" alt="XP管理" style="max-height:600px;"/>
+
+<p>打开 <code>XNET</code>，<code>导出 CA 证书</code>。</p>
+<img data-src="/images/24-5.jpg" alt="VNET" style="max-height:600px;"/>
+
+<p>进入设置，搜索证书，选择 <code>CA 证书</code> 进入，一般在 <code>安全</code> &gt; <code>证书管理</code> 中找到。</p>
+<img data-src="/images/24-6.jpg" alt="证书搜索" style="max-height:600px;"/>
+
+<p>然后选择 <code>安装 CA 证书</code>，成功后，可在用户栏下找到刚才导入的 <code>VNETTECH</code> 证书。</p>
+<img data-src="/images/24-7.jpg" alt="用户证书" style="max-height:600px;"/>
+
+<p>最后回到 <code>VNET</code> 中，点击右下角的加号，开始抓包。</p>
+<img data-src="/images/24-8.jpg" alt="VNET抓包" style="max-height:600px;"/>
+
+<p>进入 <code>BlackBox</code>，打开需要抓包的软件即可。</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>xposed</tag>
+        <tag>blackbox</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>备份还原 ubuntu 镜像</title>
     <url>/2020/07/24/backup-and-restore-ubuntu-image/</url>
     <content><![CDATA[<h2 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h2><p>通过以下命令查看磁盘</p>
@@ -19,7 +69,7 @@
 <h2 id="恢复"><a href="#恢复" class="headerlink" title="恢复"></a>恢复</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo dd bs=1m <span class="keyword">if</span>=ubuntu.img of=/dev/rdiskN</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0RyZXdzaWYvUGlTaHJpbms=">Drewsif/PiShrink<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0RyZXdzaWYvUGlTaHJpbms=">Drewsif&#x2F;PiShrink<i class="fa fa-external-link-alt"></i></span></li>
 </ul>
 ]]></content>
       <categories>
@@ -151,7 +201,7 @@
 
 <h2 id="解压-GitKraken-的资源文件"><a href="#解压-GitKraken-的资源文件" class="headerlink" title="解压 GitKraken 的资源文件"></a>解压 GitKraken 的资源文件</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装目录\gitkraken\app-x.x.x\resources</span></span><br><span class="line">asar extract ./app.asar ./tmp/</span><br></pre></td></tr></table></figure>
 
-<h2 id="修改-static-index-js-文件（注意备份）"><a href="#修改-static-index-js-文件（注意备份）" class="headerlink" title="修改 static/index.js 文件（注意备份）"></a>修改 static/index.js 文件（注意备份）</h2><p><strong>下面是 v6.5.1 之后的版本</strong></p>
+<h2 id="修改-static-x2F-index-js-文件（注意备份）"><a href="#修改-static-x2F-index-js-文件（注意备份）" class="headerlink" title="修改 static&#x2F;index.js 文件（注意备份）"></a>修改 static&#x2F;index.js 文件（注意备份）</h2><p><strong>下面是 v6.5.1 之后的版本</strong></p>
 <figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"><span class="comment">--- static/index.js</span></span><br><span class="line"><span class="comment">+++ static/index.js</span></span><br><span class="line"><span class="meta">@@ -1,6 +1,27 @@</span></span><br><span class="line"> // Warning: You almost certainly do *not* want to edit this code -</span><br><span class="line"> // instead, you want to edit src/js/main.jsx instead</span><br><span class="line"><span class="addition">+</span></span><br><span class="line"><span class="addition">+function PatchSnapshot() &#123;</span></span><br><span class="line"><span class="addition">+  const edmLiteD = snapshotResult.customRequire(&#x27;@axosoft/edm-lite-d/src/d.js&#x27;);</span></span><br><span class="line"><span class="addition">+  snapshotResult.customRequire.cache[&#x27;@axosoft/edm-lite-d/src/d.js&#x27;] = &#123;</span></span><br><span class="line"><span class="addition">+    exports: function() &#123;</span></span><br><span class="line"><span class="addition">+      let response = JSON.parse(edmLiteD(...arguments).toString(&#x27;utf8&#x27;));</span></span><br><span class="line"><span class="addition">+      if (&#x27;licenseExpiresAt&#x27; in response || &#x27;licensedFeatures&#x27; in response) &#123;</span></span><br><span class="line"><span class="addition">+        response = &#123;</span></span><br><span class="line"><span class="addition">+          ...response,</span></span><br><span class="line"><span class="addition">+          availableTrialDays: null,</span></span><br><span class="line"><span class="addition">+          licenseExpiresAt: 8640000000000000,</span></span><br><span class="line"><span class="addition">+          licensedFeatures: [&#x27;pro&#x27;]</span></span><br><span class="line"><span class="addition">+        &#125;;</span></span><br><span class="line"><span class="addition">+      &#125;</span></span><br><span class="line"><span class="addition">+      return Buffer.from(JSON.stringify(response), &#x27;utf8&#x27;);</span></span><br><span class="line"><span class="addition">+    &#125;</span></span><br><span class="line"><span class="addition">+  &#125;;</span></span><br><span class="line"><span class="addition">+&#125;</span></span><br><span class="line"><span class="addition">+</span></span><br><span class="line"> (function() &#123;</span><br><span class="line"><span class="addition">+  PatchSnapshot();</span></span><br><span class="line"><span class="addition">+</span></span><br><span class="line">   const Perf = snapshotResult.customRequire(&#x27;./src/js/utils/Performance.js&#x27;);</span><br><span class="line">   Perf.timeEnd(&#x27;loading monaco scripts&#x27;);</span><br><span class="line">   Perf.time(&#x27;index.js pre-bootstrap&#x27;);</span><br></pre></td></tr></table></figure>
 
 <p><strong>下面是 v6.5.1 之前的版本</strong></p>
@@ -205,7 +255,7 @@
     <url>/2020/05/09/install-docker/</url>
     <content><![CDATA[<h2 id="下载安装脚本"><a href="#下载安装脚本" class="headerlink" title="下载安装脚本"></a>下载安装脚本</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -fsSL https://get.docker.com -o get-docker.sh</span><br></pre></td></tr></table></figure>
 
-<h2 id="设置安装版本（nightly-test-stable）"><a href="#设置安装版本（nightly-test-stable）" class="headerlink" title="设置安装版本（nightly / test / stable）"></a>设置安装版本（nightly / test / stable）</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> CHANNEL=stable</span><br></pre></td></tr></table></figure>
+<h2 id="设置安装版本（nightly-x2F-test-x2F-stable）"><a href="#设置安装版本（nightly-x2F-test-x2F-stable）" class="headerlink" title="设置安装版本（nightly &#x2F; test &#x2F; stable）"></a>设置安装版本（nightly &#x2F; test &#x2F; stable）</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> CHANNEL=stable</span><br></pre></td></tr></table></figure>
 
 <h2 id="设置下载镜像源"><a href="#设置下载镜像源" class="headerlink" title="设置下载镜像源"></a>设置下载镜像源</h2><p><strong>具体参考安装机器的 repo</strong></p>
 <h3 id="阿里云公网"><a href="#阿里云公网" class="headerlink" title="阿里云公网"></a>阿里云公网</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> DOWNLOAD_URL=https://mirrors.aliyun.com/docker-ce</span><br></pre></td></tr></table></figure>
@@ -234,11 +284,11 @@
     <title>基于 Docker 安装 Gitea 和 Drone / Drone-Runner</title>
     <url>/2020/05/26/install-gitea-and-drone/</url>
     <content><![CDATA[<h2 id="安装-docker-并拉取相关镜像"><a href="#安装-docker-并拉取相关镜像" class="headerlink" title="安装 docker 并拉取相关镜像"></a>安装 docker 并拉取相关镜像</h2><ul>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9odWIuZG9ja2VyLmNvbS9yL2dpdGVhL2dpdGVh">gitea/gitea<i class="fa fa-external-link-alt"></i></span></p>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9odWIuZG9ja2VyLmNvbS9yL2dpdGVhL2dpdGVh">gitea&#x2F;gitea<i class="fa fa-external-link-alt"></i></span></p>
 </li>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9odWIuZG9ja2VyLmNvbS9yL2Ryb25lL2Ryb25l">drone/drone<i class="fa fa-external-link-alt"></i></span></p>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9odWIuZG9ja2VyLmNvbS9yL2Ryb25lL2Ryb25l">drone&#x2F;drone<i class="fa fa-external-link-alt"></i></span></p>
 </li>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9odWIuZG9ja2VyLmNvbS9yL2Ryb25lL2Ryb25lLXJ1bm5lci1kb2NrZXI=">drone/drone-runner-docker<i class="fa fa-external-link-alt"></i></span></p>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9odWIuZG9ja2VyLmNvbS9yL2Ryb25lL2Ryb25lLXJ1bm5lci1kb2NrZXI=">drone&#x2F;drone-runner-docker<i class="fa fa-external-link-alt"></i></span></p>
 </li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker pull gitea/gitea</span><br><span class="line">docker pull drone/drone</span><br><span class="line">docker pull drone/drone-runner-docker</span><br></pre></td></tr></table></figure>
@@ -282,9 +332,9 @@
     <title>基于 Docker 安装 GitLab 和 GitLab-Runner</title>
     <url>/2019/12/13/install-gitlab-and-gitlab-runner/</url>
     <content><![CDATA[<h2 id="安装-docker-并拉取相关镜像"><a href="#安装-docker-并拉取相关镜像" class="headerlink" title="安装 docker 并拉取相关镜像"></a>安装 docker 并拉取相关镜像</h2><ul>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9odWIuZG9ja2VyLmNvbS9yL2dpdGxhYi9naXRsYWItY2U=">gitlab/gitlab-ce<i class="fa fa-external-link-alt"></i></span></p>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9odWIuZG9ja2VyLmNvbS9yL2dpdGxhYi9naXRsYWItY2U=">gitlab&#x2F;gitlab-ce<i class="fa fa-external-link-alt"></i></span></p>
 </li>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9odWIuZG9ja2VyLmNvbS9yL2dpdGxhYi9naXRsYWItcnVubmVy">gitlab/gitlab-runner<i class="fa fa-external-link-alt"></i></span></p>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9odWIuZG9ja2VyLmNvbS9yL2dpdGxhYi9naXRsYWItcnVubmVy">gitlab&#x2F;gitlab-runner<i class="fa fa-external-link-alt"></i></span></p>
 </li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker pull gitlab/gitlab-ce</span><br><span class="line">docker pull gitlab/gitlab-runner</span><br></pre></td></tr></table></figure>
@@ -372,7 +422,7 @@
     <content><![CDATA[<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><h3 id="安装-Docker"><a href="#安装-Docker" class="headerlink" title="安装 Docker"></a>安装 Docker</h3><p>上一篇文章 <a href="https://blog.starudream.cn/2020/05/09/12-install-docker/">安装 docker</a></p>
 <h3 id="修改主机名"><a href="#修改主机名" class="headerlink" title="修改主机名"></a>修改主机名</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hostnamectl set-hostname k8s-master</span><br></pre></td></tr></table></figure>
 
-<h3 id="修改-etc-hosts"><a href="#修改-etc-hosts" class="headerlink" title="修改 /etc/hosts"></a>修改 /etc/hosts</h3><figure class="highlight accesslog"><table><tr><td class="code"><pre><span class="line"><span class="number">192.168.140.28</span> api.k8s.local k8s-master</span><br></pre></td></tr></table></figure>
+<h3 id="修改-x2F-etc-x2F-hosts"><a href="#修改-x2F-etc-x2F-hosts" class="headerlink" title="修改 &#x2F;etc&#x2F;hosts"></a>修改 &#x2F;etc&#x2F;hosts</h3><figure class="highlight accesslog"><table><tr><td class="code"><pre><span class="line"><span class="number">192.168.140.28</span> api.k8s.local k8s-master</span><br></pre></td></tr></table></figure>
 
 <h3 id="关闭-swap"><a href="#关闭-swap" class="headerlink" title="关闭 swap"></a>关闭 swap</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">swapoff -a</span><br></pre></td></tr></table></figure>
 
@@ -591,9 +641,9 @@
 <h2 id="修改-prometheus-配置文件"><a href="#修改-prometheus-配置文件" class="headerlink" title="修改 prometheus 配置文件"></a>修改 <code>prometheus</code> 配置文件</h2><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">route:</span></span><br><span class="line">  <span class="attr">receiver:</span> <span class="string">&quot;dingtalk1&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">receivers:</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">dingtalk1</span></span><br><span class="line">  <span class="attr">webhook_configs:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">send_resolved:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">http://127.0.0.1:8060/dingtalk/webhook1/send</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly90aGVvLmltL2Jsb2cvMjAxNy8xMC8xNi9yZWxlYXNlLXByb21ldGhldXMtYWxlcnRtYW5hZ2VyLXdlYmhvb2stZm9yLWRpbmd0YWxrLw==">theo.im/blog<i class="fa fa-external-link-alt"></i></span></p>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly90aGVvLmltL2Jsb2cvMjAxNy8xMC8xNi9yZWxlYXNlLXByb21ldGhldXMtYWxlcnRtYW5hZ2VyLXdlYmhvb2stZm9yLWRpbmd0YWxrLw==">theo.im&#x2F;blog<i class="fa fa-external-link-alt"></i></span></p>
 </li>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RpbW9ud29uZy9wcm9tZXRoZXVzLXdlYmhvb2stZGluZ3RhbGs=">timonwong/prometheus-webhook-dingtalk<i class="fa fa-external-link-alt"></i></span></p>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RpbW9ud29uZy9wcm9tZXRoZXVzLXdlYmhvb2stZGluZ3RhbGs=">timonwong&#x2F;prometheus-webhook-dingtalk<i class="fa fa-external-link-alt"></i></span></p>
 </li>
 </ul>
 ]]></content>
@@ -633,7 +683,7 @@
 <li><span class="exturl" data-url="aHR0cHM6Ly9ncmFmYW5hLmNvbS9ncmFmYW5hL2Rhc2hib2FyZHMvODkxOQ==">https://grafana.com/grafana/dashboards/8919<i class="fa fa-external-link-alt"></i></span></li>
 </ul>
 <p>这里推荐使用上面的模版，在地址 <code>&#123;$server_url&#125;/dashboard/import</code> 输入 id <code>8919</code> 然后保存即可。</p>
-<h2 id="预览"><a href="#预览" class="headerlink" title="预览"></a>预览</h2><p><img data-src="/images/11-1.png" alt="预览"></p>
+<h2 id="预览"><a href="#预览" class="headerlink" title="预览"></a>预览</h2><img data-src="/images/11-1.png" alt="预览" style="max-height:600px;"/>
 ]]></content>
       <categories>
         <category>技术</category>
@@ -648,7 +698,7 @@
     <title>使用 WinSW 部署 Windows Service</title>
     <url>/2020/05/29/use-winsw-to-deploy-windoes-service/</url>
     <content><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3dpbnN3L3dpbnN3">winsw/winsw<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3dpbnN3L3dpbnN3">winsw&#x2F;winsw<i class="fa fa-external-link-alt"></i></span></li>
 </ul>
 <p>在 <code>Release</code> 页面下载最新版本以及示例配置文件。</p>
 <p>将可执行文件和配置文件都复制到自定义的目录，并将文件名改为一致。</p>
