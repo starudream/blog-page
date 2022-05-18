@@ -88,7 +88,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">38</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">24</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">40</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">25</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -159,7 +159,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -170,7 +170,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-count">40</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -213,6 +213,112 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2020/05/18/install-virtual-network/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="starudream">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/05/18/install-virtual-network/" class="post-title-link" itemprop="url">Linux 创建虚拟网卡</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-05-18 11:58:21" itemprop="dateCreated datePublished" datetime="2020-05-18T11:58:21+08:00">2020-05-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2020/05/18/install-virtual-network/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/05/18/install-virtual-network/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="安装相关依赖"><a href="#安装相关依赖" class="headerlink" title="安装相关依赖"></a>安装相关依赖</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install -y uml-utilities bridge-utils</span><br></pre></td></tr></table></figure>
+
+<h2 id="添加网桥"><a href="#添加网桥" class="headerlink" title="添加网桥"></a>添加网桥</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brctl addbr br0</span><br></pre></td></tr></table></figure>
+
+<h2 id="激活网桥"><a href="#激活网桥" class="headerlink" title="激活网桥"></a>激活网桥</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip link <span class="built_in">set</span> br0 up</span><br></pre></td></tr></table></figure>
+
+<h2 id="添加虚拟网卡"><a href="#添加虚拟网卡" class="headerlink" title="添加虚拟网卡"></a>添加虚拟网卡</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip link <span class="built_in">set</span> tap0 up</span><br></pre></td></tr></table></figure>
+
+<h2 id="将虚拟网卡添加到指定网桥上"><a href="#将虚拟网卡添加到指定网桥上" class="headerlink" title="将虚拟网卡添加到指定网桥上"></a>将虚拟网卡添加到指定网桥上</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brctl addif br0 tap0</span><br></pre></td></tr></table></figure>
+
+<h2 id="给网桥配制ip地址"><a href="#给网桥配制ip地址" class="headerlink" title="给网桥配制ip地址"></a>给网桥配制ip地址</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ifconfig br0 172.24.16.10 up</span><br></pre></td></tr></table></figure>
+
+<h2 id="移除"><a href="#移除" class="headerlink" title="移除"></a>移除</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">brctl delif br0 tap0</span><br><span class="line"></span><br><span class="line">tunctl -d tap0</span><br><span class="line"></span><br><span class="line">brctl delbr br0</span><br></pre></td></tr></table></figure>
+
+<h2 id="brctl"><a href="#brctl" class="headerlink" title="brctl"></a>brctl</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Usage: brctl [commands]</span><br><span class="line"><span class="keyword">command</span><span class="variable">s:</span></span><br><span class="line">  addbr          <span class="symbol">&lt;bridge&gt;</span>                  <span class="built_in">add</span> bridge</span><br><span class="line">  delbr          <span class="symbol">&lt;bridge&gt;</span>                  <span class="keyword">delete</span> bridge</span><br><span class="line">  addif          <span class="symbol">&lt;bridge&gt;</span> <span class="symbol">&lt;device&gt;</span>         <span class="built_in">add</span> interface <span class="keyword">to</span> bridge</span><br><span class="line">  delif          <span class="symbol">&lt;bridge&gt;</span> <span class="symbol">&lt;device&gt;</span>         <span class="keyword">delete</span> interface from bridge</span><br><span class="line">  hairpin        <span class="symbol">&lt;bridge&gt;</span> <span class="symbol">&lt;port&gt;</span> &#123;<span class="keyword">on</span>|off&#125;  turn hairpin <span class="keyword">on</span>/off</span><br><span class="line">  setageing      <span class="symbol">&lt;bridge&gt;</span> <span class="symbol">&lt;time&gt;</span>           <span class="keyword">set</span> ageing time</span><br><span class="line">  setbridgeprio  <span class="symbol">&lt;bridge&gt;</span> <span class="symbol">&lt;prio&gt;</span>           <span class="keyword">set</span> bridge priority</span><br><span class="line">  setfd          <span class="symbol">&lt;bridge&gt;</span> <span class="symbol">&lt;time&gt;</span>           <span class="keyword">set</span> bridge forward delay</span><br><span class="line">  sethello       <span class="symbol">&lt;bridge&gt;</span> <span class="symbol">&lt;time&gt;</span>           <span class="keyword">set</span> hello time</span><br><span class="line">  setmaxage      <span class="symbol">&lt;bridge&gt;</span> <span class="symbol">&lt;time&gt;</span>           <span class="keyword">set</span> <span class="built_in">max</span> message age</span><br><span class="line">  setpathcost    <span class="symbol">&lt;bridge&gt;</span> <span class="symbol">&lt;port&gt;</span> <span class="symbol">&lt;cost&gt;</span>    <span class="keyword">set</span> path cost</span><br><span class="line">  setportprio    <span class="symbol">&lt;bridge&gt;</span> <span class="symbol">&lt;port&gt;</span> <span class="symbol">&lt;prio&gt;</span>    <span class="keyword">set</span> port priority</span><br><span class="line">  show           [ <span class="symbol">&lt;bridge&gt;</span> ]              show <span class="keyword">a</span> <span class="keyword">list</span> of bridges</span><br><span class="line">  showmacs       <span class="symbol">&lt;bridge&gt;</span>                  show <span class="keyword">a</span> <span class="keyword">list</span> of mac addrs</span><br><span class="line">  showstp        <span class="symbol">&lt;bridge&gt;</span>                  show bridge stp info</span><br><span class="line">  stp            <span class="symbol">&lt;bridge&gt;</span> &#123;<span class="keyword">on</span>|off&#125;         turn stp <span class="keyword">on</span>/off</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -708,110 +814,6 @@
 </ul>
 <p>这里推荐使用上面的模版，在地址 <code>&#123;$server_url&#125;/dashboard/import</code> 输入 id <code>8919</code> 然后保存即可。</p>
 <h2 id="预览"><a href="#预览" class="headerlink" title="预览"></a>预览</h2><img data-src="/images/11-1.png" alt="预览" style="max-height:600px;"/>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2020/04/15/disable-ipv6-linux/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="starudream">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰狂澜's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 星辰狂澜's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/04/15/disable-ipv6-linux/" class="post-title-link" itemprop="url">Linux 禁用 IPV6</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-04-15 09:39:33" itemprop="dateCreated datePublished" datetime="2020-04-15T09:39:33+08:00">2020-04-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus：</span>
-    
-    <a title="disqus" href="/2020/04/15/disable-ipv6-linux/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/04/15/disable-ipv6-linux/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="验证是否开启-ipv6"><a href="#验证是否开启-ipv6" class="headerlink" title="验证是否开启 ipv6"></a>验证是否开启 ipv6</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ifconfig -a | grep inet6</span></span><br><span class="line">inet6 fe80::42:b8ff:feb5:4214  prefixlen 64  scopeid 0x20&lt;link&gt;</span><br><span class="line">inet6 fe80::5054:ff:fec3:d3bb  prefixlen 64  scopeid 0x20&lt;link&gt;</span><br><span class="line">inet6 ::1  prefixlen 128  scopeid 0x10&lt;host&gt;</span><br></pre></td></tr></table></figure>
-
-<p>出现 <code>inet6</code> 相关即为开启 <code>ipv6</code>。</p>
-<h2 id="修改内核模块配置"><a href="#修改内核模块配置" class="headerlink" title="修改内核模块配置"></a>修改内核模块配置</h2><p>编辑 <code>/etc/default/grub</code> 文件并在 <code>GRUB_CMDLINE_LINUX</code> 中添加 <code>ipv6.disable=1</code>。</p>
-<p>如果是 <code>Ubuntu</code> 可能还有 <code>GRUB_CMDLINE_LINUX_DEFAULT</code>，同样也需要添加 <code>ipv6.disable=1</code>。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># cat /etc/default/grub</span></span><br><span class="line">......</span><br><span class="line">GRUB_CMDLINE_LINUX=<span class="string">&quot;crashkernel=auto console=ttyS0 console=tty0 panic=5 net.ifnames=0 biosdevname=0 intel_idle.max_cstate=1 intel_pstate=disable&quot;</span></span><br><span class="line">......</span><br></pre></td></tr></table></figure>
-
-<p>修改后为</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># cat /etc/default/grub</span></span><br><span class="line">......</span><br><span class="line">GRUB_CMDLINE_LINUX=<span class="string">&quot;crashkernel=auto console=ttyS0 console=tty0 panic=5 net.ifnames=0 biosdevname=0 intel_idle.max_cstate=1 intel_pstate=disable ipv6.disable=1&quot;</span></span><br><span class="line">......</span><br></pre></td></tr></table></figure>
-
-<h2 id="应用更改"><a href="#应用更改" class="headerlink" title="应用更改"></a>应用更改</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># CentOS</span></span><br><span class="line">grub2-mkconfig -o /boot/grub2/grub.cfg</span><br><span class="line"><span class="comment"># Ubuntu</span></span><br><span class="line">update-grub</span><br></pre></td></tr></table></figure>
-
-<h2 id="重启"><a href="#重启" class="headerlink" title="重启"></a>重启</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shutdown -r now</span><br></pre></td></tr></table></figure>
 
       
     </div>
