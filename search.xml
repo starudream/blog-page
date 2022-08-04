@@ -652,6 +652,18 @@
       </tags>
   </entry>
   <entry>
+    <title>Nginx 在同一个路径下反代 HTTP 和 WebSocket</title>
+    <url>/2022/08/04/nginx-proxy-http-and-websocket/</url>
+    <content><![CDATA[<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">  <span class="regexp">//</span> settings</span><br><span class="line"></span><br><span class="line">  location <span class="regexp">/api/</span> &#123;</span><br><span class="line">    try_files /nonexistent @<span class="variable">$http_upgrade</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  location @ &#123;</span><br><span class="line">    rewrite ^<span class="regexp">/api/</span>(.*) /<span class="variable">$1</span> <span class="keyword">break</span>;</span><br><span class="line">    proxy_pass http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">4080</span>;</span><br><span class="line">    proxy_set_header Host <span class="variable">$host</span>:<span class="variable">$server_port</span>;</span><br><span class="line">    proxy_set_header X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">    proxy_set_header X-Real-PORT <span class="variable">$remote_port</span>;</span><br><span class="line">    proxy_set_header X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  location @websocket &#123;</span><br><span class="line">    rewrite ^<span class="regexp">/api/</span>(.*) /<span class="variable">$1</span> <span class="keyword">break</span>;</span><br><span class="line">    proxy_pass http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">4080</span>;</span><br><span class="line">    proxy_set_header Host <span class="variable">$host</span>:<span class="variable">$server_port</span>;</span><br><span class="line">    proxy_set_header X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">    proxy_set_header X-Real-PORT <span class="variable">$remote_port</span>;</span><br><span class="line">    proxy_set_header X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">    <span class="comment"># websocket</span></span><br><span class="line">    proxy_http_version <span class="number">1.1</span>;</span><br><span class="line">    proxy_set_header Connection <span class="string">&quot;Upgrade&quot;</span>;</span><br><span class="line">    proxy_set_header Upgrade <span class="variable">$http_upgrade</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>nginx</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Samba 文件共享</title>
     <url>/2019/11/28/samba/</url>
     <content><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt install samba</span><br></pre></td></tr></table></figure>
