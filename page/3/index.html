@@ -90,7 +90,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">40</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">27</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">43</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">32</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -155,7 +155,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">32</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -166,7 +166,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-count">43</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -210,7 +210,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2020/05/29/use-winsw-to-deploy-windoes-service/">
+    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2021/11/01/mac-install-image-with-glibmacos/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -228,7 +228,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/05/29/use-winsw-to-deploy-windoes-service/" class="post-title-link" itemprop="url">使用 WinSW 部署 Windows Service</a>
+          <a href="/2021/11/01/mac-install-image-with-glibmacos/" class="post-title-link" itemprop="url">使用 glibMacOS 制作 MacOS 安装镜像</a>
         </h2>
 
         <div class="post-meta-container">
@@ -239,7 +239,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-05-29 17:54:22" itemprop="dateCreated datePublished" datetime="2020-05-29T17:54:22+08:00">2020-05-29</time>
+      <time title="创建时间：2021-11-01 14:33:12" itemprop="dateCreated datePublished" datetime="2021-11-01T14:33:12+08:00">2021-11-01</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -261,18 +261,31 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3dpbnN3L3dpbnN3">winsw&#x2F;winsw<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-<p>在 <code>Release</code> 页面下载最新版本以及示例配置文件。</p>
-<p>将可执行文件和配置文件都复制到自定义的目录，并将文件名改为一致。</p>
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>下面我使用 <code>Frpc</code> 作为演示。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- frpc-service.xml --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">service</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>frpc<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>Frpc Service<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">description</span>&gt;</span>A fast reverse proxy to help you expose a local server behind a NAT or firewall to the internet.<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">executable</span>&gt;</span>E:\Frp\frpc.exe<span class="tag">&lt;/<span class="name">executable</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">onfailure</span> <span class="attr">action</span>=<span class="string">&quot;restart&quot;</span> <span class="attr">delay</span>=<span class="string">&quot;5 sec&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">resetfailure</span>&gt;</span>1 day<span class="tag">&lt;/<span class="name">resetfailure</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">arguments</span>&gt;</span>-c E:\Frp\frpc.ini<span class="tag">&lt;/<span class="name">arguments</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">workingdirectory</span>&gt;</span>E:\Frp<span class="tag">&lt;/<span class="name">workingdirectory</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">priority</span>&gt;</span>AboveNormal<span class="tag">&lt;/<span class="name">priority</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">stoptimeout</span>&gt;</span>15 sec<span class="tag">&lt;/<span class="name">stoptimeout</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">stopparentprocessfirst</span>&gt;</span>false<span class="tag">&lt;/<span class="name">stopparentprocessfirst</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">startmode</span>&gt;</span>Automatic<span class="tag">&lt;/<span class="name">startmode</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">waithint</span>&gt;</span>15 sec<span class="tag">&lt;/<span class="name">waithint</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">sleeptime</span>&gt;</span>1 sec<span class="tag">&lt;/<span class="name">sleeptime</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">logpath</span>&gt;</span>E:\Frp\logs<span class="tag">&lt;/<span class="name">logpath</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">log</span> <span class="attr">mode</span>=<span class="string">&quot;roll-by-time&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">pattern</span>&gt;</span>yyyyMMdd<span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">log</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">service</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>相关配置的解读请参考下载的示例配置文件。</p>
-<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 首先运行测试，看配置是否可以正常运行</span></span><br><span class="line">./frpc-service.exe testwait</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 Service</span></span><br><span class="line">./frpc-service.exe install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行 Service</span></span><br><span class="line">./frpc-service.exe start</span><br></pre></td></tr></table></figure>
-
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">A wrapper binary that can be used to host executables as Windows services</span><br><span class="line"></span><br><span class="line">Usage: winsw [/redirect file] &lt;command&gt; [&lt;args&gt;]</span><br><span class="line">       Missing arguments trigger the service mode</span><br><span class="line"></span><br><span class="line">Available commands:</span><br><span class="line">  install     install the service to Windows Service Controller</span><br><span class="line">  uninstall   uninstall the service</span><br><span class="line">  start       start the service (must be installed before)</span><br><span class="line">  stop        stop the service</span><br><span class="line">  stopwait    stop the service<span class="built_in"> and </span>wait until it&#x27;s actually stopped</span><br><span class="line">  restart     restart the service</span><br><span class="line">  restart!    self-restart (can be called from child processes)</span><br><span class="line">  status     <span class="built_in"> check </span>the current status of the service</span><br><span class="line">  test       <span class="built_in"> check </span>if the service can be started<span class="built_in"> and </span>then stopped</span><br><span class="line">  testwait    starts the service<span class="built_in"> and </span>waits until a key is pressed then stops the service</span><br><span class="line">  version     print the version info</span><br><span class="line">  help        print the help info (aliases: -h,--help,-?,/?)</span><br><span class="line"></span><br><span class="line">Extra options:</span><br><span class="line">  /redirect   redirect the wrapper&#x27;s STDOUT<span class="built_in"> and </span>STDERR to the specified file</span><br><span class="line"></span><br><span class="line">WinSW 2.9.0.0</span><br><span class="line">More info: https://github.com/kohsuke/winsw</span><br><span class="line">Bug tracker: https://github.com/kohsuke/winsw/issues</span><br></pre></td></tr></table></figure>
+          <h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><ol>
+<li><p>首先从 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2NvcnBuZXd0L2dpYk1hY09T">GitHub<i class="fa fa-external-link-alt"></i></span> 上下载最新的代码。</p>
+</li>
+<li><p>解压后，运行 <code>gibMacOS.bat</code>。</p>
+</li>
+<li><p>选择 <code>MacOS</code> 版本，输入序号并按回车。</p>
+</li>
+<li><p>等待下载完成。</p>
+</li>
+</ol>
+<h2 id="刻录"><a href="#刻录" class="headerlink" title="刻录"></a>刻录</h2><ol>
+<li><p>插入 U 盘。</p>
+</li>
+<li><p>运行 <code>MakeInstall.bat</code>。</p>
+</li>
+<li><p>选择正确的磁盘，并输入前面的序号，按下回车，再输入 <code>Y</code> 按下回车（U 盘内所有数据将会被清除）。</p>
+</li>
+<li><p>进入 <code>gibMacOS\macOS Downloads\publicrelease</code> 目录，按着 <code>shift</code> 并右击相应版本的文件夹，选择 <code>复制文件地址</code>。</p>
+</li>
+<li><p>回到 <code>MakeInstall.bat</code> 窗口，右击粘贴刚才复制的路径并按回车。</p>
+</li>
+<li><p>等待直到制作完成。</p>
+</li>
+</ol>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>该工具下载可能较慢，建议在初始化的冒出的 <code>xml</code> 连接中直接找对应的文件。</p>
 
       
     </div>
@@ -299,7 +312,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2020/05/26/install-gitea-and-drone/">
+    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2021/06/18/mac-node-no-xcode-detected/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -317,7 +330,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/05/26/install-gitea-and-drone/" class="post-title-link" itemprop="url">基于 Docker 安装 Gitea 和 Drone / Drone-Runner</a>
+          <a href="/2021/06/18/mac-node-no-xcode-detected/" class="post-title-link" itemprop="url">Mac 源码安装 node 时 `No Xcode or CLT version detected!` 错误</a>
         </h2>
 
         <div class="post-meta-container">
@@ -328,7 +341,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-05-26 14:11:29" itemprop="dateCreated datePublished" datetime="2020-05-26T14:11:29+08:00">2020-05-26</time>
+      <time title="创建时间：2021-06-18 16:44:23" itemprop="dateCreated datePublished" datetime="2021-06-18T16:44:23+08:00">2021-06-18</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -350,39 +363,193 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="安装-docker-并拉取相关镜像"><a href="#安装-docker-并拉取相关镜像" class="headerlink" title="安装 docker 并拉取相关镜像"></a>安装 docker 并拉取相关镜像</h2><ul>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9odWIuZG9ja2VyLmNvbS9yL2dpdGVhL2dpdGVh">gitea&#x2F;gitea<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9odWIuZG9ja2VyLmNvbS9yL2Ryb25lL2Ryb25l">drone&#x2F;drone<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9odWIuZG9ja2VyLmNvbS9yL2Ryb25lL2Ryb25lLXJ1bm5lci1kb2NrZXI=">drone&#x2F;drone-runner-docker<i class="fa fa-external-link-alt"></i></span></p>
-</li>
+          <h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>重新安装 <code>Xcode Tools</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">rm</span> -rf $(xcode-select -p)</span><br><span class="line">sudo xcode-select --install</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2020/07/24/backup-and-restore-ubuntu-image/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="starudream">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/07/24/backup-and-restore-ubuntu-image/" class="post-title-link" itemprop="url">备份还原 ubuntu 镜像</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-07-24 14:19:20" itemprop="dateCreated datePublished" datetime="2020-07-24T14:19:20+08:00">2020-07-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h2><p>通过以下命令查看磁盘</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">diskutil list</span><br></pre></td></tr></table></figure>
+
+<p>运行下面的命令进行打包，将 <code>N</code> 替换为上面查到的号码，等待完成即可。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">dd</span> bs=1m <span class="keyword">if</span>=/dev/rdiskN of=ubuntu.img</span><br></pre></td></tr></table></figure>
+
+<h3 id="压缩"><a href="#压缩" class="headerlink" title="压缩"></a>压缩</h3><p>一般来说，上面打包的生成的 <code>.img</code> 大小为 <code>TF</code> 卡容量，若写入小容量卡会发生错误，所以要清除无用的空间。</p>
+<p>如果是 <code>linux</code> 系统，可以跳过这一步，直接执行下方的命令，<code>windows</code> 以及 <code>mac</code> 可使用 <code>docker</code> 来执行。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it --<span class="built_in">rm</span> --privileged -v $(<span class="built_in">pwd</span>):/shrink ubuntu:20.04</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">apt update</span><br><span class="line">apt install parted</span><br><span class="line"><span class="built_in">cd</span> /shrink</span><br><span class="line">./pishrink.sh in.img out.img</span><br></pre></td></tr></table></figure>
+
+<p>等待完成后，发现 <code>.img</code> 有明显的缩小。</p>
+<h2 id="恢复"><a href="#恢复" class="headerlink" title="恢复"></a>恢复</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">dd</span> bs=1m <span class="keyword">if</span>=ubuntu.img of=/dev/rdiskN</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0RyZXdzaWYvUGlTaHJpbms=">Drewsif&#x2F;PiShrink<i class="fa fa-external-link-alt"></i></span></li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker pull gitea/gitea</span><br><span class="line">docker pull drone/drone</span><br><span class="line">docker pull drone/drone-runner-docker</span><br></pre></td></tr></table></figure>
 
-<h2 id="安装-gitea"><a href="#安装-gitea" class="headerlink" title="安装 gitea"></a>安装 gitea</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name gitea \</span><br><span class="line">    --restart always \</span><br><span class="line">    -p 53022:22 \</span><br><span class="line">    -p 53080:3000 \</span><br><span class="line">    -m 400m \</span><br><span class="line">    -v /opt/docker/gitea/data:/data \</span><br><span class="line">    gitea/gitea:1.11.5</span><br></pre></td></tr></table></figure>
+      
+    </div>
 
-<p>按照步骤完成安装 <code>Gitea</code> 后，打开 <code>https://git.52xckl.cn/user/settings/applications</code> 页面。</p>
-<p>应用名称：<code>drone</code>，重定向 URL：<code>https://drone.52xckl.cn/login</code> 填写完成后点击创建应用获取 <code>客户端 ID</code> 与 <code>客户端密钥</code>。</p>
-<h2 id="创建-drone-与-drone-runner"><a href="#创建-drone-与-drone-runner" class="headerlink" title="创建 drone 与 drone-runner"></a>创建 drone 与 drone-runner</h2><ul>
-<li><code>$&#123;CLIENT_ID&#125;</code> -&gt; <code>客户端 ID</code></li>
-<li><code>$&#123;CLIENT_SECRET&#125;</code> -&gt; <code>客户端密钥</code></li>
-<li><code>$&#123;RPC_SECRET&#125;</code> -&gt; <code>drone 与 drone-runner 通讯的密钥，随机生成即可</code></li>
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2020/07/21/use-dingtalk-in-prometheus/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="starudream">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/07/21/use-dingtalk-in-prometheus/" class="post-title-link" itemprop="url">在 Prometheus 中使用钉钉机器人</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-07-21 15:30:58" itemprop="dateCreated datePublished" datetime="2020-07-21T15:30:58+08:00">2020-07-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="启动-prometheus-webhook-dingtalk"><a href="#启动-prometheus-webhook-dingtalk" class="headerlink" title="启动 prometheus-webhook-dingtalk"></a>启动 <code>prometheus-webhook-dingtalk</code></h2><ul>
+<li><code>/data/prometheus-webhook-dingtalk/config/config.yml</code></li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name drone \</span><br><span class="line">    --restart always \</span><br><span class="line">    -m 200m \</span><br><span class="line">    -p 54080:80 \</span><br><span class="line">    -e DRONE_GITEA_SERVER=https://git.52xckl.cn \</span><br><span class="line">    -e DRONE_GITEA_CLIENT_ID=<span class="variable">$&#123;CLIENT_ID&#125;</span> \</span><br><span class="line">    -e DRONE_GITEA_CLIENT_SECRET=<span class="variable">$&#123;CLIENT_SECRET&#125;</span>= \</span><br><span class="line">    -e DRONE_RPC_SECRET=<span class="variable">$&#123;RPC_SECRET&#125;</span> \</span><br><span class="line">    -e DRONE_SERVER_HOST=drone.52xckl.cn \</span><br><span class="line">    -e DRONE_SERVER_PROTO=https \</span><br><span class="line">    -v /opt/docker/drone/data:/var/lib/drone \</span><br><span class="line">    drone/drone:1.7.0</span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">timeout:</span> <span class="string">10s</span></span><br><span class="line"></span><br><span class="line"><span class="attr">default_message:</span></span><br><span class="line">  <span class="attr">title:</span> <span class="string">&#x27;<span class="template-variable">&#123;&#123; template &quot;legacy.title&quot; . &#125;&#125;</span>&#x27;</span></span><br><span class="line">  <span class="attr">text:</span> <span class="string">&#x27;<span class="template-variable">&#123;&#123; template &quot;legacy.content&quot; . &#125;&#125;</span>&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">targets:</span></span><br><span class="line">  <span class="attr">webhook1:</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">https://oapi.dingtalk.com/robot/send?access_token=xxx</span></span><br><span class="line">    <span class="attr">secret:</span> <span class="string">yyy</span></span><br><span class="line">    <span class="attr">mention:</span></span><br><span class="line">      <span class="attr">all:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name drone-runner \</span><br><span class="line">    --<span class="built_in">link</span> drone:drone \</span><br><span class="line">    --restart always \</span><br><span class="line">    -m 200m \</span><br><span class="line">    -e DRONE_RUNNER_NAME=runner-001 \</span><br><span class="line">    -e DRONE_RPC_PROTO=http \</span><br><span class="line">    -e DRONE_RPC_HOST=drone \</span><br><span class="line">    -e DRONE_RPC_SECRET=<span class="variable">$&#123;RPC_SECRET&#125;</span> \</span><br><span class="line">    -v /var/run/docker.sock:/var/run/docker.sock \</span><br><span class="line">    drone/drone-runner-docker:1.3.0</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name prometheus-webhook-dingtalk \</span><br><span class="line">    --restart always \</span><br><span class="line">    -p 8060:8060 \</span><br><span class="line">    -v /data/prometheus-webhook-dingtalk/config:/etc/prometheus-webhook-dingtalk \</span><br><span class="line">    timonwong/prometheus-webhook-dingtalk</span><br></pre></td></tr></table></figure>
 
-<p>最后 <code>docker logs -f --tail 10 drone-runner</code> 显示 <code>successfully pinged the remote server</code> 即为成功。</p>
-<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>首先打开 <code>https://drone.52xckl.cn/</code> 完成 <code>OAuth2</code> 认证并激活项目。</p>
-<p>在激活的项目中创建名为 <code>.drone.yml</code> 的文件：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">kind:</span> <span class="string">pipeline</span></span><br><span class="line"><span class="attr">name:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">type:</span> <span class="string">docker</span></span><br><span class="line"><span class="attr">steps:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">test</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">golang:1.14-alpine</span></span><br><span class="line">    <span class="attr">commands:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">CGO_ENABLED=0</span> <span class="string">GO111MODULE=on</span> <span class="string">go</span> <span class="string">test</span> <span class="string">-count=1</span> <span class="string">-cover</span> <span class="string">-v</span> <span class="string">./...</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">CGO_ENABLED=0</span> <span class="string">GO111MODULE=on</span> <span class="string">go</span> <span class="string">run</span> <span class="string">.</span></span><br></pre></td></tr></table></figure>
+<h2 id="修改-prometheus-配置文件"><a href="#修改-prometheus-配置文件" class="headerlink" title="修改 prometheus 配置文件"></a>修改 <code>prometheus</code> 配置文件</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">route:</span></span><br><span class="line">  <span class="attr">receiver:</span> <span class="string">&quot;dingtalk1&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">receivers:</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">dingtalk1</span></span><br><span class="line">  <span class="attr">webhook_configs:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">send_resolved:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">http://127.0.0.1:8060/dingtalk/webhook1/send</span></span><br></pre></td></tr></table></figure>
 
-<p>这段是 <code>Go</code> 相关项目的，如果编写该文件请查询相关官方文档。</p>
-<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ul>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmdpdGVhLmlvL2VuLXVzLw==">gitea<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly90aGVvLmltL2Jsb2cvMjAxNy8xMC8xNi9yZWxlYXNlLXByb21ldGhldXMtYWxlcnRtYW5hZ2VyLXdlYmhvb2stZm9yLWRpbmd0YWxrLw==">theo.im&#x2F;blog<i class="fa fa-external-link-alt"></i></span></p>
 </li>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9yZWFkbWUuZHJvbmUuaW8v">drone<i class="fa fa-external-link-alt"></i></span></p>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RpbW9ud29uZy9wcm9tZXRoZXVzLXdlYmhvb2stZGluZ3RhbGs=">timonwong&#x2F;prometheus-webhook-dingtalk<i class="fa fa-external-link-alt"></i></span></p>
 </li>
 </ul>
 
@@ -411,7 +578,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2020/05/18/install-virtual-network/">
+    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2020/06/28/show-full-path-in-chrome/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -429,7 +596,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/05/18/install-virtual-network/" class="post-title-link" itemprop="url">Linux 创建虚拟网卡</a>
+          <a href="/2020/06/28/show-full-path-in-chrome/" class="post-title-link" itemprop="url">在 Chrome 地址栏中显示完整网址</a>
         </h2>
 
         <div class="post-meta-container">
@@ -440,7 +607,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-05-18 11:58:21" itemprop="dateCreated datePublished" datetime="2020-05-18T11:58:21+08:00">2020-05-18</time>
+      <time title="创建时间：2020-06-28 09:44:53" itemprop="dateCreated datePublished" datetime="2020-06-28T09:44:53+08:00">2020-06-28</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -462,278 +629,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="安装相关依赖"><a href="#安装相关依赖" class="headerlink" title="安装相关依赖"></a>安装相关依赖</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install -y uml-utilities bridge-utils</span><br></pre></td></tr></table></figure>
-
-<h2 id="添加网桥"><a href="#添加网桥" class="headerlink" title="添加网桥"></a>添加网桥</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brctl addbr br0</span><br></pre></td></tr></table></figure>
-
-<h2 id="激活网桥"><a href="#激活网桥" class="headerlink" title="激活网桥"></a>激活网桥</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip <span class="built_in">link</span> <span class="built_in">set</span> br0 up</span><br></pre></td></tr></table></figure>
-
-<h2 id="添加虚拟网卡"><a href="#添加虚拟网卡" class="headerlink" title="添加虚拟网卡"></a>添加虚拟网卡</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip <span class="built_in">link</span> <span class="built_in">set</span> tap0 up</span><br></pre></td></tr></table></figure>
-
-<h2 id="将虚拟网卡添加到指定网桥上"><a href="#将虚拟网卡添加到指定网桥上" class="headerlink" title="将虚拟网卡添加到指定网桥上"></a>将虚拟网卡添加到指定网桥上</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brctl addif br0 tap0</span><br></pre></td></tr></table></figure>
-
-<h2 id="给网桥配制ip地址"><a href="#给网桥配制ip地址" class="headerlink" title="给网桥配制ip地址"></a>给网桥配制ip地址</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ifconfig br0 172.24.16.10 up</span><br></pre></td></tr></table></figure>
-
-<h2 id="移除"><a href="#移除" class="headerlink" title="移除"></a>移除</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">brctl delif br0 tap0</span><br><span class="line"></span><br><span class="line">tunctl -d tap0</span><br><span class="line"></span><br><span class="line">brctl delbr br0</span><br></pre></td></tr></table></figure>
-
-<h2 id="brctl"><a href="#brctl" class="headerlink" title="brctl"></a>brctl</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Usage: brctl [commands]</span><br><span class="line">commands:</span><br><span class="line">  addbr          <span class="symbol">&lt;bridge&gt;</span>                  <span class="built_in">add</span> bridge</span><br><span class="line">  delbr          <span class="symbol">&lt;bridge&gt;</span>                  <span class="keyword">delete</span> bridge</span><br><span class="line">  addif          <span class="symbol">&lt;bridge&gt;</span> <span class="symbol">&lt;device&gt;</span>         <span class="built_in">add</span> interface <span class="keyword">to</span> bridge</span><br><span class="line">  delif          <span class="symbol">&lt;bridge&gt;</span> <span class="symbol">&lt;device&gt;</span>         <span class="keyword">delete</span> interface from bridge</span><br><span class="line">  hairpin        <span class="symbol">&lt;bridge&gt;</span> <span class="symbol">&lt;port&gt;</span> &#123;<span class="keyword">on</span>|off&#125;  turn hairpin <span class="keyword">on</span>/off</span><br><span class="line">  setageing      <span class="symbol">&lt;bridge&gt;</span> <span class="symbol">&lt;time&gt;</span>           <span class="keyword">set</span> ageing time</span><br><span class="line">  setbridgeprio  <span class="symbol">&lt;bridge&gt;</span> <span class="symbol">&lt;prio&gt;</span>           <span class="keyword">set</span> bridge priority</span><br><span class="line">  setfd          <span class="symbol">&lt;bridge&gt;</span> <span class="symbol">&lt;time&gt;</span>           <span class="keyword">set</span> bridge forward delay</span><br><span class="line">  sethello       <span class="symbol">&lt;bridge&gt;</span> <span class="symbol">&lt;time&gt;</span>           <span class="keyword">set</span> hello time</span><br><span class="line">  setmaxage      <span class="symbol">&lt;bridge&gt;</span> <span class="symbol">&lt;time&gt;</span>           <span class="keyword">set</span> <span class="built_in">max</span> message age</span><br><span class="line">  setpathcost    <span class="symbol">&lt;bridge&gt;</span> <span class="symbol">&lt;port&gt;</span> <span class="symbol">&lt;cost&gt;</span>    <span class="keyword">set</span> path cost</span><br><span class="line">  setportprio    <span class="symbol">&lt;bridge&gt;</span> <span class="symbol">&lt;port&gt;</span> <span class="symbol">&lt;prio&gt;</span>    <span class="keyword">set</span> port priority</span><br><span class="line">  show           [ <span class="symbol">&lt;bridge&gt;</span> ]              show <span class="keyword">a</span> <span class="keyword">list</span> of bridges</span><br><span class="line">  showmacs       <span class="symbol">&lt;bridge&gt;</span>                  show <span class="keyword">a</span> <span class="keyword">list</span> of mac addrs</span><br><span class="line">  showstp        <span class="symbol">&lt;bridge&gt;</span>                  show bridge stp info</span><br><span class="line">  stp            <span class="symbol">&lt;bridge&gt;</span> &#123;<span class="keyword">on</span>|off&#125;         turn stp <span class="keyword">on</span>/off</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2020/05/14/install-istio-with-k8s/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="starudream">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰狂澜's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 星辰狂澜's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/05/14/install-istio-with-k8s/" class="post-title-link" itemprop="url">在 k8s 上使用 istio 管控</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-05-14 19:51:09" itemprop="dateCreated datePublished" datetime="2020-05-14T19:51:09+08:00">2020-05-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>使用上一篇文章成功安装 <code>k8s</code> 和 <code>calico</code> 后，使用 <code>istio</code> 管控微服务。</p>
-<h2 id="下载-istio"><a href="#下载-istio" class="headerlink" title="下载 istio"></a>下载 istio</h2><ul>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9pc3Rpby5pby9kb2NzL3NldHVwL2dldHRpbmctc3RhcnRlZC8=">https://istio.io/docs/setup/getting-started/<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-<li><p>Istio 1.5.4</p>
-</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">curl -L https://istio.io/downloadIstio | sh -</span><br><span class="line"><span class="comment"># 或者从 `https://github.com/istio/istio/releases/latest` 选择版本下载后解压 `tar zxf istio-*.tar.gz`</span></span><br><span class="line"><span class="built_in">cd</span> istio-*</span><br><span class="line"><span class="comment"># 并将目录下 bin 的路径加入环境变量 `PATH`</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PWD</span>/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9pc3Rpby5pby9kb2NzL3NldHVwL2luc3RhbGwvaXN0aW9jdGwv">https://istio.io/docs/setup/install/istioctl/<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-<p>使用默认配置安装</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">istioctl manifest apply</span><br></pre></td></tr></table></figure>
-
-<p>验证是否安装成功</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">istioctl manifest generate &gt; istio.yaml</span><br><span class="line">istioctl verify-install -f istio.yaml</span><br></pre></td></tr></table></figure>
-
-<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><p>这里简单地引用了 <code>gitea</code> 作为部署镜像，若为微服务，修改相应路由即可。</p>
-<h3 id="创建-test-namespaces"><a href="#创建-test-namespaces" class="headerlink" title="创建 test namespaces"></a>创建 <code>test</code> namespaces</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl create namespace <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="创建-configmaps"><a href="#创建-configmaps" class="headerlink" title="创建 configmaps"></a>创建 configmaps</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># config.yaml</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">ConfigMap</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">config</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">data:</span></span><br><span class="line">  <span class="attr">DB_TYPE:</span> <span class="string">sqlite3</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl apply -f config.yaml</span><br></pre></td></tr></table></figure>
-
-<h3 id="部署-1"><a href="#部署-1" class="headerlink" title="部署"></a>部署</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># gitea.yaml</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Service</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">web</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">ClusterIP</span></span><br><span class="line">  <span class="attr">ports:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">http-web</span></span><br><span class="line">      <span class="attr">port:</span> <span class="number">80</span></span><br><span class="line">      <span class="attr">targetPort:</span> <span class="number">3000</span></span><br><span class="line">  <span class="attr">selector:</span></span><br><span class="line">    <span class="attr">app:</span> <span class="string">web</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">apps/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Deployment</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">web</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">replicas:</span> <span class="number">1</span></span><br><span class="line">  <span class="attr">selector:</span></span><br><span class="line">    <span class="attr">matchLabels:</span></span><br><span class="line">      <span class="attr">app:</span> <span class="string">web</span></span><br><span class="line">  <span class="attr">template:</span></span><br><span class="line">    <span class="attr">metadata:</span></span><br><span class="line">      <span class="attr">labels:</span></span><br><span class="line">        <span class="attr">app:</span> <span class="string">web</span></span><br><span class="line">    <span class="attr">spec:</span></span><br><span class="line">      <span class="attr">containers:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">test</span></span><br><span class="line">          <span class="attr">image:</span> <span class="string">gitea/gitea:latest</span></span><br><span class="line">          <span class="attr">ports:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">port</span></span><br><span class="line">              <span class="attr">containerPort:</span> <span class="number">3000</span></span><br><span class="line">          <span class="attr">envFrom:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="attr">configMapRef:</span></span><br><span class="line">                <span class="attr">name:</span> <span class="string">config</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">networking.istio.io/v1beta1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">VirtualService</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">web</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">hosts:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&quot;*&quot;</span></span><br><span class="line">  <span class="attr">gateways:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">istio-system/istio-ingressgateway</span></span><br><span class="line">  <span class="attr">http:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">match:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">uri:</span></span><br><span class="line">            <span class="attr">prefix:</span> <span class="string">&quot;/&quot;</span></span><br><span class="line">      <span class="attr">route:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">destination:</span></span><br><span class="line">            <span class="attr">host:</span> <span class="string">web</span></span><br><span class="line">            <span class="attr">port:</span></span><br><span class="line">              <span class="attr">number:</span> <span class="number">80</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl apply -f gitea.yaml</span><br></pre></td></tr></table></figure>
-
-<h3 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h3><p>修改 <code>istio-ingressgateway</code> 的 <code>LoadBalancer</code> 为 <code>NodePort</code> 将端口暴露出去。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl edit service istio-ingressgateway -n istio-system</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get service -n istio-system</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">istio</span>-ingressgateway   NodePort    <span class="number">10.96.203.60</span>    &lt;none&gt;        <span class="number">80</span>:<span class="number">31893</span>/TCP   <span class="number">25</span>m</span><br></pre></td></tr></table></figure>
-
-<p>最后访问 <code>http://$&#123;ip&#125;:31893/</code> 就可以看到 <code>Gitea</code> 的页面了。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2020/05/09/install-kubernetes/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="starudream">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰狂澜's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 星辰狂澜's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/05/09/install-kubernetes/" class="post-title-link" itemprop="url">CentOS 安装 Kubernetes</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-05-09 17:59:12" itemprop="dateCreated datePublished" datetime="2020-05-09T17:59:12+08:00">2020-05-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><h3 id="安装-Docker"><a href="#安装-Docker" class="headerlink" title="安装 Docker"></a>安装 Docker</h3><p>上一篇文章 <a href="https://blog.starudream.cn/2020/05/09/12-install-docker/">安装 docker</a></p>
-<h3 id="修改主机名"><a href="#修改主机名" class="headerlink" title="修改主机名"></a>修改主机名</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hostnamectl set-hostname k8s-master</span><br></pre></td></tr></table></figure>
-
-<h3 id="修改-x2F-etc-x2F-hosts"><a href="#修改-x2F-etc-x2F-hosts" class="headerlink" title="修改 &#x2F;etc&#x2F;hosts"></a>修改 &#x2F;etc&#x2F;hosts</h3><figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">192.168.140.28</span> api.k8s.local k8s-master</span><br></pre></td></tr></table></figure>
-
-<h3 id="关闭-swap"><a href="#关闭-swap" class="headerlink" title="关闭 swap"></a>关闭 swap</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">swapoff -a</span><br></pre></td></tr></table></figure>
-
-<p>注释 <code>/etc/fstab</code> 文件中 <code>swap</code> 分区。</p>
-<h3 id="添加内核参数"><a href="#添加内核参数" class="headerlink" title="添加内核参数"></a>添加内核参数</h3><p>修改 <code>/etc/sysctl.conf</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">fs.file-max = 1000000</span><br><span class="line"></span><br><span class="line">net.ipv4.ip_forward = 1</span><br><span class="line">net.bridge.bridge-nf-call-iptables = 1</span><br><span class="line">net.bridge.bridge-nf-call-ip6tables = 1</span><br></pre></td></tr></table></figure>
-
-<h2 id="添加-repo-源"><a href="#添加-repo-源" class="headerlink" title="添加 repo 源"></a>添加 repo 源</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> &lt;&lt;<span class="string">EOF &gt; /etc/yum.repos.d/kubernetes.repo</span></span><br><span class="line"><span class="string">[kubernetes]</span></span><br><span class="line"><span class="string">name=Kubernetes</span></span><br><span class="line"><span class="string">baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64</span></span><br><span class="line"><span class="string">enabled=1</span></span><br><span class="line"><span class="string">gpgcheck=1</span></span><br><span class="line"><span class="string">repo_gpgcheck=1</span></span><br><span class="line"><span class="string">gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg</span></span><br><span class="line"><span class="string">       https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg</span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="阿里云公网"><a href="#阿里云公网" class="headerlink" title="阿里云公网"></a>阿里云公网</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i <span class="string">&#x27;s|packages.cloud.google.com|mirrors.aliyun.com/kubernetes|&#x27;</span> /etc/yum.repos.d/kubernetes.repo</span><br></pre></td></tr></table></figure>
-
-<h3 id="阿里云内网"><a href="#阿里云内网" class="headerlink" title="阿里云内网"></a>阿里云内网</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i <span class="string">&#x27;s|https://packages.cloud.google.com|http://mirrors.cloud.aliyuncs.com/kubernetes|&#x27;</span> /etc/yum.repos.d/kubernetes.repo</span><br></pre></td></tr></table></figure>
-
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install -y kubeadm kubelet kubectl</span><br><span class="line"></span><br><span class="line">systemctl <span class="built_in">enable</span> kubelet</span><br></pre></td></tr></table></figure>
-
-<h2 id="初始化-master-节点"><a href="#初始化-master-节点" class="headerlink" title="初始化 master 节点"></a>初始化 master 节点</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">kubeadm init \</span><br><span class="line">    --kubernetes-version=1.18.2 \</span><br><span class="line">    --apiserver-advertise-address=192.168.140.28 \</span><br><span class="line">    --apiserver-bind-port 6443 \</span><br><span class="line">    --pod-network-cidr=10.244.0.0/16 \</span><br><span class="line">    --image-repository registry.aliyuncs.com/google_containers</span><br></pre></td></tr></table></figure>
-
-<p>当出现 <code>Your Kubernetes control-plane has initialized successfully!</code> 即安装成功，并且在下面有相关配置。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p <span class="variable">$HOME</span>/.kube</span><br><span class="line">sudo <span class="built_in">cp</span> -i /etc/kubernetes/admin.conf <span class="variable">$HOME</span>/.kube/config</span><br><span class="line">sudo <span class="built_in">chown</span> $(<span class="built_in">id</span> -u):$(<span class="built_in">id</span> -g) <span class="variable">$HOME</span>/.kube/config</span><br></pre></td></tr></table></figure>
-
-<p>还有最后一条命令在添加 k8s node 节点时使用到</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubeadm <span class="built_in">join</span> 192.168.140.28:6443 --token xxx --discovery-token-ca-cert-hash sha256:xxx</span><br></pre></td></tr></table></figure>
-
-<p>如果忘了保存，可以使用以下命令重新获取到</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubeadm token create --print-join-command</span><br></pre></td></tr></table></figure>
-
-<p>这时可以使用以下命令查看节点</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kubectl get node</span><br><span class="line"></span><br><span class="line">kubectl get pod -A</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NAME         STATUS     ROLES    AGE     <span class="keyword">VERSION</span></span><br><span class="line">k8s-<span class="keyword">master</span>   <span class="title">NotReady</span>   <span class="keyword">master</span>   <span class="title">8m56s</span>   v1.<span class="number">18.2</span></span><br></pre></td></tr></table></figure>
-
-<p>这边看到状态为 <code>NotReady</code> 是因为未安装网络组件。</p>
-<h2 id="添加-node-节点"><a href="#添加-node-节点" class="headerlink" title="添加 node 节点"></a>添加 node 节点</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubeadm <span class="built_in">join</span> 192.168.140.28:6443 --token xxx --discovery-token-ca-cert-hash sha256:xxx</span><br></pre></td></tr></table></figure>
-
-<h2 id="安装-Calico-网络"><a href="#安装-Calico-网络" class="headerlink" title="安装 Calico 网络"></a>安装 Calico 网络</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget --<span class="built_in">unlink</span> -qO calico.yaml https://docs.projectcalico.org/v3.14/manifests/calico.yaml</span><br><span class="line"><span class="comment"># 10.244.0.0/16 这个地址需要与上面的 kubeadm init --pod-network-cidr 参数值一致</span></span><br><span class="line">sed -i -e <span class="string">&quot;s|192.168.0.0/16|10.244.0.0/16|g&quot;</span> calico.yaml</span><br><span class="line">kubectl apply -f calico.yaml</span><br></pre></td></tr></table></figure>
-
-<p>完成这步之后会看到节点的状态变为 <code>Ready</code>。</p>
-<h2 id="安装-Dashboard"><a href="#安装-Dashboard" class="headerlink" title="安装 Dashboard"></a>安装 Dashboard</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget --<span class="built_in">unlink</span> -qO dashboard.yaml https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml</span><br><span class="line">kubectl apply -f dashboard.yaml</span><br></pre></td></tr></table></figure>
-
-<p>一般这样是无法通过外网访问，建议在测试环境下修改 <code>kubernetes-dashboard</code> 的 <code>ClusterIP</code> 为 <code>NodePort</code> 将端口暴露出去。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl edit service kubernetes-dashboard -n kubernetes-dashboard</span><br></pre></td></tr></table></figure>
-
-<p>修改之后，查看 <code>services</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubernetes-dashboard   kubernetes-dashboard        NodePort    10.106.39.19    &lt;none&gt;        443:31570/TCP            36m</span><br></pre></td></tr></table></figure>
-
-<p>之后访问 <code>https://$&#123;ip&#125;:31570</code> 发现需要 <code>token</code>，下面创建一个管理员用户。</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># admin-user.yaml</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">ServiceAccount</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">admin-user</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">kubernetes-dashboard</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">rbac.authorization.k8s.io/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">ClusterRoleBinding</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">admin-user</span></span><br><span class="line"><span class="attr">roleRef:</span></span><br><span class="line">  <span class="attr">apiGroup:</span> <span class="string">rbac.authorization.k8s.io</span></span><br><span class="line">  <span class="attr">kind:</span> <span class="string">ClusterRole</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">cluster-admin</span></span><br><span class="line"><span class="attr">subjects:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">kind:</span> <span class="string">ServiceAccount</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">admin-user</span></span><br><span class="line">    <span class="attr">namespace:</span> <span class="string">kubernetes-dashboard</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl apply -f admin-user.yaml</span><br></pre></td></tr></table></figure>
-
-<p>最后查看 <code>token</code>，找到 <code>admin-user</code> 复制 <code>token</code> 即可以管理员身份访问。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">k describe secrets -n kubernetes-dashboard</span><br></pre></td></tr></table></figure>
-
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="master-参与工作（单机部署）"><a href="#master-参与工作（单机部署）" class="headerlink" title="master 参与工作（单机部署）"></a>master 参与工作（单机部署）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl taint nodes --all node-role.kubernetes.io/master-</span><br></pre></td></tr></table></figure>
-
-<h3 id="命令补全"><a href="#命令补全" class="headerlink" title="命令补全"></a>命令补全</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl completion bash &gt; /root/.kube/completion.bash.inc</span><br></pre></td></tr></table></figure>
-
-<p>如果使用 <code>k</code> 作为 <code>kubectl</code> 的别名，需要修改上面生成的文件，在文件末尾修改为</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> [[ $(<span class="built_in">type</span> -t compopt) = <span class="string">&quot;builtin&quot;</span> ]]; <span class="keyword">then</span></span><br><span class="line">    complete -o default -F __start_kubectl kubectl</span><br><span class="line">    complete -o default -F __start_kubectl k</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    complete -o default -o nospace -F __start_kubectl kubectl</span><br><span class="line">    complete -o default -o nospace -F __start_kubectl k</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
-
-<p>最后将下面这段加入 <code>.bash_profile</code> 中，以使用自动补全功能。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># complete</span></span><br><span class="line"><span class="built_in">source</span> /usr/share/bash-completion/bash_completion</span><br><span class="line"><span class="built_in">source</span> /root/.kube/completion.bash.inc</span><br><span class="line"></span><br><span class="line"><span class="comment"># alias</span></span><br><span class="line"><span class="built_in">alias</span> k=<span class="string">&#x27;kubectl&#x27;</span></span><br></pre></td></tr></table></figure>
+          <p>打开 <code>chrome://flags/#omnibox-context-menu-show-full-urls</code> 地址，将 <code>Context menu show full URLs</code> 设置为 <code>Enabled</code>。</p>
+<p>重启 <code>Chrome</code> 后，在地址栏右击勾选 <code>总是显示完整网址</code>。</p>
 
       
     </div>
@@ -753,7 +650,7 @@
 
 
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>

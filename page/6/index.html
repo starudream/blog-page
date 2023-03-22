@@ -90,7 +90,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">40</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">27</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">43</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">32</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -155,7 +155,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">32</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -166,7 +166,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-count">43</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -210,7 +210,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2019/11/28/samba/">
+    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2020/04/10/deploy-hexo-with-github-actions/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -228,7 +228,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2019/11/28/samba/" class="post-title-link" itemprop="url">Samba 文件共享</a>
+          <a href="/2020/04/10/deploy-hexo-with-github-actions/" class="post-title-link" itemprop="url">使用 GitHub Actions 部署 Hexo</a>
         </h2>
 
         <div class="post-meta-container">
@@ -239,7 +239,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2019-11-28 09:55:43" itemprop="dateCreated datePublished" datetime="2019-11-28T09:55:43+08:00">2019-11-28</time>
+      <time title="创建时间：2020-04-10 10:55:50" itemprop="dateCreated datePublished" datetime="2020-04-10T10:55:50+08:00">2020-04-10</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -261,17 +261,13 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install samba</span><br></pre></td></tr></table></figure>
-
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="新建系统用户"><a href="#新建系统用户" class="headerlink" title="新建系统用户"></a>新建系统用户</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useradd -M -s /sbin/nologin <span class="variable">$&#123;user&#125;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="新建-samba-用户"><a href="#新建-samba-用户" class="headerlink" title="新建 samba 用户"></a>新建 samba 用户</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">smbpasswd -a <span class="variable">$&#123;user&#125;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="修改-samba-配置文件"><a href="#修改-samba-配置文件" class="headerlink" title="修改 samba 配置文件"></a>修改 samba 配置文件</h3><p>在文件末尾添加如下配置：</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[Samba]</span><br><span class="line">  <span class="keyword">comment</span> = Samba</span><br><span class="line">  <span class="type">path</span> = /opt/samba</span><br><span class="line">  guest ok = <span class="keyword">no</span></span><br><span class="line">  <span class="keyword">read</span> <span class="keyword">only</span> = <span class="keyword">no</span></span><br><span class="line">  browseable = yes</span><br></pre></td></tr></table></figure>
-
-<p>不要忘了授予 <code>$&#123;user&#125;</code> <code>/opt/samba</code> 目录权限</p>
-<h3 id="重启-samba-服务"><a href="#重启-samba-服务" class="headerlink" title="重启 samba 服务"></a>重启 samba 服务</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart smbd.service</span><br></pre></td></tr></table></figure>
+          <p>首先需要在 <code>GitHub</code> 上建立两个仓库，一个 <code>公有</code>，一个 <code>私有</code>。</p>
+<p><code>公有</code> 仓库用于存放 <code>Hexo</code> 生成的静态文件以部署 <code>GitHub Pages</code>。</p>
+<p><code>私有</code> 仓库用于存放未经编译的 <code>Hexo</code> 文件。</p>
+<p>示例：<code>starudream/blog-page</code> 为我的 <code>公有</code> 仓库，<code>starudream/blog</code> 是我的 <code>私有</code> 仓库。</p>
+<p>然后在 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NldHRpbmdzL3Rva2Vucw==">https://github.com/settings/tokens<i class="fa fa-external-link-alt"></i></span> 申请 <code>PAT</code>，并将其加入私有仓库的 <code>Secrets</code>。</p>
+<p>最后在 <code>私有</code> 仓库内创建文件 <code>.github/workflows/deploy.yml</code>，修改相应内容：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">Deploy</span></span><br><span class="line"><span class="attr">on:</span></span><br><span class="line">  <span class="attr">push:</span></span><br><span class="line">    <span class="attr">branches:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">master</span></span><br><span class="line"><span class="attr">jobs:</span></span><br><span class="line">  <span class="attr">deploy:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">Deploy</span></span><br><span class="line">    <span class="attr">runs-on:</span> <span class="string">ubuntu-latest</span></span><br><span class="line">    <span class="attr">steps:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Checkout</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/checkout@v2</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">fetch-depth:</span> <span class="number">1</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Checkout</span> <span class="string">Page</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/checkout@v2</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">fetch-depth:</span> <span class="number">1</span></span><br><span class="line">          <span class="attr">repository:</span> <span class="string">starudream/blog-page</span></span><br><span class="line">          <span class="attr">path:</span> <span class="string">.deploy_git</span></span><br><span class="line">          <span class="attr">token:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.PAGE_PAT</span> <span class="string">&#125;&#125;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Cache</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/cache@v1</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">path:</span> <span class="string">node_modules</span></span><br><span class="line">          <span class="attr">key:</span> <span class="string">$&#123;&#123;</span> <span class="string">runner.os</span> <span class="string">&#125;&#125;-$&#123;&#123;</span> <span class="string">hashFiles(&#x27;**/package.json&#x27;)</span> <span class="string">&#125;&#125;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Node</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/setup-node@v1</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">node-version:</span> <span class="number">12</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Build</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          npm install hexo-cli -g &amp;&amp; npm install &amp;&amp; npm run build</span></span><br><span class="line"><span class="string"></span>      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Deploy</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          rm -rf .deploy_git/* &amp;&amp; cp -rf public/* .deploy_git/</span></span><br><span class="line"><span class="string">          git config --global user.name starudream</span></span><br><span class="line"><span class="string">          git config --global user.email justwangsheng@qq.com</span></span><br><span class="line"><span class="string">          message=$(git log -1 --pretty=format:%s)</span></span><br><span class="line"><span class="string">          cd .deploy_git</span></span><br><span class="line"><span class="string">          git add -A</span></span><br><span class="line"><span class="string">          git commit -m &quot;$message&quot;</span></span><br><span class="line"><span class="string">          git push</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -298,7 +294,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2019/11/19/introduction/">
+    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2020/01/19/crack-gitlab/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -316,7 +312,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2019/11/19/introduction/" class="post-title-link" itemprop="url">简单介绍</a>
+          <a href="/2020/01/19/crack-gitlab/" class="post-title-link" itemprop="url">生成 GitLab EE 许可证</a>
         </h2>
 
         <div class="post-meta-container">
@@ -327,7 +323,16 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2019-11-20 00:00:00" itemprop="dateCreated datePublished" datetime="2019-11-20T00:00:00+08:00">2019-11-20</time>
+      <time title="创建时间：2020-01-19 11:07:07" itemprop="dateCreated datePublished" datetime="2020-01-19T11:07:07+08:00">2020-01-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
     </span>
 
   
@@ -340,10 +345,297 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>博客使用 <code>Hexo</code>，搭建在 <code>Github Pages</code>，源代码部署在 <code>GitLab</code> 上，使用相关 <code>CI</code> 自动化部署。</p>
-<h2 id="自动化部署"><a href="#自动化部署" class="headerlink" title="自动化部署"></a>自动化部署</h2><h3 id="config-yml"><a href="#config-yml" class="headerlink" title="_config.yml"></a><code>_config.yml</code></h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://$&#123;username&#125;:$&#123;token|password&#125;@github.com/starudream/blog.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br><span class="line">  <span class="attr">message:</span> <span class="string">update</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">$&#123;name&#125;</span></span><br><span class="line">  <span class="attr">email:</span> <span class="string">$&#123;email&#125;</span></span><br></pre></td></tr></table></figure>
+          <p><strong>基于 <code>gitlab-ee:12.6.4-ee</code></strong></p>
+<h2 id="创建-ruby-docker-镜像"><a href="#创建-ruby-docker-镜像" class="headerlink" title="创建 ruby docker 镜像"></a>创建 ruby docker 镜像</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it --<span class="built_in">rm</span> ruby /bin/bash</span><br></pre></td></tr></table></figure>
 
-<h3 id="gitlab-ci-yml"><a href="#gitlab-ci-yml" class="headerlink" title=".gitlab-ci.yml"></a><code>.gitlab-ci.yml</code></h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">image:</span> <span class="string">node:lts-alpine</span></span><br><span class="line"></span><br><span class="line"><span class="attr">github:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">publish</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">apk</span> <span class="string">add</span> <span class="string">--no-cache</span> <span class="string">git</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">git</span> <span class="string">config</span> <span class="string">--global</span> <span class="string">user.name</span> <span class="string">$&#123;name&#125;</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">git</span> <span class="string">config</span> <span class="string">--global</span> <span class="string">user.email</span> <span class="string">$&#123;email&#125;</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">git</span> <span class="string">clone</span> <span class="string">https://$&#123;name&#125;:$&#123;token|password&#125;@github.com/starudream/blog.git</span> <span class="string">.deploy_git</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">npm</span> <span class="string">install</span> <span class="string">&amp;&amp;</span> <span class="string">npm</span> <span class="string">install</span> <span class="string">hexo-cli</span> <span class="string">-g</span> <span class="string">&amp;&amp;</span> <span class="string">hexo</span> <span class="string">clean</span> <span class="string">&amp;&amp;</span> <span class="string">hexo</span> <span class="string">deploy</span></span><br><span class="line">  <span class="attr">only:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">master</span></span><br><span class="line"></span><br><span class="line"><span class="attr">stages:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">publish</span></span><br><span class="line"></span><br><span class="line"><span class="attr">cache:</span></span><br><span class="line">  <span class="attr">paths:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">node_modules</span></span><br></pre></td></tr></table></figure>
+<h2 id="生成许可证"><a href="#生成许可证" class="headerlink" title="生成许可证"></a>生成许可证</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem install gitlab-license</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> &gt; license.rb</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require</span> <span class="string">&quot;openssl&quot;</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">&quot;gitlab/license&quot;</span></span><br><span class="line"></span><br><span class="line">key_pair = OpenSSL::PKey::<span class="variable constant_">RSA</span>.generate(<span class="number">2048</span>)</span><br><span class="line">File.open(<span class="string">&quot;license_key&quot;</span>, <span class="string">&quot;w&quot;</span>) &#123; |<span class="params">f</span>| f.write(key_pair.to_pem) &#125;</span><br><span class="line"></span><br><span class="line">public_key = key_pair.public_key</span><br><span class="line">File.open(<span class="string">&quot;license_key.pub&quot;</span>, <span class="string">&quot;w&quot;</span>) &#123; |<span class="params">f</span>| f.write(public_key.to_pem) &#125;</span><br><span class="line"></span><br><span class="line">private_key = <span class="title class_">OpenSSL::PKey::RSA</span>.new File.read(<span class="string">&quot;license_key&quot;</span>)</span><br><span class="line">Gitlab::License.encryption_key = private_key</span><br><span class="line"></span><br><span class="line">license = Gitlab::License.new</span><br><span class="line">license.licensee = &#123;</span><br><span class="line">  <span class="string">&quot;Name&quot;</span> =&gt; <span class="string">&quot;none&quot;</span>,</span><br><span class="line">  <span class="string">&quot;Company&quot;</span> =&gt; <span class="string">&quot;none&quot;</span>,</span><br><span class="line">  <span class="string">&quot;Email&quot;</span> =&gt; <span class="string">&quot;example@test.com&quot;</span>,</span><br><span class="line">&#125;</span><br><span class="line">license.starts_at = <span class="title class_">Date</span>.new(<span class="number">2020</span>, <span class="number">1</span>, <span class="number">1</span>) <span class="comment"># 开始时间</span></span><br><span class="line">license.expires_at = <span class="title class_">Date</span>.new(<span class="number">2050</span>, <span class="number">1</span>, <span class="number">1</span>) <span class="comment"># 结束时间</span></span><br><span class="line">license.notify_admins_at = <span class="title class_">Date</span>.new(<span class="number">2049</span>, <span class="number">12</span>, <span class="number">1</span>)</span><br><span class="line">license.notify_users_at = <span class="title class_">Date</span>.new(<span class="number">2049</span>, <span class="number">12</span>, <span class="number">1</span>)</span><br><span class="line">license.block_changes_at = <span class="title class_">Date</span>.new(<span class="number">2050</span>, <span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">license.restrictions = &#123;</span><br><span class="line">  <span class="symbol">active_user_count:</span> <span class="number">10000</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">puts <span class="string">&quot;License:&quot;</span></span><br><span class="line">puts license</span><br><span class="line"></span><br><span class="line">data = license.export</span><br><span class="line">puts <span class="string">&quot;Exported license:&quot;</span></span><br><span class="line">puts data</span><br><span class="line">File.open(<span class="string">&quot;GitLabBV.gitlab-license&quot;</span>, <span class="string">&quot;w&quot;</span>) &#123; |<span class="params">f</span>| f.write(data) &#125;</span><br><span class="line"></span><br><span class="line">public_key = <span class="title class_">OpenSSL::PKey::RSA</span>.new File.read(<span class="string">&quot;license_key.pub&quot;</span>)</span><br><span class="line">Gitlab::License.encryption_key = public_key</span><br><span class="line"></span><br><span class="line">data = File.read(<span class="string">&quot;GitLabBV.gitlab-license&quot;</span>)</span><br><span class="line"><span class="variable">$license</span> = Gitlab::License.import(data)</span><br><span class="line"></span><br><span class="line">puts <span class="string">&quot;Imported license:&quot;</span></span><br><span class="line">puts <span class="variable">$license</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">unless</span> <span class="variable">$license</span></span><br><span class="line">  raise <span class="string">&quot;The license is invalid.&quot;</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="variable">$license</span>.restricted?(<span class="symbol">:active_user_count</span>)</span><br><span class="line">  active_user_count = <span class="number">10000</span></span><br><span class="line">  <span class="keyword">if</span> active_user_count &gt; <span class="variable">$license</span>.restrictions[<span class="symbol">:active_user_count</span>]</span><br><span class="line">    raise <span class="string">&quot;The active user count exceeds the allowed amount!&quot;</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="variable">$license</span>.notify_admins?</span><br><span class="line">  puts <span class="string">&quot;The license is due to expire on <span class="subst">#&#123;<span class="variable">$license</span>.expires_at&#125;</span>.&quot;</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="variable">$license</span>.notify_users?</span><br><span class="line">  puts <span class="string">&quot;The license is due to expire on <span class="subst">#&#123;<span class="variable">$license</span>.expires_at&#125;</span>.&quot;</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">module</span> Gitlab</span><br><span class="line">  <span class="keyword">class</span> <span class="title class_">GitAccess</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">check</span>(<span class="params">cmd, changes = <span class="literal">nil</span></span>)</span><br><span class="line">      <span class="keyword">if</span> <span class="variable">$license</span>.block_changes?</span><br><span class="line">        <span class="keyword">return</span> build_status_object(<span class="literal">false</span>, <span class="string">&quot;License expired&quot;</span>)</span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">puts <span class="string">&quot;This instance of GitLab Enterprise Edition is licensed to:&quot;</span></span><br><span class="line"><span class="variable">$license</span>.licensee.each <span class="keyword">do</span> |<span class="params">key, value</span>|</span><br><span class="line">  puts <span class="string">&quot;<span class="subst">#&#123;key&#125;</span>: <span class="subst">#&#123;value&#125;</span>&quot;</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="variable">$license</span>.expired?</span><br><span class="line">  puts <span class="string">&quot;The license expired on <span class="subst">#&#123;<span class="variable">$license</span>.expires_at&#125;</span>&quot;</span></span><br><span class="line"><span class="keyword">elsif</span> <span class="variable">$license</span>.will_expire?</span><br><span class="line">  puts <span class="string">&quot;The license will expire on <span class="subst">#&#123;<span class="variable">$license</span>.expires_at&#125;</span>&quot;</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  puts <span class="string">&quot;The license will never expire.&quot;</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ruby license.rb</span><br></pre></td></tr></table></figure>
+
+<p>生成 <code>GitLabBV.gitlab-license</code> <code>license_key</code> <code>license_key.pub</code> 这三个文件。</p>
+<h2 id="使用许可证"><a href="#使用许可证" class="headerlink" title="使用许可证"></a>使用许可证</h2><p>用 <code>license_key.pub</code> 文件替换 <code>/opt/gitlab/embedded/service/gitlab-rails/.license_encryption_key.pub</code>。</p>
+<p><code>GitLabBV.gitlab-license</code> 即是许可证，填入 <code>$&#123;address&#125;/admin/license</code> 地址并重启。</p>
+<h2 id="修改等级"><a href="#修改等级" class="headerlink" title="修改等级"></a>修改等级</h2><figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--- /opt/gitlab/embedded/service/gitlab-rails/ee/app/models/license.rb</span></span><br><span class="line"><span class="comment">+++ /opt/gitlab/embedded/service/gitlab-rails/ee/app/models/license.rb</span></span><br><span class="line"><span class="meta">@@ -367,7 +367,7 @@</span></span><br><span class="line">  end</span><br><span class="line"></span><br><span class="line">  def plan</span><br><span class="line"><span class="deletion">-    restricted_attr(:plan).presence || STARTER_PLAN</span></span><br><span class="line"><span class="addition">+    restricted_attr(:plan).presence || ULTIMATE_PLAN</span></span><br><span class="line">  end</span><br><span class="line"></span><br><span class="line">  def edition</span><br></pre></td></tr></table></figure>
+
+<p>修改完成后使用 <code>gitlab-ctl reconfigure</code> 重新加载配置。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cucnVieWRvYy5pbmZvL2dlbXMvZ2l0bGFiLWxpY2Vuc2UvMS4wLjAvZmlsZS9SRUFETUUubWQ=">https://www.rubydoc.info/gems/gitlab-license/1.0.0/file/README.md<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2019/12/19/motify-theme-pisces/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="starudream">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2019/12/19/motify-theme-pisces/" class="post-title-link" itemprop="url">修改主题 Pisces</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-12-19 16:35:12" itemprop="dateCreated datePublished" datetime="2019-12-19T16:35:12+08:00">2019-12-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E4%B8%BB%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">主题</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--- a/themes/next/layout/_scripts/pjax.swig</span></span><br><span class="line"><span class="comment">+++ b/themes/next/layout/_scripts/pjax.swig</span></span><br><span class="line"><span class="meta">@@ -15,8 +15,8 @@</span> var pjax = new Pjax(&#123;</span><br><span class="line">   scrollTo : !CONFIG.bookmark.enable</span><br><span class="line"> &#125;);</span><br><span class="line"></span><br><span class="line"><span class="deletion">-window.addEventListener(&#x27;pjax:success&#x27;, () =&gt; &#123;</span></span><br><span class="line"><span class="deletion">-  document.querySelectorAll(&#x27;script[pjax], script#page-configurations, #pjax script&#x27;).forEach(element =&gt; &#123;</span></span><br><span class="line"><span class="addition">+window.addEventListener(&#x27;pjax:success&#x27;, function() &#123;</span></span><br><span class="line"><span class="addition">+  document.querySelectorAll(&#x27;script[pjax], script#page-configurations, #pjax script&#x27;).forEach(function(element) &#123;</span></span><br><span class="line">     var code = element.text || element.textContent || element.innerHTML || &#x27;&#x27;;</span><br><span class="line">     var parent = element.parentNode;</span><br><span class="line">     parent.removeChild(element);</span><br><span class="line"></span><br><span class="line"><span class="comment">--- a/themes/next/layout/_third-party/comments/disqus.swig</span></span><br><span class="line"><span class="comment">+++ b/themes/next/layout/_third-party/comments/disqus.swig</span></span><br><span class="line"><span class="meta">@@ -41,7 +41,7 @@</span></span><br><span class="line">         // load directly when there&#x27;s no a scrollbar</span><br><span class="line">         window.addEventListener(&#x27;load&#x27;, loadComments, false);</span><br><span class="line">       &#125; else &#123;</span><br><span class="line"><span class="deletion">-        var disqus_scroll = () =&gt; &#123;</span></span><br><span class="line"><span class="addition">+        var disqus_scroll = function() &#123;</span></span><br><span class="line">           // offsetTop may changes because of manually resizing browser window or lazy loading images.</span><br><span class="line">           var offsetTop = document.getElementById(&#x27;comments&#x27;).offsetTop - window.innerHeight;</span><br><span class="line">           var scrollTop = window.scrollY;</span><br><span class="line"></span><br><span class="line"><span class="comment">--- a/themes/next/layout/_third-party/quicklink.swig</span></span><br><span class="line"><span class="comment">+++ b/themes/next/layout/_third-party/quicklink.swig</span></span><br><span class="line"><span class="meta">@@ -3,12 +3,12 @@</span></span><br><span class="line">   &lt;script src=&quot;&#123;&#123; quicklink_uri &#125;&#125;&quot;&gt;&lt;/script&gt;</span><br><span class="line">   &lt;script&gt;</span><br><span class="line">     &#123;%- if page.quicklink.delay %&#125;</span><br><span class="line"><span class="deletion">-      window.addEventListener(&#x27;load&#x27;, () =&gt; &#123;</span></span><br><span class="line"><span class="addition">+      window.addEventListener(&#x27;load&#x27;, function() &#123;</span></span><br><span class="line">     &#123;%- endif %&#125;</span><br><span class="line">       quicklink(&#123;</span><br><span class="line">         timeout: &#123;&#123; page.quicklink.timeout &#125;&#125;,</span><br><span class="line">         priority: &#123;&#123; page.quicklink.priority &#125;&#125;,</span><br><span class="line"><span class="deletion">-        ignores: [uri =&gt; uri.includes(&#x27;#&#x27;),uri =&gt; uri == &#x27;&#123;&#123; url | replace(&#x27;index.html&#x27;, &#x27;&#x27;) &#125;&#125;&#x27;,&#123;&#123; page.quicklink.ignores &#125;&#125;]</span></span><br><span class="line"><span class="addition">+        ignores: [function(uri) &#123; return uri.includes(&#x27;#&#x27;) &#125;, function(uri) &#123; return uri === &#x27;&#123;&#123; url | replace(&#x27;index.html&#x27;, &#x27;&#x27;) &#125;&#125;&#x27; &#125;, &#123;&#123; page.quicklink.ignores &#125;&#125;]</span></span><br><span class="line">       &#125;);</span><br><span class="line">     &#123;%- if page.quicklink.delay %&#125;</span><br><span class="line">       &#125;);</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2019/12/13/install-gitlab-and-gitlab-runner/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="starudream">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2019/12/13/install-gitlab-and-gitlab-runner/" class="post-title-link" itemprop="url">基于 Docker 安装 GitLab 和 GitLab-Runner</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-12-13 17:51:14" itemprop="dateCreated datePublished" datetime="2019-12-13T17:51:14+08:00">2019-12-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="安装-docker-并拉取相关镜像"><a href="#安装-docker-并拉取相关镜像" class="headerlink" title="安装 docker 并拉取相关镜像"></a>安装 docker 并拉取相关镜像</h2><ul>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9odWIuZG9ja2VyLmNvbS9yL2dpdGxhYi9naXRsYWItY2U=">gitlab&#x2F;gitlab-ce<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9odWIuZG9ja2VyLmNvbS9yL2dpdGxhYi9naXRsYWItcnVubmVy">gitlab&#x2F;gitlab-runner<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker pull gitlab/gitlab-ce</span><br><span class="line">docker pull gitlab/gitlab-runner</span><br></pre></td></tr></table></figure>
+
+<h2 id="运行-docker-镜像"><a href="#运行-docker-镜像" class="headerlink" title="运行 docker 镜像"></a>运行 docker 镜像</h2><ul>
+<li>GitLab CE</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name gitlab \</span><br><span class="line">    --restart always \</span><br><span class="line">    -p 127.0.0.1:50080:80 \</span><br><span class="line">    -p 127.0.0.1:50022:22 \</span><br><span class="line">    -m 2048m \</span><br><span class="line">    -v /opt/docker/gitlab/config:/etc/gitlab \</span><br><span class="line">    -v /opt/docker/gitlab/logs:/var/log/gitlab \</span><br><span class="line">    -v /opt/docker/gitlab/data:/var/opt/gitlab \</span><br><span class="line">    gitlab/gitlab-ce:latest</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name gitlab-runner \</span><br><span class="line">    --<span class="built_in">link</span> gitlab:gitlab \</span><br><span class="line">    --restart always \</span><br><span class="line">    -m 1024m \</span><br><span class="line">    -v /var/run/docker.sock:/var/run/docker.sock \</span><br><span class="line">    -v /opt/docker/gitlab-runner/config:/etc/gitlab-runner \</span><br><span class="line">    gitlab/gitlab-runner:latest</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>GitLab EE</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name gitlab \</span><br><span class="line">    --restart always \</span><br><span class="line">    -p 127.0.0.1:50080:80 \</span><br><span class="line">    -p 127.0.0.1:50022:22 \</span><br><span class="line">    -m 2048m \</span><br><span class="line">    -v /opt/docker/gitlab/config:/etc/gitlab \</span><br><span class="line">    -v /opt/docker/gitlab/logs:/var/log/gitlab \</span><br><span class="line">    -v /opt/docker/gitlab/data:/var/opt/gitlab \</span><br><span class="line">    -v /opt/docker/gitlab/.license_encryption_key.pub:/opt/gitlab/embedded/service/gitlab-rails/.license_encryption_key.pub \</span><br><span class="line">    gitlab/gitlab-ee:latest</span><br></pre></td></tr></table></figure>
+
+<h2 id="注册-gitlab-runner"><a href="#注册-gitlab-runner" class="headerlink" title="注册 gitlab-runner"></a>注册 gitlab-runner</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it gitlab-runner gitlab-runner register</span><br><span class="line"><span class="comment"># 之后访问地址 http://code.52xckl.cn/admin/runners 配置即可</span></span><br><span class="line"><span class="comment"># 配置地址可以使用 http://gitlab 内网</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ul>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmdpdGxhYi5jb20vb21uaWJ1cy9kb2NrZXIv">gitlab<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmdpdGxhYi5jb20vcnVubmVyL2luc3RhbGwvZG9ja2VyLmh0bWw=">gitlab-runner<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2019/12/12/gitkraken-crack/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="starudream">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2019/12/12/gitkraken-crack/" class="post-title-link" itemprop="url">GitKraken Crack</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-12-12 10:33:03" itemprop="dateCreated datePublished" datetime="2019-12-12T10:33:03+08:00">2019-12-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="安装-npm-以及-asar"><a href="#安装-npm-以及-asar" class="headerlink" title="安装 npm 以及 asar"></a>安装 npm 以及 asar</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># download: https://nodejs.org/en/</span></span><br><span class="line">npm i -g asar</span><br></pre></td></tr></table></figure>
+
+<h2 id="解压-GitKraken-的资源文件"><a href="#解压-GitKraken-的资源文件" class="headerlink" title="解压 GitKraken 的资源文件"></a>解压 GitKraken 的资源文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装目录\gitkraken\app-x.x.x\resources</span></span><br><span class="line">asar extract ./app.asar ./tmp/</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改-static-x2F-index-js-文件（注意备份）"><a href="#修改-static-x2F-index-js-文件（注意备份）" class="headerlink" title="修改 static&#x2F;index.js 文件（注意备份）"></a>修改 static&#x2F;index.js 文件（注意备份）</h2><p><strong>下面是 v6.5.1 之后的版本</strong></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--- static/index.js</span></span><br><span class="line"><span class="comment">+++ static/index.js</span></span><br><span class="line"><span class="meta">@@ -1,6 +1,27 @@</span></span><br><span class="line"> // Warning: You almost certainly do *not* want to edit this code -</span><br><span class="line"> // instead, you want to edit src/js/main.jsx instead</span><br><span class="line"><span class="addition">+</span></span><br><span class="line"><span class="addition">+function PatchSnapshot() &#123;</span></span><br><span class="line"><span class="addition">+  const edmLiteD = snapshotResult.customRequire(&#x27;@axosoft/edm-lite-d/src/d.js&#x27;);</span></span><br><span class="line"><span class="addition">+  snapshotResult.customRequire.cache[&#x27;@axosoft/edm-lite-d/src/d.js&#x27;] = &#123;</span></span><br><span class="line"><span class="addition">+    exports: function() &#123;</span></span><br><span class="line"><span class="addition">+      let response = JSON.parse(edmLiteD(...arguments).toString(&#x27;utf8&#x27;));</span></span><br><span class="line"><span class="addition">+      if (&#x27;licenseExpiresAt&#x27; in response || &#x27;licensedFeatures&#x27; in response) &#123;</span></span><br><span class="line"><span class="addition">+        response = &#123;</span></span><br><span class="line"><span class="addition">+          ...response,</span></span><br><span class="line"><span class="addition">+          availableTrialDays: null,</span></span><br><span class="line"><span class="addition">+          licenseExpiresAt: 8640000000000000,</span></span><br><span class="line"><span class="addition">+          licensedFeatures: [&#x27;pro&#x27;]</span></span><br><span class="line"><span class="addition">+        &#125;;</span></span><br><span class="line"><span class="addition">+      &#125;</span></span><br><span class="line"><span class="addition">+      return Buffer.from(JSON.stringify(response), &#x27;utf8&#x27;);</span></span><br><span class="line"><span class="addition">+    &#125;</span></span><br><span class="line"><span class="addition">+  &#125;;</span></span><br><span class="line"><span class="addition">+&#125;</span></span><br><span class="line"><span class="addition">+</span></span><br><span class="line"> (function() &#123;</span><br><span class="line"><span class="addition">+  PatchSnapshot();</span></span><br><span class="line"><span class="addition">+</span></span><br><span class="line">   const Perf = snapshotResult.customRequire(&#x27;./src/js/utils/Performance.js&#x27;);</span><br><span class="line">   Perf.timeEnd(&#x27;loading monaco scripts&#x27;);</span><br><span class="line">   Perf.time(&#x27;index.js pre-bootstrap&#x27;);</span><br></pre></td></tr></table></figure>
+
+<p><strong>下面是 v6.5.1 之前的版本</strong></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--- static/index.js</span></span><br><span class="line"><span class="comment">+++ static/index.js</span></span><br><span class="line"><span class="meta">@@ -1,7 +1,29 @@</span></span><br><span class="line"> // Warning: You almost certainly do *not* want to edit this code -</span><br><span class="line"> // instead, you want to edit src/js/main.jsx instead</span><br><span class="line"></span><br><span class="line"><span class="addition">+function XhrPromiseReduxProxy() &#123;</span></span><br><span class="line"><span class="addition">+  const xhrPromiseRedux = snapshotResult.customRequire(</span></span><br><span class="line"><span class="addition">+    &#x27;xhr-promise-redux/dist/index.js&#x27;</span></span><br><span class="line"><span class="addition">+  );</span></span><br><span class="line"><span class="addition">+  xhrPromiseRedux._post = xhrPromiseRedux.post;</span></span><br><span class="line"><span class="addition">+  xhrPromiseRedux.post = async (url, options) =&gt; &#123;</span></span><br><span class="line"><span class="addition">+    const res = await xhrPromiseRedux._post(url, options);</span></span><br><span class="line"><span class="addition">+    if (url.match(/https:\/\/.*api.gitkraken.com\/phone-home/)) &#123;</span></span><br><span class="line"><span class="addition">+      res.body.availableTrialDays = null;</span></span><br><span class="line"><span class="addition">+      res.body.code = 0;</span></span><br><span class="line"><span class="addition">+      res.body.features = [];</span></span><br><span class="line"><span class="addition">+      res.body.individualAccessState = null;</span></span><br><span class="line"><span class="addition">+      res.body.licenseExpiresAt = 8640000000000000;</span></span><br><span class="line"><span class="addition">+      res.body.licensedFeatures = [&#x27;pro&#x27;];</span></span><br><span class="line"><span class="addition">+      res.body.proAccessState = null;</span></span><br><span class="line"><span class="addition">+    &#125;</span></span><br><span class="line"><span class="addition">+    return res;</span></span><br><span class="line"><span class="addition">+  &#125;;</span></span><br><span class="line"><span class="addition">+&#125;</span></span><br><span class="line"><span class="addition">+</span></span><br><span class="line"> (function() &#123;</span><br><span class="line"><span class="addition">+  XhrPromiseReduxProxy();</span></span><br><span class="line"><span class="addition">+</span></span><br><span class="line">   const Perf = snapshotResult.customRequire(&#x27;./src/js/utils/Performance.js&#x27;);</span><br><span class="line">   Perf.timeEnd(&#x27;loading monaco scripts&#x27;);</span><br><span class="line">   Perf.time(&#x27;index.js pre-bootstrap&#x27;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="重新打包"><a href="#重新打包" class="headerlink" title="重新打包"></a>重新打包</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">asar pack ./tmp/ app.asar</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -363,7 +655,7 @@
 
 
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/7/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
