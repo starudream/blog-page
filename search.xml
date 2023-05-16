@@ -769,6 +769,18 @@
       </tags>
   </entry>
   <entry>
+    <title>MacOS 发送通知</title>
+    <url>/2023/05/16/notify-on-macos/</url>
+    <content><![CDATA[<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">osascript -l AppleScript -e &#x27;display notification &quot;Hello World!&quot; with title &quot;Hi!&quot;&#x27;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>macos</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Samba 文件共享</title>
     <url>/2019/11/28/samba/</url>
     <content><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt install samba</span><br></pre></td></tr></table></figure>
