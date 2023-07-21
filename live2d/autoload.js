@@ -1,4 +1,4 @@
-// 注意：live2d_path 参数应使用绝对路径
+// live2d_path 参数建议使用绝对路径
 const live2d_path = "/live2d/";
 
 // 封装异步加载资源的方法
@@ -10,8 +10,7 @@ function loadExternalResource(url, type) {
 			tag = document.createElement("link");
 			tag.rel = "stylesheet";
 			tag.href = url;
-		}
-		else if (type === "js") {
+		} else if (type === "js") {
 			tag = document.createElement("script");
 			tag.src = url;
 		}
@@ -30,12 +29,11 @@ if (screen.width >= 768) {
 		loadExternalResource(live2d_path + "live2d.min.js", "js"),
 		loadExternalResource(live2d_path + "waifu-tips.js", "js")
 	]).then(() => {
+		// 配置选项的具体用法见 README.md
 		initWidget({
 			waifuPath: live2d_path + "waifu-tips.json",
-			cdnPath: live2d_path
+			cdnPath: live2d_path,
+			tools: ["hitokoto", "photo", "info", "quit"]
 		});
 	});
 }
-// initWidget 第一个参数为 waifu-tips.json 的路径，第二个参数为 API 地址
-// API 后端可自行搭建，参考 https://github.com/fghrsh/live2d_api
-// 初始化看板娘会自动加载指定目录下的 waifu-tips.json
