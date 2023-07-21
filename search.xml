@@ -146,7 +146,7 @@
       </tags>
   </entry>
   <entry>
-    <title>deploy-nfs-server</title>
+    <title>部署 NFS 服务</title>
     <url>/2023/07/21/deploy-nfs-server/</url>
     <content><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum install nfs-utils</span><br></pre></td></tr></table></figure>
 
