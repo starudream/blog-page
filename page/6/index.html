@@ -90,7 +90,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">44</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">33</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">52</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">42</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -155,7 +155,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">42</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -166,7 +166,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">44</span>
+        <span class="site-state-item-count">52</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -210,7 +210,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2020/04/10/deploy-ssl-with-acme/">
+    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2020/05/29/use-winsw-to-deploy-windoes-service/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -228,7 +228,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/04/10/deploy-ssl-with-acme/" class="post-title-link" itemprop="url">使用 ACME.sh 签发 SSL 泛域名证书</a>
+          <a href="/2020/05/29/use-winsw-to-deploy-windoes-service/" class="post-title-link" itemprop="url">使用 WinSW 部署 Windows Service</a>
         </h2>
 
         <div class="post-meta-container">
@@ -239,7 +239,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-04-10 15:26:05" itemprop="dateCreated datePublished" datetime="2020-04-10T15:26:05+08:00">2020-04-10</time>
+      <time title="创建时间：2020-05-29 17:54:22" itemprop="dateCreated datePublished" datetime="2020-05-29T17:54:22+08:00">2020-05-29</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -261,13 +261,18 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">~/.acme.sh/acme.sh \</span><br><span class="line">  --debug \</span><br><span class="line">  --issue \</span><br><span class="line">  --dns dns_dp \</span><br><span class="line">  -d *.starudream.cn</span><br><span class="line"></span><br><span class="line">~/.acme.sh/acme.sh \</span><br><span class="line">  --debug \</span><br><span class="line">  --install-cert \</span><br><span class="line">  -d *.starudream.cn \</span><br><span class="line">  --fullchain-file <span class="string">&#x27;/usr/local/openresty/nginx/conf/ssl/*.starudream.cn.crt&#x27;</span> \</span><br><span class="line">  --key-file <span class="string">&#x27;/usr/local/openresty/nginx/conf/ssl/*.starudream.cn.key&#x27;</span> \</span><br><span class="line">  --reloadcmd <span class="string">&#x27;service nginx reload&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="nginx-配置文件"><a href="#nginx-配置文件" class="headerlink" title="nginx 配置文件"></a>nginx 配置文件</h2><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">  <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">  <span class="attribute">listen</span> [::]:<span class="number">80</span>;</span><br><span class="line">  <span class="attribute">listen</span> <span class="number">443</span> ssl http2;</span><br><span class="line">  <span class="attribute">listen</span> [::]:<span class="number">443</span> ssl http2;</span><br><span class="line">  <span class="attribute">ssl_certificate</span> /usr/local/openresty/nginx/conf/ssl/<span class="regexp">*.starudream.cn.crt</span>;</span><br><span class="line">  <span class="attribute">ssl_certificate_key</span> /usr/local/openresty/nginx/conf/ssl/<span class="regexp">*.starudream.cn.key</span>;</span><br><span class="line">  <span class="attribute">ssl_protocols</span> TLSv1 TLSv1.<span class="number">1</span> TLSv1.<span class="number">2</span> TLSv1.<span class="number">3</span>;</span><br><span class="line">  <span class="attribute">ssl_ciphers</span> TLS13-AES-<span class="number">256</span>-GCM-SHA384:TLS13-CHACHA20-POLY1305-SHA256:TLS13-AES-<span class="number">128</span>-GCM-SHA256:TLS13-AES-<span class="number">128</span>-CCM-<span class="number">8</span>-SHA256:TLS13-AES-<span class="number">128</span>-CCM-SHA256:EECDH+CHACHA20:EECDH+AES128:RSA+AES128:EECDH+AES256:RSA+AES256:EECDH+3DES:RSA+3DES:!MD5;</span><br><span class="line">  <span class="attribute">ssl_prefer_server_ciphers</span> <span class="literal">on</span>;</span><br><span class="line">  <span class="attribute">ssl_session_timeout</span> <span class="number">10m</span>;</span><br><span class="line">  <span class="attribute">ssl_session_cache</span> builtin:<span class="number">1000</span> shared:SSL:<span class="number">10m</span>;</span><br><span class="line">  <span class="attribute">ssl_buffer_size</span> <span class="number">1400</span>;</span><br><span class="line">  <span class="attribute">add_header</span> Strict-Transport-Security max-age=<span class="number">15768000</span>;</span><br><span class="line">  <span class="attribute">ssl_stapling</span> <span class="literal">on</span>;</span><br><span class="line">  <span class="attribute">ssl_stapling_verify</span> <span class="literal">on</span>;</span><br><span class="line">  <span class="attribute">server_name</span> test.starudream.cn;</span><br><span class="line">  <span class="attribute">access_log</span> /data/wwwlogs/test.starudream.cn_nginx.log combined;</span><br><span class="line">  <span class="attribute">index</span> index.html;</span><br><span class="line">  <span class="attribute">root</span> /data/wwwroot/default;</span><br><span class="line">  <span class="attribute">if</span> (<span class="variable">$ssl_protocol</span> = <span class="string">&quot;&quot;</span>) &#123; <span class="attribute">return</span> <span class="number">301</span> https://<span class="variable">$host</span><span class="variable">$request_uri</span>; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FjbWVzaC1vZmZpY2lhbC9hY21lLnNo">https://github.com/acmesh-official/acme.sh<i class="fa fa-external-link-alt"></i></span></li>
+          <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3dpbnN3L3dpbnN3">winsw&#x2F;winsw<i class="fa fa-external-link-alt"></i></span></li>
 </ul>
+<p>在 <code>Release</code> 页面下载最新版本以及示例配置文件。</p>
+<p>将可执行文件和配置文件都复制到自定义的目录，并将文件名改为一致。</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>下面我使用 <code>Frpc</code> 作为演示。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- frpc-service.xml --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">service</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>frpc<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>Frpc Service<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">description</span>&gt;</span>A fast reverse proxy to help you expose a local server behind a NAT or firewall to the internet.<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">executable</span>&gt;</span>E:\Frp\frpc.exe<span class="tag">&lt;/<span class="name">executable</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">onfailure</span> <span class="attr">action</span>=<span class="string">&quot;restart&quot;</span> <span class="attr">delay</span>=<span class="string">&quot;5 sec&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">resetfailure</span>&gt;</span>1 day<span class="tag">&lt;/<span class="name">resetfailure</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">arguments</span>&gt;</span>-c E:\Frp\frpc.ini<span class="tag">&lt;/<span class="name">arguments</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">workingdirectory</span>&gt;</span>E:\Frp<span class="tag">&lt;/<span class="name">workingdirectory</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">priority</span>&gt;</span>AboveNormal<span class="tag">&lt;/<span class="name">priority</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">stoptimeout</span>&gt;</span>15 sec<span class="tag">&lt;/<span class="name">stoptimeout</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">stopparentprocessfirst</span>&gt;</span>false<span class="tag">&lt;/<span class="name">stopparentprocessfirst</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">startmode</span>&gt;</span>Automatic<span class="tag">&lt;/<span class="name">startmode</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">waithint</span>&gt;</span>15 sec<span class="tag">&lt;/<span class="name">waithint</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">sleeptime</span>&gt;</span>1 sec<span class="tag">&lt;/<span class="name">sleeptime</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">logpath</span>&gt;</span>E:\Frp\logs<span class="tag">&lt;/<span class="name">logpath</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">log</span> <span class="attr">mode</span>=<span class="string">&quot;roll-by-time&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">pattern</span>&gt;</span>yyyyMMdd<span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">log</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">service</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>相关配置的解读请参考下载的示例配置文件。</p>
+<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 首先运行测试，看配置是否可以正常运行</span></span><br><span class="line">./frpc-service.exe testwait</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 Service</span></span><br><span class="line">./frpc-service.exe install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行 Service</span></span><br><span class="line">./frpc-service.exe start</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">A wrapper binary that can be used to host executables as Windows services</span><br><span class="line"></span><br><span class="line">Usage: winsw [/redirect file] &lt;command&gt; [&lt;args&gt;]</span><br><span class="line">       Missing arguments trigger the service mode</span><br><span class="line"></span><br><span class="line">Available commands:</span><br><span class="line">  install     install the service to Windows Service Controller</span><br><span class="line">  uninstall   uninstall the service</span><br><span class="line">  start       start the service (must be installed before)</span><br><span class="line">  stop        stop the service</span><br><span class="line">  stopwait    stop the service<span class="built_in"> and </span>wait until it&#x27;s actually stopped</span><br><span class="line">  restart     restart the service</span><br><span class="line">  restart!    self-restart (can be called from child processes)</span><br><span class="line">  status     <span class="built_in"> check </span>the current status of the service</span><br><span class="line">  test       <span class="built_in"> check </span>if the service can be started<span class="built_in"> and </span>then stopped</span><br><span class="line">  testwait    starts the service<span class="built_in"> and </span>waits until a key is pressed then stops the service</span><br><span class="line">  version     print the version info</span><br><span class="line">  help        print the help info (aliases: -h,--help,-?,/?)</span><br><span class="line"></span><br><span class="line">Extra options:</span><br><span class="line">  /redirect   redirect the wrapper&#x27;s STDOUT<span class="built_in"> and </span>STDERR to the specified file</span><br><span class="line"></span><br><span class="line">WinSW 2.9.0.0</span><br><span class="line">More info: https://github.com/kohsuke/winsw</span><br><span class="line">Bug tracker: https://github.com/kohsuke/winsw/issues</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -294,7 +299,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2020/04/10/deploy-hexo-with-github-actions/">
+    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2020/05/26/install-gitea-and-drone/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -312,7 +317,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/04/10/deploy-hexo-with-github-actions/" class="post-title-link" itemprop="url">使用 GitHub Actions 部署 Hexo</a>
+          <a href="/2020/05/26/install-gitea-and-drone/" class="post-title-link" itemprop="url">基于 Docker 安装 Gitea 和 Drone / Drone-Runner</a>
         </h2>
 
         <div class="post-meta-container">
@@ -323,266 +328,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-04-10 10:55:50" itemprop="dateCreated datePublished" datetime="2020-04-10T10:55:50+08:00">2020-04-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>首先需要在 <code>GitHub</code> 上建立两个仓库，一个 <code>公有</code>，一个 <code>私有</code>。</p>
-<p><code>公有</code> 仓库用于存放 <code>Hexo</code> 生成的静态文件以部署 <code>GitHub Pages</code>。</p>
-<p><code>私有</code> 仓库用于存放未经编译的 <code>Hexo</code> 文件。</p>
-<p>示例：<code>starudream/blog-page</code> 为我的 <code>公有</code> 仓库，<code>starudream/blog</code> 是我的 <code>私有</code> 仓库。</p>
-<p>然后在 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NldHRpbmdzL3Rva2Vucw==">https://github.com/settings/tokens<i class="fa fa-external-link-alt"></i></span> 申请 <code>PAT</code>，并将其加入私有仓库的 <code>Secrets</code>。</p>
-<p>最后在 <code>私有</code> 仓库内创建文件 <code>.github/workflows/deploy.yml</code>，修改相应内容：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">Deploy</span></span><br><span class="line"><span class="attr">on:</span></span><br><span class="line">  <span class="attr">push:</span></span><br><span class="line">    <span class="attr">branches:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">master</span></span><br><span class="line"><span class="attr">jobs:</span></span><br><span class="line">  <span class="attr">deploy:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">Deploy</span></span><br><span class="line">    <span class="attr">runs-on:</span> <span class="string">ubuntu-latest</span></span><br><span class="line">    <span class="attr">steps:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Checkout</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/checkout@v2</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">fetch-depth:</span> <span class="number">1</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Checkout</span> <span class="string">Page</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/checkout@v2</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">fetch-depth:</span> <span class="number">1</span></span><br><span class="line">          <span class="attr">repository:</span> <span class="string">starudream/blog-page</span></span><br><span class="line">          <span class="attr">path:</span> <span class="string">.deploy_git</span></span><br><span class="line">          <span class="attr">token:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.PAGE_PAT</span> <span class="string">&#125;&#125;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Cache</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/cache@v1</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">path:</span> <span class="string">node_modules</span></span><br><span class="line">          <span class="attr">key:</span> <span class="string">$&#123;&#123;</span> <span class="string">runner.os</span> <span class="string">&#125;&#125;-$&#123;&#123;</span> <span class="string">hashFiles(&#x27;**/package.json&#x27;)</span> <span class="string">&#125;&#125;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Node</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/setup-node@v1</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">node-version:</span> <span class="number">12</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Build</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          npm install hexo-cli -g &amp;&amp; npm install &amp;&amp; npm run build</span></span><br><span class="line"><span class="string"></span>      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Deploy</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          rm -rf .deploy_git/* &amp;&amp; cp -rf public/* .deploy_git/</span></span><br><span class="line"><span class="string">          git config --global user.name starudream</span></span><br><span class="line"><span class="string">          git config --global user.email justwangsheng@qq.com</span></span><br><span class="line"><span class="string">          message=$(git log -1 --pretty=format:%s)</span></span><br><span class="line"><span class="string">          cd .deploy_git</span></span><br><span class="line"><span class="string">          git add -A</span></span><br><span class="line"><span class="string">          git commit -m &quot;$message&quot;</span></span><br><span class="line"><span class="string">          git push</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2020/01/19/crack-gitlab/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="starudream">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰狂澜's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 星辰狂澜's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/01/19/crack-gitlab/" class="post-title-link" itemprop="url">生成 GitLab EE 许可证</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-01-19 11:07:07" itemprop="dateCreated datePublished" datetime="2020-01-19T11:07:07+08:00">2020-01-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><strong>基于 <code>gitlab-ee:12.6.4-ee</code></strong></p>
-<h2 id="创建-ruby-docker-镜像"><a href="#创建-ruby-docker-镜像" class="headerlink" title="创建 ruby docker 镜像"></a>创建 ruby docker 镜像</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it --<span class="built_in">rm</span> ruby /bin/bash</span><br></pre></td></tr></table></figure>
-
-<h2 id="生成许可证"><a href="#生成许可证" class="headerlink" title="生成许可证"></a>生成许可证</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem install gitlab-license</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> &gt; license.rb</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require</span> <span class="string">&quot;openssl&quot;</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">&quot;gitlab/license&quot;</span></span><br><span class="line"></span><br><span class="line">key_pair = OpenSSL::PKey::<span class="variable constant_">RSA</span>.generate(<span class="number">2048</span>)</span><br><span class="line">File.open(<span class="string">&quot;license_key&quot;</span>, <span class="string">&quot;w&quot;</span>) &#123; |<span class="params">f</span>| f.write(key_pair.to_pem) &#125;</span><br><span class="line"></span><br><span class="line">public_key = key_pair.public_key</span><br><span class="line">File.open(<span class="string">&quot;license_key.pub&quot;</span>, <span class="string">&quot;w&quot;</span>) &#123; |<span class="params">f</span>| f.write(public_key.to_pem) &#125;</span><br><span class="line"></span><br><span class="line">private_key = <span class="title class_">OpenSSL::PKey::RSA</span>.new File.read(<span class="string">&quot;license_key&quot;</span>)</span><br><span class="line">Gitlab::License.encryption_key = private_key</span><br><span class="line"></span><br><span class="line">license = Gitlab::License.new</span><br><span class="line">license.licensee = &#123;</span><br><span class="line">  <span class="string">&quot;Name&quot;</span> =&gt; <span class="string">&quot;none&quot;</span>,</span><br><span class="line">  <span class="string">&quot;Company&quot;</span> =&gt; <span class="string">&quot;none&quot;</span>,</span><br><span class="line">  <span class="string">&quot;Email&quot;</span> =&gt; <span class="string">&quot;example@test.com&quot;</span>,</span><br><span class="line">&#125;</span><br><span class="line">license.starts_at = <span class="title class_">Date</span>.new(<span class="number">2020</span>, <span class="number">1</span>, <span class="number">1</span>) <span class="comment"># 开始时间</span></span><br><span class="line">license.expires_at = <span class="title class_">Date</span>.new(<span class="number">2050</span>, <span class="number">1</span>, <span class="number">1</span>) <span class="comment"># 结束时间</span></span><br><span class="line">license.notify_admins_at = <span class="title class_">Date</span>.new(<span class="number">2049</span>, <span class="number">12</span>, <span class="number">1</span>)</span><br><span class="line">license.notify_users_at = <span class="title class_">Date</span>.new(<span class="number">2049</span>, <span class="number">12</span>, <span class="number">1</span>)</span><br><span class="line">license.block_changes_at = <span class="title class_">Date</span>.new(<span class="number">2050</span>, <span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">license.restrictions = &#123;</span><br><span class="line">  <span class="symbol">active_user_count:</span> <span class="number">10000</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">puts <span class="string">&quot;License:&quot;</span></span><br><span class="line">puts license</span><br><span class="line"></span><br><span class="line">data = license.export</span><br><span class="line">puts <span class="string">&quot;Exported license:&quot;</span></span><br><span class="line">puts data</span><br><span class="line">File.open(<span class="string">&quot;GitLabBV.gitlab-license&quot;</span>, <span class="string">&quot;w&quot;</span>) &#123; |<span class="params">f</span>| f.write(data) &#125;</span><br><span class="line"></span><br><span class="line">public_key = <span class="title class_">OpenSSL::PKey::RSA</span>.new File.read(<span class="string">&quot;license_key.pub&quot;</span>)</span><br><span class="line">Gitlab::License.encryption_key = public_key</span><br><span class="line"></span><br><span class="line">data = File.read(<span class="string">&quot;GitLabBV.gitlab-license&quot;</span>)</span><br><span class="line"><span class="variable">$license</span> = Gitlab::License.import(data)</span><br><span class="line"></span><br><span class="line">puts <span class="string">&quot;Imported license:&quot;</span></span><br><span class="line">puts <span class="variable">$license</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">unless</span> <span class="variable">$license</span></span><br><span class="line">  raise <span class="string">&quot;The license is invalid.&quot;</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="variable">$license</span>.restricted?(<span class="symbol">:active_user_count</span>)</span><br><span class="line">  active_user_count = <span class="number">10000</span></span><br><span class="line">  <span class="keyword">if</span> active_user_count &gt; <span class="variable">$license</span>.restrictions[<span class="symbol">:active_user_count</span>]</span><br><span class="line">    raise <span class="string">&quot;The active user count exceeds the allowed amount!&quot;</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="variable">$license</span>.notify_admins?</span><br><span class="line">  puts <span class="string">&quot;The license is due to expire on <span class="subst">#&#123;<span class="variable">$license</span>.expires_at&#125;</span>.&quot;</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="variable">$license</span>.notify_users?</span><br><span class="line">  puts <span class="string">&quot;The license is due to expire on <span class="subst">#&#123;<span class="variable">$license</span>.expires_at&#125;</span>.&quot;</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">module</span> Gitlab</span><br><span class="line">  <span class="keyword">class</span> <span class="title class_">GitAccess</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">check</span>(<span class="params">cmd, changes = <span class="literal">nil</span></span>)</span><br><span class="line">      <span class="keyword">if</span> <span class="variable">$license</span>.block_changes?</span><br><span class="line">        <span class="keyword">return</span> build_status_object(<span class="literal">false</span>, <span class="string">&quot;License expired&quot;</span>)</span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">puts <span class="string">&quot;This instance of GitLab Enterprise Edition is licensed to:&quot;</span></span><br><span class="line"><span class="variable">$license</span>.licensee.each <span class="keyword">do</span> |<span class="params">key, value</span>|</span><br><span class="line">  puts <span class="string">&quot;<span class="subst">#&#123;key&#125;</span>: <span class="subst">#&#123;value&#125;</span>&quot;</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="variable">$license</span>.expired?</span><br><span class="line">  puts <span class="string">&quot;The license expired on <span class="subst">#&#123;<span class="variable">$license</span>.expires_at&#125;</span>&quot;</span></span><br><span class="line"><span class="keyword">elsif</span> <span class="variable">$license</span>.will_expire?</span><br><span class="line">  puts <span class="string">&quot;The license will expire on <span class="subst">#&#123;<span class="variable">$license</span>.expires_at&#125;</span>&quot;</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  puts <span class="string">&quot;The license will never expire.&quot;</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ruby license.rb</span><br></pre></td></tr></table></figure>
-
-<p>生成 <code>GitLabBV.gitlab-license</code> <code>license_key</code> <code>license_key.pub</code> 这三个文件。</p>
-<h2 id="使用许可证"><a href="#使用许可证" class="headerlink" title="使用许可证"></a>使用许可证</h2><p>用 <code>license_key.pub</code> 文件替换 <code>/opt/gitlab/embedded/service/gitlab-rails/.license_encryption_key.pub</code>。</p>
-<p><code>GitLabBV.gitlab-license</code> 即是许可证，填入 <code>$&#123;address&#125;/admin/license</code> 地址并重启。</p>
-<h2 id="修改等级"><a href="#修改等级" class="headerlink" title="修改等级"></a>修改等级</h2><figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--- /opt/gitlab/embedded/service/gitlab-rails/ee/app/models/license.rb</span></span><br><span class="line"><span class="comment">+++ /opt/gitlab/embedded/service/gitlab-rails/ee/app/models/license.rb</span></span><br><span class="line"><span class="meta">@@ -367,7 +367,7 @@</span></span><br><span class="line">  end</span><br><span class="line"></span><br><span class="line">  def plan</span><br><span class="line"><span class="deletion">-    restricted_attr(:plan).presence || STARTER_PLAN</span></span><br><span class="line"><span class="addition">+    restricted_attr(:plan).presence || ULTIMATE_PLAN</span></span><br><span class="line">  end</span><br><span class="line"></span><br><span class="line">  def edition</span><br></pre></td></tr></table></figure>
-
-<p>修改完成后使用 <code>gitlab-ctl reconfigure</code> 重新加载配置。</p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly93d3cucnVieWRvYy5pbmZvL2dlbXMvZ2l0bGFiLWxpY2Vuc2UvMS4wLjAvZmlsZS9SRUFETUUubWQ=">https://www.rubydoc.info/gems/gitlab-license/1.0.0/file/README.md<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2019/12/19/motify-theme-pisces/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="starudream">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰狂澜's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 星辰狂澜's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2019/12/19/motify-theme-pisces/" class="post-title-link" itemprop="url">修改主题 Pisces</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-12-19 16:35:12" itemprop="dateCreated datePublished" datetime="2019-12-19T16:35:12+08:00">2019-12-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E4%B8%BB%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">主题</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--- a/themes/next/layout/_scripts/pjax.swig</span></span><br><span class="line"><span class="comment">+++ b/themes/next/layout/_scripts/pjax.swig</span></span><br><span class="line"><span class="meta">@@ -15,8 +15,8 @@</span> var pjax = new Pjax(&#123;</span><br><span class="line">   scrollTo : !CONFIG.bookmark.enable</span><br><span class="line"> &#125;);</span><br><span class="line"></span><br><span class="line"><span class="deletion">-window.addEventListener(&#x27;pjax:success&#x27;, () =&gt; &#123;</span></span><br><span class="line"><span class="deletion">-  document.querySelectorAll(&#x27;script[pjax], script#page-configurations, #pjax script&#x27;).forEach(element =&gt; &#123;</span></span><br><span class="line"><span class="addition">+window.addEventListener(&#x27;pjax:success&#x27;, function() &#123;</span></span><br><span class="line"><span class="addition">+  document.querySelectorAll(&#x27;script[pjax], script#page-configurations, #pjax script&#x27;).forEach(function(element) &#123;</span></span><br><span class="line">     var code = element.text || element.textContent || element.innerHTML || &#x27;&#x27;;</span><br><span class="line">     var parent = element.parentNode;</span><br><span class="line">     parent.removeChild(element);</span><br><span class="line"></span><br><span class="line"><span class="comment">--- a/themes/next/layout/_third-party/comments/disqus.swig</span></span><br><span class="line"><span class="comment">+++ b/themes/next/layout/_third-party/comments/disqus.swig</span></span><br><span class="line"><span class="meta">@@ -41,7 +41,7 @@</span></span><br><span class="line">         // load directly when there&#x27;s no a scrollbar</span><br><span class="line">         window.addEventListener(&#x27;load&#x27;, loadComments, false);</span><br><span class="line">       &#125; else &#123;</span><br><span class="line"><span class="deletion">-        var disqus_scroll = () =&gt; &#123;</span></span><br><span class="line"><span class="addition">+        var disqus_scroll = function() &#123;</span></span><br><span class="line">           // offsetTop may changes because of manually resizing browser window or lazy loading images.</span><br><span class="line">           var offsetTop = document.getElementById(&#x27;comments&#x27;).offsetTop - window.innerHeight;</span><br><span class="line">           var scrollTop = window.scrollY;</span><br><span class="line"></span><br><span class="line"><span class="comment">--- a/themes/next/layout/_third-party/quicklink.swig</span></span><br><span class="line"><span class="comment">+++ b/themes/next/layout/_third-party/quicklink.swig</span></span><br><span class="line"><span class="meta">@@ -3,12 +3,12 @@</span></span><br><span class="line">   &lt;script src=&quot;&#123;&#123; quicklink_uri &#125;&#125;&quot;&gt;&lt;/script&gt;</span><br><span class="line">   &lt;script&gt;</span><br><span class="line">     &#123;%- if page.quicklink.delay %&#125;</span><br><span class="line"><span class="deletion">-      window.addEventListener(&#x27;load&#x27;, () =&gt; &#123;</span></span><br><span class="line"><span class="addition">+      window.addEventListener(&#x27;load&#x27;, function() &#123;</span></span><br><span class="line">     &#123;%- endif %&#125;</span><br><span class="line">       quicklink(&#123;</span><br><span class="line">         timeout: &#123;&#123; page.quicklink.timeout &#125;&#125;,</span><br><span class="line">         priority: &#123;&#123; page.quicklink.priority &#125;&#125;,</span><br><span class="line"><span class="deletion">-        ignores: [uri =&gt; uri.includes(&#x27;#&#x27;),uri =&gt; uri == &#x27;&#123;&#123; url | replace(&#x27;index.html&#x27;, &#x27;&#x27;) &#125;&#125;&#x27;,&#123;&#123; page.quicklink.ignores &#125;&#125;]</span></span><br><span class="line"><span class="addition">+        ignores: [function(uri) &#123; return uri.includes(&#x27;#&#x27;) &#125;, function(uri) &#123; return uri === &#x27;&#123;&#123; url | replace(&#x27;index.html&#x27;, &#x27;&#x27;) &#125;&#125;&#x27; &#125;, &#123;&#123; page.quicklink.ignores &#125;&#125;]</span></span><br><span class="line">       &#125;);</span><br><span class="line">     &#123;%- if page.quicklink.delay %&#125;</span><br><span class="line">       &#125;);</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2019/12/13/install-gitlab-and-gitlab-runner/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="starudream">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰狂澜's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 星辰狂澜's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2019/12/13/install-gitlab-and-gitlab-runner/" class="post-title-link" itemprop="url">基于 Docker 安装 GitLab 和 GitLab-Runner</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-12-13 17:51:14" itemprop="dateCreated datePublished" datetime="2019-12-13T17:51:14+08:00">2019-12-13</time>
+      <time title="创建时间：2020-05-26 14:11:29" itemprop="dateCreated datePublished" datetime="2020-05-26T14:11:29+08:00">2020-05-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -605,31 +351,38 @@
     
     <div class="post-body" itemprop="articleBody">
           <h2 id="安装-docker-并拉取相关镜像"><a href="#安装-docker-并拉取相关镜像" class="headerlink" title="安装 docker 并拉取相关镜像"></a>安装 docker 并拉取相关镜像</h2><ul>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9odWIuZG9ja2VyLmNvbS9yL2dpdGxhYi9naXRsYWItY2U=">gitlab&#x2F;gitlab-ce<i class="fa fa-external-link-alt"></i></span></p>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9odWIuZG9ja2VyLmNvbS9yL2dpdGVhL2dpdGVh">gitea&#x2F;gitea<i class="fa fa-external-link-alt"></i></span></p>
 </li>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9odWIuZG9ja2VyLmNvbS9yL2dpdGxhYi9naXRsYWItcnVubmVy">gitlab&#x2F;gitlab-runner<i class="fa fa-external-link-alt"></i></span></p>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9odWIuZG9ja2VyLmNvbS9yL2Ryb25lL2Ryb25l">drone&#x2F;drone<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9odWIuZG9ja2VyLmNvbS9yL2Ryb25lL2Ryb25lLXJ1bm5lci1kb2NrZXI=">drone&#x2F;drone-runner-docker<i class="fa fa-external-link-alt"></i></span></p>
 </li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker pull gitlab/gitlab-ce</span><br><span class="line">docker pull gitlab/gitlab-runner</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker pull gitea/gitea</span><br><span class="line">docker pull drone/drone</span><br><span class="line">docker pull drone/drone-runner-docker</span><br></pre></td></tr></table></figure>
 
-<h2 id="运行-docker-镜像"><a href="#运行-docker-镜像" class="headerlink" title="运行 docker 镜像"></a>运行 docker 镜像</h2><ul>
-<li>GitLab CE</li>
+<h2 id="安装-gitea"><a href="#安装-gitea" class="headerlink" title="安装 gitea"></a>安装 gitea</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name gitea \</span><br><span class="line">    --restart always \</span><br><span class="line">    -p 53022:22 \</span><br><span class="line">    -p 53080:3000 \</span><br><span class="line">    -m 400m \</span><br><span class="line">    -v /opt/docker/gitea/data:/data \</span><br><span class="line">    gitea/gitea:1.11.5</span><br></pre></td></tr></table></figure>
+
+<p>按照步骤完成安装 <code>Gitea</code> 后，打开 <code>https://git.52xckl.cn/user/settings/applications</code> 页面。</p>
+<p>应用名称：<code>drone</code>，重定向 URL：<code>https://drone.52xckl.cn/login</code> 填写完成后点击创建应用获取 <code>客户端 ID</code> 与 <code>客户端密钥</code>。</p>
+<h2 id="创建-drone-与-drone-runner"><a href="#创建-drone-与-drone-runner" class="headerlink" title="创建 drone 与 drone-runner"></a>创建 drone 与 drone-runner</h2><ul>
+<li><code>$&#123;CLIENT_ID&#125;</code> -&gt; <code>客户端 ID</code></li>
+<li><code>$&#123;CLIENT_SECRET&#125;</code> -&gt; <code>客户端密钥</code></li>
+<li><code>$&#123;RPC_SECRET&#125;</code> -&gt; <code>drone 与 drone-runner 通讯的密钥，随机生成即可</code></li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name gitlab \</span><br><span class="line">    --restart always \</span><br><span class="line">    -p 127.0.0.1:50080:80 \</span><br><span class="line">    -p 127.0.0.1:50022:22 \</span><br><span class="line">    -m 2048m \</span><br><span class="line">    -v /opt/docker/gitlab/config:/etc/gitlab \</span><br><span class="line">    -v /opt/docker/gitlab/logs:/var/log/gitlab \</span><br><span class="line">    -v /opt/docker/gitlab/data:/var/opt/gitlab \</span><br><span class="line">    gitlab/gitlab-ce:latest</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name drone \</span><br><span class="line">    --restart always \</span><br><span class="line">    -m 200m \</span><br><span class="line">    -p 54080:80 \</span><br><span class="line">    -e DRONE_GITEA_SERVER=https://git.52xckl.cn \</span><br><span class="line">    -e DRONE_GITEA_CLIENT_ID=<span class="variable">$&#123;CLIENT_ID&#125;</span> \</span><br><span class="line">    -e DRONE_GITEA_CLIENT_SECRET=<span class="variable">$&#123;CLIENT_SECRET&#125;</span>= \</span><br><span class="line">    -e DRONE_RPC_SECRET=<span class="variable">$&#123;RPC_SECRET&#125;</span> \</span><br><span class="line">    -e DRONE_SERVER_HOST=drone.52xckl.cn \</span><br><span class="line">    -e DRONE_SERVER_PROTO=https \</span><br><span class="line">    -v /opt/docker/drone/data:/var/lib/drone \</span><br><span class="line">    drone/drone:1.7.0</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name gitlab-runner \</span><br><span class="line">    --<span class="built_in">link</span> gitlab:gitlab \</span><br><span class="line">    --restart always \</span><br><span class="line">    -m 1024m \</span><br><span class="line">    -v /var/run/docker.sock:/var/run/docker.sock \</span><br><span class="line">    -v /opt/docker/gitlab-runner/config:/etc/gitlab-runner \</span><br><span class="line">    gitlab/gitlab-runner:latest</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name drone-runner \</span><br><span class="line">    --<span class="built_in">link</span> drone:drone \</span><br><span class="line">    --restart always \</span><br><span class="line">    -m 200m \</span><br><span class="line">    -e DRONE_RUNNER_NAME=runner-001 \</span><br><span class="line">    -e DRONE_RPC_PROTO=http \</span><br><span class="line">    -e DRONE_RPC_HOST=drone \</span><br><span class="line">    -e DRONE_RPC_SECRET=<span class="variable">$&#123;RPC_SECRET&#125;</span> \</span><br><span class="line">    -v /var/run/docker.sock:/var/run/docker.sock \</span><br><span class="line">    drone/drone-runner-docker:1.3.0</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>GitLab EE</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name gitlab \</span><br><span class="line">    --restart always \</span><br><span class="line">    -p 127.0.0.1:50080:80 \</span><br><span class="line">    -p 127.0.0.1:50022:22 \</span><br><span class="line">    -m 2048m \</span><br><span class="line">    -v /opt/docker/gitlab/config:/etc/gitlab \</span><br><span class="line">    -v /opt/docker/gitlab/logs:/var/log/gitlab \</span><br><span class="line">    -v /opt/docker/gitlab/data:/var/opt/gitlab \</span><br><span class="line">    -v /opt/docker/gitlab/.license_encryption_key.pub:/opt/gitlab/embedded/service/gitlab-rails/.license_encryption_key.pub \</span><br><span class="line">    gitlab/gitlab-ee:latest</span><br></pre></td></tr></table></figure>
+<p>最后 <code>docker logs -f --tail 10 drone-runner</code> 显示 <code>successfully pinged the remote server</code> 即为成功。</p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>首先打开 <code>https://drone.52xckl.cn/</code> 完成 <code>OAuth2</code> 认证并激活项目。</p>
+<p>在激活的项目中创建名为 <code>.drone.yml</code> 的文件：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">kind:</span> <span class="string">pipeline</span></span><br><span class="line"><span class="attr">name:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">type:</span> <span class="string">docker</span></span><br><span class="line"><span class="attr">steps:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">test</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">golang:1.14-alpine</span></span><br><span class="line">    <span class="attr">commands:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">CGO_ENABLED=0</span> <span class="string">GO111MODULE=on</span> <span class="string">go</span> <span class="string">test</span> <span class="string">-count=1</span> <span class="string">-cover</span> <span class="string">-v</span> <span class="string">./...</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">CGO_ENABLED=0</span> <span class="string">GO111MODULE=on</span> <span class="string">go</span> <span class="string">run</span> <span class="string">.</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="注册-gitlab-runner"><a href="#注册-gitlab-runner" class="headerlink" title="注册 gitlab-runner"></a>注册 gitlab-runner</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it gitlab-runner gitlab-runner register</span><br><span class="line"><span class="comment"># 之后访问地址 http://code.52xckl.cn/admin/runners 配置即可</span></span><br><span class="line"><span class="comment"># 配置地址可以使用 http://gitlab 内网</span></span><br></pre></td></tr></table></figure>
-
+<p>这段是 <code>Go</code> 相关项目的，如果编写该文件请查询相关官方文档。</p>
 <h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ul>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmdpdGxhYi5jb20vb21uaWJ1cy9kb2NrZXIv">gitlab<i class="fa fa-external-link-alt"></i></span></p>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmdpdGVhLmlvL2VuLXVzLw==">gitea<i class="fa fa-external-link-alt"></i></span></p>
 </li>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmdpdGxhYi5jb20vcnVubmVyL2luc3RhbGwvZG9ja2VyLmh0bWw=">gitlab-runner<i class="fa fa-external-link-alt"></i></span></p>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9yZWFkbWUuZHJvbmUuaW8v">drone<i class="fa fa-external-link-alt"></i></span></p>
 </li>
 </ul>
 
@@ -650,8 +403,357 @@
 
 
 
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2020/05/18/install-virtual-network/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="starudream">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/05/18/install-virtual-network/" class="post-title-link" itemprop="url">Linux 创建虚拟网卡</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-05-18 11:58:21" itemprop="dateCreated datePublished" datetime="2020-05-18T11:58:21+08:00">2020-05-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="安装相关依赖"><a href="#安装相关依赖" class="headerlink" title="安装相关依赖"></a>安装相关依赖</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install -y uml-utilities bridge-utils</span><br></pre></td></tr></table></figure>
+
+<h2 id="添加网桥"><a href="#添加网桥" class="headerlink" title="添加网桥"></a>添加网桥</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brctl addbr br0</span><br></pre></td></tr></table></figure>
+
+<h2 id="激活网桥"><a href="#激活网桥" class="headerlink" title="激活网桥"></a>激活网桥</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip <span class="built_in">link</span> <span class="built_in">set</span> br0 up</span><br></pre></td></tr></table></figure>
+
+<h2 id="添加虚拟网卡"><a href="#添加虚拟网卡" class="headerlink" title="添加虚拟网卡"></a>添加虚拟网卡</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip <span class="built_in">link</span> <span class="built_in">set</span> tap0 up</span><br></pre></td></tr></table></figure>
+
+<h2 id="将虚拟网卡添加到指定网桥上"><a href="#将虚拟网卡添加到指定网桥上" class="headerlink" title="将虚拟网卡添加到指定网桥上"></a>将虚拟网卡添加到指定网桥上</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brctl addif br0 tap0</span><br></pre></td></tr></table></figure>
+
+<h2 id="给网桥配制ip地址"><a href="#给网桥配制ip地址" class="headerlink" title="给网桥配制ip地址"></a>给网桥配制ip地址</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ifconfig br0 172.24.16.10 up</span><br></pre></td></tr></table></figure>
+
+<h2 id="移除"><a href="#移除" class="headerlink" title="移除"></a>移除</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">brctl delif br0 tap0</span><br><span class="line"></span><br><span class="line">tunctl -d tap0</span><br><span class="line"></span><br><span class="line">brctl delbr br0</span><br></pre></td></tr></table></figure>
+
+<h2 id="brctl"><a href="#brctl" class="headerlink" title="brctl"></a>brctl</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Usage: brctl [commands]</span><br><span class="line">commands:</span><br><span class="line">  addbr          <span class="symbol">&lt;bridge&gt;</span>                  <span class="built_in">add</span> bridge</span><br><span class="line">  delbr          <span class="symbol">&lt;bridge&gt;</span>                  <span class="keyword">delete</span> bridge</span><br><span class="line">  addif          <span class="symbol">&lt;bridge&gt;</span> <span class="symbol">&lt;device&gt;</span>         <span class="built_in">add</span> interface <span class="keyword">to</span> bridge</span><br><span class="line">  delif          <span class="symbol">&lt;bridge&gt;</span> <span class="symbol">&lt;device&gt;</span>         <span class="keyword">delete</span> interface from bridge</span><br><span class="line">  hairpin        <span class="symbol">&lt;bridge&gt;</span> <span class="symbol">&lt;port&gt;</span> &#123;<span class="keyword">on</span>|off&#125;  turn hairpin <span class="keyword">on</span>/off</span><br><span class="line">  setageing      <span class="symbol">&lt;bridge&gt;</span> <span class="symbol">&lt;time&gt;</span>           <span class="keyword">set</span> ageing time</span><br><span class="line">  setbridgeprio  <span class="symbol">&lt;bridge&gt;</span> <span class="symbol">&lt;prio&gt;</span>           <span class="keyword">set</span> bridge priority</span><br><span class="line">  setfd          <span class="symbol">&lt;bridge&gt;</span> <span class="symbol">&lt;time&gt;</span>           <span class="keyword">set</span> bridge forward delay</span><br><span class="line">  sethello       <span class="symbol">&lt;bridge&gt;</span> <span class="symbol">&lt;time&gt;</span>           <span class="keyword">set</span> hello time</span><br><span class="line">  setmaxage      <span class="symbol">&lt;bridge&gt;</span> <span class="symbol">&lt;time&gt;</span>           <span class="keyword">set</span> <span class="built_in">max</span> message age</span><br><span class="line">  setpathcost    <span class="symbol">&lt;bridge&gt;</span> <span class="symbol">&lt;port&gt;</span> <span class="symbol">&lt;cost&gt;</span>    <span class="keyword">set</span> path cost</span><br><span class="line">  setportprio    <span class="symbol">&lt;bridge&gt;</span> <span class="symbol">&lt;port&gt;</span> <span class="symbol">&lt;prio&gt;</span>    <span class="keyword">set</span> port priority</span><br><span class="line">  show           [ <span class="symbol">&lt;bridge&gt;</span> ]              show <span class="keyword">a</span> <span class="keyword">list</span> of bridges</span><br><span class="line">  showmacs       <span class="symbol">&lt;bridge&gt;</span>                  show <span class="keyword">a</span> <span class="keyword">list</span> of mac addrs</span><br><span class="line">  showstp        <span class="symbol">&lt;bridge&gt;</span>                  show bridge stp info</span><br><span class="line">  stp            <span class="symbol">&lt;bridge&gt;</span> &#123;<span class="keyword">on</span>|off&#125;         turn stp <span class="keyword">on</span>/off</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2020/05/14/install-istio-with-k8s/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="starudream">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/05/14/install-istio-with-k8s/" class="post-title-link" itemprop="url">在 k8s 上使用 istio 管控</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-05-14 19:51:09" itemprop="dateCreated datePublished" datetime="2020-05-14T19:51:09+08:00">2020-05-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>使用上一篇文章成功安装 <code>k8s</code> 和 <code>calico</code> 后，使用 <code>istio</code> 管控微服务。</p>
+<h2 id="下载-istio"><a href="#下载-istio" class="headerlink" title="下载 istio"></a>下载 istio</h2><ul>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9pc3Rpby5pby9kb2NzL3NldHVwL2dldHRpbmctc3RhcnRlZC8=">https://istio.io/docs/setup/getting-started/<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p>Istio 1.5.4</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">curl -L https://istio.io/downloadIstio | sh -</span><br><span class="line"><span class="comment"># 或者从 `https://github.com/istio/istio/releases/latest` 选择版本下载后解压 `tar zxf istio-*.tar.gz`</span></span><br><span class="line"><span class="built_in">cd</span> istio-*</span><br><span class="line"><span class="comment"># 并将目录下 bin 的路径加入环境变量 `PATH`</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PWD</span>/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9pc3Rpby5pby9kb2NzL3NldHVwL2luc3RhbGwvaXN0aW9jdGwv">https://istio.io/docs/setup/install/istioctl/<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<p>使用默认配置安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">istioctl manifest apply</span><br></pre></td></tr></table></figure>
+
+<p>验证是否安装成功</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">istioctl manifest generate &gt; istio.yaml</span><br><span class="line">istioctl verify-install -f istio.yaml</span><br></pre></td></tr></table></figure>
+
+<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><p>这里简单地引用了 <code>gitea</code> 作为部署镜像，若为微服务，修改相应路由即可。</p>
+<h3 id="创建-test-namespaces"><a href="#创建-test-namespaces" class="headerlink" title="创建 test namespaces"></a>创建 <code>test</code> namespaces</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl create namespace <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="创建-configmaps"><a href="#创建-configmaps" class="headerlink" title="创建 configmaps"></a>创建 configmaps</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># config.yaml</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">ConfigMap</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">config</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">data:</span></span><br><span class="line">  <span class="attr">DB_TYPE:</span> <span class="string">sqlite3</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl apply -f config.yaml</span><br></pre></td></tr></table></figure>
+
+<h3 id="部署-1"><a href="#部署-1" class="headerlink" title="部署"></a>部署</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># gitea.yaml</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Service</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">web</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">ClusterIP</span></span><br><span class="line">  <span class="attr">ports:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">http-web</span></span><br><span class="line">      <span class="attr">port:</span> <span class="number">80</span></span><br><span class="line">      <span class="attr">targetPort:</span> <span class="number">3000</span></span><br><span class="line">  <span class="attr">selector:</span></span><br><span class="line">    <span class="attr">app:</span> <span class="string">web</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">apps/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Deployment</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">web</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">replicas:</span> <span class="number">1</span></span><br><span class="line">  <span class="attr">selector:</span></span><br><span class="line">    <span class="attr">matchLabels:</span></span><br><span class="line">      <span class="attr">app:</span> <span class="string">web</span></span><br><span class="line">  <span class="attr">template:</span></span><br><span class="line">    <span class="attr">metadata:</span></span><br><span class="line">      <span class="attr">labels:</span></span><br><span class="line">        <span class="attr">app:</span> <span class="string">web</span></span><br><span class="line">    <span class="attr">spec:</span></span><br><span class="line">      <span class="attr">containers:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">test</span></span><br><span class="line">          <span class="attr">image:</span> <span class="string">gitea/gitea:latest</span></span><br><span class="line">          <span class="attr">ports:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">port</span></span><br><span class="line">              <span class="attr">containerPort:</span> <span class="number">3000</span></span><br><span class="line">          <span class="attr">envFrom:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="attr">configMapRef:</span></span><br><span class="line">                <span class="attr">name:</span> <span class="string">config</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">networking.istio.io/v1beta1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">VirtualService</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">web</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">hosts:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&quot;*&quot;</span></span><br><span class="line">  <span class="attr">gateways:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">istio-system/istio-ingressgateway</span></span><br><span class="line">  <span class="attr">http:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">match:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">uri:</span></span><br><span class="line">            <span class="attr">prefix:</span> <span class="string">&quot;/&quot;</span></span><br><span class="line">      <span class="attr">route:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">destination:</span></span><br><span class="line">            <span class="attr">host:</span> <span class="string">web</span></span><br><span class="line">            <span class="attr">port:</span></span><br><span class="line">              <span class="attr">number:</span> <span class="number">80</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl apply -f gitea.yaml</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h3><p>修改 <code>istio-ingressgateway</code> 的 <code>LoadBalancer</code> 为 <code>NodePort</code> 将端口暴露出去。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl edit service istio-ingressgateway -n istio-system</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get service -n istio-system</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">istio</span>-ingressgateway   NodePort    <span class="number">10.96.203.60</span>    &lt;none&gt;        <span class="number">80</span>:<span class="number">31893</span>/TCP   <span class="number">25</span>m</span><br></pre></td></tr></table></figure>
+
+<p>最后访问 <code>http://$&#123;ip&#125;:31893/</code> 就可以看到 <code>Gitea</code> 的页面了。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2020/05/09/install-kubernetes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="starudream">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/05/09/install-kubernetes/" class="post-title-link" itemprop="url">CentOS 安装 Kubernetes</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-05-09 17:59:12" itemprop="dateCreated datePublished" datetime="2020-05-09T17:59:12+08:00">2020-05-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><h3 id="安装-Docker"><a href="#安装-Docker" class="headerlink" title="安装 Docker"></a>安装 Docker</h3><p>上一篇文章 <a href="https://blog.starudream.cn/2020/05/09/12-install-docker/">安装 docker</a></p>
+<h3 id="修改主机名"><a href="#修改主机名" class="headerlink" title="修改主机名"></a>修改主机名</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hostnamectl set-hostname k8s-master</span><br></pre></td></tr></table></figure>
+
+<h3 id="修改-etc-hosts"><a href="#修改-etc-hosts" class="headerlink" title="修改 &#x2F;etc&#x2F;hosts"></a>修改 &#x2F;etc&#x2F;hosts</h3><figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">192.168.140.28</span> api.k8s.local k8s-master</span><br></pre></td></tr></table></figure>
+
+<h3 id="关闭-swap"><a href="#关闭-swap" class="headerlink" title="关闭 swap"></a>关闭 swap</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">swapoff -a</span><br></pre></td></tr></table></figure>
+
+<p>注释 <code>/etc/fstab</code> 文件中 <code>swap</code> 分区。</p>
+<h3 id="添加内核参数"><a href="#添加内核参数" class="headerlink" title="添加内核参数"></a>添加内核参数</h3><p>修改 <code>/etc/sysctl.conf</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">fs.file-max = 1000000</span><br><span class="line"></span><br><span class="line">net.ipv4.ip_forward = 1</span><br><span class="line">net.bridge.bridge-nf-call-iptables = 1</span><br><span class="line">net.bridge.bridge-nf-call-ip6tables = 1</span><br></pre></td></tr></table></figure>
+
+<h2 id="添加-repo-源"><a href="#添加-repo-源" class="headerlink" title="添加 repo 源"></a>添加 repo 源</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> &lt;&lt;<span class="string">EOF &gt; /etc/yum.repos.d/kubernetes.repo</span></span><br><span class="line"><span class="string">[kubernetes]</span></span><br><span class="line"><span class="string">name=Kubernetes</span></span><br><span class="line"><span class="string">baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64</span></span><br><span class="line"><span class="string">enabled=1</span></span><br><span class="line"><span class="string">gpgcheck=1</span></span><br><span class="line"><span class="string">repo_gpgcheck=1</span></span><br><span class="line"><span class="string">gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg</span></span><br><span class="line"><span class="string">       https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg</span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="阿里云公网"><a href="#阿里云公网" class="headerlink" title="阿里云公网"></a>阿里云公网</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i <span class="string">&#x27;s|packages.cloud.google.com|mirrors.aliyun.com/kubernetes|&#x27;</span> /etc/yum.repos.d/kubernetes.repo</span><br></pre></td></tr></table></figure>
+
+<h3 id="阿里云内网"><a href="#阿里云内网" class="headerlink" title="阿里云内网"></a>阿里云内网</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i <span class="string">&#x27;s|https://packages.cloud.google.com|http://mirrors.cloud.aliyuncs.com/kubernetes|&#x27;</span> /etc/yum.repos.d/kubernetes.repo</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install -y kubeadm kubelet kubectl</span><br><span class="line"></span><br><span class="line">systemctl <span class="built_in">enable</span> kubelet</span><br></pre></td></tr></table></figure>
+
+<h2 id="初始化-master-节点"><a href="#初始化-master-节点" class="headerlink" title="初始化 master 节点"></a>初始化 master 节点</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">kubeadm init \</span><br><span class="line">    --kubernetes-version=1.18.2 \</span><br><span class="line">    --apiserver-advertise-address=192.168.140.28 \</span><br><span class="line">    --apiserver-bind-port 6443 \</span><br><span class="line">    --pod-network-cidr=10.244.0.0/16 \</span><br><span class="line">    --image-repository registry.aliyuncs.com/google_containers</span><br></pre></td></tr></table></figure>
+
+<p>当出现 <code>Your Kubernetes control-plane has initialized successfully!</code> 即安装成功，并且在下面有相关配置。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p <span class="variable">$HOME</span>/.kube</span><br><span class="line">sudo <span class="built_in">cp</span> -i /etc/kubernetes/admin.conf <span class="variable">$HOME</span>/.kube/config</span><br><span class="line">sudo <span class="built_in">chown</span> $(<span class="built_in">id</span> -u):$(<span class="built_in">id</span> -g) <span class="variable">$HOME</span>/.kube/config</span><br></pre></td></tr></table></figure>
+
+<p>还有最后一条命令在添加 k8s node 节点时使用到</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubeadm <span class="built_in">join</span> 192.168.140.28:6443 --token xxx --discovery-token-ca-cert-hash sha256:xxx</span><br></pre></td></tr></table></figure>
+
+<p>如果忘了保存，可以使用以下命令重新获取到</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubeadm token create --print-join-command</span><br></pre></td></tr></table></figure>
+
+<p>这时可以使用以下命令查看节点</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kubectl get node</span><br><span class="line"></span><br><span class="line">kubectl get pod -A</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NAME         STATUS     ROLES    AGE     <span class="keyword">VERSION</span></span><br><span class="line">k8s-<span class="keyword">master</span>   <span class="title">NotReady</span>   <span class="keyword">master</span>   <span class="title">8m56s</span>   v1.<span class="number">18.2</span></span><br></pre></td></tr></table></figure>
+
+<p>这边看到状态为 <code>NotReady</code> 是因为未安装网络组件。</p>
+<h2 id="添加-node-节点"><a href="#添加-node-节点" class="headerlink" title="添加 node 节点"></a>添加 node 节点</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubeadm <span class="built_in">join</span> 192.168.140.28:6443 --token xxx --discovery-token-ca-cert-hash sha256:xxx</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装-Calico-网络"><a href="#安装-Calico-网络" class="headerlink" title="安装 Calico 网络"></a>安装 Calico 网络</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget --<span class="built_in">unlink</span> -qO calico.yaml https://docs.projectcalico.org/v3.14/manifests/calico.yaml</span><br><span class="line"><span class="comment"># 10.244.0.0/16 这个地址需要与上面的 kubeadm init --pod-network-cidr 参数值一致</span></span><br><span class="line">sed -i -e <span class="string">&quot;s|192.168.0.0/16|10.244.0.0/16|g&quot;</span> calico.yaml</span><br><span class="line">kubectl apply -f calico.yaml</span><br></pre></td></tr></table></figure>
+
+<p>完成这步之后会看到节点的状态变为 <code>Ready</code>。</p>
+<h2 id="安装-Dashboard"><a href="#安装-Dashboard" class="headerlink" title="安装 Dashboard"></a>安装 Dashboard</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget --<span class="built_in">unlink</span> -qO dashboard.yaml https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml</span><br><span class="line">kubectl apply -f dashboard.yaml</span><br></pre></td></tr></table></figure>
+
+<p>一般这样是无法通过外网访问，建议在测试环境下修改 <code>kubernetes-dashboard</code> 的 <code>ClusterIP</code> 为 <code>NodePort</code> 将端口暴露出去。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl edit service kubernetes-dashboard -n kubernetes-dashboard</span><br></pre></td></tr></table></figure>
+
+<p>修改之后，查看 <code>services</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubernetes-dashboard   kubernetes-dashboard        NodePort    10.106.39.19    &lt;none&gt;        443:31570/TCP            36m</span><br></pre></td></tr></table></figure>
+
+<p>之后访问 <code>https://$&#123;ip&#125;:31570</code> 发现需要 <code>token</code>，下面创建一个管理员用户。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># admin-user.yaml</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">ServiceAccount</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">admin-user</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">kubernetes-dashboard</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">rbac.authorization.k8s.io/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">ClusterRoleBinding</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">admin-user</span></span><br><span class="line"><span class="attr">roleRef:</span></span><br><span class="line">  <span class="attr">apiGroup:</span> <span class="string">rbac.authorization.k8s.io</span></span><br><span class="line">  <span class="attr">kind:</span> <span class="string">ClusterRole</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">cluster-admin</span></span><br><span class="line"><span class="attr">subjects:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">kind:</span> <span class="string">ServiceAccount</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">admin-user</span></span><br><span class="line">    <span class="attr">namespace:</span> <span class="string">kubernetes-dashboard</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl apply -f admin-user.yaml</span><br></pre></td></tr></table></figure>
+
+<p>最后查看 <code>token</code>，找到 <code>admin-user</code> 复制 <code>token</code> 即可以管理员身份访问。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">k describe secrets -n kubernetes-dashboard</span><br></pre></td></tr></table></figure>
+
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="master-参与工作（单机部署）"><a href="#master-参与工作（单机部署）" class="headerlink" title="master 参与工作（单机部署）"></a>master 参与工作（单机部署）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl taint nodes --all node-role.kubernetes.io/master-</span><br></pre></td></tr></table></figure>
+
+<h3 id="命令补全"><a href="#命令补全" class="headerlink" title="命令补全"></a>命令补全</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl completion bash &gt; /root/.kube/completion.bash.inc</span><br></pre></td></tr></table></figure>
+
+<p>如果使用 <code>k</code> 作为 <code>kubectl</code> 的别名，需要修改上面生成的文件，在文件末尾修改为</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> [[ $(<span class="built_in">type</span> -t compopt) = <span class="string">&quot;builtin&quot;</span> ]]; <span class="keyword">then</span></span><br><span class="line">    complete -o default -F __start_kubectl kubectl</span><br><span class="line">    complete -o default -F __start_kubectl k</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    complete -o default -o nospace -F __start_kubectl kubectl</span><br><span class="line">    complete -o default -o nospace -F __start_kubectl k</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<p>最后将下面这段加入 <code>.bash_profile</code> 中，以使用自动补全功能。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># complete</span></span><br><span class="line"><span class="built_in">source</span> /usr/share/bash-completion/bash_completion</span><br><span class="line"><span class="built_in">source</span> /root/.kube/completion.bash.inc</span><br><span class="line"></span><br><span class="line"><span class="comment"># alias</span></span><br><span class="line"><span class="built_in">alias</span> k=<span class="string">&#x27;kubectl&#x27;</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/7/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/7/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
