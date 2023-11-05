@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Root 环境下安装系统证书</title>
+    <url>/2023/11/05/add-ca-cert-at-root/</url>
+    <content><![CDATA[<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">htk-inject-system-cert.sh</span></span><br><span class="line">set -e # Fail on error</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Create a separate temp directory, to hold the current certificates</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Without this, when we add the mount we can<span class="string">&#x27;t read the current certs anymore.</span></span></span><br><span class="line">mkdir -m 700 /data/local/tmp/htk-ca-copy</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="string">Copy out the existing certificates</span></span></span><br><span class="line">cp /system/etc/security/cacerts/* /data/local/tmp/htk-ca-copy/</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="string">Create the in-memory mount on top of the system certs folder</span></span></span><br><span class="line">mount -t tmpfs tmpfs /system/etc/security/cacerts</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="string">Copy the existing certs back into the tmpfs mount, so we keep trusting them</span></span></span><br><span class="line">mv /data/local/tmp/htk-ca-copy/* /system/etc/security/cacerts/</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="string">Copy our new cert in, so we trust that too</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="string">cp /data/local/tmp/c88f7ed0.0 /system/etc/security/cacerts/</span></span></span><br><span class="line">cp /data/misc/user/0/cacerts-added/* /system/etc/security/cacerts/</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="string">Update the perms &amp; selinux context labels, so everything is as readable as before</span></span></span><br><span class="line">chown root:root /system/etc/security/cacerts/*</span><br><span class="line">chmod 644 /system/etc/security/cacerts/*</span><br><span class="line">chcon u:object_r:system_file:s0 /system/etc/security/cacerts/*</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="string">Delete the temp cert directory &amp; this script itself</span></span></span><br><span class="line">rm -r /data/local/tmp/htk-ca-copy</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="string">rm $&#123;injectionScriptPath&#125;</span></span></span><br><span class="line">echo &quot;System cert successfully injected&quot;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>ref: <span class="exturl" data-url="aHR0cDovLzkxZmFucy5jb20uY24vcG9zdC9jZXJ0aWZpY2F0ZS8jZ3NjLnRhYj0w">http://91fans.com.cn/post/certificate/#gsc.tab=0<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>root</tag>
+        <tag>magisk</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>无 Root 抓包 HTTPS 请求</title>
     <url>/2022/05/09/android-packet-capture-without-root/</url>
     <content><![CDATA[<p>适用于 <code>Android 12</code>，理论上适配低版本。</p>
