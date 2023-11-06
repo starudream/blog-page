@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.0.0">
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
@@ -20,12 +20,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"blog.starudream.cn","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.18.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":true,"nav":null,"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="proxy_pass在 nginx 中配置 proxy_pass 代理转发时，如果在 proxy_pass 后面的 url 加 &#x2F;，表示绝对根路径；如果没有 &#x2F;，表示相对路径。 假设下面四种情况分别用 http:&#x2F;&#x2F;192.168.1.1&#x2F;proxy&#x2F;test.html 进行访问。 第一种123location &#x2F;proxy&#x2F; &amp;#123;    proxy_pass http:&#x2F;&#x2F;127.0.0">
+    <meta name="description" content="proxy_pass在 nginx 中配置 proxy_pass 代理转发时，如果在 proxy_pass 后面的 url 加 &#x2F;，表示绝对根路径；如果没有 &#x2F;，表示相对路径。 假设下面四种情况分别用 http:&#x2F;&#x2F;192.168.1.1&#x2F;proxy&#x2F;test.html 进行访问。 第一种123location &#x2F;proxy&#x2F; &#123;    proxy_pass http:&#x2F;&#x2F;127.0.0">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Nginx location 的一些例子">
 <meta property="og:url" content="https://blog.starudream.cn/2022/08/04/nginx-location-proxy-example/index.html">
 <meta property="og:site_name" content="星辰狂澜&#39;s Blog">
-<meta property="og:description" content="proxy_pass在 nginx 中配置 proxy_pass 代理转发时，如果在 proxy_pass 后面的 url 加 &#x2F;，表示绝对根路径；如果没有 &#x2F;，表示相对路径。 假设下面四种情况分别用 http:&#x2F;&#x2F;192.168.1.1&#x2F;proxy&#x2F;test.html 进行访问。 第一种123location &#x2F;proxy&#x2F; &amp;#123;    proxy_pass http:&#x2F;&#x2F;127.0.0">
+<meta property="og:description" content="proxy_pass在 nginx 中配置 proxy_pass 代理转发时，如果在 proxy_pass 后面的 url 加 &#x2F;，表示绝对根路径；如果没有 &#x2F;，表示相对路径。 假设下面四种情况分别用 http:&#x2F;&#x2F;192.168.1.1&#x2F;proxy&#x2F;test.html 进行访问。 第一种123location &#x2F;proxy&#x2F; &#123;    proxy_pass http:&#x2F;&#x2F;127.0.0">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-08-04T08:00:51.000Z">
 <meta property="article:modified_time" content="2022-08-04T08:00:51.000Z">
@@ -269,12 +269,12 @@
     
     <div class="post-body" itemprop="articleBody"><h2 id="proxy-pass"><a href="#proxy-pass" class="headerlink" title="proxy_pass"></a>proxy_pass</h2><p>在 <code>nginx</code> 中配置 <code>proxy_pass</code> 代理转发时，如果在 <code>proxy_pass</code> 后面的 url 加 <code>/</code>，表示绝对根路径；如果没有 <code>/</code>，表示相对路径。</p>
 <p>假设下面四种情况分别用 <code>http://192.168.1.1/proxy/test.html</code> 进行访问。</p>
-<h3 id="第一种"><a href="#第一种" class="headerlink" title="第一种"></a>第一种</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">location <span class="regexp">/proxy/</span> &#123;</span><br><span class="line">    proxy_pass http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>/;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="第一种"><a href="#第一种" class="headerlink" title="第一种"></a>第一种</h3><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">location</span> <span class="title">/proxy</span>/ &#123;</span><br><span class="line">    proxy_pass http://<span class="number">127.0</span>.<span class="number">0.1</span>/;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p><code>http://127.0.0.1/test.html</code></p>
 </blockquote>
-<h3 id="第二种"><a href="#第二种" class="headerlink" title="第二种"></a>第二种</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">location <span class="regexp">/proxy/</span> &#123;</span><br><span class="line">    proxy_pass http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="第二种"><a href="#第二种" class="headerlink" title="第二种"></a>第二种</h3><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">location</span> <span class="title">/proxy</span>/ &#123;</span><br><span class="line">    proxy_pass http://<span class="number">127.0</span>.<span class="number">0.1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p><code>http://127.0.0.1/proxy/test.html</code></p>
@@ -284,7 +284,7 @@
 <blockquote>
 <p><code>http://127.0.0.1/aaa/test.html</code></p>
 </blockquote>
-<h3 id="第四种"><a href="#第四种" class="headerlink" title="第四种"></a>第四种</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">location <span class="regexp">/proxy/</span> &#123;</span><br><span class="line">    proxy_pass http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>/aaa;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="第四种"><a href="#第四种" class="headerlink" title="第四种"></a>第四种</h3><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">location</span> <span class="title">/proxy</span>/ &#123;</span><br><span class="line">    proxy_pass http://<span class="number">127.0</span>.<span class="number">0.1</span>/aaa;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p><code>http://127.0.0.1/aaatest.html</code></p>
