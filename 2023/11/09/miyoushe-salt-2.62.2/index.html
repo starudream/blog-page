@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.0.0">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha256-CTSx/A06dm1B063156EVh15m6Y67pAjZZaQc89LLSrU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.24/fancybox/fancybox.css" integrity="sha256-vQkngPS8jiHHH0I6ABTZroZk8NPZ7b+MUReOFE9UsXQ=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.starudream.cn","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.18.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":true,"nav":null,"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="首先从 miyoushe 官网下载 apk，然后使用 jadx 反编译 apk。 从 文章 中可知生成 DS 算法的位置位于 com.mihoyo.hyperion.net 包内， 使用 jadx 打开到对应目录，可以找到 bbbbb.a2222、 aaaaa.a2222、 aaaaa.b5555，分别为 DS1 DS2 的算法实现。   右键方法名，选择 Find Usage，可以看到对应的实现">
+<meta property="og:type" content="article">
+<meta property="og:title" content="米游社 2.62.2 版本 salt 获取">
+<meta property="og:url" content="https://blog.starudream.cn/2023/11/09/miyoushe-salt-2.62.2/index.html">
+<meta property="og:site_name" content="星辰狂澜&#39;s Blog">
+<meta property="og:description" content="首先从 miyoushe 官网下载 apk，然后使用 jadx 反编译 apk。 从 文章 中可知生成 DS 算法的位置位于 com.mihoyo.hyperion.net 包内， 使用 jadx 打开到对应目录，可以找到 bbbbb.a2222、 aaaaa.a2222、 aaaaa.b5555，分别为 DS1 DS2 的算法实现。   右键方法名，选择 Find Usage，可以看到对应的实现">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.starudream.cn/images/44-1.png">
+<meta property="og:image" content="https://blog.starudream.cn/images/44-2.png">
+<meta property="og:image" content="https://blog.starudream.cn/images/44-3.png">
+<meta property="og:image" content="https://blog.starudream.cn/images/44-4.png">
+<meta property="og:image" content="https://blog.starudream.cn/images/44-5.png">
+<meta property="article:published_time" content="2023-11-09T01:24:50.000Z">
+<meta property="article:modified_time" content="2023-11-09T01:24:50.000Z">
+<meta property="article:author" content="starudream">
+<meta property="article:tag" content="android">
+<meta property="article:tag" content="game">
+<meta property="article:tag" content="mihoyo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.starudream.cn/images/44-1.png">
+
+
+<link rel="canonical" href="https://blog.starudream.cn/2023/11/09/miyoushe-salt-2.62.2/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.starudream.cn/2023/11/09/miyoushe-salt-2.62.2/","path":"2023/11/09/miyoushe-salt-2.62.2/","title":"米游社 2.62.2 版本 salt 获取"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>米游社 2.62.2 版本 salt 获取 | 星辰狂澜's Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PGY31186CW"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-PGY31186CW","only_pageview":false}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?3afbb3c0d73525e370bb1324ff774f74"></script>
+
+
+
+
+
+
+<script src="/live2d/autoload.js"></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">星辰狂澜's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">57</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">44</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ref"><span class="nav-number">1.</span> <span class="nav-text">ref</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="starudream"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">starudream</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3N0YXJ1ZHJlYW0=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;starudream"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmp1c3R3YW5nc2hlbmdAZ21haWwuY29t" title="E-Mail → mailto:justwangsheng@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly90d2l0dGVyLmNvbS9TdGFyVURyZWFt" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;StarUDream"><i class="fab fa-twitter fa-fw"></i>Twitter</span>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></span>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2023/11/09/miyoushe-salt-2.62.2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="starudream">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="米游社 2.62.2 版本 salt 获取 | 星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          米游社 2.62.2 版本 salt 获取
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-09 09:24:50" itemprop="dateCreated datePublished" datetime="2023-11-09T09:24:50+08:00">2023-11-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>首先从 <span class="exturl" data-url="aHR0cHM6Ly93d3cubWl5b3VzaGUuY29tLw==">miyoushe<i class="fa fa-external-link-alt"></i></span> 官网下载 apk，然后使用 jadx 反编译 apk。</p>
+<p>从 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1VJR0Ytb3JnL21paG95by1hcGktY29sbGVjdC9pc3N1ZXMvMQ==">文章<i class="fa fa-external-link-alt"></i></span> 中可知生成 <code>DS</code> 算法的位置位于 <code>com.mihoyo.hyperion.net</code> 包内，</p>
+<p>使用 <code>jadx</code> 打开到对应目录，可以找到 <code>bbbbb.a2222</code>、 <code>aaaaa.a2222</code>、 <code>aaaaa.b5555</code>，分别为 <code>DS1</code> <code>DS2</code> 的算法实现。</p>
+<img data-src="/images/44-1.png" alt="预览" style="max-height:600px;"/>
+
+<p>右键方法名，选择 <code>Find Usage</code>，可以看到对应的实现。</p>
+<img data-src="/images/44-2.png" alt="预览" style="max-height:600px;"/>
+<img data-src="/images/44-3.png" alt="预览" style="max-height:600px;"/>
+<img data-src="/images/44-4.png" alt="预览" style="max-height:600px;"/>
+
+<p>可以看到 <code>DS</code> <code>LK2</code> <code>K2</code> 相关的加密算法，通过相关函数输入到 <code>bbbbb.a2222</code> 方法中，找到函数的参数，即为 <code>salt</code>。</p>
+<img data-src="/images/44-5.png" alt="预览" style="max-height:600px;"/>
+
+<p>下面以 <code>DS</code> 为例，把传入 <code>bbbbb.a2222</code> 方法的方法与参数拷贝出来，稍加修改，得到下面的代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collection;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        System.out.println(f1(f276382k));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span>[] f276382k = &#123;<span class="number">192</span>, -<span class="number">74</span>, <span class="number">180</span>, <span class="number">222</span>, <span class="number">90</span>, <span class="number">198</span>, -<span class="number">177147</span>, -<span class="number">84</span>, -<span class="number">66</span>, <span class="number">126</span>, <span class="number">168</span>, <span class="number">156</span>, <span class="number">186</span>, <span class="number">66</span>, -<span class="number">88</span>, -<span class="number">4782969</span>, <span class="number">126</span>, <span class="number">216</span>, -<span class="number">98</span>, -<span class="number">118</span>, -<span class="number">88</span>, -<span class="number">4782969</span>, -<span class="number">86</span>, <span class="number">180</span>, <span class="number">216</span>, <span class="number">102</span>, <span class="number">156</span>, <span class="number">126</span>, -<span class="number">100</span>, -<span class="number">59049</span>, -<span class="number">177147</span>, <span class="number">198</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">f1</span><span class="params">(<span class="type">int</span>[] iArr)</span> &#123;</span><br><span class="line">        <span class="type">int</span> i11;</span><br><span class="line">        <span class="type">StringBuilder</span> <span class="variable">sb2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line">        ArrayList&lt;Number&gt; arrayList = <span class="keyword">new</span> <span class="title class_">ArrayList</span>(iArr.length);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i12 : iArr) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i12 &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                i11 = ((<span class="type">double</span>) (-i12)) &gt;= Math.pow(<span class="number">3.0d</span>, <span class="number">6.0d</span>) ? (<span class="type">int</span>) (((Math.log(-i12) / Math.log(<span class="number">3.0d</span>)) - <span class="number">6</span>) + <span class="number">48</span>) : ~i12;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                i11 = (i12 / <span class="number">3</span>) + <span class="number">48</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            arrayList.add(Integer.valueOf(i11));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">ArrayList</span> <span class="variable">arrayList2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ArrayList</span>(Z(arrayList, <span class="number">10</span>));</span><br><span class="line">        <span class="keyword">for</span> (Number number : arrayList) &#123;</span><br><span class="line">            sb2.append((<span class="type">char</span>) number.intValue());</span><br><span class="line">            arrayList2.add(sb2);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">String</span> <span class="variable">sb3</span> <span class="operator">=</span> sb2.toString();</span><br><span class="line">        <span class="keyword">return</span> sb3;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> &lt;T&gt; <span class="type">int</span> <span class="title function_">Z</span><span class="params">(Iterable&lt;? extends T&gt; iterable, <span class="type">int</span> i11)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> iterable <span class="keyword">instanceof</span> Collection ? ((Collection) iterable).size() : i11;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行后得到 <code>pIlzNr5SAZhdnFW8ZxauW8UlxRdZc45r</code> 即为 <code>salt</code>，带入到相关 <code>api</code> 验证一下，成功。</p>
+<h2 id="ref"><a href="#ref" class="headerlink" title="ref"></a>ref</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NreWxvdC9qYWR4">https://github.com/skylot/jadx<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1VJR0Ytb3JnL21paG95by1hcGktY29sbGVjdC9pc3N1ZXMvMQ==">https://github.com/UIGF-org/mihoyo-api-collect/issues/1<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0F6dXJlOTkvR2Vuc2hpblBsYXllclF1ZXJ5L2lzc3Vlcy8yMA==">https://github.com/Azure99/GenshinPlayerQuery/issues/20<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="starudream 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.png" alt="starudream 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>原作者： </strong>starudream
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://blog.starudream.cn/2023/11/09/miyoushe-salt-2.62.2/" title="米游社 2.62.2 版本 salt 获取">https://blog.starudream.cn/2023/11/09/miyoushe-salt-2.62.2/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="https://twitter.com/StarUDream">
+            <span class="icon">
+              <i class="fab fa-twitter"></i>
+            </span>
+
+            <span class="label">Twitter</span>
+          </a>
+      </div>
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="https://t.me/wangsheng">
+            <span class="icon">
+              <i class="fab fa-telegram"></i>
+            </span>
+
+            <span class="label">Telegram</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/android/" rel="tag"># android</a>
+              <a href="/tags/game/" rel="tag"># game</a>
+              <a href="/tags/mihoyo/" rel="tag"># mihoyo</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/11/05/add-ca-cert-at-root/" rel="prev" title="Root 环境下安装系统证书">
+                  <i class="fa fa-angle-left"></i> Root 环境下安装系统证书
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2018 – 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">starudream</span>
+  </div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9waXNjZXMv">NexT.Pisces</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL3N0YXJ1ZHJlYW0=" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.24/fancybox/fancybox.umd.js" integrity="sha256-oyhjPiYRWGXaAt+ny/mTMWOnN1GBoZDUQnzzgC7FRI4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+  <script src="/js/third-party/pace.js"></script>
+
+
+  
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":false,"archive":false,"delay":true,"timeout":3000,"priority":true,"url":"https://blog.starudream.cn/2023/11/09/miyoushe-salt-2.62.2/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"starudream","repo":"blog-page","client_id":"f978993f513b3b2f2e2b","client_secret":"464c6da99b2dba07b66b8f8187c8b3be32de88b9","admin_user":"starudream","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"851bba69d4d21d83ebdf5c2e61a681ed"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
