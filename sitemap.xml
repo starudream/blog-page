@@ -2,6 +2,60 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.starudream.cn/2024/02/19/gitlab-dind-as-service-hc/</loc>
+    
+    <lastmod>2024-02-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.starudream.cn/2024/02/19/elk-common-problem/</loc>
+    
+    <lastmod>2024-02-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.starudream.cn/2024/02/19/k8s-limit-range-explain/</loc>
+    
+    <lastmod>2024-02-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.starudream.cn/2024/02/19/select-timescale-table/</loc>
+    
+    <lastmod>2024-02-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.starudream.cn/2024/02/19/pid-for-k8s-pod/</loc>
+    
+    <lastmod>2024-02-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.starudream.cn/2024/02/19/restart-all-deployment-in-namespace/</loc>
+    
+    <lastmod>2024-02-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.starudream.cn/2023/11/09/miyoushe-salt-2.62.2/</loc>
     
     <lastmod>2023-11-09</lastmod>
@@ -581,6 +635,20 @@
   </url>
   
   <url>
+    <loc>https://blog.starudream.cn/tags/elasticsearch/</loc>
+    <lastmod>2024-02-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.starudream.cn/tags/kibana/</loc>
+    <lastmod>2024-02-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.starudream.cn/tags/envoy/</loc>
     <lastmod>2024-02-19</lastmod>
     <changefreq>weekly</changefreq>
@@ -610,6 +678,13 @@
   
   <url>
     <loc>https://blog.starudream.cn/tags/gitkraken/</loc>
+    <lastmod>2024-02-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.starudream.cn/tags/gitlab-runner/</loc>
     <lastmod>2024-02-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -777,7 +852,21 @@
   </url>
   
   <url>
+    <loc>https://blog.starudream.cn/tags/kubectl/</loc>
+    <lastmod>2024-02-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.starudream.cn/tags/samba/</loc>
+    <lastmod>2024-02-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.starudream.cn/tags/timescaledb/</loc>
     <lastmod>2024-02-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

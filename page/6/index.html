@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.0.0">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.1.1">
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
@@ -90,7 +90,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">57</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">44</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">62</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">50</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -155,7 +155,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-count">50</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -166,7 +166,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-count">62</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -210,7 +210,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2020/07/21/use-dingtalk-in-prometheus/">
+    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2022/05/18/harbor-behind-nginx-reverse-proxy/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -228,7 +228,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/07/21/use-dingtalk-in-prometheus/" class="post-title-link" itemprop="url">在 Prometheus 中使用钉钉机器人</a>
+          <a href="/2022/05/18/harbor-behind-nginx-reverse-proxy/" class="post-title-link" itemprop="url">在 HTTPS 的反向代理 Nginx 后运行 HTTP Harbor</a>
         </h2>
 
         <div class="post-meta-container">
@@ -239,7 +239,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-07-21 15:30:58" itemprop="dateCreated datePublished" datetime="2020-07-21T15:30:58+08:00">2020-07-21</time>
+      <time title="创建时间：2022-05-18 18:39:51" itemprop="dateCreated datePublished" datetime="2022-05-18T18:39:51+08:00">2022-05-18</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -261,20 +261,230 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="启动-prometheus-webhook-dingtalk"><a href="#启动-prometheus-webhook-dingtalk" class="headerlink" title="启动 prometheus-webhook-dingtalk"></a>启动 <code>prometheus-webhook-dingtalk</code></h2><ul>
-<li><code>/data/prometheus-webhook-dingtalk/config/config.yml</code></li>
+          <p>以下基于 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvaGFyYm9yL2hhcmJvci9yZWxlYXNlcy90YWcvdjIuNS4w">Harbor v2.5.0<i class="fa fa-external-link-alt"></i></span>。</p>
+<p>最终看起来像这样 <code>nginx (host,ssl)</code> -&gt; <code>harbor-nginx (non-ssl)</code> -&gt; <code>harbor</code>。</p>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>首先服务上安装有 <code>nginx</code>，且配置了 <code>SSL</code>，现在可能在本机或者内网的其他机器上安装有 <code>Harbor</code>，需要反向代理到本机映射出去。</p>
+<h3 id="harbor-yml"><a href="#harbor-yml" class="headerlink" title="harbor.yml"></a><code>harbor.yml</code></h3><p>首先需要注释掉 <code>https</code> 相关的配置，并添加 <code>external_url</code> 的配置项。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Configuration file of Harbor</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># The IP address or hostname to access admin UI and registry service.</span></span><br><span class="line"><span class="comment"># DO NOT use localhost or 127.0.0.1, because Harbor needs to be accessed by external clients.</span></span><br><span class="line"><span class="attr">hostname:</span> <span class="string">hub.example.cn</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># http related config</span></span><br><span class="line"><span class="attr">http:</span></span><br><span class="line">  <span class="comment"># port for http, default is 80. If https enabled, this port will redirect to https port</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">5080</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># https related config</span></span><br><span class="line"><span class="comment"># https:</span></span><br><span class="line">  <span class="comment"># https port for harbor, default is 443</span></span><br><span class="line">  <span class="comment"># port: 443</span></span><br><span class="line">  <span class="comment"># The path of cert and key files for nginx</span></span><br><span class="line">  <span class="comment"># certificate: /your/certificate/path</span></span><br><span class="line">  <span class="comment"># private_key: /your/private/key/path</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># # Uncomment following will enable tls communication between all harbor components</span></span><br><span class="line"><span class="comment"># internal_tls:</span></span><br><span class="line"><span class="comment">#   # set enabled to true means internal tls is enabled</span></span><br><span class="line"><span class="comment">#   enabled: true</span></span><br><span class="line"><span class="comment">#   # put your cert and key files on dir</span></span><br><span class="line"><span class="comment">#   dir: /etc/harbor/tls/internal</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Uncomment external_url if you want to enable external proxy</span></span><br><span class="line"><span class="comment"># And when it enabled the hostname will no longer used</span></span><br><span class="line"><span class="attr">external_url:</span> <span class="string">https://hub.example.cn</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="harbor-conf"><a href="#harbor-conf" class="headerlink" title="harbor.conf"></a><code>harbor.conf</code></h3><p>在 <code>nginx</code> 的 <code>vhost</code> 中新增相关配置，必须要配置 <code>X-Forwarded-Proto $scheme</code>，<code>client_max_body_size</code> 按需配置。</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span>       <span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server_name</span>  hub.example.cn;</span><br><span class="line">    <span class="section">location</span> / &#123;</span><br><span class="line">        <span class="attribute">return</span> <span class="number">301</span> https://<span class="variable">$host</span><span class="variable">$request_uri</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span>       <span class="number">443</span> ssl http2;</span><br><span class="line">    <span class="attribute">server_name</span>  hub.example.cn;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">ssl_certificate</span>      /usr/local/openresty/nginx/conf/ssl/hub.example.cn.crt;</span><br><span class="line">    <span class="attribute">ssl_certificate_key</span>  /usr/local/openresty/nginx/conf/ssl/hub.example.cn.key;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">client_max_body_size</span> <span class="number">500m</span>;</span><br><span class="line"></span><br><span class="line">    <span class="section">location</span> / &#123;</span><br><span class="line">        <span class="attribute">proxy_pass</span> http://10.0.4.10:5080;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> Host <span class="variable">$host</span>:<span class="variable">$server_port</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> X-Real-PORT <span class="variable">$remote_port</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> X-Forwarded-Proto <span class="variable">$scheme</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><h3 id="docker-login-出现-unauthorized-authentication-required"><a href="#docker-login-出现-unauthorized-authentication-required" class="headerlink" title="docker login 出现 unauthorized: authentication required"></a><code>docker login</code> 出现 <code>unauthorized: authentication required</code></h3><p><code>harbor</code> 内没有配置 <code>external_url</code>。</p>
+<h3 id="访问-hub-example-cn-会重定向到某个端口"><a href="#访问-hub-example-cn-会重定向到某个端口" class="headerlink" title="访问 hub.example.cn 会重定向到某个端口"></a>访问 <code>hub.example.cn</code> 会重定向到某个端口</h3><p><code>harbor</code> 内需要取消 <code>https</code> 的配置。</p>
+<h3 id="docker-push-出现-400-The-plain-HTTP-request-was-sent-to-HTTPS-port"><a href="#docker-push-出现-400-The-plain-HTTP-request-was-sent-to-HTTPS-port" class="headerlink" title="docker push 出现 400 The plain HTTP request was sent to HTTPS port"></a><code>docker push</code> 出现 <code>400 The plain HTTP request was sent to HTTPS port</code></h3><p>反向代理 <code>nginx</code> 中没有配置 <code>X-Forwarded-Proto $scheme</code>。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2022/05/09/android-packet-capture-without-root/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="starudream">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/05/09/android-packet-capture-without-root/" class="post-title-link" itemprop="url">无 Root 抓包 HTTPS 请求</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-09 18:30:25" itemprop="dateCreated datePublished" datetime="2022-05-09T18:30:25+08:00">2022-05-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>适用于 <code>Android 12</code>，理论上适配低版本。</p>
+<p>测试环境 <code>MIUI13</code> <code>Android 12</code>。</p>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ul>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0ZCbGFja0JveC9CbGFja0JveC9yZWxlYXNlcy9sYXRlc3Q=">BlackBox<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1ZpUmIzL1RydXN0TWVBbHJlYWR5L3JlbGVhc2VzL2xhdGVzdA==">TrustMeAlready<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9wbGF5Lmdvb2dsZS5jb20vc3RvcmUvYXBwcy9kZXRhaWxzP2lkPWNvbS52bmV0LnRlY2g=">VNET<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9wYW4uYmFpZHUuY29tL3MvMXdKbXQ2YmdKRDFpVW1Hc1hyZ1RCclE=">百度云<i class="fa fa-external-link-alt"></i></span> <code>cn7g</code></p>
+</li>
 </ul>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">timeout:</span> <span class="string">10s</span></span><br><span class="line"></span><br><span class="line"><span class="attr">default_message:</span></span><br><span class="line">  <span class="attr">title:</span> <span class="string">&#x27;<span class="template-variable">&#123;&#123; template &quot;legacy.title&quot; . &#125;&#125;</span>&#x27;</span></span><br><span class="line">  <span class="attr">text:</span> <span class="string">&#x27;<span class="template-variable">&#123;&#123; template &quot;legacy.content&quot; . &#125;&#125;</span>&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">targets:</span></span><br><span class="line">  <span class="attr">webhook1:</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">https://oapi.dingtalk.com/robot/send?access_token=xxx</span></span><br><span class="line">    <span class="attr">secret:</span> <span class="string">yyy</span></span><br><span class="line">    <span class="attr">mention:</span></span><br><span class="line">      <span class="attr">all:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>依次安装以上三个软件。</p>
+<p>打开 <code>BlackBox</code>，先点击右下角的加号，将需要抓包的软件和 <code>TrustMeAlready</code> 加入到虚拟机中，再点击右上角打开 <code>软件设置</code>。</p>
+<img data-src="/images/24-1.jpg" alt="BlackBox" style="max-height:600px;"/>
 
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name prometheus-webhook-dingtalk \</span><br><span class="line">    --restart always \</span><br><span class="line">    -p 8060:8060 \</span><br><span class="line">    -v /data/prometheus-webhook-dingtalk/config:/etc/prometheus-webhook-dingtalk \</span><br><span class="line">    timonwong/prometheus-webhook-dingtalk</span><br></pre></td></tr></table></figure>
+<p>开启 <code>启用Xposed框架</code>。</p>
+<img data-src="/images/24-2.jpg" alt="软件设置" style="max-height:600px;"/>
 
-<h2 id="修改-prometheus-配置文件"><a href="#修改-prometheus-配置文件" class="headerlink" title="修改 prometheus 配置文件"></a>修改 <code>prometheus</code> 配置文件</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">route:</span></span><br><span class="line">  <span class="attr">receiver:</span> <span class="string">&quot;dingtalk1&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">receivers:</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">dingtalk1</span></span><br><span class="line">  <span class="attr">webhook_configs:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">send_resolved:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">http://127.0.0.1:8060/dingtalk/webhook1/send</span></span><br></pre></td></tr></table></figure>
+<p>终止 <code>BlackBox</code>。</p>
+<img data-src="/images/24-4.jpg" alt="BlackBox设置" style="max-height:600px;"/>
 
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly90aGVvLmltL2Jsb2cvMjAxNy8xMC8xNi9yZWxlYXNlLXByb21ldGhldXMtYWxlcnRtYW5hZ2VyLXdlYmhvb2stZm9yLWRpbmd0YWxrLw==">theo.im&#x2F;blog<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RpbW9ud29uZy9wcm9tZXRoZXVzLXdlYmhvb2stZGluZ3RhbGs=">timonwong&#x2F;prometheus-webhook-dingtalk<i class="fa fa-external-link-alt"></i></span></p>
-</li>
+<p>再次打开 <code>BlackBox</code> 的 <code>软件设置</code>，打开 <code>模块管理</code>，点击右下角的加号，选择 <code>TrustMeAlready</code>，并勾选。</p>
+<img data-src="/images/24-3.jpg" alt="XP管理" style="max-height:600px;"/>
+
+<p>打开 <code>XNET</code>，<code>导出 CA 证书</code>。</p>
+<img data-src="/images/24-5.jpg" alt="VNET" style="max-height:600px;"/>
+
+<p>进入设置，搜索证书，选择 <code>CA 证书</code> 进入，一般在 <code>安全</code> &gt; <code>证书管理</code> 中找到。</p>
+<img data-src="/images/24-6.jpg" alt="证书搜索" style="max-height:600px;"/>
+
+<p>然后选择 <code>安装 CA 证书</code>，成功后，可在用户栏下找到刚才导入的 <code>VNETTECH</code> 证书。</p>
+<img data-src="/images/24-7.jpg" alt="用户证书" style="max-height:600px;"/>
+
+<p>最后回到 <code>VNET</code> 中，点击右下角的加号，开始抓包。</p>
+<img data-src="/images/24-8.jpg" alt="VNET抓包" style="max-height:600px;"/>
+
+<p>进入 <code>BlackBox</code>，打开需要抓包的软件即可。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2021/11/01/hack-mac-in-mi-notebook-air-gen1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="starudream">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/11/01/hack-mac-in-mi-notebook-air-gen1/" class="post-title-link" itemprop="url">小米笔记本 Air 安装黑苹果</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-11-01 14:45:34" itemprop="dateCreated datePublished" datetime="2021-11-01T14:45:34+08:00">2021-11-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><strong>该教程适用于 2016 年小米笔记本 Air 13.3，CPU 为 i5-6200U</strong></p>
+<p><em>与 2021-10-31 日测试安装 MacOS Big Sur 11.6 成功</em></p>
+<h2 id="制作-MacOS-镜像"><a href="#制作-MacOS-镜像" class="headerlink" title="制作 MacOS 镜像"></a>制作 MacOS 镜像</h2><p>可以参考上一篇文章下载官方的安装镜像。</p>
+<p>或者使用其他人修改过的镜像，比如 <span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmRhbGlhbnNreS5uZXQvbWFjT1MtQmlnU3VyLTExLjYtMjBHMTY1LVJlbGVhc2UtdmVyc2lvbi13aXRoLU9DLTAuNy4zLWFuZC1DbG92ZXItNTEzOS1hbmQtUEUtb3JpZ2luYWwtaW1hZ2UuaHRtbA==">黑果小兵 MacOS 11.6<i class="fa fa-external-link-alt"></i></span> ，然后使用 <code>etcher</code> 制作镜像。</p>
+<h2 id="替换-EFI-文件"><a href="#替换-EFI-文件" class="headerlink" title="替换 EFI 文件"></a>替换 EFI 文件</h2><p>从 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3dodGllaGFjay9YaWFvTWktQWlyLmdpdA==">GitHub<i class="fa fa-external-link-alt"></i></span> 上下载最新的代码，将其中的 <code>EFI</code> 文件拷贝到刚才制作完成镜像的 U 盘中，<code>覆盖</code> 其中的 <code>EFI</code> 文件夹。</p>
+<h2 id="升级-BIOS-至-A06"><a href="#升级-BIOS-至-A06" class="headerlink" title="升级 BIOS 至 A06"></a>升级 BIOS 至 A06</h2><p>首先不插入 U 盘，开机按 <code>F2</code> 进入 <code>BIOS</code> 设置页面，查看当前 <code>BIOS</code> 版本，如果是 <code>A05</code> 需要将 <code>BIOS</code> 升级，如果是 <code>A06</code> 则无需升级进行下一步。</p>
+<p>从 <span class="exturl" data-url="aHR0cHM6Ly9wYW4uYmFpZHUuY29tL3MvMUtNLThxS0xEQlFTOVFwVERHZUpNNVE=">百度云<i class="fa fa-external-link-alt"></i></span> ，提取码 <code>z7ec</code> 下载 <code>VFBI0A06.zip</code> 文件拷贝至 U 盘。</p>
+<p>重新启动，进入 <code>Windows PE</code> 系统，运行其中的可执行文件，电脑会自动重启并升级 <code>BIOS</code>。升级完成后重新启动 <code>F2</code> 进入 <code>BIOS</code> 设置页面查看对应版本是否是 <code>A06</code>。</p>
+<h2 id="解锁-CFG-LOCK"><a href="#解锁-CFG-LOCK" class="headerlink" title="解锁 CFG LOCK"></a>解锁 CFG LOCK</h2><p>插入 U 盘，开机按 <code>F12</code>，选择 U 盘进入界面后，选择 <code>Modified GRUB Shell</code>，首先 <code>setup_var 0x84A</code> 查看当前是否开启 <code>CFG LOCK</code>，在输出中有 <code>0x01</code> 则需要输入 <code>setup_var 0x84A 0x00</code> 进行解锁。</p>
+<h2 id="安装-MacOS"><a href="#安装-MacOS" class="headerlink" title="安装 MacOS"></a>安装 MacOS</h2><p>重新启动，按 <code>F12</code> 选择 <code>Install MacOS Big Sur</code> 进入。</p>
+<p>首先选择 <code>磁盘工具</code> 将内置磁盘格式化为 <code>APFS</code>，然后返回开始安装，在安装过程中会自动重启几次，在开机启动项中选择对应的启动项继续，直至见到 MacOS 配置页面，完成配置后进入系统。</p>
+<h2 id="拷贝-EFI-至笔记本"><a href="#拷贝-EFI-至笔记本" class="headerlink" title="拷贝 EFI 至笔记本"></a>拷贝 EFI 至笔记本</h2><p>打开终端，输入 <code>diskutil list</code> 查看磁盘列表，一般来说 <code>/dev/disk0s1</code> 都是一个名为 <code>EFI</code> 的磁盘。</p>
+<p>使用 <code>sudo diskutil mount /dev/disk0s1</code> 命令挂载该磁盘。将上面拷贝至 U 盘 <code>EFI</code> 文件夹的内容同样拷贝到该磁盘。</p>
+<p>退出 U 盘，重新启动，如果能正确引导进入系统则安装成功。</p>
+<p>如果无法进入系统，重新插入 U 盘，重新配置引导文件。</p>
+<h2 id="参考连接"><a href="#参考连接" class="headerlink" title="参考连接"></a>参考连接</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3dodGllaGFjay9YaWFvTWktQWly">https://github.com/whtiehack/XiaoMi-Air<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3Nha291bGEvWGlhb01pLUFpci02MjAwVQ==">https://github.com/sakoula/XiaoMi-Air-6200U<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2pvaG5ueW5jMTMvWGlhb21pLU5vdGVib29rLUFpci0xR2Vu">https://github.com/johnnync13/Xiaomi-Notebook-Air-1Gen<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmRhbGlhbnNreS5uZXQv">https://blog.daliansky.net<i class="fa fa-external-link-alt"></i></span></li>
 </ul>
 
       
@@ -302,7 +512,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2020/06/28/show-full-path-in-chrome/">
+    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2021/11/01/mac-install-image-with-glibmacos/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -320,7 +530,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/06/28/show-full-path-in-chrome/" class="post-title-link" itemprop="url">在 Chrome 地址栏中显示完整网址</a>
+          <a href="/2021/11/01/mac-install-image-with-glibmacos/" class="post-title-link" itemprop="url">使用 glibMacOS 制作 MacOS 安装镜像</a>
         </h2>
 
         <div class="post-meta-container">
@@ -331,7 +541,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-06-28 09:44:53" itemprop="dateCreated datePublished" datetime="2020-06-28T09:44:53+08:00">2020-06-28</time>
+      <time title="创建时间：2021-11-01 14:33:12" itemprop="dateCreated datePublished" datetime="2021-11-01T14:33:12+08:00">2021-11-01</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -353,8 +563,31 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>打开 <code>chrome://flags/#omnibox-context-menu-show-full-urls</code> 地址，将 <code>Context menu show full URLs</code> 设置为 <code>Enabled</code>。</p>
-<p>重启 <code>Chrome</code> 后，在地址栏右击勾选 <code>总是显示完整网址</code>。</p>
+          <h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><ol>
+<li><p>首先从 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2NvcnBuZXd0L2dpYk1hY09T">GitHub<i class="fa fa-external-link-alt"></i></span> 上下载最新的代码。</p>
+</li>
+<li><p>解压后，运行 <code>gibMacOS.bat</code>。</p>
+</li>
+<li><p>选择 <code>MacOS</code> 版本，输入序号并按回车。</p>
+</li>
+<li><p>等待下载完成。</p>
+</li>
+</ol>
+<h2 id="刻录"><a href="#刻录" class="headerlink" title="刻录"></a>刻录</h2><ol>
+<li><p>插入 U 盘。</p>
+</li>
+<li><p>运行 <code>MakeInstall.bat</code>。</p>
+</li>
+<li><p>选择正确的磁盘，并输入前面的序号，按下回车，再输入 <code>Y</code> 按下回车（U 盘内所有数据将会被清除）。</p>
+</li>
+<li><p>进入 <code>gibMacOS\macOS Downloads\publicrelease</code> 目录，按着 <code>shift</code> 并右击相应版本的文件夹，选择 <code>复制文件地址</code>。</p>
+</li>
+<li><p>回到 <code>MakeInstall.bat</code> 窗口，右击粘贴刚才复制的路径并按回车。</p>
+</li>
+<li><p>等待直到制作完成。</p>
+</li>
+</ol>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>该工具下载可能较慢，建议在初始化的冒出的 <code>xml</code> 连接中直接找对应的文件。</p>
 
       
     </div>
@@ -381,7 +614,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2020/05/29/use-winsw-to-deploy-windoes-service/">
+    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2021/06/18/mac-node-no-xcode-detected/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -399,7 +632,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/05/29/use-winsw-to-deploy-windoes-service/" class="post-title-link" itemprop="url">使用 WinSW 部署 Windows Service</a>
+          <a href="/2021/06/18/mac-node-no-xcode-detected/" class="post-title-link" itemprop="url">Mac 源码安装 node 时 `No Xcode or CLT version detected!` 错误</a>
         </h2>
 
         <div class="post-meta-container">
@@ -410,7 +643,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-05-29 17:54:22" itemprop="dateCreated datePublished" datetime="2020-05-29T17:54:22+08:00">2020-05-29</time>
+      <time title="创建时间：2021-06-18 16:44:23" itemprop="dateCreated datePublished" datetime="2021-06-18T16:44:23+08:00">2021-06-18</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -432,222 +665,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3dpbnN3L3dpbnN3">winsw&#x2F;winsw<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-<p>在 <code>Release</code> 页面下载最新版本以及示例配置文件。</p>
-<p>将可执行文件和配置文件都复制到自定义的目录，并将文件名改为一致。</p>
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>下面我使用 <code>Frpc</code> 作为演示。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- frpc-service.xml --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">service</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>frpc<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>Frpc Service<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">description</span>&gt;</span>A fast reverse proxy to help you expose a local server behind a NAT or firewall to the internet.<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">executable</span>&gt;</span>E:\Frp\frpc.exe<span class="tag">&lt;/<span class="name">executable</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">onfailure</span> <span class="attr">action</span>=<span class="string">&quot;restart&quot;</span> <span class="attr">delay</span>=<span class="string">&quot;5 sec&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">resetfailure</span>&gt;</span>1 day<span class="tag">&lt;/<span class="name">resetfailure</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">arguments</span>&gt;</span>-c E:\Frp\frpc.ini<span class="tag">&lt;/<span class="name">arguments</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">workingdirectory</span>&gt;</span>E:\Frp<span class="tag">&lt;/<span class="name">workingdirectory</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">priority</span>&gt;</span>AboveNormal<span class="tag">&lt;/<span class="name">priority</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">stoptimeout</span>&gt;</span>15 sec<span class="tag">&lt;/<span class="name">stoptimeout</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">stopparentprocessfirst</span>&gt;</span>false<span class="tag">&lt;/<span class="name">stopparentprocessfirst</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">startmode</span>&gt;</span>Automatic<span class="tag">&lt;/<span class="name">startmode</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">waithint</span>&gt;</span>15 sec<span class="tag">&lt;/<span class="name">waithint</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">sleeptime</span>&gt;</span>1 sec<span class="tag">&lt;/<span class="name">sleeptime</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">logpath</span>&gt;</span>E:\Frp\logs<span class="tag">&lt;/<span class="name">logpath</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">log</span> <span class="attr">mode</span>=<span class="string">&quot;roll-by-time&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">pattern</span>&gt;</span>yyyyMMdd<span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">log</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">service</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>相关配置的解读请参考下载的示例配置文件。</p>
-<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 首先运行测试，看配置是否可以正常运行</span></span><br><span class="line">./frpc-service.exe testwait</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 Service</span></span><br><span class="line">./frpc-service.exe install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行 Service</span></span><br><span class="line">./frpc-service.exe start</span><br></pre></td></tr></table></figure>
-
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">A wrapper binary that can be used to host executables as Windows services</span><br><span class="line"></span><br><span class="line">Usage: winsw [/redirect file] &lt;command&gt; [&lt;args&gt;]</span><br><span class="line">       Missing arguments trigger the service mode</span><br><span class="line"></span><br><span class="line">Available commands:</span><br><span class="line">  install     install the service to Windows Service Controller</span><br><span class="line">  uninstall   uninstall the service</span><br><span class="line">  start       start the service (must be installed before)</span><br><span class="line">  stop        stop the service</span><br><span class="line">  stopwait    stop the service<span class="built_in"> and </span>wait until it&#x27;s actually stopped</span><br><span class="line">  restart     restart the service</span><br><span class="line">  restart!    self-restart (can be called from child processes)</span><br><span class="line">  status     <span class="built_in"> check </span>the current status of the service</span><br><span class="line">  test       <span class="built_in"> check </span>if the service can be started<span class="built_in"> and </span>then stopped</span><br><span class="line">  testwait    starts the service<span class="built_in"> and </span>waits until a key is pressed then stops the service</span><br><span class="line">  version     print the version info</span><br><span class="line">  help        print the help info (aliases: -h,--help,-?,/?)</span><br><span class="line"></span><br><span class="line">Extra options:</span><br><span class="line">  /redirect   redirect the wrapper&#x27;s STDOUT<span class="built_in"> and </span>STDERR to the specified file</span><br><span class="line"></span><br><span class="line">WinSW 2.9.0.0</span><br><span class="line">More info: https://github.com/kohsuke/winsw</span><br><span class="line">Bug tracker: https://github.com/kohsuke/winsw/issues</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2020/05/26/install-gitea-and-drone/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="starudream">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰狂澜's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 星辰狂澜's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/05/26/install-gitea-and-drone/" class="post-title-link" itemprop="url">基于 Docker 安装 Gitea 和 Drone / Drone-Runner</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-05-26 14:11:29" itemprop="dateCreated datePublished" datetime="2020-05-26T14:11:29+08:00">2020-05-26</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="安装-docker-并拉取相关镜像"><a href="#安装-docker-并拉取相关镜像" class="headerlink" title="安装 docker 并拉取相关镜像"></a>安装 docker 并拉取相关镜像</h2><ul>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9odWIuZG9ja2VyLmNvbS9yL2dpdGVhL2dpdGVh">gitea&#x2F;gitea<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9odWIuZG9ja2VyLmNvbS9yL2Ryb25lL2Ryb25l">drone&#x2F;drone<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9odWIuZG9ja2VyLmNvbS9yL2Ryb25lL2Ryb25lLXJ1bm5lci1kb2NrZXI=">drone&#x2F;drone-runner-docker<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker pull gitea/gitea</span><br><span class="line">docker pull drone/drone</span><br><span class="line">docker pull drone/drone-runner-docker</span><br></pre></td></tr></table></figure>
-
-<h2 id="安装-gitea"><a href="#安装-gitea" class="headerlink" title="安装 gitea"></a>安装 gitea</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name gitea \</span><br><span class="line">    --restart always \</span><br><span class="line">    -p 53022:22 \</span><br><span class="line">    -p 53080:3000 \</span><br><span class="line">    -m 400m \</span><br><span class="line">    -v /opt/docker/gitea/data:/data \</span><br><span class="line">    gitea/gitea:1.11.5</span><br></pre></td></tr></table></figure>
-
-<p>按照步骤完成安装 <code>Gitea</code> 后，打开 <code>https://git.52xckl.cn/user/settings/applications</code> 页面。</p>
-<p>应用名称：<code>drone</code>，重定向 URL：<code>https://drone.52xckl.cn/login</code> 填写完成后点击创建应用获取 <code>客户端 ID</code> 与 <code>客户端密钥</code>。</p>
-<h2 id="创建-drone-与-drone-runner"><a href="#创建-drone-与-drone-runner" class="headerlink" title="创建 drone 与 drone-runner"></a>创建 drone 与 drone-runner</h2><ul>
-<li><code>$&#123;CLIENT_ID&#125;</code> -&gt; <code>客户端 ID</code></li>
-<li><code>$&#123;CLIENT_SECRET&#125;</code> -&gt; <code>客户端密钥</code></li>
-<li><code>$&#123;RPC_SECRET&#125;</code> -&gt; <code>drone 与 drone-runner 通讯的密钥，随机生成即可</code></li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name drone \</span><br><span class="line">    --restart always \</span><br><span class="line">    -m 200m \</span><br><span class="line">    -p 54080:80 \</span><br><span class="line">    -e DRONE_GITEA_SERVER=https://git.52xckl.cn \</span><br><span class="line">    -e DRONE_GITEA_CLIENT_ID=<span class="variable">$&#123;CLIENT_ID&#125;</span> \</span><br><span class="line">    -e DRONE_GITEA_CLIENT_SECRET=<span class="variable">$&#123;CLIENT_SECRET&#125;</span>= \</span><br><span class="line">    -e DRONE_RPC_SECRET=<span class="variable">$&#123;RPC_SECRET&#125;</span> \</span><br><span class="line">    -e DRONE_SERVER_HOST=drone.52xckl.cn \</span><br><span class="line">    -e DRONE_SERVER_PROTO=https \</span><br><span class="line">    -v /opt/docker/drone/data:/var/lib/drone \</span><br><span class="line">    drone/drone:1.7.0</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name drone-runner \</span><br><span class="line">    --<span class="built_in">link</span> drone:drone \</span><br><span class="line">    --restart always \</span><br><span class="line">    -m 200m \</span><br><span class="line">    -e DRONE_RUNNER_NAME=runner-001 \</span><br><span class="line">    -e DRONE_RPC_PROTO=http \</span><br><span class="line">    -e DRONE_RPC_HOST=drone \</span><br><span class="line">    -e DRONE_RPC_SECRET=<span class="variable">$&#123;RPC_SECRET&#125;</span> \</span><br><span class="line">    -v /var/run/docker.sock:/var/run/docker.sock \</span><br><span class="line">    drone/drone-runner-docker:1.3.0</span><br></pre></td></tr></table></figure>
-
-<p>最后 <code>docker logs -f --tail 10 drone-runner</code> 显示 <code>successfully pinged the remote server</code> 即为成功。</p>
-<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>首先打开 <code>https://drone.52xckl.cn/</code> 完成 <code>OAuth2</code> 认证并激活项目。</p>
-<p>在激活的项目中创建名为 <code>.drone.yml</code> 的文件：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">kind:</span> <span class="string">pipeline</span></span><br><span class="line"><span class="attr">name:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">type:</span> <span class="string">docker</span></span><br><span class="line"><span class="attr">steps:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">test</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">golang:1.14-alpine</span></span><br><span class="line">    <span class="attr">commands:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">CGO_ENABLED=0</span> <span class="string">GO111MODULE=on</span> <span class="string">go</span> <span class="string">test</span> <span class="string">-count=1</span> <span class="string">-cover</span> <span class="string">-v</span> <span class="string">./...</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">CGO_ENABLED=0</span> <span class="string">GO111MODULE=on</span> <span class="string">go</span> <span class="string">run</span> <span class="string">.</span></span><br></pre></td></tr></table></figure>
-
-<p>这段是 <code>Go</code> 相关项目的，如果编写该文件请查询相关官方文档。</p>
-<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ul>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmdpdGVhLmlvL2VuLXVzLw==">gitea<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9yZWFkbWUuZHJvbmUuaW8v">drone<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2020/05/18/install-virtual-network/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="starudream">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰狂澜's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 星辰狂澜's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/05/18/install-virtual-network/" class="post-title-link" itemprop="url">Linux 创建虚拟网卡</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-05-18 11:58:21" itemprop="dateCreated datePublished" datetime="2020-05-18T11:58:21+08:00">2020-05-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="安装相关依赖"><a href="#安装相关依赖" class="headerlink" title="安装相关依赖"></a>安装相关依赖</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install -y uml-utilities bridge-utils</span><br></pre></td></tr></table></figure>
-
-<h2 id="添加网桥"><a href="#添加网桥" class="headerlink" title="添加网桥"></a>添加网桥</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brctl addbr br0</span><br></pre></td></tr></table></figure>
-
-<h2 id="激活网桥"><a href="#激活网桥" class="headerlink" title="激活网桥"></a>激活网桥</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip <span class="built_in">link</span> <span class="built_in">set</span> br0 up</span><br></pre></td></tr></table></figure>
-
-<h2 id="添加虚拟网卡"><a href="#添加虚拟网卡" class="headerlink" title="添加虚拟网卡"></a>添加虚拟网卡</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip <span class="built_in">link</span> <span class="built_in">set</span> tap0 up</span><br></pre></td></tr></table></figure>
-
-<h2 id="将虚拟网卡添加到指定网桥上"><a href="#将虚拟网卡添加到指定网桥上" class="headerlink" title="将虚拟网卡添加到指定网桥上"></a>将虚拟网卡添加到指定网桥上</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brctl addif br0 tap0</span><br></pre></td></tr></table></figure>
-
-<h2 id="给网桥配制ip地址"><a href="#给网桥配制ip地址" class="headerlink" title="给网桥配制ip地址"></a>给网桥配制ip地址</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ifconfig br0 172.24.16.10 up</span><br></pre></td></tr></table></figure>
-
-<h2 id="移除"><a href="#移除" class="headerlink" title="移除"></a>移除</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">brctl delif br0 tap0</span><br><span class="line"></span><br><span class="line">tunctl -d tap0</span><br><span class="line"></span><br><span class="line">brctl delbr br0</span><br></pre></td></tr></table></figure>
-
-<h2 id="brctl"><a href="#brctl" class="headerlink" title="brctl"></a>brctl</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Usage: brctl [commands]</span><br><span class="line">commands:</span><br><span class="line">  addbr          <span class="symbol">&lt;bridge&gt;</span>                  <span class="built_in">add</span> bridge</span><br><span class="line">  delbr          <span class="symbol">&lt;bridge&gt;</span>                  <span class="keyword">delete</span> bridge</span><br><span class="line">  addif          <span class="symbol">&lt;bridge&gt;</span> <span class="symbol">&lt;device&gt;</span>         <span class="built_in">add</span> interface <span class="keyword">to</span> bridge</span><br><span class="line">  delif          <span class="symbol">&lt;bridge&gt;</span> <span class="symbol">&lt;device&gt;</span>         <span class="keyword">delete</span> interface from bridge</span><br><span class="line">  hairpin        <span class="symbol">&lt;bridge&gt;</span> <span class="symbol">&lt;port&gt;</span> &#123;<span class="keyword">on</span>|off&#125;  turn hairpin <span class="keyword">on</span>/off</span><br><span class="line">  setageing      <span class="symbol">&lt;bridge&gt;</span> <span class="symbol">&lt;time&gt;</span>           <span class="keyword">set</span> ageing time</span><br><span class="line">  setbridgeprio  <span class="symbol">&lt;bridge&gt;</span> <span class="symbol">&lt;prio&gt;</span>           <span class="keyword">set</span> bridge priority</span><br><span class="line">  setfd          <span class="symbol">&lt;bridge&gt;</span> <span class="symbol">&lt;time&gt;</span>           <span class="keyword">set</span> bridge forward delay</span><br><span class="line">  sethello       <span class="symbol">&lt;bridge&gt;</span> <span class="symbol">&lt;time&gt;</span>           <span class="keyword">set</span> hello time</span><br><span class="line">  setmaxage      <span class="symbol">&lt;bridge&gt;</span> <span class="symbol">&lt;time&gt;</span>           <span class="keyword">set</span> <span class="built_in">max</span> message age</span><br><span class="line">  setpathcost    <span class="symbol">&lt;bridge&gt;</span> <span class="symbol">&lt;port&gt;</span> <span class="symbol">&lt;cost&gt;</span>    <span class="keyword">set</span> path cost</span><br><span class="line">  setportprio    <span class="symbol">&lt;bridge&gt;</span> <span class="symbol">&lt;port&gt;</span> <span class="symbol">&lt;prio&gt;</span>    <span class="keyword">set</span> port priority</span><br><span class="line">  show           [ <span class="symbol">&lt;bridge&gt;</span> ]              show <span class="keyword">a</span> <span class="keyword">list</span> of bridges</span><br><span class="line">  showmacs       <span class="symbol">&lt;bridge&gt;</span>                  show <span class="keyword">a</span> <span class="keyword">list</span> of mac addrs</span><br><span class="line">  showstp        <span class="symbol">&lt;bridge&gt;</span>                  show bridge stp info</span><br><span class="line">  stp            <span class="symbol">&lt;bridge&gt;</span> &#123;<span class="keyword">on</span>|off&#125;         turn stp <span class="keyword">on</span>/off</span><br></pre></td></tr></table></figure>
+          <h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>重新安装 <code>Xcode Tools</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">rm</span> -rf $(xcode-select -p)</span><br><span class="line">sudo xcode-select --install</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -667,7 +686,7 @@
 
 
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/7/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/7/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>

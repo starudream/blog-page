@@ -248,6 +248,29 @@
       </tags>
   </entry>
   <entry>
+    <title>elk 常见问题</title>
+    <url>/2024/02/19/elk-common-problem/</url>
+    <content><![CDATA[<h2 id="common"><a href="#common" class="headerlink" title="common"></a>common</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/usr/bin/env bash</span></span><br><span class="line"></span><br><span class="line">method=$1</span><br><span class="line">if [ -z &quot;$method&quot; ]; then</span><br><span class="line">  method=&quot;GET&quot;</span><br><span class="line">fi</span><br><span class="line">path=$2</span><br><span class="line">if [[ $path == *\?* ]]; then</span><br><span class="line">  path=&quot;$path&amp;pretty&quot;</span><br><span class="line">else</span><br><span class="line">  path=&quot;$path?pretty&quot;</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">curl -v -u &quot;elastic:p1ssw0rd&quot; -X &quot;$method&quot; -H &quot;Content-Type: application/json&quot; &quot;$&#123;@:2&#125;&quot; &quot;http://localhost:9200/$path&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="index-setting"><a href="#index-setting" class="headerlink" title="index setting"></a>index setting</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">./curl.sh PUT _index_template/logstash -d &#x27;&#123;</span><br><span class="line">  &quot;template&quot;: &#123;</span><br><span class="line">    &quot;settings&quot;: &#123;</span><br><span class="line">      &quot;index&quot;: &#123;</span><br><span class="line">        &quot;lifecycle&quot;: &#123;</span><br><span class="line">          &quot;name&quot;: &quot;90-days-default&quot;,</span><br><span class="line">          &quot;rollover_alias&quot;: &quot;90days&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;refresh_interval&quot;: &quot;5s&quot;,</span><br><span class="line">        &quot;number_of_replicas&quot;: &quot;0&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;index_patterns&quot;: [</span><br><span class="line">    &quot;logstash-*&quot;</span><br><span class="line">  ]</span><br><span class="line">&#125;&#x27;</span><br></pre></td></tr></table></figure>
+
+<h2 id="index-health-is-yellow"><a href="#index-health-is-yellow" class="headerlink" title="index health is yellow"></a>index health is yellow</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">./curl.sh PUT _settings -d &#x27;&#123;</span><br><span class="line">  &quot;index.number_of_replicas&quot;: 0</span><br><span class="line">&#125;&#x27;</span><br></pre></td></tr></table></figure>
+
+<h2 id="index-has-exceeded-1000000-maximum-allowed-to-be-analyzed-for-highlighting"><a href="#index-has-exceeded-1000000-maximum-allowed-to-be-analyzed-for-highlighting" class="headerlink" title="index has exceeded [1000000] - maximum allowed to be analyzed for highlighting"></a>index has exceeded [1000000] - maximum allowed to be analyzed for highlighting</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">./curl.sh PUT _settings -d &#x27;&#123;</span><br><span class="line">  &quot;index.highlight.max_analyzed_offset&quot;: 100000000</span><br><span class="line">&#125;&#x27;</span><br></pre></td></tr></table></figure>
+
+<h2 id="this-action-would-add-2-shards-but-this-cluster-currently-has-1000-1000"><a href="#this-action-would-add-2-shards-but-this-cluster-currently-has-1000-1000" class="headerlink" title="this action would add [2] shards, but this cluster currently has [1000]&#x2F;[1000]"></a>this action would add [2] shards, but this cluster currently has [1000]&#x2F;[1000]</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">./curl.sh PUT _cluster/settings -d &#x27;&#123;</span><br><span class="line">  &quot;persistent&quot;: &#123;</span><br><span class="line">    &quot;cluster.max_shards_per_node&quot;: 1000000</span><br><span class="line">  &#125;</span><br><span class="line">&#125;&#x27;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Can’t-store-an-async-search-response-larger-than-10485760-bytes"><a href="#Can’t-store-an-async-search-response-larger-than-10485760-bytes" class="headerlink" title="Can’t store an async search response larger than [10485760] bytes."></a>Can’t store an async search response larger than [10485760] bytes.</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">./curl.sh PUT _cluster/settings -d &#x27;&#123;</span><br><span class="line">  &quot;persistent&quot;: &#123;</span><br><span class="line">    &quot;search.max_async_search_response_size&quot;: &quot;50mb&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;&#x27;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>elasticsearch</tag>
+        <tag>kibana</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Envoy 配置导出 YAML 文件</title>
     <url>/2023/03/22/envoy-config-to-yaml/</url>
     <content><![CDATA[<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;bytes&quot;</span></span><br><span class="line">	<span class="string">&quot;encoding/json&quot;</span></span><br><span class="line">	<span class="string">&quot;os&quot;</span></span><br><span class="line">	<span class="string">&quot;testing&quot;</span></span><br><span class="line"></span><br><span class="line">	<span class="string">&quot;gopkg.in/yaml.v3&quot;</span></span><br><span class="line"></span><br><span class="line">	<span class="string">&quot;google.golang.org/protobuf/encoding/protojson&quot;</span></span><br><span class="line"></span><br><span class="line">	bootstrap <span class="string">&quot;github.com/envoyproxy/go-control-plane/envoy/config/bootstrap/v3&quot;</span></span><br><span class="line">	cluster <span class="string">&quot;github.com/envoyproxy/go-control-plane/envoy/config/cluster/v3&quot;</span></span><br><span class="line">	core <span class="string">&quot;github.com/envoyproxy/go-control-plane/envoy/config/core/v3&quot;</span></span><br><span class="line">	listener <span class="string">&quot;github.com/envoyproxy/go-control-plane/envoy/config/listener/v3&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TestGenBootstrapYAML</span><span class="params">(t *testing.T)</span></span> &#123;</span><br><span class="line">	cfg, err := initConfig(<span class="string">&quot;config.yaml&quot;</span>)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		t.Fatal(err)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	b := &amp;bootstrap.Bootstrap&#123;</span><br><span class="line">		Admin: &amp;bootstrap.Admin&#123;</span><br><span class="line">			AccessLog: <span class="literal">nil</span>,</span><br><span class="line">			Address: &amp;core.Address&#123;</span><br><span class="line">				Address: &amp;core.Address_SocketAddress&#123;</span><br><span class="line">					SocketAddress: &amp;core.SocketAddress&#123;</span><br><span class="line">						Address: <span class="string">&quot;0.0.0.0&quot;</span>,</span><br><span class="line">						PortSpecifier: &amp;core.SocketAddress_PortValue&#123;</span><br><span class="line">							PortValue: <span class="number">9901</span>,</span><br><span class="line">						&#125;,</span><br><span class="line">					&#125;,</span><br><span class="line">				&#125;,</span><br><span class="line">			&#125;,</span><br><span class="line">		&#125;,</span><br><span class="line">		StaticResources: &amp;bootstrap.Bootstrap_StaticResources&#123;</span><br><span class="line">			Listeners: <span class="built_in">make</span>([]*listener.Listener, <span class="number">2</span>),</span><br><span class="line">			Clusters:  <span class="built_in">make</span>([]*cluster.Cluster, <span class="built_in">len</span>(cfg.Clusters)),</span><br><span class="line">		&#125;,</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	virtualHosts := genVirtualHosts(cfg)</span><br><span class="line"></span><br><span class="line">	b.StaticResources.Listeners[<span class="number">0</span>] = makeListener(ListenerHTTPPort, <span class="literal">false</span>, virtualHosts)</span><br><span class="line">	b.StaticResources.Listeners[<span class="number">1</span>] = makeListener(ListenerHTTPSPort, <span class="literal">true</span>, virtualHosts)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(cfg.Clusters); i++ &#123;</span><br><span class="line">		b.StaticResources.Clusters[i] = makeCluster(cfg.Clusters[i])</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	mo := protojson.MarshalOptions&#123;UseProtoNames: <span class="literal">true</span>&#125;</span><br><span class="line"></span><br><span class="line">	bs, err := mo.Marshal(b)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		t.Fatal(err)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> v any</span><br><span class="line"></span><br><span class="line">	err = json.Unmarshal(bs, &amp;v)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		t.Fatal(err)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	bb := &amp;bytes.Buffer&#123;&#125;</span><br><span class="line">	ye := yaml.NewEncoder(bb)</span><br><span class="line">	ye.SetIndent(<span class="number">2</span>)</span><br><span class="line">	<span class="keyword">defer</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123; _ = ye.Close() &#125;()</span><br><span class="line"></span><br><span class="line">	err = ye.Encode(v)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		t.Fatal(err)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	err = os.WriteFile(<span class="string">&quot;envoy-bootstrap.yaml&quot;</span>, bb.Bytes(), <span class="number">0644</span>)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		t.Fatal(err)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -352,6 +375,25 @@
       <tags>
         <tag>crack</tag>
         <tag>gitkraken</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>gitlab runner 使用 dind 作为 service 时的健康检查出错</title>
+    <url>/2024/02/19/gitlab-dind-as-service-hc/</url>
+    <content><![CDATA[<p>解决不必要的 30s 超时等待时间</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">FROM docker:20-dind as upstream</span><br><span class="line"></span><br><span class="line">FROM scratch</span><br><span class="line"></span><br><span class="line">COPY --from=upstream / /</span><br><span class="line"></span><br><span class="line">VOLUME /var/lib/docker</span><br><span class="line"></span><br><span class="line">EXPOSE 2376</span><br><span class="line"></span><br><span class="line">ENV DOCKER_TLS_CERTDIR=/certs</span><br><span class="line"></span><br><span class="line">ENTRYPOINT [&quot;dockerd-entrypoint.sh&quot;]</span><br><span class="line"></span><br><span class="line">CMD []</span><br></pre></td></tr></table></figure>
+
+<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRsYWIuY29tL2dpdGxhYi1vcmcvZ2l0bGFiLXJ1bm5lci8tL2lzc3Vlcy8yOTEzMCNub3RlXzEwMjgzMzE1NjQ=">https://gitlab.com/gitlab-org/gitlab-runner/-/issues/29130#note_1028331564<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2RvY2tlci1saWJyYXJ5L2RvY2tlci9ibG9iLzBkMWMyMTAwZDEyZGEyZTdlNDU4Y2RmZjE4ZDc0MWY2MjVjZTI3ZDYvMjAuMTAvZGluZC9Eb2NrZXJmaWxl">https://github.com/docker-library/docker/blob/0d1c2100d12da2e7e458cdff18d741f625ce27d6/20.10/dind/Dockerfile<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>gitlab runner</tag>
       </tags>
   </entry>
   <entry>
@@ -739,6 +781,24 @@
       </tags>
   </entry>
   <entry>
+    <title>kubernetes LimitRange 解释</title>
+    <url>/2024/02/19/k8s-limit-range-explain/</url>
+    <content><![CDATA[<ul>
+<li><code>min</code>: 最小值</li>
+<li><code>max</code>: 最大值</li>
+<li><code>default</code> 默认 <code>limit</code> 值</li>
+<li><code>defaultRequest</code> 默认 <code>request</code> 值</li>
+</ul>
+<p>如果 <code>deployment</code> 没有 <code>resources</code> <code>requests</code> 和 <code>limits</code>，那么会使用 <code>defaultRequest</code> 和 <code>default</code> 值，否则使用自定义的值，但是 <code>limits</code> 不能超过 <code>max</code>，<code>requests</code> 不能小于 <code>min</code>。</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>kubernetes</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>免登录只读访问 kubernetes dashboard</title>
     <url>/2023/03/22/kubernetes-dashboard-readonly-without-login/</url>
     <content><![CDATA[<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>基于 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2t1YmVybmV0ZXMvZGFzaGJvYXJkL2Jsb2IvdjIuNy4wL2Fpby9kZXBsb3kvcmVjb21tZW5kZWQueWFtbA==">v2.7.0<i class="fa fa-external-link-alt"></i></span> 的配置文件，修改了 <code>ClusterRole</code> 和 <code>ClusterRoleBinding</code>，使得 <code>dashboard</code> 只能以只读的方式访问 <code>kubernetes</code> 集群。</p>
@@ -918,6 +978,18 @@
       </tags>
   </entry>
   <entry>
+    <title>通过 pid 查看 k8s pod name</title>
+    <url>/2024/02/19/pid-for-k8s-pod/</url>
+    <content><![CDATA[<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nsenter -t $PID -u hostname</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>kubernetes</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>PVE 修改 hostname</title>
     <url>/2023/07/21/pve-change-hostname/</url>
     <content><![CDATA[<p>安装 <span class="exturl" data-url="aHR0cHM6Ly9wdmUucHJveG1veC5jb20vd2lraS9SZW5hbWluZ19hX1BWRV9ub2Rl">官方教程<i class="fa fa-external-link-alt"></i></span> 可以在没有虚拟机的 <code>PVE</code> 上修改 <code>hostname</code>。</p>
@@ -1012,6 +1084,19 @@
       </tags>
   </entry>
   <entry>
+    <title>kubectl 重启某个 Namespace 下的所有 Deployment</title>
+    <url>/2024/02/19/restart-all-deployment-in-namespace/</url>
+    <content><![CDATA[<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">NAMESPACE=&quot;arc-os&quot;</span><br><span class="line">for DEPLOY in $(kubectl get deployments -n $NAMESPACE | tail -n +2 | cut -d &#x27; &#x27; -f 1); do kubectl rollout restart deployments/$DEPLOY -n $NAMESPACE; done</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>kubernetes</tag>
+        <tag>kubectl</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Samba 文件共享</title>
     <url>/2019/11/28/samba/</url>
     <content><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt install samba</span><br></pre></td></tr></table></figure>
@@ -1031,6 +1116,18 @@
       </categories>
       <tags>
         <tag>samba</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>查询 timescale table 行数</title>
+    <url>/2024/02/19/select-timescale-table/</url>
+    <content><![CDATA[<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> h.schema_name,</span><br><span class="line">       h.table_name,</span><br><span class="line">       h.id <span class="keyword">AS</span> table_id,</span><br><span class="line">       h.associated_table_prefix,</span><br><span class="line">       row_estimate.row_estimate</span><br><span class="line"><span class="keyword">FROM</span> _timescaledb_catalog.hypertable h</span><br><span class="line">         <span class="keyword">CROSS</span> <span class="keyword">JOIN</span> <span class="keyword">LATERAL</span> (</span><br><span class="line">    <span class="keyword">SELECT</span> <span class="built_in">SUM</span>(cl.reltuples) <span class="keyword">AS</span> row_estimate</span><br><span class="line">    <span class="keyword">FROM</span> _timescaledb_catalog.chunk c</span><br><span class="line">             <span class="keyword">JOIN</span> pg_class cl <span class="keyword">ON</span> cl.relname <span class="operator">=</span> c.table_name</span><br><span class="line">    <span class="keyword">WHERE</span> c.hypertable_id <span class="operator">=</span> h.id</span><br><span class="line">    <span class="keyword">GROUP</span> <span class="keyword">BY</span> h.schema_name, h.table_name</span><br><span class="line">    ) row_estimate</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> schema_name, row_estimate <span class="keyword">DESC</span>, table_name;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>timescaledb</tag>
       </tags>
   </entry>
   <entry>
