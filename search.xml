@@ -144,6 +144,25 @@
       </tags>
   </entry>
   <entry>
+    <title>使用 GitHub Actions 部署 Hexo</title>
+    <url>/2020/04/10/deploy-hexo-with-github-actions/</url>
+    <content><![CDATA[<p>首先需要在 <code>GitHub</code> 上建立两个仓库，一个 <code>公有</code>，一个 <code>私有</code>。</p>
+<p><code>公有</code> 仓库用于存放 <code>Hexo</code> 生成的静态文件以部署 <code>GitHub Pages</code>。</p>
+<p><code>私有</code> 仓库用于存放未经编译的 <code>Hexo</code> 文件。</p>
+<p>示例：<code>starudream/blog-page</code> 为我的 <code>公有</code> 仓库，<code>starudream/blog</code> 是我的 <code>私有</code> 仓库。</p>
+<p>然后在 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NldHRpbmdzL3Rva2Vucw==">https://github.com/settings/tokens<i class="fa fa-external-link-alt"></i></span> 申请 <code>PAT</code>，并将其加入私有仓库的 <code>Secrets</code>。</p>
+<p>最后在 <code>私有</code> 仓库内创建文件 <code>.github/workflows/deploy.yml</code>，修改相应内容：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">Deploy</span></span><br><span class="line"><span class="attr">on:</span></span><br><span class="line">  <span class="attr">push:</span></span><br><span class="line">    <span class="attr">branches:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">master</span></span><br><span class="line"><span class="attr">jobs:</span></span><br><span class="line">  <span class="attr">deploy:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">Deploy</span></span><br><span class="line">    <span class="attr">runs-on:</span> <span class="string">ubuntu-latest</span></span><br><span class="line">    <span class="attr">steps:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Checkout</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/checkout@v2</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">fetch-depth:</span> <span class="number">1</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Checkout</span> <span class="string">Page</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/checkout@v2</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">fetch-depth:</span> <span class="number">1</span></span><br><span class="line">          <span class="attr">repository:</span> <span class="string">starudream/blog-page</span></span><br><span class="line">          <span class="attr">path:</span> <span class="string">.deploy_git</span></span><br><span class="line">          <span class="attr">token:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.PAGE_PAT</span> <span class="string">&#125;&#125;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Cache</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/cache@v1</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">path:</span> <span class="string">node_modules</span></span><br><span class="line">          <span class="attr">key:</span> <span class="string">$&#123;&#123;</span> <span class="string">runner.os</span> <span class="string">&#125;&#125;-$&#123;&#123;</span> <span class="string">hashFiles(&#x27;**/package.json&#x27;)</span> <span class="string">&#125;&#125;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Node</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/setup-node@v1</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">node-version:</span> <span class="number">12</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Build</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          npm install hexo-cli -g &amp;&amp; npm install &amp;&amp; npm run build</span></span><br><span class="line"><span class="string"></span>      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Deploy</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          rm -rf .deploy_git/* &amp;&amp; cp -rf public/* .deploy_git/</span></span><br><span class="line"><span class="string">          git config --global user.name starudream</span></span><br><span class="line"><span class="string">          git config --global user.email justwangsheng@qq.com</span></span><br><span class="line"><span class="string">          message=$(git log -1 --pretty=format:%s)</span></span><br><span class="line"><span class="string">          cd .deploy_git</span></span><br><span class="line"><span class="string">          git add -A</span></span><br><span class="line"><span class="string">          git commit -m &quot;$message&quot;</span></span><br><span class="line"><span class="string">          git push</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>github</tag>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>部署 NFS 服务</title>
     <url>/2023/07/21/deploy-nfs-server/</url>
     <content><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum install nfs-utils</span><br></pre></td></tr></table></figure>
@@ -164,25 +183,6 @@
       <tags>
         <tag>nfs</tag>
         <tag>server</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用 GitHub Actions 部署 Hexo</title>
-    <url>/2020/04/10/deploy-hexo-with-github-actions/</url>
-    <content><![CDATA[<p>首先需要在 <code>GitHub</code> 上建立两个仓库，一个 <code>公有</code>，一个 <code>私有</code>。</p>
-<p><code>公有</code> 仓库用于存放 <code>Hexo</code> 生成的静态文件以部署 <code>GitHub Pages</code>。</p>
-<p><code>私有</code> 仓库用于存放未经编译的 <code>Hexo</code> 文件。</p>
-<p>示例：<code>starudream/blog-page</code> 为我的 <code>公有</code> 仓库，<code>starudream/blog</code> 是我的 <code>私有</code> 仓库。</p>
-<p>然后在 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NldHRpbmdzL3Rva2Vucw==">https://github.com/settings/tokens<i class="fa fa-external-link-alt"></i></span> 申请 <code>PAT</code>，并将其加入私有仓库的 <code>Secrets</code>。</p>
-<p>最后在 <code>私有</code> 仓库内创建文件 <code>.github/workflows/deploy.yml</code>，修改相应内容：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">Deploy</span></span><br><span class="line"><span class="attr">on:</span></span><br><span class="line">  <span class="attr">push:</span></span><br><span class="line">    <span class="attr">branches:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">master</span></span><br><span class="line"><span class="attr">jobs:</span></span><br><span class="line">  <span class="attr">deploy:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">Deploy</span></span><br><span class="line">    <span class="attr">runs-on:</span> <span class="string">ubuntu-latest</span></span><br><span class="line">    <span class="attr">steps:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Checkout</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/checkout@v2</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">fetch-depth:</span> <span class="number">1</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Checkout</span> <span class="string">Page</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/checkout@v2</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">fetch-depth:</span> <span class="number">1</span></span><br><span class="line">          <span class="attr">repository:</span> <span class="string">starudream/blog-page</span></span><br><span class="line">          <span class="attr">path:</span> <span class="string">.deploy_git</span></span><br><span class="line">          <span class="attr">token:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.PAGE_PAT</span> <span class="string">&#125;&#125;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Cache</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/cache@v1</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">path:</span> <span class="string">node_modules</span></span><br><span class="line">          <span class="attr">key:</span> <span class="string">$&#123;&#123;</span> <span class="string">runner.os</span> <span class="string">&#125;&#125;-$&#123;&#123;</span> <span class="string">hashFiles(&#x27;**/package.json&#x27;)</span> <span class="string">&#125;&#125;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Node</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/setup-node@v1</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">node-version:</span> <span class="number">12</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Build</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          npm install hexo-cli -g &amp;&amp; npm install &amp;&amp; npm run build</span></span><br><span class="line"><span class="string"></span>      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Deploy</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          rm -rf .deploy_git/* &amp;&amp; cp -rf public/* .deploy_git/</span></span><br><span class="line"><span class="string">          git config --global user.name starudream</span></span><br><span class="line"><span class="string">          git config --global user.email justwangsheng@qq.com</span></span><br><span class="line"><span class="string">          message=$(git log -1 --pretty=format:%s)</span></span><br><span class="line"><span class="string">          cd .deploy_git</span></span><br><span class="line"><span class="string">          git add -A</span></span><br><span class="line"><span class="string">          git commit -m &quot;$message&quot;</span></span><br><span class="line"><span class="string">          git push</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>github</tag>
-        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -391,25 +391,6 @@
       </tags>
   </entry>
   <entry>
-    <title>gitlab runner 使用 dind 作为 service 时的健康检查出错</title>
-    <url>/2024/02/19/gitlab-dind-as-service-hc/</url>
-    <content><![CDATA[<p>解决不必要的 30s 超时等待时间</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">FROM docker:20-dind as upstream</span><br><span class="line"></span><br><span class="line">FROM scratch</span><br><span class="line"></span><br><span class="line">COPY --from=upstream / /</span><br><span class="line"></span><br><span class="line">VOLUME /var/lib/docker</span><br><span class="line"></span><br><span class="line">EXPOSE 2376</span><br><span class="line"></span><br><span class="line">ENV DOCKER_TLS_CERTDIR=/certs</span><br><span class="line"></span><br><span class="line">ENTRYPOINT [&quot;dockerd-entrypoint.sh&quot;]</span><br><span class="line"></span><br><span class="line">CMD []</span><br></pre></td></tr></table></figure>
-
-<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRsYWIuY29tL2dpdGxhYi1vcmcvZ2l0bGFiLXJ1bm5lci8tL2lzc3Vlcy8yOTEzMCNub3RlXzEwMjgzMzE1NjQ=">https://gitlab.com/gitlab-org/gitlab-runner/-/issues/29130#note_1028331564<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2RvY2tlci1saWJyYXJ5L2RvY2tlci9ibG9iLzBkMWMyMTAwZDEyZGEyZTdlNDU4Y2RmZjE4ZDc0MWY2MjVjZTI3ZDYvMjAuMTAvZGluZC9Eb2NrZXJmaWxl">https://github.com/docker-library/docker/blob/0d1c2100d12da2e7e458cdff18d741f625ce27d6/20.10/dind/Dockerfile<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-        <tag>gitlab runner</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>GitKraken Crack</title>
     <url>/2019/12/12/gitkraken-crack/</url>
     <content><![CDATA[<h2 id="安装-npm-以及-asar"><a href="#安装-npm-以及-asar" class="headerlink" title="安装 npm 以及 asar"></a>安装 npm 以及 asar</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># download: https://nodejs.org/en/</span></span><br><span class="line">npm i -g asar</span><br></pre></td></tr></table></figure>
@@ -430,6 +411,25 @@
       <tags>
         <tag>crack</tag>
         <tag>gitkraken</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>gitlab runner 使用 dind 作为 service 时的健康检查出错</title>
+    <url>/2024/02/19/gitlab-dind-as-service-hc/</url>
+    <content><![CDATA[<p>解决不必要的 30s 超时等待时间</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">FROM docker:20-dind as upstream</span><br><span class="line"></span><br><span class="line">FROM scratch</span><br><span class="line"></span><br><span class="line">COPY --from=upstream / /</span><br><span class="line"></span><br><span class="line">VOLUME /var/lib/docker</span><br><span class="line"></span><br><span class="line">EXPOSE 2376</span><br><span class="line"></span><br><span class="line">ENV DOCKER_TLS_CERTDIR=/certs</span><br><span class="line"></span><br><span class="line">ENTRYPOINT [&quot;dockerd-entrypoint.sh&quot;]</span><br><span class="line"></span><br><span class="line">CMD []</span><br></pre></td></tr></table></figure>
+
+<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRsYWIuY29tL2dpdGxhYi1vcmcvZ2l0bGFiLXJ1bm5lci8tL2lzc3Vlcy8yOTEzMCNub3RlXzEwMjgzMzE1NjQ=">https://gitlab.com/gitlab-org/gitlab-runner/-/issues/29130#note_1028331564<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2RvY2tlci1saWJyYXJ5L2RvY2tlci9ibG9iLzBkMWMyMTAwZDEyZGEyZTdlNDU4Y2RmZjE4ZDc0MWY2MjVjZTI3ZDYvMjAuMTAvZGluZC9Eb2NrZXJmaWxl">https://github.com/docker-library/docker/blob/0d1c2100d12da2e7e458cdff18d741f625ce27d6/20.10/dind/Dockerfile<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>gitlab runner</tag>
       </tags>
   </entry>
   <entry>

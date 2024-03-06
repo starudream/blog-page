@@ -574,20 +574,6 @@
   </url>
   
   <url>
-    <loc>https://blog.starudream.cn/tags/nfs/</loc>
-    <lastmod>2024-03-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.starudream.cn/tags/server/</loc>
-    <lastmod>2024-03-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.starudream.cn/tags/github/</loc>
     <lastmod>2024-03-06</lastmod>
     <changefreq>weekly</changefreq>
@@ -596,6 +582,20 @@
   
   <url>
     <loc>https://blog.starudream.cn/tags/hexo/</loc>
+    <lastmod>2024-03-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.starudream.cn/tags/nfs/</loc>
+    <lastmod>2024-03-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.starudream.cn/tags/server/</loc>
     <lastmod>2024-03-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -686,14 +686,14 @@
   </url>
   
   <url>
-    <loc>https://blog.starudream.cn/tags/gitlab-runner/</loc>
+    <loc>https://blog.starudream.cn/tags/gitkraken/</loc>
     <lastmod>2024-03-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.starudream.cn/tags/gitkraken/</loc>
+    <loc>https://blog.starudream.cn/tags/gitlab-runner/</loc>
     <lastmod>2024-03-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
