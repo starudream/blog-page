@@ -90,7 +90,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">62</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">50</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">62</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">51</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -155,7 +155,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -201,6 +201,108 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2024/03/06/deploy-tailscale-derper-with-docker/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="starudream">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/03/06/deploy-tailscale-derper-with-docker/" class="post-title-link" itemprop="url">使用 Docker 部署私有 Derper</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-03-06 10:10:20" itemprop="dateCreated datePublished" datetime="2024-03-06T10:10:20+08:00">2024-03-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>自建 <code>Tailscale</code> 的 <code>Derper</code> 节点并开启认证，需要在 <code>Derper</code> 节点也安装 <code>Tailscale</code> 客户端。</p>
+<h2 id="Docker-Compose"><a href="#Docker-Compose" class="headerlink" title="Docker Compose"></a>Docker Compose</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&quot;3&quot;</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">tailscale:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">tailscale/tailscale</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">tailscale</span></span><br><span class="line">    <span class="attr">privileged:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;./tailscale/data:/var/lib/tailscale&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;./tailscale/tmp:/tmp&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;/dev/net/tun:/dev/net/tun&quot;</span></span><br><span class="line">    <span class="attr">cap_add:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">net_admin</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">sys_module</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">TS_AUTHKEY:</span> <span class="string">&quot;从 https://login.tailscale.com/admin/settings/keys 获取&quot;</span></span><br><span class="line">      <span class="attr">TS_STATE_DIR:</span> <span class="string">&quot;/var/lib/tailscale&quot;</span></span><br><span class="line">      <span class="attr">TS_USERSPACE:</span> <span class="string">&quot;false&quot;</span></span><br><span class="line">  <span class="attr">derper:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">starudream/derper</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">derper</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">command:</span> <span class="string">/tailscale/derper</span> <span class="string">-a</span> <span class="string">:80</span> <span class="string">-verify-clients</span></span><br><span class="line">    <span class="attr">depends_on:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">tailscale</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;3478:3478/udp&quot;</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;./tailscale/tmp:/var/run/tailscale&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>Derper</code> 的镜像请 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3N0YXJ1ZHJlYW0vZG9ja2VyLWltYWdl">于此<i class="fa fa-external-link-alt"></i></span> 查看。</p>
+<p>当前版本 <code>1.60.1</code> 中 <code>tailscaled.sock</code> 在 <code>var/run/tailscale/tailscaled.sock</code> 只是一个指向 <code>/tmp/tailscaled.sock</code> 的链接。</p>
+<h2 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h2><p>不使用 <code>Derper</code> 内置 <code>SSL</code> 证书，使用 <code>nginx</code> 反向代理，需要注意 <code>proxy_set_header Upgrade $http_upgrade;</code> 开启 <code>Websocket</code>。</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">  <span class="comment"># ...</span></span><br><span class="line">  <span class="section">location</span> / &#123;</span><br><span class="line">    <span class="attribute">proxy_pass</span> http://derper:80;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> Host <span class="variable">$host</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Real-PORT <span class="variable">$remote_port</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Forwarded-Proto <span class="variable">$scheme</span>;</span><br><span class="line">    <span class="comment"># websocket</span></span><br><span class="line">    <span class="attribute">proxy_http_version</span> <span class="number">1</span>.<span class="number">1</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> Upgrade <span class="variable">$http_upgrade</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> Connection <span class="variable">$connection_upgrade</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Access-Controls"><a href="#Access-Controls" class="headerlink" title="Access Controls"></a>Access Controls</h2><p>最后在 <span class="exturl" data-url="aHR0cHM6Ly9sb2dpbi50YWlsc2NhbGUuY29tL2FkbWluL2FjbHMvZmlsZQ==">https://login.tailscale.com/admin/acls/file<i class="fa fa-external-link-alt"></i></span> 修改配置文件，添加 <span class="exturl" data-url="aHR0cHM6Ly9wa2cuZ28uZGV2L3RhaWxzY2FsZS5jb20vdGFpbGNmZyNERVJQTWFw">DERPMap<i class="fa fa-external-link-alt"></i></span> 配置。</p>
+<p><code>OmitDefaultRegions</code> 会忽略官方的 <code>Derper</code> 节点，自建建议开启以保护隐私。</p>
+<p>下面的配置文件示例，分成内网与公网两个配置，<code>Tailscale</code> 客户端会通过延迟自动选择使用内网还是公网。</p>
+<p><code>Nodes</code> 内详细配置请看 <span class="exturl" data-url="aHR0cHM6Ly9wa2cuZ28uZGV2L3RhaWxzY2FsZS5jb20vdGFpbGNmZyNERVJQTm9kZQ==">DERPNode<i class="fa fa-external-link-alt"></i></span>。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  // ... acls ssh</span><br><span class="line">	&quot;derpMap&quot;: &#123;</span><br><span class="line">		&quot;OmitDefaultRegions&quot;: true,</span><br><span class="line">		&quot;Regions&quot;: &#123;</span><br><span class="line">			&quot;900&quot;: &#123;</span><br><span class="line">				&quot;RegionID&quot;:   900,</span><br><span class="line">				&quot;RegionCode&quot;: &quot;private&quot;,</span><br><span class="line">				&quot;Nodes&quot;: [</span><br><span class="line">					&#123;</span><br><span class="line">						&quot;Name&quot;:     &quot;private-aliyun&quot;,</span><br><span class="line">						&quot;RegionID&quot;: 900,</span><br><span class="line">						&quot;HostName&quot;: &quot;derper.52xckl.cn&quot;,</span><br><span class="line">						&quot;IPV4&quot;:     &quot;内网ip 172.17.0.1&quot;,</span><br><span class="line">						&quot;STUNPort&quot;: 3478,</span><br><span class="line">						&quot;DERPPort&quot;: 443</span><br><span class="line">					&#125;</span><br><span class="line">				]</span><br><span class="line">			&#125;,</span><br><span class="line">			&quot;901&quot;: &#123;</span><br><span class="line">				&quot;RegionID&quot;:   901,</span><br><span class="line">				&quot;RegionCode&quot;: &quot;public&quot;,</span><br><span class="line">				&quot;Nodes&quot;: [</span><br><span class="line">					&#123;</span><br><span class="line">						&quot;Name&quot;:     &quot;public-aliyun&quot;,</span><br><span class="line">						&quot;RegionID&quot;: 901,</span><br><span class="line">						&quot;HostName&quot;: &quot;derper.52xckl.cn&quot;,</span><br><span class="line">						&quot;IPV4&quot;:     &quot;公网ip&quot;,</span><br><span class="line">						&quot;STUNPort&quot;: 3478,</span><br><span class="line">						&quot;DERPPort&quot;: 443</span><br><span class="line">					&#125;</span><br><span class="line">				]</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it tailscale tailscale netcheck</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Report:</span><br><span class="line">	* UDP: true</span><br><span class="line">	* IPv4: yes, 172.19.0.1:34143</span><br><span class="line">	* IPv6: no, unavailable in OS</span><br><span class="line">	* MappingVariesByDestIP: true</span><br><span class="line">	* HairPinning: false</span><br><span class="line">	* PortMapping:</span><br><span class="line">	* Nearest DERP:</span><br><span class="line">	* DERP latency:</span><br><span class="line">		- private: 200µs   ()</span><br><span class="line">		- public: 3.1ms   ()</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it tailscale tailscale ping &lt;node name&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pong from &lt;node name&gt; (&lt;node ip&gt;) via DERP(public) in 11ms</span><br><span class="line">pong from &lt;node name&gt; (&lt;node ip&gt;) via DERP(public) in 11ms</span><br><span class="line">pong from &lt;node name&gt; (&lt;node ip&gt;) via DERP(public) in 11ms</span><br></pre></td></tr></table></figure>
+
+<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly90YWlsc2NhbGUuY29tL2tiLzExMTgvY3VzdG9tLWRlcnAtc2VydmVycw==">https://tailscale.com/kb/1118/custom-derp-servers<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -536,86 +638,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2024/02/19/pid-for-k8s-pod/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="starudream">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰狂澜's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 星辰狂澜's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/02/19/pid-for-k8s-pod/" class="post-title-link" itemprop="url">通过 pid 查看 k8s pod name</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-02-19 16:35:55" itemprop="dateCreated datePublished" datetime="2024-02-19T16:35:55+08:00">2024-02-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nsenter -t $PID -u hostname</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
