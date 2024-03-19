@@ -131,6 +131,57 @@
       </tags>
   </entry>
   <entry>
+    <title>使用 telepresence 调试 k8s 线上环境</title>
+    <url>/2024/03/19/debug-with-telepresence/</url>
+    <content><![CDATA[<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>安装请看 <span class="exturl" data-url="aHR0cHM6Ly93d3cuZ2V0YW1iYXNzYWRvci5pby9kb2NzL3RlbGVwcmVzZW5jZS9sYXRlc3QvaW5zdGFsbA==">官方文档<i class="fa fa-external-link-alt"></i></span></p>
+<p>需要注意的是文档内所用的版本是 <code>Pro版</code>，与 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RlbGVwcmVzZW5jZWlvL3RlbGVwcmVzZW5jZQ==">Github<i class="fa fa-external-link-alt"></i></span> <code>Release</code> 中下载的 <code>开源版</code> 非同一版本。</p>
+<p>以下使用的版本为 <code>v2.19.0</code> <code>Pro版</code>。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>在本机配置 <code>Kubectl</code> <code>Context</code> 并使用 <code>kubectl config use-context dev</code> 切换到指定集群，或者直接在线上服务器执行以下命令安装 <code>Traffic Manager</code>；</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">telepresence helm install</span><br></pre></td></tr></table></figure>
+
+<p>安装参数请参考 <span class="exturl" data-url="aHR0cHM6Ly9hcnRpZmFjdGh1Yi5pby9wYWNrYWdlcy9oZWxtL2RhdGF3aXJlL3RlbGVwcmVzZW5jZQ==">ArtifactHub<i class="fa fa-external-link-alt"></i></span></p>
+<p>安装完成后 <code>kubectl get pod -n ambassador</code> 查看状态：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">NAME                                                READY   STATUS    RESTARTS   AGE</span><br><span class="line">traffic-manager-ambassador-agent-56654cffd7-8qqdh   1/1     Running   0          46s</span><br><span class="line">traffic-manager-5b77fb5-62lr4                       1/1     Running   0          46s</span><br></pre></td></tr></table></figure>
+
+<h2 id="连接集群"><a href="#连接集群" class="headerlink" title="连接集群"></a>连接集群</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">telepresence connect --namespace biz # 指定 namespace</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">Launching Telepresence User Daemon</span><br><span class="line">Launching Telepresence Root Daemon</span><br><span class="line">...</span><br><span class="line">Connected to context dev, namespace biz (https://10.x.x.x:6443)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">telepresence list</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">bill              : ready to intercept (traffic-agent not yet installed)</span><br></pre></td></tr></table></figure>
+
+<h2 id="拦截转发流量"><a href="#拦截转发流量" class="headerlink" title="拦截转发流量"></a>拦截转发流量</h2><p>查看指定服务的 <code>yaml</code> 配置：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">kubectl get svc -n biz bill -o yaml</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Service</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">bill</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">biz</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">clusterIP:</span> <span class="number">10.43</span><span class="number">.57</span><span class="number">.126</span></span><br><span class="line">  <span class="attr">clusterIPs:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="number">10.43</span><span class="number">.57</span><span class="number">.126</span></span><br><span class="line">  <span class="attr">internalTrafficPolicy:</span> <span class="string">Cluster</span></span><br><span class="line">  <span class="attr">ipFamilies:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">IPv4</span></span><br><span class="line">  <span class="attr">ipFamilyPolicy:</span> <span class="string">SingleStack</span></span><br><span class="line">  <span class="attr">ports:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">http</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">80</span></span><br><span class="line">    <span class="attr">protocol:</span> <span class="string">TCP</span></span><br><span class="line">    <span class="attr">targetPort:</span> <span class="number">10000</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">grpc</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">81</span></span><br><span class="line">    <span class="attr">protocol:</span> <span class="string">TCP</span></span><br><span class="line">    <span class="attr">targetPort:</span> <span class="number">10000</span></span><br><span class="line">  <span class="attr">selector:</span></span><br><span class="line">    <span class="attr">app:</span> <span class="string">bill</span></span><br><span class="line">  <span class="attr">sessionAffinity:</span> <span class="string">None</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">ClusterIP</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看到 <code>bill</code> 服务中监听了 <code>10000</code> 端口，所以拦截时指定 <code>10000:10000</code>（<code>&lt;local port&gt;:&lt;remote port&gt;</code>）：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">telepresence intercept bill -p 10000:10000</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">Using Deployment bill</span><br><span class="line">   Intercept name         : bill</span><br><span class="line">   State                  : ACTIVE</span><br><span class="line">   Workload kind          : Deployment</span><br><span class="line">   Destination            : 127.0.0.1:10000</span><br><span class="line">   Service Port Identifier: port</span><br><span class="line">   Volume Mount Error     : sshfs is not installed on your local machine</span><br><span class="line">   Intercepting           : all TCP requests</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">kubectl describe pod -n biz bill-779b9c6bf7-mdmv6</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">Init Containers:</span><br><span class="line">  tel-agent-init:</span><br><span class="line">    Container ID:  containerd://a8c5d0eff4714d77b8299ebe698dfe7907f521524f8ca267e9a1c24958e3ed9d</span><br><span class="line">    Image:         docker.io/datawire/ambassador-telepresence-agent:1.14.5</span><br><span class="line">    Image ID:      docker.io/datawire/ambassador-telepresence-agent@sha256:3f6f3076b1eca26c460ef166993c3d9e7527fcc2a3d74709e01869a39cfebd91</span><br><span class="line">    Port:          &lt;none&gt;</span><br><span class="line">    Host Port:     &lt;none&gt;</span><br><span class="line">    Args:</span><br><span class="line">      agent-init</span><br><span class="line">    State:          Terminated</span><br><span class="line">      Reason:       Completed</span><br><span class="line">      Exit Code:    0</span><br><span class="line">      Started:      Tue, 19 Mar 2024 10:02:21 +0800</span><br><span class="line">      Finished:     Tue, 19 Mar 2024 10:02:21 +0800</span><br><span class="line">    Ready:          True</span><br><span class="line"></span><br><span class="line">Containers:</span><br><span class="line">  bill:</span><br><span class="line">    Container ID:   containerd://e43df533e5f3834fcb9d7f5b62bef63b6a01375a3d94cee3f2a5ef8c83592966</span><br><span class="line">    Image:          ...</span><br><span class="line">    Image ID:       ...</span><br><span class="line">    Port:           10000/TCP</span><br><span class="line">    Host Port:      0/TCP</span><br><span class="line">    State:          Running</span><br><span class="line">    Ready:          True</span><br><span class="line"></span><br><span class="line">  traffic-agent:</span><br><span class="line">    Container ID:  containerd://356cdc8b7f423871907778085f43804a5e6c19c98884b0342e88b073d4926c8a</span><br><span class="line">    Image:         docker.io/datawire/ambassador-telepresence-agent:1.14.5</span><br><span class="line">    Image ID:      docker.io/datawire/ambassador-telepresence-agent@sha256:3f6f3076b1eca26c460ef166993c3d9e7527fcc2a3d74709e01869a39cfebd91</span><br><span class="line">    Port:          9900/TCP</span><br><span class="line">    Host Port:     0/TCP</span><br><span class="line">    Args:</span><br><span class="line">      agent</span><br><span class="line">    State:          Running</span><br><span class="line">      Started:      Tue, 19 Mar 2024 10:02:22 +0800</span><br><span class="line">    Ready:          True</span><br></pre></td></tr></table></figure>
+
+<p>然后访问远程集群地址 <code>https://10.x.x.x:8888/bill/_health</code> 可以看到流量已经转发到本地的 <code>10000</code> 端口。</p>
+<h2 id="恢复"><a href="#恢复" class="headerlink" title="恢复"></a>恢复</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">telepresence leave bill # stop `bill` intercept</span><br><span class="line"></span><br><span class="line">telepresence quit -s # stop all local telepresence daemons</span><br></pre></td></tr></table></figure>
+
+<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuZ2V0YW1iYXNzYWRvci5pby9kb2NzL3RlbGVwcmVzZW5jZQ==">https://www.getambassador.io/docs/telepresence<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>kubernetes</tag>
+        <tag>telepresence</tag>
+        <tag>intercept</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>部署 Docker Registry</title>
     <url>/2023/07/21/deploy-docker-regsitry/</url>
     <content><![CDATA[<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">  --name registry \</span><br><span class="line">  --restart always \</span><br><span class="line">  -p 5000:5000 \</span><br><span class="line">  -v &quot;$&#123;STORAGE_DATA_DIR&#125;/registry&quot;:/var/lib/registry \</span><br><span class="line">  registry:2.8.2</span><br><span class="line"></span><br><span class="line">docker run -d \</span><br><span class="line">  --name registry-ui \</span><br><span class="line">  --restart always \</span><br><span class="line">  -p 5001:80 \</span><br><span class="line">  -e SINGLE_REGISTRY=true \</span><br><span class="line">  -e SHOW_CONTENT_DIGEST=true \</span><br><span class="line">  -e NGINX_PROXY_PASS_URL=&quot;http://$&#123;REGISTER_IP_ADDR&#125;:5000&quot; \</span><br><span class="line">  joxit/docker-registry-ui:2.5.0</span><br></pre></td></tr></table></figure>
@@ -730,8 +781,8 @@
         <category>技术</category>
       </categories>
       <tags>
-        <tag>centos</tag>
         <tag>kubernetes</tag>
+        <tag>centos</tag>
       </tags>
   </entry>
   <entry>
