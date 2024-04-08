@@ -5,8 +5,8 @@
 ## Deploy
 
 ![Zone](https://img.shields.io/badge/Zone-UTC%2B8-lightgrey?style=for-the-badge)
-![Date](https://img.shields.io/badge/Date-2024.04.01-blue?style=for-the-badge)
-![Time](https://img.shields.io/badge/Time-08.56.23-blue?style=for-the-badge)
+![Date](https://img.shields.io/badge/Date-2024.04.08-blue?style=for-the-badge)
+![Time](https://img.shields.io/badge/Time-08.52.39-blue?style=for-the-badge)
 
 ## License
 
