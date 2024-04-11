@@ -832,7 +832,7 @@
   </entry>
   <entry>
     <title>简单介绍</title>
-    <url>/2019/11/19/introduction/</url>
+    <url>/2019/11/20/introduction/</url>
     <content><![CDATA[<p>博客使用 <code>Hexo</code>，搭建在 <code>Github Pages</code>，源代码部署在 <code>GitLab</code> 上，使用相关 <code>CI</code> 自动化部署。</p>
 <h2 id="自动化部署"><a href="#自动化部署" class="headerlink" title="自动化部署"></a>自动化部署</h2><h3 id="config-yml"><a href="#config-yml" class="headerlink" title="_config.yml"></a><code>_config.yml</code></h3><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://$&#123;username&#125;:$&#123;token|password&#125;@github.com/starudream/blog.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br><span class="line">  <span class="attr">message:</span> <span class="string">update</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">$&#123;name&#125;</span></span><br><span class="line">  <span class="attr">email:</span> <span class="string">$&#123;email&#125;</span></span><br></pre></td></tr></table></figure>
 
