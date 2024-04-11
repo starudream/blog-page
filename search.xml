@@ -427,6 +427,25 @@
       </tags>
   </entry>
   <entry>
+    <title>win11 重装系统后找不到 explore.exe</title>
+    <url>/2024/04/11/explore-exe-not-found-after-reinstall-win11/</url>
+    <content><![CDATA[<p>首先 <code>Win+R</code> 打开 <code>运行</code></p>
+<p>然后 <code>regedit</code> 打开注册表，按 <code>计算机\HKEY_CLASSES_ROOT\CLSID\&#123;52205fd8-5dfb-447d-801a-d0b52f2e83e1&#125;\shell\OpenNewWindow\command</code> 目录找到 <code>command</code></p>
+<p>右击依次选择 <code>权限</code> -&gt; <code>高级</code> -&gt; <code>更改所有者</code> -&gt; <code>授予权限</code></p>
+<img data-src="/images/53-1.png" alt="预览" style="max-height:600px;"/>
+
+<p>然后删除 <code>command</code> 目录下的 <code>DelegateExecute</code> 项</p>
+<p>将 <code>(默认)</code> 设置为 <code>explorer.exe ::&#123;20D04FE0-3AEA-1069-A2D8-08002B30309D&#125;</code></p>
+<p>之后重启电脑即可，<code>Win+E</code> 也能使用了。</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>windows</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>配置 git@github.com 使用代理</title>
     <url>/2023/07/21/git-protocol-use-proxy/</url>
     <content><![CDATA[<p>修改 <code>~/.ssh/config</code> 文件，添加以下内容</p>
