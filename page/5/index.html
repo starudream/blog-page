@@ -92,7 +92,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">63</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">54</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">65</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">55</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -157,7 +157,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">55</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -168,7 +168,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">63</span>
+        <span class="site-state-item-count">65</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -203,6 +203,94 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2023/07/21/deploy-nfs-server/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="starudream">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/07/21/deploy-nfs-server/" class="post-title-link" itemprop="url">部署 NFS 服务</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-07-21 15:47:35" itemprop="dateCreated datePublished" datetime="2023-07-21T15:47:35+08:00">2023-07-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install nfs-utils</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><ul>
+<li><code>/etc/exports</code></li>
+</ul>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/data/nfs/iso *(rw,sync,no_subtree_check,no_root_squash)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>man: <span class="exturl" data-url="aHR0cHM6Ly9saW51eC5kaWUubmV0L21hbi81L2V4cG9ydHM=">https://linux.die.net/man/5/exports<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl start nfs-server.service</span><br><span class="line">systemctl enable nfs-server.service</span><br><span class="line">systemctl status nfs-server.service</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -503,84 +591,6 @@
           <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">trim_prefix</span><span class="params">(s, p)</span></span></span><br><span class="line">    <span class="keyword">return</span> (s:<span class="built_in">sub</span>(<span class="number">0</span>, #p) == p) <span class="keyword">and</span> s:<span class="built_in">sub</span>(#p + <span class="number">1</span>) <span class="keyword">or</span> s</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">envoy_on_request</span><span class="params">(request_handle)</span></span></span><br><span class="line">    <span class="keyword">local</span> idx = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> chunk <span class="keyword">in</span> request_handle:bodyChunks() <span class="keyword">do</span></span><br><span class="line">        <span class="keyword">local</span> <span class="built_in">len</span> = chunk:length()</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span> == <span class="number">0</span> <span class="keyword">then</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">local</span> body = chunk:getBytes(idx, <span class="built_in">len</span>)</span><br><span class="line">        idx = idx + <span class="built_in">len</span></span><br><span class="line">        <span class="keyword">local</span> hds = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> key, value <span class="keyword">in</span> <span class="built_in">pairs</span>(request_handle:headers()) <span class="keyword">do</span></span><br><span class="line">            hds[<span class="string">&quot;y-&quot;</span> .. trim_prefix(key, <span class="string">&quot;:&quot;</span>)] = value</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        hds[<span class="string">&quot;:method&quot;</span>] = <span class="string">&quot;POST&quot;</span></span><br><span class="line">        hds[<span class="string">&quot;:path&quot;</span>] = <span class="string">&quot;/log&quot;</span></span><br><span class="line">        hds[<span class="string">&quot;:authority&quot;</span>] = <span class="string">&quot;envoy&quot;</span></span><br><span class="line">        request_handle:httpCall(<span class="string">&quot;http-log-service&quot;</span>, hds, body, <span class="number">10000</span>, <span class="literal">true</span>)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">envoy_on_response</span><span class="params">(response_handle)</span></span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">static_resources:</span></span><br><span class="line">  <span class="attr">clusters:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">http-log-service</span></span><br><span class="line">      <span class="attr">type:</span> <span class="string">STRICT_DNS</span></span><br><span class="line">      <span class="attr">connect_timeout:</span> <span class="string">10s</span></span><br><span class="line">      <span class="attr">load_assignment:</span></span><br><span class="line">        <span class="attr">cluster_name:</span> <span class="string">http-log-service</span></span><br><span class="line">        <span class="attr">endpoints:</span></span><br><span class="line">          <span class="bullet">-</span> <span class="attr">lb_endpoints:</span></span><br><span class="line">              <span class="bullet">-</span> <span class="attr">endpoint:</span></span><br><span class="line">                  <span class="attr">address:</span></span><br><span class="line">                    <span class="attr">socket_address:</span></span><br><span class="line">                      <span class="attr">address:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line">                      <span class="attr">port_value:</span> <span class="number">9709</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2023/03/22/envoy-config-to-yaml/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="starudream">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰狂澜's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 星辰狂澜's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/03/22/envoy-config-to-yaml/" class="post-title-link" itemprop="url">Envoy 配置导出 YAML 文件</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-03-22 11:58:12" itemprop="dateCreated datePublished" datetime="2023-03-22T11:58:12+08:00">2023-03-22</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;bytes&quot;</span></span><br><span class="line">	<span class="string">&quot;encoding/json&quot;</span></span><br><span class="line">	<span class="string">&quot;os&quot;</span></span><br><span class="line">	<span class="string">&quot;testing&quot;</span></span><br><span class="line"></span><br><span class="line">	<span class="string">&quot;gopkg.in/yaml.v3&quot;</span></span><br><span class="line"></span><br><span class="line">	<span class="string">&quot;google.golang.org/protobuf/encoding/protojson&quot;</span></span><br><span class="line"></span><br><span class="line">	bootstrap <span class="string">&quot;github.com/envoyproxy/go-control-plane/envoy/config/bootstrap/v3&quot;</span></span><br><span class="line">	cluster <span class="string">&quot;github.com/envoyproxy/go-control-plane/envoy/config/cluster/v3&quot;</span></span><br><span class="line">	core <span class="string">&quot;github.com/envoyproxy/go-control-plane/envoy/config/core/v3&quot;</span></span><br><span class="line">	listener <span class="string">&quot;github.com/envoyproxy/go-control-plane/envoy/config/listener/v3&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TestGenBootstrapYAML</span><span class="params">(t *testing.T)</span></span> &#123;</span><br><span class="line">	cfg, err := initConfig(<span class="string">&quot;config.yaml&quot;</span>)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		t.Fatal(err)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	b := &amp;bootstrap.Bootstrap&#123;</span><br><span class="line">		Admin: &amp;bootstrap.Admin&#123;</span><br><span class="line">			AccessLog: <span class="literal">nil</span>,</span><br><span class="line">			Address: &amp;core.Address&#123;</span><br><span class="line">				Address: &amp;core.Address_SocketAddress&#123;</span><br><span class="line">					SocketAddress: &amp;core.SocketAddress&#123;</span><br><span class="line">						Address: <span class="string">&quot;0.0.0.0&quot;</span>,</span><br><span class="line">						PortSpecifier: &amp;core.SocketAddress_PortValue&#123;</span><br><span class="line">							PortValue: <span class="number">9901</span>,</span><br><span class="line">						&#125;,</span><br><span class="line">					&#125;,</span><br><span class="line">				&#125;,</span><br><span class="line">			&#125;,</span><br><span class="line">		&#125;,</span><br><span class="line">		StaticResources: &amp;bootstrap.Bootstrap_StaticResources&#123;</span><br><span class="line">			Listeners: <span class="built_in">make</span>([]*listener.Listener, <span class="number">2</span>),</span><br><span class="line">			Clusters:  <span class="built_in">make</span>([]*cluster.Cluster, <span class="built_in">len</span>(cfg.Clusters)),</span><br><span class="line">		&#125;,</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	virtualHosts := genVirtualHosts(cfg)</span><br><span class="line"></span><br><span class="line">	b.StaticResources.Listeners[<span class="number">0</span>] = makeListener(ListenerHTTPPort, <span class="literal">false</span>, virtualHosts)</span><br><span class="line">	b.StaticResources.Listeners[<span class="number">1</span>] = makeListener(ListenerHTTPSPort, <span class="literal">true</span>, virtualHosts)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(cfg.Clusters); i++ &#123;</span><br><span class="line">		b.StaticResources.Clusters[i] = makeCluster(cfg.Clusters[i])</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	mo := protojson.MarshalOptions&#123;UseProtoNames: <span class="literal">true</span>&#125;</span><br><span class="line"></span><br><span class="line">	bs, err := mo.Marshal(b)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		t.Fatal(err)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> v any</span><br><span class="line"></span><br><span class="line">	err = json.Unmarshal(bs, &amp;v)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		t.Fatal(err)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	bb := &amp;bytes.Buffer&#123;&#125;</span><br><span class="line">	ye := yaml.NewEncoder(bb)</span><br><span class="line">	ye.SetIndent(<span class="number">2</span>)</span><br><span class="line">	<span class="keyword">defer</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123; _ = ye.Close() &#125;()</span><br><span class="line"></span><br><span class="line">	err = ye.Encode(v)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		t.Fatal(err)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	err = os.WriteFile(<span class="string">&quot;envoy-bootstrap.yaml&quot;</span>, bb.Bytes(), <span class="number">0644</span>)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		t.Fatal(err)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>

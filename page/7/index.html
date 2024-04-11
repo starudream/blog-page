@@ -92,7 +92,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">63</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">54</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">65</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">55</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -157,7 +157,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">55</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -168,7 +168,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">63</span>
+        <span class="site-state-item-count">65</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -203,6 +203,95 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2022/05/18/harbor-behind-nginx-reverse-proxy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="starudream">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/05/18/harbor-behind-nginx-reverse-proxy/" class="post-title-link" itemprop="url">在 HTTPS 的反向代理 Nginx 后运行 HTTP Harbor</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-18 18:39:51" itemprop="dateCreated datePublished" datetime="2022-05-18T18:39:51+08:00">2022-05-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>以下基于 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvaGFyYm9yL2hhcmJvci9yZWxlYXNlcy90YWcvdjIuNS4w">Harbor v2.5.0<i class="fa fa-external-link-alt"></i></span>。</p>
+<p>最终看起来像这样 <code>nginx (host,ssl)</code> -&gt; <code>harbor-nginx (non-ssl)</code> -&gt; <code>harbor</code>。</p>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>首先服务上安装有 <code>nginx</code>，且配置了 <code>SSL</code>，现在可能在本机或者内网的其他机器上安装有 <code>Harbor</code>，需要反向代理到本机映射出去。</p>
+<h3 id="harbor-yml"><a href="#harbor-yml" class="headerlink" title="harbor.yml"></a><code>harbor.yml</code></h3><p>首先需要注释掉 <code>https</code> 相关的配置，并添加 <code>external_url</code> 的配置项。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Configuration file of Harbor</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># The IP address or hostname to access admin UI and registry service.</span></span><br><span class="line"><span class="comment"># DO NOT use localhost or 127.0.0.1, because Harbor needs to be accessed by external clients.</span></span><br><span class="line"><span class="attr">hostname:</span> <span class="string">hub.example.cn</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># http related config</span></span><br><span class="line"><span class="attr">http:</span></span><br><span class="line">  <span class="comment"># port for http, default is 80. If https enabled, this port will redirect to https port</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">5080</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># https related config</span></span><br><span class="line"><span class="comment"># https:</span></span><br><span class="line">  <span class="comment"># https port for harbor, default is 443</span></span><br><span class="line">  <span class="comment"># port: 443</span></span><br><span class="line">  <span class="comment"># The path of cert and key files for nginx</span></span><br><span class="line">  <span class="comment"># certificate: /your/certificate/path</span></span><br><span class="line">  <span class="comment"># private_key: /your/private/key/path</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># # Uncomment following will enable tls communication between all harbor components</span></span><br><span class="line"><span class="comment"># internal_tls:</span></span><br><span class="line"><span class="comment">#   # set enabled to true means internal tls is enabled</span></span><br><span class="line"><span class="comment">#   enabled: true</span></span><br><span class="line"><span class="comment">#   # put your cert and key files on dir</span></span><br><span class="line"><span class="comment">#   dir: /etc/harbor/tls/internal</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Uncomment external_url if you want to enable external proxy</span></span><br><span class="line"><span class="comment"># And when it enabled the hostname will no longer used</span></span><br><span class="line"><span class="attr">external_url:</span> <span class="string">https://hub.example.cn</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="harbor-conf"><a href="#harbor-conf" class="headerlink" title="harbor.conf"></a><code>harbor.conf</code></h3><p>在 <code>nginx</code> 的 <code>vhost</code> 中新增相关配置，必须要配置 <code>X-Forwarded-Proto $scheme</code>，<code>client_max_body_size</code> 按需配置。</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span>       <span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server_name</span>  hub.example.cn;</span><br><span class="line">    <span class="section">location</span> / &#123;</span><br><span class="line">        <span class="attribute">return</span> <span class="number">301</span> https://<span class="variable">$host</span><span class="variable">$request_uri</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span>       <span class="number">443</span> ssl http2;</span><br><span class="line">    <span class="attribute">server_name</span>  hub.example.cn;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">ssl_certificate</span>      /usr/local/openresty/nginx/conf/ssl/hub.example.cn.crt;</span><br><span class="line">    <span class="attribute">ssl_certificate_key</span>  /usr/local/openresty/nginx/conf/ssl/hub.example.cn.key;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">client_max_body_size</span> <span class="number">500m</span>;</span><br><span class="line"></span><br><span class="line">    <span class="section">location</span> / &#123;</span><br><span class="line">        <span class="attribute">proxy_pass</span> http://10.0.4.10:5080;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> Host <span class="variable">$host</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> X-Real-PORT <span class="variable">$remote_port</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> X-Forwarded-Proto <span class="variable">$scheme</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><h3 id="docker-login-出现-unauthorized-authentication-required"><a href="#docker-login-出现-unauthorized-authentication-required" class="headerlink" title="docker login 出现 unauthorized: authentication required"></a><code>docker login</code> 出现 <code>unauthorized: authentication required</code></h3><p><code>harbor</code> 内没有配置 <code>external_url</code>。</p>
+<h3 id="访问-hub-example-cn-会重定向到某个端口"><a href="#访问-hub-example-cn-会重定向到某个端口" class="headerlink" title="访问 hub.example.cn 会重定向到某个端口"></a>访问 <code>hub.example.cn</code> 会重定向到某个端口</h3><p><code>harbor</code> 内需要取消 <code>https</code> 的配置。</p>
+<h3 id="docker-push-出现-400-The-plain-HTTP-request-was-sent-to-HTTPS-port"><a href="#docker-push-出现-400-The-plain-HTTP-request-was-sent-to-HTTPS-port" class="headerlink" title="docker push 出现 400 The plain HTTP request was sent to HTTPS port"></a><code>docker push</code> 出现 <code>400 The plain HTTP request was sent to HTTPS port</code></h3><p>反向代理 <code>nginx</code> 中没有配置 <code>X-Forwarded-Proto $scheme</code>。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -580,101 +669,6 @@
     <div class="post-body" itemprop="articleBody">
           <h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>重新安装 <code>Xcode Tools</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">rm</span> -rf $(xcode-select -p)</span><br><span class="line">sudo xcode-select --install</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2020/07/24/backup-and-restore-ubuntu-image/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="starudream">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰狂澜's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 星辰狂澜's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/07/24/backup-and-restore-ubuntu-image/" class="post-title-link" itemprop="url">备份还原 ubuntu 镜像</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-07-24 14:19:20" itemprop="dateCreated datePublished" datetime="2020-07-24T14:19:20+08:00">2020-07-24</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h2><p>通过以下命令查看磁盘</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">diskutil list</span><br></pre></td></tr></table></figure>
-
-<p>运行下面的命令进行打包，将 <code>N</code> 替换为上面查到的号码，等待完成即可。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">dd</span> bs=1m <span class="keyword">if</span>=/dev/rdiskN of=ubuntu.img</span><br></pre></td></tr></table></figure>
-
-<h3 id="压缩"><a href="#压缩" class="headerlink" title="压缩"></a>压缩</h3><p>一般来说，上面打包的生成的 <code>.img</code> 大小为 <code>TF</code> 卡容量，若写入小容量卡会发生错误，所以要清除无用的空间。</p>
-<p>如果是 <code>linux</code> 系统，可以跳过这一步，直接执行下方的命令，<code>windows</code> 以及 <code>mac</code> 可使用 <code>docker</code> 来执行。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it --<span class="built_in">rm</span> --privileged -v $(<span class="built_in">pwd</span>):/shrink ubuntu:20.04</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">apt update</span><br><span class="line">apt install parted</span><br><span class="line"><span class="built_in">cd</span> /shrink</span><br><span class="line">./pishrink.sh in.img out.img</span><br></pre></td></tr></table></figure>
-
-<p>等待完成后，发现 <code>.img</code> 有明显的缩小。</p>
-<h2 id="恢复"><a href="#恢复" class="headerlink" title="恢复"></a>恢复</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">dd</span> bs=1m <span class="keyword">if</span>=ubuntu.img of=/dev/rdiskN</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0RyZXdzaWYvUGlTaHJpbms=">Drewsif&#x2F;PiShrink<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
 
       
     </div>
