@@ -1339,4 +1339,24 @@
         <tag>winsw</tag>
       </tags>
   </entry>
+  <entry>
+    <title>win11 使用旧版右键菜单</title>
+    <url>/2024/04/11/win11-use-old-right-click-menu/</url>
+    <content><![CDATA[<ul>
+<li>使用旧版</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">reg add &quot;HKCU\Software\Classes\CLSID\&#123;86ca1aa0-34aa-4e8b-a509-50c905bae2a2&#125;\InprocServer32&quot; /f /ve</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>恢复新版</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">reg delete &quot;HKCU\Software\Classes\CLSID\&#123;86ca1aa0-34aa-4e8b-a509-50c905bae2a2&#125;&quot; /f</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>windows</tag>
+      </tags>
+  </entry>
 </search>
