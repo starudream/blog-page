@@ -148,6 +148,19 @@
       </tags>
   </entry>
   <entry>
+    <title>部署 Docker Registry</title>
+    <url>/2023/07/21/deploy-docker-regsitry/</url>
+    <content><![CDATA[<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">  --name registry \</span><br><span class="line">  --restart always \</span><br><span class="line">  -p 5000:5000 \</span><br><span class="line">  -v &quot;$&#123;STORAGE_DATA_DIR&#125;/registry&quot;:/var/lib/registry \</span><br><span class="line">  registry:2.8.2</span><br><span class="line"></span><br><span class="line">docker run -d \</span><br><span class="line">  --name registry-ui \</span><br><span class="line">  --restart always \</span><br><span class="line">  -p 5001:80 \</span><br><span class="line">  -e SINGLE_REGISTRY=true \</span><br><span class="line">  -e SHOW_CONTENT_DIGEST=true \</span><br><span class="line">  -e NGINX_PROXY_PASS_URL=&quot;http://$&#123;REGISTER_IP_ADDR&#125;:5000&quot; \</span><br><span class="line">  joxit/docker-registry-ui:2.5.0</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>registry</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>使用 telepresence 调试 k8s 线上环境</title>
     <url>/2024/03/19/debug-with-telepresence/</url>
     <content><![CDATA[<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>安装请看 <span class="exturl" data-url="aHR0cHM6Ly93d3cuZ2V0YW1iYXNzYWRvci5pby9kb2NzL3RlbGVwcmVzZW5jZS9sYXRlc3QvaW5zdGFsbA==">官方文档<i class="fa fa-external-link-alt"></i></span></p>
@@ -196,19 +209,6 @@
         <tag>kubernetes</tag>
         <tag>telepresence</tag>
         <tag>intercept</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>部署 Docker Registry</title>
-    <url>/2023/07/21/deploy-docker-regsitry/</url>
-    <content><![CDATA[<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">  --name registry \</span><br><span class="line">  --restart always \</span><br><span class="line">  -p 5000:5000 \</span><br><span class="line">  -v &quot;$&#123;STORAGE_DATA_DIR&#125;/registry&quot;:/var/lib/registry \</span><br><span class="line">  registry:2.8.2</span><br><span class="line"></span><br><span class="line">docker run -d \</span><br><span class="line">  --name registry-ui \</span><br><span class="line">  --restart always \</span><br><span class="line">  -p 5001:80 \</span><br><span class="line">  -e SINGLE_REGISTRY=true \</span><br><span class="line">  -e SHOW_CONTENT_DIGEST=true \</span><br><span class="line">  -e NGINX_PROXY_PASS_URL=&quot;http://$&#123;REGISTER_IP_ADDR&#125;:5000&quot; \</span><br><span class="line">  joxit/docker-registry-ui:2.5.0</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-        <tag>registry</tag>
       </tags>
   </entry>
   <entry>
@@ -310,6 +310,22 @@
       </tags>
   </entry>
   <entry>
+    <title>使用 Docker 部署 TeamSpeak 3</title>
+    <url>/2020/04/14/deploy-teamspeak/</url>
+    <content><![CDATA[<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name teamspeak \</span><br><span class="line">    --restart always \</span><br><span class="line">    -p 9987:9987/udp \</span><br><span class="line">    -v /opt/docker/teamspeak:/var/ts3server \</span><br><span class="line">    -e TS3SERVER_LICENSE=accept \</span><br><span class="line">    -e TS3SERVER_SERVERADMIN_PASSWORD=PLACEHOLD \</span><br><span class="line">    teamspeak:latest</span><br></pre></td></tr></table></figure>
+
+<h2 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h2><p>使用以下命令查看 <code>Query Admin Account</code> 相关登录用户密码以及 <code>Privilege Key</code>。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker logs teamspeak</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>teamspeak</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux 禁用 IPV6</title>
     <url>/2020/04/15/disable-ipv6-linux/</url>
     <content><![CDATA[<h2 id="验证是否开启-ipv6"><a href="#验证是否开启-ipv6" class="headerlink" title="验证是否开启 ipv6"></a>验证是否开启 ipv6</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ifconfig -a | grep inet6</span></span><br><span class="line">inet6 fe80::42:b8ff:feb5:4214  prefixlen 64  scopeid 0x20&lt;<span class="built_in">link</span>&gt;</span><br><span class="line">inet6 fe80::5054:ff:fec3:d3bb  prefixlen 64  scopeid 0x20&lt;<span class="built_in">link</span>&gt;</span><br><span class="line">inet6 ::1  prefixlen 128  scopeid 0x10&lt;host&gt;</span><br></pre></td></tr></table></figure>
@@ -333,22 +349,6 @@
         <tag>ubuntu</tag>
         <tag>centos</tag>
         <tag>ipv6</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用 Docker 部署 TeamSpeak 3</title>
-    <url>/2020/04/14/deploy-teamspeak/</url>
-    <content><![CDATA[<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name teamspeak \</span><br><span class="line">    --restart always \</span><br><span class="line">    -p 9987:9987/udp \</span><br><span class="line">    -v /opt/docker/teamspeak:/var/ts3server \</span><br><span class="line">    -e TS3SERVER_LICENSE=accept \</span><br><span class="line">    -e TS3SERVER_SERVERADMIN_PASSWORD=PLACEHOLD \</span><br><span class="line">    teamspeak:latest</span><br></pre></td></tr></table></figure>
-
-<h2 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h2><p>使用以下命令查看 <code>Query Admin Account</code> 相关登录用户密码以及 <code>Privilege Key</code>。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker logs teamspeak</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-        <tag>teamspeak</tag>
       </tags>
   </entry>
   <entry>
@@ -388,22 +388,18 @@
       </tags>
   </entry>
   <entry>
-    <title>win11 重装系统后找不到 explore.exe</title>
-    <url>/2024/04/11/explore-exe-not-found-after-reinstall-win11/</url>
-    <content><![CDATA[<p>首先 <code>Win+R</code> 打开 <code>运行</code></p>
-<p>然后 <code>regedit</code> 打开注册表，按 <code>计算机\HKEY_CLASSES_ROOT\CLSID\&#123;52205fd8-5dfb-447d-801a-d0b52f2e83e1&#125;\shell\OpenNewWindow\command</code> 目录找到 <code>command</code></p>
-<p>右击依次选择 <code>权限</code> -&gt; <code>高级</code> -&gt; <code>更改所有者</code> -&gt; <code>授予权限</code></p>
-<img data-src="/images/53-1.png" alt="预览" style="max-height:600px;"/>
+    <title>通过 LUA 记录 Envoy 请求日志</title>
+    <url>/2023/03/22/envoy-log-requesst-by-lua/</url>
+    <content><![CDATA[<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">trim_prefix</span><span class="params">(s, p)</span></span></span><br><span class="line">    <span class="keyword">return</span> (s:<span class="built_in">sub</span>(<span class="number">0</span>, #p) == p) <span class="keyword">and</span> s:<span class="built_in">sub</span>(#p + <span class="number">1</span>) <span class="keyword">or</span> s</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">envoy_on_request</span><span class="params">(request_handle)</span></span></span><br><span class="line">    <span class="keyword">local</span> idx = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> chunk <span class="keyword">in</span> request_handle:bodyChunks() <span class="keyword">do</span></span><br><span class="line">        <span class="keyword">local</span> <span class="built_in">len</span> = chunk:length()</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span> == <span class="number">0</span> <span class="keyword">then</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">local</span> body = chunk:getBytes(idx, <span class="built_in">len</span>)</span><br><span class="line">        idx = idx + <span class="built_in">len</span></span><br><span class="line">        <span class="keyword">local</span> hds = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> key, value <span class="keyword">in</span> <span class="built_in">pairs</span>(request_handle:headers()) <span class="keyword">do</span></span><br><span class="line">            hds[<span class="string">&quot;y-&quot;</span> .. trim_prefix(key, <span class="string">&quot;:&quot;</span>)] = value</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        hds[<span class="string">&quot;:method&quot;</span>] = <span class="string">&quot;POST&quot;</span></span><br><span class="line">        hds[<span class="string">&quot;:path&quot;</span>] = <span class="string">&quot;/log&quot;</span></span><br><span class="line">        hds[<span class="string">&quot;:authority&quot;</span>] = <span class="string">&quot;envoy&quot;</span></span><br><span class="line">        request_handle:httpCall(<span class="string">&quot;http-log-service&quot;</span>, hds, body, <span class="number">10000</span>, <span class="literal">true</span>)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">envoy_on_response</span><span class="params">(response_handle)</span></span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
-<p>然后删除 <code>command</code> 目录下的 <code>DelegateExecute</code> 项</p>
-<p>将 <code>(默认)</code> 设置为 <code>explorer.exe ::&#123;20D04FE0-3AEA-1069-A2D8-08002B30309D&#125;</code></p>
-<p>之后重启电脑即可，<code>Win+E</code> 也能使用了。</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">static_resources:</span></span><br><span class="line">  <span class="attr">clusters:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">http-log-service</span></span><br><span class="line">      <span class="attr">type:</span> <span class="string">STRICT_DNS</span></span><br><span class="line">      <span class="attr">connect_timeout:</span> <span class="string">10s</span></span><br><span class="line">      <span class="attr">load_assignment:</span></span><br><span class="line">        <span class="attr">cluster_name:</span> <span class="string">http-log-service</span></span><br><span class="line">        <span class="attr">endpoints:</span></span><br><span class="line">          <span class="bullet">-</span> <span class="attr">lb_endpoints:</span></span><br><span class="line">              <span class="bullet">-</span> <span class="attr">endpoint:</span></span><br><span class="line">                  <span class="attr">address:</span></span><br><span class="line">                    <span class="attr">socket_address:</span></span><br><span class="line">                      <span class="attr">address:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line">                      <span class="attr">port_value:</span> <span class="number">9709</span></span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>技术</category>
       </categories>
       <tags>
-        <tag>windows</tag>
+        <tag>envoy</tag>
+        <tag>golang</tag>
       </tags>
   </entry>
   <entry>
@@ -448,18 +444,22 @@
       </tags>
   </entry>
   <entry>
-    <title>通过 LUA 记录 Envoy 请求日志</title>
-    <url>/2023/03/22/envoy-log-requesst-by-lua/</url>
-    <content><![CDATA[<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">trim_prefix</span><span class="params">(s, p)</span></span></span><br><span class="line">    <span class="keyword">return</span> (s:<span class="built_in">sub</span>(<span class="number">0</span>, #p) == p) <span class="keyword">and</span> s:<span class="built_in">sub</span>(#p + <span class="number">1</span>) <span class="keyword">or</span> s</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">envoy_on_request</span><span class="params">(request_handle)</span></span></span><br><span class="line">    <span class="keyword">local</span> idx = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> chunk <span class="keyword">in</span> request_handle:bodyChunks() <span class="keyword">do</span></span><br><span class="line">        <span class="keyword">local</span> <span class="built_in">len</span> = chunk:length()</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span> == <span class="number">0</span> <span class="keyword">then</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">local</span> body = chunk:getBytes(idx, <span class="built_in">len</span>)</span><br><span class="line">        idx = idx + <span class="built_in">len</span></span><br><span class="line">        <span class="keyword">local</span> hds = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> key, value <span class="keyword">in</span> <span class="built_in">pairs</span>(request_handle:headers()) <span class="keyword">do</span></span><br><span class="line">            hds[<span class="string">&quot;y-&quot;</span> .. trim_prefix(key, <span class="string">&quot;:&quot;</span>)] = value</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        hds[<span class="string">&quot;:method&quot;</span>] = <span class="string">&quot;POST&quot;</span></span><br><span class="line">        hds[<span class="string">&quot;:path&quot;</span>] = <span class="string">&quot;/log&quot;</span></span><br><span class="line">        hds[<span class="string">&quot;:authority&quot;</span>] = <span class="string">&quot;envoy&quot;</span></span><br><span class="line">        request_handle:httpCall(<span class="string">&quot;http-log-service&quot;</span>, hds, body, <span class="number">10000</span>, <span class="literal">true</span>)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">envoy_on_response</span><span class="params">(response_handle)</span></span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+    <title>win11 重装系统后找不到 explore.exe</title>
+    <url>/2024/04/11/explore-exe-not-found-after-reinstall-win11/</url>
+    <content><![CDATA[<p>首先 <code>Win+R</code> 打开 <code>运行</code></p>
+<p>然后 <code>regedit</code> 打开注册表，按 <code>计算机\HKEY_CLASSES_ROOT\CLSID\&#123;52205fd8-5dfb-447d-801a-d0b52f2e83e1&#125;\shell\OpenNewWindow\command</code> 目录找到 <code>command</code></p>
+<p>右击依次选择 <code>权限</code> -&gt; <code>高级</code> -&gt; <code>更改所有者</code> -&gt; <code>授予权限</code></p>
+<img data-src="/images/53-1.png" alt="预览" style="max-height:600px;"/>
 
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">static_resources:</span></span><br><span class="line">  <span class="attr">clusters:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">http-log-service</span></span><br><span class="line">      <span class="attr">type:</span> <span class="string">STRICT_DNS</span></span><br><span class="line">      <span class="attr">connect_timeout:</span> <span class="string">10s</span></span><br><span class="line">      <span class="attr">load_assignment:</span></span><br><span class="line">        <span class="attr">cluster_name:</span> <span class="string">http-log-service</span></span><br><span class="line">        <span class="attr">endpoints:</span></span><br><span class="line">          <span class="bullet">-</span> <span class="attr">lb_endpoints:</span></span><br><span class="line">              <span class="bullet">-</span> <span class="attr">endpoint:</span></span><br><span class="line">                  <span class="attr">address:</span></span><br><span class="line">                    <span class="attr">socket_address:</span></span><br><span class="line">                      <span class="attr">address:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line">                      <span class="attr">port_value:</span> <span class="number">9709</span></span><br></pre></td></tr></table></figure>
+<p>然后删除 <code>command</code> 目录下的 <code>DelegateExecute</code> 项</p>
+<p>将 <code>(默认)</code> 设置为 <code>explorer.exe ::&#123;20D04FE0-3AEA-1069-A2D8-08002B30309D&#125;</code></p>
+<p>之后重启电脑即可，<code>Win+E</code> 也能使用了。</p>
 ]]></content>
       <categories>
         <category>技术</category>
       </categories>
       <tags>
-        <tag>envoy</tag>
-        <tag>golang</tag>
+        <tag>windows</tag>
       </tags>
   </entry>
   <entry>
@@ -1163,15 +1163,15 @@
       </tags>
   </entry>
   <entry>
-    <title>通过 pid 查看 k8s pod name</title>
-    <url>/2024/02/19/pid-for-k8s-pod/</url>
-    <content><![CDATA[<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nsenter -t $PID -u hostname</span><br></pre></td></tr></table></figure>
+    <title>Nginx 在同一个路径下反代 HTTP 和 WebSocket</title>
+    <url>/2022/08/04/nginx-proxy-http-and-websocket/</url>
+    <content><![CDATA[<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">  <span class="regexp">//</span> settings</span><br><span class="line"></span><br><span class="line">  location <span class="regexp">/api/</span> &#123;</span><br><span class="line">    try_files /nonexistent @<span class="variable">$http_upgrade</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  location @ &#123;</span><br><span class="line">    rewrite ^<span class="regexp">/api/</span>(.*) /<span class="variable">$1</span> <span class="keyword">break</span>;</span><br><span class="line">    proxy_pass http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">4080</span>;</span><br><span class="line">    proxy_set_header Host <span class="variable">$host</span>;</span><br><span class="line">    proxy_set_header X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">    proxy_set_header X-Real-PORT <span class="variable">$remote_port</span>;</span><br><span class="line">    proxy_set_header X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  location @websocket &#123;</span><br><span class="line">    rewrite ^<span class="regexp">/api/</span>(.*) /<span class="variable">$1</span> <span class="keyword">break</span>;</span><br><span class="line">    proxy_pass http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">4080</span>;</span><br><span class="line">    proxy_set_header Host <span class="variable">$host</span>;</span><br><span class="line">    proxy_set_header X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">    proxy_set_header X-Real-PORT <span class="variable">$remote_port</span>;</span><br><span class="line">    proxy_set_header X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">    <span class="comment"># websocket</span></span><br><span class="line">    proxy_http_version <span class="number">1.1</span>;</span><br><span class="line">    proxy_set_header Connection <span class="string">&quot;Upgrade&quot;</span>;</span><br><span class="line">    proxy_set_header Upgrade <span class="variable">$http_upgrade</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>技术</category>
       </categories>
       <tags>
-        <tag>kubernetes</tag>
+        <tag>nginx</tag>
       </tags>
   </entry>
   <entry>
@@ -1187,15 +1187,15 @@
       </tags>
   </entry>
   <entry>
-    <title>Nginx 在同一个路径下反代 HTTP 和 WebSocket</title>
-    <url>/2022/08/04/nginx-proxy-http-and-websocket/</url>
-    <content><![CDATA[<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">  <span class="regexp">//</span> settings</span><br><span class="line"></span><br><span class="line">  location <span class="regexp">/api/</span> &#123;</span><br><span class="line">    try_files /nonexistent @<span class="variable">$http_upgrade</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  location @ &#123;</span><br><span class="line">    rewrite ^<span class="regexp">/api/</span>(.*) /<span class="variable">$1</span> <span class="keyword">break</span>;</span><br><span class="line">    proxy_pass http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">4080</span>;</span><br><span class="line">    proxy_set_header Host <span class="variable">$host</span>;</span><br><span class="line">    proxy_set_header X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">    proxy_set_header X-Real-PORT <span class="variable">$remote_port</span>;</span><br><span class="line">    proxy_set_header X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  location @websocket &#123;</span><br><span class="line">    rewrite ^<span class="regexp">/api/</span>(.*) /<span class="variable">$1</span> <span class="keyword">break</span>;</span><br><span class="line">    proxy_pass http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">4080</span>;</span><br><span class="line">    proxy_set_header Host <span class="variable">$host</span>;</span><br><span class="line">    proxy_set_header X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">    proxy_set_header X-Real-PORT <span class="variable">$remote_port</span>;</span><br><span class="line">    proxy_set_header X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">    <span class="comment"># websocket</span></span><br><span class="line">    proxy_http_version <span class="number">1.1</span>;</span><br><span class="line">    proxy_set_header Connection <span class="string">&quot;Upgrade&quot;</span>;</span><br><span class="line">    proxy_set_header Upgrade <span class="variable">$http_upgrade</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    <title>通过 pid 查看 k8s pod name</title>
+    <url>/2024/02/19/pid-for-k8s-pod/</url>
+    <content><![CDATA[<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nsenter -t $PID -u hostname</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>技术</category>
       </categories>
       <tags>
-        <tag>nginx</tag>
+        <tag>kubernetes</tag>
       </tags>
   </entry>
   <entry>
@@ -1277,6 +1277,35 @@
       </tags>
   </entry>
   <entry>
+    <title>PVE 在存在虚拟机的情况下添加到集群</title>
+    <url>/2023/07/21/pve-join-cluster-if-exists-vms/</url>
+    <content><![CDATA[<p><strong>此操作危险，不建议使用</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mkdir -p ~/cluster_bak</span><br><span class="line">mv /etc/pve/nodes/&#123;hostname&#125;/qemu-server/* ~/cluster_bak</span><br></pre></td></tr></table></figure>
+
+<p>然后在 <code>WebUI</code> 中操作添加到集群，添加完成后将备份的文件复制回来：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mv ~/cluster_bak/* /etc/pve/nodes/&#123;hostname&#125;/qemu-server/</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>pve</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>kubectl 重启某个 Namespace 下的所有 Deployment</title>
+    <url>/2024/02/19/restart-all-deployment-in-namespace/</url>
+    <content><![CDATA[<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">NAMESPACE=&quot;arc-os&quot;</span><br><span class="line">for DEPLOY in $(kubectl get deployments -n $NAMESPACE | tail -n +2 | cut -d &#x27; &#x27; -f 1); do kubectl rollout restart deployments/$DEPLOY -n $NAMESPACE; done</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>kubernetes</tag>
+        <tag>kubectl</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Samba 文件共享</title>
     <url>/2019/11/28/samba/</url>
     <content><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt install samba</span><br></pre></td></tr></table></figure>
@@ -1296,35 +1325,6 @@
       </categories>
       <tags>
         <tag>samba</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>kubectl 重启某个 Namespace 下的所有 Deployment</title>
-    <url>/2024/02/19/restart-all-deployment-in-namespace/</url>
-    <content><![CDATA[<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">NAMESPACE=&quot;arc-os&quot;</span><br><span class="line">for DEPLOY in $(kubectl get deployments -n $NAMESPACE | tail -n +2 | cut -d &#x27; &#x27; -f 1); do kubectl rollout restart deployments/$DEPLOY -n $NAMESPACE; done</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>kubernetes</tag>
-        <tag>kubectl</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>PVE 在存在虚拟机的情况下添加到集群</title>
-    <url>/2023/07/21/pve-join-cluster-if-exists-vms/</url>
-    <content><![CDATA[<p><strong>此操作危险，不建议使用</strong></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mkdir -p ~/cluster_bak</span><br><span class="line">mv /etc/pve/nodes/&#123;hostname&#125;/qemu-server/* ~/cluster_bak</span><br></pre></td></tr></table></figure>
-
-<p>然后在 <code>WebUI</code> 中操作添加到集群，添加完成后将备份的文件复制回来：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mv ~/cluster_bak/* /etc/pve/nodes/&#123;hostname&#125;/qemu-server/</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>pve</tag>
       </tags>
   </entry>
   <entry>
@@ -1371,6 +1371,48 @@
       </tags>
   </entry>
   <entry>
+    <title>使用 systemctl 管理 SpringBoot 应用</title>
+    <url>/2024/06/27/systemctl-spring-jar/</url>
+    <content><![CDATA[<h2 id="etc-systemd-system-my-application-service"><a href="#etc-systemd-system-my-application-service" class="headerlink" title="/etc/systemd/system/my-application.service"></a><code>/etc/systemd/system/my-application.service</code></h2><figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[Unit]</span></span><br><span class="line"><span class="attr">Description</span>=ApplicationName</span><br><span class="line"></span><br><span class="line"><span class="section">[Service]</span></span><br><span class="line"><span class="attr">StartLimitInterval</span>=<span class="number">5</span></span><br><span class="line"><span class="attr">StartLimitBurst</span>=<span class="number">10</span></span><br><span class="line"><span class="attr">Restart</span>=always</span><br><span class="line"><span class="attr">RestartSec</span>=<span class="number">120</span></span><br><span class="line"><span class="attr">StandardOutput</span>=append:/data/project/logs/stdout.log</span><br><span class="line"><span class="attr">StandardError</span>=append:/data/project/logs/stderr.log</span><br><span class="line"><span class="attr">WorkingDirectory</span>=/opt/project</span><br><span class="line"><span class="attr">ExecStart</span>=/usr/local/java/jdk-<span class="number">21.0</span>.<span class="number">3</span>+<span class="number">9</span>-jre/bin/java \</span><br><span class="line">            -XX:+ExitOnOutOfMemoryError \</span><br><span class="line">            -XX:+HeapDumpOnOutOfMemoryError \</span><br><span class="line">            -XX:<span class="attr">HeapDumpPath</span>=/data/project/dumps/oom.bin \</span><br><span class="line">            <span class="attr">-Dspring.profiles.active</span>= \</span><br><span class="line">            <span class="attr">-Dspring.config.location</span>=classpath:application.yml,/opt/project/application.yml \</span><br><span class="line">            <span class="attr">-Dlogging.config</span>=/opt/project/logback.xml \</span><br><span class="line">            -jar /opt/project/project.jar</span><br><span class="line"></span><br><span class="line"><span class="section">[Install]</span></span><br><span class="line"><span class="attr">WantedBy</span>=multi-user.target</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl daemon-reload</span><br><span class="line"></span><br><span class="line">systemctl status my-application.service</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">开机自启动</span></span><br><span class="line">systemctl enable my-application.service</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>spring</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在 Prometheus 中使用钉钉机器人</title>
+    <url>/2020/07/21/use-dingtalk-in-prometheus/</url>
+    <content><![CDATA[<h2 id="启动-prometheus-webhook-dingtalk"><a href="#启动-prometheus-webhook-dingtalk" class="headerlink" title="启动 prometheus-webhook-dingtalk"></a>启动 <code>prometheus-webhook-dingtalk</code></h2><ul>
+<li><code>/data/prometheus-webhook-dingtalk/config/config.yml</code></li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">timeout:</span> <span class="string">10s</span></span><br><span class="line"></span><br><span class="line"><span class="attr">default_message:</span></span><br><span class="line">  <span class="attr">title:</span> <span class="string">&#x27;<span class="template-variable">&#123;&#123; template &quot;legacy.title&quot; . &#125;&#125;</span>&#x27;</span></span><br><span class="line">  <span class="attr">text:</span> <span class="string">&#x27;<span class="template-variable">&#123;&#123; template &quot;legacy.content&quot; . &#125;&#125;</span>&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">targets:</span></span><br><span class="line">  <span class="attr">webhook1:</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">https://oapi.dingtalk.com/robot/send?access_token=xxx</span></span><br><span class="line">    <span class="attr">secret:</span> <span class="string">yyy</span></span><br><span class="line">    <span class="attr">mention:</span></span><br><span class="line">      <span class="attr">all:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name prometheus-webhook-dingtalk \</span><br><span class="line">    --restart always \</span><br><span class="line">    -p 8060:8060 \</span><br><span class="line">    -v /data/prometheus-webhook-dingtalk/config:/etc/prometheus-webhook-dingtalk \</span><br><span class="line">    timonwong/prometheus-webhook-dingtalk</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改-prometheus-配置文件"><a href="#修改-prometheus-配置文件" class="headerlink" title="修改 prometheus 配置文件"></a>修改 <code>prometheus</code> 配置文件</h2><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">route:</span></span><br><span class="line">  <span class="attr">receiver:</span> <span class="string">&quot;dingtalk1&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">receivers:</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">dingtalk1</span></span><br><span class="line">  <span class="attr">webhook_configs:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">send_resolved:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">http://127.0.0.1:8060/dingtalk/webhook1/send</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly90aGVvLmltL2Jsb2cvMjAxNy8xMC8xNi9yZWxlYXNlLXByb21ldGhldXMtYWxlcnRtYW5hZ2VyLXdlYmhvb2stZm9yLWRpbmd0YWxrLw==">theo.im&#x2F;blog<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RpbW9ud29uZy9wcm9tZXRoZXVzLXdlYmhvb2stZGluZ3RhbGs=">timonwong&#x2F;prometheus-webhook-dingtalk<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>prometheus</tag>
+        <tag>dingtalk</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>使用 Grafana + Prometheus + Node-Exporter 监控机器</title>
     <url>/2020/04/26/use-grafana-monitor-vps/</url>
     <content><![CDATA[<h2 id="创建-Node-Exporter"><a href="#创建-Node-Exporter" class="headerlink" title="创建 Node-Exporter"></a>创建 Node-Exporter</h2><ul>
@@ -1404,51 +1446,9 @@
         <category>技术</category>
       </categories>
       <tags>
+        <tag>prometheus</tag>
         <tag>grafana</tag>
-        <tag>prometheus</tag>
         <tag>vps</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在 Prometheus 中使用钉钉机器人</title>
-    <url>/2020/07/21/use-dingtalk-in-prometheus/</url>
-    <content><![CDATA[<h2 id="启动-prometheus-webhook-dingtalk"><a href="#启动-prometheus-webhook-dingtalk" class="headerlink" title="启动 prometheus-webhook-dingtalk"></a>启动 <code>prometheus-webhook-dingtalk</code></h2><ul>
-<li><code>/data/prometheus-webhook-dingtalk/config/config.yml</code></li>
-</ul>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">timeout:</span> <span class="string">10s</span></span><br><span class="line"></span><br><span class="line"><span class="attr">default_message:</span></span><br><span class="line">  <span class="attr">title:</span> <span class="string">&#x27;<span class="template-variable">&#123;&#123; template &quot;legacy.title&quot; . &#125;&#125;</span>&#x27;</span></span><br><span class="line">  <span class="attr">text:</span> <span class="string">&#x27;<span class="template-variable">&#123;&#123; template &quot;legacy.content&quot; . &#125;&#125;</span>&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">targets:</span></span><br><span class="line">  <span class="attr">webhook1:</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">https://oapi.dingtalk.com/robot/send?access_token=xxx</span></span><br><span class="line">    <span class="attr">secret:</span> <span class="string">yyy</span></span><br><span class="line">    <span class="attr">mention:</span></span><br><span class="line">      <span class="attr">all:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name prometheus-webhook-dingtalk \</span><br><span class="line">    --restart always \</span><br><span class="line">    -p 8060:8060 \</span><br><span class="line">    -v /data/prometheus-webhook-dingtalk/config:/etc/prometheus-webhook-dingtalk \</span><br><span class="line">    timonwong/prometheus-webhook-dingtalk</span><br></pre></td></tr></table></figure>
-
-<h2 id="修改-prometheus-配置文件"><a href="#修改-prometheus-配置文件" class="headerlink" title="修改 prometheus 配置文件"></a>修改 <code>prometheus</code> 配置文件</h2><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">route:</span></span><br><span class="line">  <span class="attr">receiver:</span> <span class="string">&quot;dingtalk1&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">receivers:</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">dingtalk1</span></span><br><span class="line">  <span class="attr">webhook_configs:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">send_resolved:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">http://127.0.0.1:8060/dingtalk/webhook1/send</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly90aGVvLmltL2Jsb2cvMjAxNy8xMC8xNi9yZWxlYXNlLXByb21ldGhldXMtYWxlcnRtYW5hZ2VyLXdlYmhvb2stZm9yLWRpbmd0YWxrLw==">theo.im&#x2F;blog<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RpbW9ud29uZy9wcm9tZXRoZXVzLXdlYmhvb2stZGluZ3RhbGs=">timonwong&#x2F;prometheus-webhook-dingtalk<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>prometheus</tag>
-        <tag>dingtalk</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用 systemctl 管理 SpringBoot 应用</title>
-    <url>/2024/06/27/systemctl-spring-jar/</url>
-    <content><![CDATA[<h2 id="etc-systemd-system-my-application-service"><a href="#etc-systemd-system-my-application-service" class="headerlink" title="/etc/systemd/system/my-application.service"></a><code>/etc/systemd/system/my-application.service</code></h2><figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[Unit]</span></span><br><span class="line"><span class="attr">Description</span>=ApplicationName</span><br><span class="line"></span><br><span class="line"><span class="section">[Service]</span></span><br><span class="line"><span class="attr">StartLimitInterval</span>=<span class="number">5</span></span><br><span class="line"><span class="attr">StartLimitBurst</span>=<span class="number">10</span></span><br><span class="line"><span class="attr">Restart</span>=always</span><br><span class="line"><span class="attr">RestartSec</span>=<span class="number">120</span></span><br><span class="line"><span class="attr">StandardOutput</span>=append:/data/project/logs/stdout.log</span><br><span class="line"><span class="attr">StandardError</span>=append:/data/project/logs/stderr.log</span><br><span class="line"><span class="attr">WorkingDirectory</span>=/opt/project</span><br><span class="line"><span class="attr">ExecStart</span>=/usr/local/java/jdk-<span class="number">21.0</span>.<span class="number">3</span>+<span class="number">9</span>-jre/bin/java \</span><br><span class="line">            -XX:+ExitOnOutOfMemoryError \</span><br><span class="line">            -XX:+HeapDumpOnOutOfMemoryError \</span><br><span class="line">            -XX:<span class="attr">HeapDumpPath</span>=/data/project/dumps/oom.bin \</span><br><span class="line">            <span class="attr">-Dspring.profiles.active</span>= \</span><br><span class="line">            <span class="attr">-Dspring.config.location</span>=classpath:application.yml,/opt/project/application.yml \</span><br><span class="line">            <span class="attr">-Dlogging.config</span>=/opt/project/logback.xml \</span><br><span class="line">            -jar /opt/project/project.jar</span><br><span class="line"></span><br><span class="line"><span class="section">[Install]</span></span><br><span class="line"><span class="attr">WantedBy</span>=multi-user.target</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl daemon-reload</span><br><span class="line"></span><br><span class="line">systemctl status my-application.service</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">开机自启动</span></span><br><span class="line">systemctl enable my-application.service</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
-        <tag>spring</tag>
       </tags>
   </entry>
   <entry>
