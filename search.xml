@@ -148,19 +148,6 @@
       </tags>
   </entry>
   <entry>
-    <title>部署 Docker Registry</title>
-    <url>/2023/07/21/deploy-docker-regsitry/</url>
-    <content><![CDATA[<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">  --name registry \</span><br><span class="line">  --restart always \</span><br><span class="line">  -p 5000:5000 \</span><br><span class="line">  -v &quot;$&#123;STORAGE_DATA_DIR&#125;/registry&quot;:/var/lib/registry \</span><br><span class="line">  registry:2.8.2</span><br><span class="line"></span><br><span class="line">docker run -d \</span><br><span class="line">  --name registry-ui \</span><br><span class="line">  --restart always \</span><br><span class="line">  -p 5001:80 \</span><br><span class="line">  -e SINGLE_REGISTRY=true \</span><br><span class="line">  -e SHOW_CONTENT_DIGEST=true \</span><br><span class="line">  -e NGINX_PROXY_PASS_URL=&quot;http://$&#123;REGISTER_IP_ADDR&#125;:5000&quot; \</span><br><span class="line">  joxit/docker-registry-ui:2.5.0</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-        <tag>registry</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>使用 telepresence 调试 k8s 线上环境</title>
     <url>/2024/03/19/debug-with-telepresence/</url>
     <content><![CDATA[<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>安装请看 <span class="exturl" data-url="aHR0cHM6Ly93d3cuZ2V0YW1iYXNzYWRvci5pby9kb2NzL3RlbGVwcmVzZW5jZS9sYXRlc3QvaW5zdGFsbA==">官方文档<i class="fa fa-external-link-alt"></i></span></p>
@@ -209,6 +196,19 @@
         <tag>kubernetes</tag>
         <tag>telepresence</tag>
         <tag>intercept</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>部署 Docker Registry</title>
+    <url>/2023/07/21/deploy-docker-regsitry/</url>
+    <content><![CDATA[<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">  --name registry \</span><br><span class="line">  --restart always \</span><br><span class="line">  -p 5000:5000 \</span><br><span class="line">  -v &quot;$&#123;STORAGE_DATA_DIR&#125;/registry&quot;:/var/lib/registry \</span><br><span class="line">  registry:2.8.2</span><br><span class="line"></span><br><span class="line">docker run -d \</span><br><span class="line">  --name registry-ui \</span><br><span class="line">  --restart always \</span><br><span class="line">  -p 5001:80 \</span><br><span class="line">  -e SINGLE_REGISTRY=true \</span><br><span class="line">  -e SHOW_CONTENT_DIGEST=true \</span><br><span class="line">  -e NGINX_PROXY_PASS_URL=&quot;http://$&#123;REGISTER_IP_ADDR&#125;:5000&quot; \</span><br><span class="line">  joxit/docker-registry-ui:2.5.0</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>registry</tag>
       </tags>
   </entry>
   <entry>
@@ -1262,12 +1262,13 @@
       </tags>
   </entry>
   <entry>
-    <title>PVE 移除 No valid subscription 提示</title>
-    <url>/2023/07/21/pve-hidden-no-valid-subscription/</url>
-    <content><![CDATA[<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd /usr/share/javascript/proxmox-widget-toolkit</span><br><span class="line">cp proxmoxlib.js proxmoxlib.js.bak</span><br><span class="line">vim proxmoxlib.js</span><br></pre></td></tr></table></figure>
+    <title>PVE 在存在虚拟机的情况下添加到集群</title>
+    <url>/2023/07/21/pve-join-cluster-if-exists-vms/</url>
+    <content><![CDATA[<p><strong>此操作危险，不建议使用</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mkdir -p ~/cluster_bak</span><br><span class="line">mv /etc/pve/nodes/&#123;hostname&#125;/qemu-server/* ~/cluster_bak</span><br></pre></td></tr></table></figure>
 
-<p>将 <code>No valid subscription</code> 前面的 <code>Ext.Msg.show</code> 替换为 <code>void</code></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl reload pveproxy.service</span><br></pre></td></tr></table></figure>
+<p>然后在 <code>WebUI</code> 中操作添加到集群，添加完成后将备份的文件复制回来：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mv ~/cluster_bak/* /etc/pve/nodes/&#123;hostname&#125;/qemu-server/</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>技术</category>
@@ -1277,13 +1278,12 @@
       </tags>
   </entry>
   <entry>
-    <title>PVE 在存在虚拟机的情况下添加到集群</title>
-    <url>/2023/07/21/pve-join-cluster-if-exists-vms/</url>
-    <content><![CDATA[<p><strong>此操作危险，不建议使用</strong></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mkdir -p ~/cluster_bak</span><br><span class="line">mv /etc/pve/nodes/&#123;hostname&#125;/qemu-server/* ~/cluster_bak</span><br></pre></td></tr></table></figure>
+    <title>PVE 移除 No valid subscription 提示</title>
+    <url>/2023/07/21/pve-hidden-no-valid-subscription/</url>
+    <content><![CDATA[<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd /usr/share/javascript/proxmox-widget-toolkit</span><br><span class="line">cp proxmoxlib.js proxmoxlib.js.bak</span><br><span class="line">vim proxmoxlib.js</span><br></pre></td></tr></table></figure>
 
-<p>然后在 <code>WebUI</code> 中操作添加到集群，添加完成后将备份的文件复制回来：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mv ~/cluster_bak/* /etc/pve/nodes/&#123;hostname&#125;/qemu-server/</span><br></pre></td></tr></table></figure>
+<p>将 <code>No valid subscription</code> 前面的 <code>Ext.Msg.show</code> 替换为 <code>void</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl reload pveproxy.service</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>技术</category>
