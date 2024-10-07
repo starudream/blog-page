@@ -388,21 +388,6 @@
       </tags>
   </entry>
   <entry>
-    <title>通过 LUA 记录 Envoy 请求日志</title>
-    <url>/2023/03/22/envoy-log-requesst-by-lua/</url>
-    <content><![CDATA[<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">trim_prefix</span><span class="params">(s, p)</span></span></span><br><span class="line">    <span class="keyword">return</span> (s:<span class="built_in">sub</span>(<span class="number">0</span>, #p) == p) <span class="keyword">and</span> s:<span class="built_in">sub</span>(#p + <span class="number">1</span>) <span class="keyword">or</span> s</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">envoy_on_request</span><span class="params">(request_handle)</span></span></span><br><span class="line">    <span class="keyword">local</span> idx = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> chunk <span class="keyword">in</span> request_handle:bodyChunks() <span class="keyword">do</span></span><br><span class="line">        <span class="keyword">local</span> <span class="built_in">len</span> = chunk:length()</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span> == <span class="number">0</span> <span class="keyword">then</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">local</span> body = chunk:getBytes(idx, <span class="built_in">len</span>)</span><br><span class="line">        idx = idx + <span class="built_in">len</span></span><br><span class="line">        <span class="keyword">local</span> hds = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> key, value <span class="keyword">in</span> <span class="built_in">pairs</span>(request_handle:headers()) <span class="keyword">do</span></span><br><span class="line">            hds[<span class="string">&quot;y-&quot;</span> .. trim_prefix(key, <span class="string">&quot;:&quot;</span>)] = value</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        hds[<span class="string">&quot;:method&quot;</span>] = <span class="string">&quot;POST&quot;</span></span><br><span class="line">        hds[<span class="string">&quot;:path&quot;</span>] = <span class="string">&quot;/log&quot;</span></span><br><span class="line">        hds[<span class="string">&quot;:authority&quot;</span>] = <span class="string">&quot;envoy&quot;</span></span><br><span class="line">        request_handle:httpCall(<span class="string">&quot;http-log-service&quot;</span>, hds, body, <span class="number">10000</span>, <span class="literal">true</span>)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">envoy_on_response</span><span class="params">(response_handle)</span></span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">static_resources:</span></span><br><span class="line">  <span class="attr">clusters:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">http-log-service</span></span><br><span class="line">      <span class="attr">type:</span> <span class="string">STRICT_DNS</span></span><br><span class="line">      <span class="attr">connect_timeout:</span> <span class="string">10s</span></span><br><span class="line">      <span class="attr">load_assignment:</span></span><br><span class="line">        <span class="attr">cluster_name:</span> <span class="string">http-log-service</span></span><br><span class="line">        <span class="attr">endpoints:</span></span><br><span class="line">          <span class="bullet">-</span> <span class="attr">lb_endpoints:</span></span><br><span class="line">              <span class="bullet">-</span> <span class="attr">endpoint:</span></span><br><span class="line">                  <span class="attr">address:</span></span><br><span class="line">                    <span class="attr">socket_address:</span></span><br><span class="line">                      <span class="attr">address:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line">                      <span class="attr">port_value:</span> <span class="number">9709</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>envoy</tag>
-        <tag>golang</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Envoy XDS</title>
     <url>/2023/03/22/envoy-xds/</url>
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>该篇文章所展示代码只展示大概思路，部分代码因为涉及到公司内部业务，所以没有展示出来。</p>
@@ -434,6 +419,21 @@
 <li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2Vudm95cHJveHkvZ28tY29udHJvbC1wbGFuZQ==">https://github.com/envoyproxy/go-control-plane<i class="fa fa-external-link-alt"></i></span></li>
 <li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2Vudm95cHJveHkvZ28tY29udHJvbC1wbGFuZS9ibG9iL3YwLjExLjAvaW50ZXJuYWwvZXhhbXBsZS9tYWluL21haW4uZ28=">https://github.com/envoyproxy/go-control-plane/blob/v0.11.0/internal/example/main/main.go<i class="fa fa-external-link-alt"></i></span></li>
 </ul>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>envoy</tag>
+        <tag>golang</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>通过 LUA 记录 Envoy 请求日志</title>
+    <url>/2023/03/22/envoy-log-requesst-by-lua/</url>
+    <content><![CDATA[<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">trim_prefix</span><span class="params">(s, p)</span></span></span><br><span class="line">    <span class="keyword">return</span> (s:<span class="built_in">sub</span>(<span class="number">0</span>, #p) == p) <span class="keyword">and</span> s:<span class="built_in">sub</span>(#p + <span class="number">1</span>) <span class="keyword">or</span> s</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">envoy_on_request</span><span class="params">(request_handle)</span></span></span><br><span class="line">    <span class="keyword">local</span> idx = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> chunk <span class="keyword">in</span> request_handle:bodyChunks() <span class="keyword">do</span></span><br><span class="line">        <span class="keyword">local</span> <span class="built_in">len</span> = chunk:length()</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span> == <span class="number">0</span> <span class="keyword">then</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">local</span> body = chunk:getBytes(idx, <span class="built_in">len</span>)</span><br><span class="line">        idx = idx + <span class="built_in">len</span></span><br><span class="line">        <span class="keyword">local</span> hds = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> key, value <span class="keyword">in</span> <span class="built_in">pairs</span>(request_handle:headers()) <span class="keyword">do</span></span><br><span class="line">            hds[<span class="string">&quot;y-&quot;</span> .. trim_prefix(key, <span class="string">&quot;:&quot;</span>)] = value</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        hds[<span class="string">&quot;:method&quot;</span>] = <span class="string">&quot;POST&quot;</span></span><br><span class="line">        hds[<span class="string">&quot;:path&quot;</span>] = <span class="string">&quot;/log&quot;</span></span><br><span class="line">        hds[<span class="string">&quot;:authority&quot;</span>] = <span class="string">&quot;envoy&quot;</span></span><br><span class="line">        request_handle:httpCall(<span class="string">&quot;http-log-service&quot;</span>, hds, body, <span class="number">10000</span>, <span class="literal">true</span>)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">envoy_on_response</span><span class="params">(response_handle)</span></span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">static_resources:</span></span><br><span class="line">  <span class="attr">clusters:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">http-log-service</span></span><br><span class="line">      <span class="attr">type:</span> <span class="string">STRICT_DNS</span></span><br><span class="line">      <span class="attr">connect_timeout:</span> <span class="string">10s</span></span><br><span class="line">      <span class="attr">load_assignment:</span></span><br><span class="line">        <span class="attr">cluster_name:</span> <span class="string">http-log-service</span></span><br><span class="line">        <span class="attr">endpoints:</span></span><br><span class="line">          <span class="bullet">-</span> <span class="attr">lb_endpoints:</span></span><br><span class="line">              <span class="bullet">-</span> <span class="attr">endpoint:</span></span><br><span class="line">                  <span class="attr">address:</span></span><br><span class="line">                    <span class="attr">socket_address:</span></span><br><span class="line">                      <span class="attr">address:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line">                      <span class="attr">port_value:</span> <span class="number">9709</span></span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>技术</category>
@@ -1262,13 +1262,12 @@
       </tags>
   </entry>
   <entry>
-    <title>PVE 在存在虚拟机的情况下添加到集群</title>
-    <url>/2023/07/21/pve-join-cluster-if-exists-vms/</url>
-    <content><![CDATA[<p><strong>此操作危险，不建议使用</strong></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mkdir -p ~/cluster_bak</span><br><span class="line">mv /etc/pve/nodes/&#123;hostname&#125;/qemu-server/* ~/cluster_bak</span><br></pre></td></tr></table></figure>
+    <title>PVE 移除 No valid subscription 提示</title>
+    <url>/2023/07/21/pve-hidden-no-valid-subscription/</url>
+    <content><![CDATA[<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd /usr/share/javascript/proxmox-widget-toolkit</span><br><span class="line">cp proxmoxlib.js proxmoxlib.js.bak</span><br><span class="line">vim proxmoxlib.js</span><br></pre></td></tr></table></figure>
 
-<p>然后在 <code>WebUI</code> 中操作添加到集群，添加完成后将备份的文件复制回来：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mv ~/cluster_bak/* /etc/pve/nodes/&#123;hostname&#125;/qemu-server/</span><br></pre></td></tr></table></figure>
+<p>将 <code>No valid subscription</code> 前面的 <code>Ext.Msg.show</code> 替换为 <code>void</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl reload pveproxy.service</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>技术</category>
@@ -1278,12 +1277,13 @@
       </tags>
   </entry>
   <entry>
-    <title>PVE 移除 No valid subscription 提示</title>
-    <url>/2023/07/21/pve-hidden-no-valid-subscription/</url>
-    <content><![CDATA[<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd /usr/share/javascript/proxmox-widget-toolkit</span><br><span class="line">cp proxmoxlib.js proxmoxlib.js.bak</span><br><span class="line">vim proxmoxlib.js</span><br></pre></td></tr></table></figure>
+    <title>PVE 在存在虚拟机的情况下添加到集群</title>
+    <url>/2023/07/21/pve-join-cluster-if-exists-vms/</url>
+    <content><![CDATA[<p><strong>此操作危险，不建议使用</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mkdir -p ~/cluster_bak</span><br><span class="line">mv /etc/pve/nodes/&#123;hostname&#125;/qemu-server/* ~/cluster_bak</span><br></pre></td></tr></table></figure>
 
-<p>将 <code>No valid subscription</code> 前面的 <code>Ext.Msg.show</code> 替换为 <code>void</code></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl reload pveproxy.service</span><br></pre></td></tr></table></figure>
+<p>然后在 <code>WebUI</code> 中操作添加到集群，添加完成后将备份的文件复制回来：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mv ~/cluster_bak/* /etc/pve/nodes/&#123;hostname&#125;/qemu-server/</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>技术</category>
