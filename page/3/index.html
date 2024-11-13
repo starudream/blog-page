@@ -92,7 +92,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">75</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">62</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">76</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">63</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -157,7 +157,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">62</span>
+          <span class="site-state-item-count">63</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -168,7 +168,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">75</span>
+        <span class="site-state-item-count">76</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -200,6 +200,91 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2024/04/11/explore-exe-not-found-after-reinstall-win11/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="starudream">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/04/11/explore-exe-not-found-after-reinstall-win11/" class="post-title-link" itemprop="url">win11 重装系统后找不到 explore.exe</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-04-11 08:56:02" itemprop="dateCreated datePublished" datetime="2024-04-11T08:56:02+08:00">2024-04-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>首先 <code>Win+R</code> 打开 <code>运行</code></p>
+<p>然后 <code>regedit</code> 打开注册表，按 <code>计算机\HKEY_CLASSES_ROOT\CLSID\&#123;52205fd8-5dfb-447d-801a-d0b52f2e83e1&#125;\shell\OpenNewWindow\command</code> 目录找到 <code>command</code></p>
+<p>右击依次选择 <code>权限</code> -&gt; <code>高级</code> -&gt; <code>更改所有者</code> -&gt; <code>授予权限</code></p>
+<img data-src="/images/53-1.png" alt="预览" style="max-height:600px;"/>
+
+<p>然后删除 <code>command</code> 目录下的 <code>DelegateExecute</code> 项</p>
+<p>将 <code>(默认)</code> 设置为 <code>explorer.exe ::&#123;20D04FE0-3AEA-1069-A2D8-08002B30309D&#125;</code></p>
+<p>之后重启电脑即可，<code>Win+E</code> 也能使用了。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -572,90 +657,6 @@
 <h2 id="this-action-would-add-2-shards-but-this-cluster-currently-has-1000-1000"><a href="#this-action-would-add-2-shards-but-this-cluster-currently-has-1000-1000" class="headerlink" title="this action would add [2] shards, but this cluster currently has [1000]&#x2F;[1000]"></a>this action would add [2] shards, but this cluster currently has [1000]&#x2F;[1000]</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">./curl.sh PUT _cluster/settings -d &#x27;&#123;</span><br><span class="line">  &quot;persistent&quot;: &#123;</span><br><span class="line">    &quot;cluster.max_shards_per_node&quot;: 1000000</span><br><span class="line">  &#125;</span><br><span class="line">&#125;&#x27;</span><br></pre></td></tr></table></figure>
 
 <h2 id="Can’t-store-an-async-search-response-larger-than-10485760-bytes"><a href="#Can’t-store-an-async-search-response-larger-than-10485760-bytes" class="headerlink" title="Can’t store an async search response larger than [10485760] bytes."></a>Can’t store an async search response larger than [10485760] bytes.</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">./curl.sh PUT _cluster/settings -d &#x27;&#123;</span><br><span class="line">  &quot;persistent&quot;: &#123;</span><br><span class="line">    &quot;search.max_async_search_response_size&quot;: &quot;50mb&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;&#x27;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2024/02/19/k8s-limit-range-explain/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="starudream">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰狂澜's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 星辰狂澜's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/02/19/k8s-limit-range-explain/" class="post-title-link" itemprop="url">kubernetes LimitRange 解释</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-02-19 16:40:25" itemprop="dateCreated datePublished" datetime="2024-02-19T16:40:25+08:00">2024-02-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <ul>
-<li><code>min</code>: 最小值</li>
-<li><code>max</code>: 最大值</li>
-<li><code>default</code> 默认 <code>limit</code> 值</li>
-<li><code>defaultRequest</code> 默认 <code>request</code> 值</li>
-</ul>
-<p>如果 <code>deployment</code> 没有 <code>resources</code> <code>requests</code> 和 <code>limits</code>，那么会使用 <code>defaultRequest</code> 和 <code>default</code> 值，否则使用自定义的值，但是 <code>limits</code> 不能超过 <code>max</code>，<code>requests</code> 不能小于 <code>min</code>。</p>
 
       
     </div>
