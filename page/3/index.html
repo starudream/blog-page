@@ -92,7 +92,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">76</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">63</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">82</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">67</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -157,7 +157,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">63</span>
+          <span class="site-state-item-count">67</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -168,7 +168,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">76</span>
+        <span class="site-state-item-count">82</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -200,6 +200,331 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2024/06/26/maven-mirror/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="starudream">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/06/26/maven-mirror/" class="post-title-link" itemprop="url">配置 Maven 镜像</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-06-26 14:50:25" itemprop="dateCreated datePublished" datetime="2024-06-26T14:50:25+08:00">2024-06-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="m2-settings-xml"><a href="#m2-settings-xml" class="headerlink" title="~/.m2/settings.xml"></a><code>~/.m2/settings.xml</code></h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">settings</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/SETTINGS/1.2.0&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://maven.apache.org/SETTINGS/1.2.0 https://maven.apache.org/xsd/settings-1.2.0.xsd&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mirrors</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">id</span>&gt;</span>aliyun<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>*<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">name</span>&gt;</span>aliyun<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://maven.aliyun.com/repository/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mirrors</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">settings</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2024/06/26/gradle-mirror/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="starudream">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/06/26/gradle-mirror/" class="post-title-link" itemprop="url">配置 Gradle 镜像</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-06-26 14:45:46" itemprop="dateCreated datePublished" datetime="2024-06-26T14:45:46+08:00">2024-06-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="gradle-init-gradle"><a href="#gradle-init-gradle" class="headerlink" title="~/.gradle/init.gradle"></a><code>~/.gradle/init.gradle</code></h2><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">allprojects &#123;</span><br><span class="line">    buildscript &#123;</span><br><span class="line">        repositories &#123;</span><br><span class="line">            maven &#123; url <span class="string">&#x27;https://maven.aliyun.com/repository/gradle-plugin/&#x27;</span> &#125;</span><br><span class="line">            mavenLocal()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    repositories &#123;</span><br><span class="line">        maven &#123; url <span class="string">&#x27;https://maven.aliyun.com/repository/public/&#x27;</span> &#125;</span><br><span class="line">        maven &#123; url <span class="string">&#x27;https://maven.aliyun.com/repository/spring/&#x27;</span> &#125;</span><br><span class="line">        mavenLocal()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="build-gradle"><a href="#build-gradle" class="headerlink" title="build.gradle"></a><code>build.gradle</code></h2><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">buildscript &#123;</span><br><span class="line">    repositories &#123;</span><br><span class="line">        maven &#123; url <span class="string">&#x27;https://maven.aliyun.com/repository/gradle-plugin&#x27;</span> &#125;</span><br><span class="line">        mavenLocal()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">repositories &#123;</span><br><span class="line">  maven &#123; url <span class="string">&#x27;https://maven.aliyun.com/repository/public&#x27;</span> &#125;</span><br><span class="line">  maven &#123; url <span class="string">&#x27;https://maven.aliyun.com/repository/spring&#x27;</span> &#125;</span><br><span class="line">  mavenLocal()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2024/04/11/auto-create-gitalk-issue/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="starudream">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/04/11/auto-create-gitalk-issue/" class="post-title-link" itemprop="url">自动创建 Gitalk 关联 Issue</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-04-11 10:59:04" itemprop="dateCreated datePublished" datetime="2024-04-11T10:59:04+08:00">2024-04-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>在根目录创建文件夹 <code>scripts</code>，在文件夹中创建文件 <code>gitalk-init.js</code>，内容如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> axios = <span class="built_in">require</span>(<span class="string">&quot;axios&quot;</span>)</span><br><span class="line"><span class="keyword">const</span> md5 = <span class="built_in">require</span>(<span class="string">&quot;md5&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> options = &#123;</span><br><span class="line">  <span class="attr">owner</span>: <span class="string">&quot;starudream&quot;</span>,</span><br><span class="line">  <span class="attr">repo</span>: <span class="string">&quot;blog-page&quot;</span>,</span><br><span class="line">  <span class="attr">accessToken</span>: <span class="string">&quot;&lt;&lt;placeholder&gt;&gt;&quot;</span>,</span><br><span class="line">  <span class="attr">labels</span>: <span class="string">&quot;Gitalk,&quot;</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> axiosGithub = axios.<span class="title function_">create</span>(&#123;</span><br><span class="line">  <span class="attr">baseURL</span>: <span class="string">&quot;https://api.github.com&quot;</span>,</span><br><span class="line">  <span class="attr">headers</span>: &#123;</span><br><span class="line">    <span class="string">&quot;Accept&quot;</span>: <span class="string">&quot;application/json&quot;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">getIssueByLabels</span> = (<span class="params">id</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> axiosGithub.<span class="title function_">get</span>(<span class="string">`/repos/<span class="subst">$&#123;options.owner&#125;</span>/<span class="subst">$&#123;options.repo&#125;</span>/issues`</span>, &#123;</span><br><span class="line">    <span class="attr">headers</span>: &#123;</span><br><span class="line">      <span class="title class_">Authorization</span>: <span class="string">`token <span class="subst">$&#123;options.accessToken&#125;</span>`</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">params</span>: &#123;</span><br><span class="line">      <span class="attr">labels</span>: options.<span class="property">labels</span>.<span class="title function_">concat</span>(id),</span><br><span class="line">      <span class="attr">t</span>: <span class="title class_">Date</span>.<span class="title function_">now</span>(),</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;).<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (res &amp;&amp; res.<span class="property">data</span> &amp;&amp; res.<span class="property">data</span>.<span class="property">length</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> res.<span class="property">data</span>[<span class="number">0</span>]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">createIssue</span> = (<span class="params">title, body, id</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> axiosGithub.<span class="title function_">post</span>(<span class="string">`/repos/<span class="subst">$&#123;options.owner&#125;</span>/<span class="subst">$&#123;options.repo&#125;</span>/issues`</span>, &#123;</span><br><span class="line">    title,</span><br><span class="line">    <span class="attr">labels</span>: options.<span class="property">labels</span>.<span class="title function_">concat</span>(id).<span class="title function_">split</span>(<span class="string">&quot;,&quot;</span>),</span><br><span class="line">    <span class="attr">body</span>: body,</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    <span class="attr">headers</span>: &#123;</span><br><span class="line">      <span class="title class_">Authorization</span>: <span class="string">`token <span class="subst">$&#123;options.accessToken&#125;</span>`</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;).<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> res.<span class="property">data</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">hexo.<span class="property">extend</span>.<span class="property">generator</span>.<span class="title function_">register</span>(<span class="string">&quot;gitalk-init&quot;</span>, <span class="function"><span class="params">locals</span> =&gt;</span> &#123;</span><br><span class="line">  locals.<span class="property">posts</span>.<span class="title function_">each</span>(<span class="function"><span class="params">post</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (post.<span class="property">layout</span> !== <span class="string">&quot;post&quot;</span> || !post.<span class="property">published</span> || !post.<span class="property">comments</span>) <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">const</span> title = post.<span class="property">title</span> + <span class="string">&quot; | &quot;</span> + hexo.<span class="property">config</span>.<span class="property">title</span></span><br><span class="line">    <span class="keyword">const</span> path = <span class="string">&quot;/&quot;</span> + post.<span class="property">path</span></span><br><span class="line">    <span class="keyword">const</span> hash = <span class="title function_">md5</span>(path)</span><br><span class="line">    <span class="title function_">getIssueByLabels</span>(hash).<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (res) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`【<span class="subst">$&#123;title&#125;</span>】has existed`</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="title function_">createIssue</span>(title, post.<span class="property">permalink</span>, hash).<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`【<span class="subst">$&#123;title&#125;</span>】has created`</span>)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>然后运行 <code>hexo generate --force</code> 即会自动执行 <code>scripts</code> 内脚本文件。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2024/04/11/win11-use-old-right-click-menu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="starudream">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/04/11/win11-use-old-right-click-menu/" class="post-title-link" itemprop="url">win11 使用旧版右键菜单</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-04-11 09:11:28" itemprop="dateCreated datePublished" datetime="2024-04-11T09:11:28+08:00">2024-04-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <ul>
+<li>使用旧版</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reg add &quot;HKCU\Software\Classes\CLSID\&#123;86ca1aa0-34aa-4e8b-a509-50c905bae2a2&#125;\InprocServer32&quot; /f /ve</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>恢复新版</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reg delete &quot;HKCU\Software\Classes\CLSID\&#123;86ca1aa0-34aa-4e8b-a509-50c905bae2a2&#125;&quot; /f</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -286,397 +611,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2024/03/19/debug-with-telepresence/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="starudream">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰狂澜's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 星辰狂澜's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/03/19/debug-with-telepresence/" class="post-title-link" itemprop="url">使用 telepresence 调试 k8s 线上环境</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-03-19 10:32:56" itemprop="dateCreated datePublished" datetime="2024-03-19T10:32:56+08:00">2024-03-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>安装请看 <span class="exturl" data-url="aHR0cHM6Ly93d3cuZ2V0YW1iYXNzYWRvci5pby9kb2NzL3RlbGVwcmVzZW5jZS9sYXRlc3QvaW5zdGFsbA==">官方文档<i class="fa fa-external-link-alt"></i></span></p>
-<p>需要注意的是文档内所用的版本是 <code>Pro版</code>，与 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RlbGVwcmVzZW5jZWlvL3RlbGVwcmVzZW5jZQ==">Github<i class="fa fa-external-link-alt"></i></span> <code>Release</code> 中下载的 <code>开源版</code> 非同一版本。</p>
-<p>以下使用的版本为 <code>v2.19.0</code> <code>Pro版</code>。</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>在本机配置 <code>Kubectl</code> <code>Context</code> 并使用 <code>kubectl config use-context dev</code> 切换到指定集群，或者直接在线上服务器执行以下命令安装 <code>Traffic Manager</code>；</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">telepresence helm install</span><br></pre></td></tr></table></figure>
-
-<p>安装参数请参考 <span class="exturl" data-url="aHR0cHM6Ly9hcnRpZmFjdGh1Yi5pby9wYWNrYWdlcy9oZWxtL2RhdGF3aXJlL3RlbGVwcmVzZW5jZQ==">ArtifactHub<i class="fa fa-external-link-alt"></i></span></p>
-<p>安装完成后 <code>kubectl get pod -n ambassador</code> 查看状态：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">NAME                                                READY   STATUS    RESTARTS   AGE</span><br><span class="line">traffic-manager-ambassador-agent-56654cffd7-8qqdh   1/1     Running   0          46s</span><br><span class="line">traffic-manager-5b77fb5-62lr4                       1/1     Running   0          46s</span><br></pre></td></tr></table></figure>
-
-<h2 id="连接集群"><a href="#连接集群" class="headerlink" title="连接集群"></a>连接集群</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">telepresence connect --namespace biz # 指定 namespace</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Launching Telepresence User Daemon</span><br><span class="line">Launching Telepresence Root Daemon</span><br><span class="line">...</span><br><span class="line">Connected to context dev, namespace biz (https://10.x.x.x:6443)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">telepresence list</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bill              : ready to intercept (traffic-agent not yet installed)</span><br></pre></td></tr></table></figure>
-
-<h2 id="拦截转发流量"><a href="#拦截转发流量" class="headerlink" title="拦截转发流量"></a>拦截转发流量</h2><p>查看指定服务的 <code>yaml</code> 配置：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get svc -n biz bill -o yaml</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Service</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">bill</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">biz</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">clusterIP:</span> <span class="number">10.43</span><span class="number">.57</span><span class="number">.126</span></span><br><span class="line">  <span class="attr">clusterIPs:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="number">10.43</span><span class="number">.57</span><span class="number">.126</span></span><br><span class="line">  <span class="attr">internalTrafficPolicy:</span> <span class="string">Cluster</span></span><br><span class="line">  <span class="attr">ipFamilies:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">IPv4</span></span><br><span class="line">  <span class="attr">ipFamilyPolicy:</span> <span class="string">SingleStack</span></span><br><span class="line">  <span class="attr">ports:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">http</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">80</span></span><br><span class="line">    <span class="attr">protocol:</span> <span class="string">TCP</span></span><br><span class="line">    <span class="attr">targetPort:</span> <span class="number">10000</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">grpc</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">81</span></span><br><span class="line">    <span class="attr">protocol:</span> <span class="string">TCP</span></span><br><span class="line">    <span class="attr">targetPort:</span> <span class="number">10000</span></span><br><span class="line">  <span class="attr">selector:</span></span><br><span class="line">    <span class="attr">app:</span> <span class="string">bill</span></span><br><span class="line">  <span class="attr">sessionAffinity:</span> <span class="string">None</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">ClusterIP</span></span><br></pre></td></tr></table></figure>
-
-<p>可以看到 <code>bill</code> 服务中监听了 <code>10000</code> 端口，所以拦截时指定 <code>10000:10000</code>（<code>&lt;local port&gt;:&lt;remote port&gt;</code>）：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">telepresence intercept bill -p 10000:10000</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Using Deployment bill</span><br><span class="line">   Intercept name         : bill</span><br><span class="line">   State                  : ACTIVE</span><br><span class="line">   Workload kind          : Deployment</span><br><span class="line">   Destination            : 127.0.0.1:10000</span><br><span class="line">   Service Port Identifier: port</span><br><span class="line">   Volume Mount Error     : sshfs is not installed on your local machine</span><br><span class="line">   Intercepting           : all TCP requests</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl describe pod -n biz bill-779b9c6bf7-mdmv6</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">Init Containers:</span><br><span class="line">  tel-agent-init:</span><br><span class="line">    Container ID:  containerd://a8c5d0eff4714d77b8299ebe698dfe7907f521524f8ca267e9a1c24958e3ed9d</span><br><span class="line">    Image:         docker.io/datawire/ambassador-telepresence-agent:1.14.5</span><br><span class="line">    Image ID:      docker.io/datawire/ambassador-telepresence-agent@sha256:3f6f3076b1eca26c460ef166993c3d9e7527fcc2a3d74709e01869a39cfebd91</span><br><span class="line">    Port:          &lt;none&gt;</span><br><span class="line">    Host Port:     &lt;none&gt;</span><br><span class="line">    Args:</span><br><span class="line">      agent-init</span><br><span class="line">    State:          Terminated</span><br><span class="line">      Reason:       Completed</span><br><span class="line">      Exit Code:    0</span><br><span class="line">      Started:      Tue, 19 Mar 2024 10:02:21 +0800</span><br><span class="line">      Finished:     Tue, 19 Mar 2024 10:02:21 +0800</span><br><span class="line">    Ready:          True</span><br><span class="line"></span><br><span class="line">Containers:</span><br><span class="line">  bill:</span><br><span class="line">    Container ID:   containerd://e43df533e5f3834fcb9d7f5b62bef63b6a01375a3d94cee3f2a5ef8c83592966</span><br><span class="line">    Image:          ...</span><br><span class="line">    Image ID:       ...</span><br><span class="line">    Port:           10000/TCP</span><br><span class="line">    Host Port:      0/TCP</span><br><span class="line">    State:          Running</span><br><span class="line">    Ready:          True</span><br><span class="line"></span><br><span class="line">  traffic-agent:</span><br><span class="line">    Container ID:  containerd://356cdc8b7f423871907778085f43804a5e6c19c98884b0342e88b073d4926c8a</span><br><span class="line">    Image:         docker.io/datawire/ambassador-telepresence-agent:1.14.5</span><br><span class="line">    Image ID:      docker.io/datawire/ambassador-telepresence-agent@sha256:3f6f3076b1eca26c460ef166993c3d9e7527fcc2a3d74709e01869a39cfebd91</span><br><span class="line">    Port:          9900/TCP</span><br><span class="line">    Host Port:     0/TCP</span><br><span class="line">    Args:</span><br><span class="line">      agent</span><br><span class="line">    State:          Running</span><br><span class="line">      Started:      Tue, 19 Mar 2024 10:02:22 +0800</span><br><span class="line">    Ready:          True</span><br></pre></td></tr></table></figure>
-
-<p>然后访问远程集群地址 <code>https://10.x.x.x:8888/bill/_health</code> 可以看到流量已经转发到本地的 <code>10000</code> 端口。</p>
-<h2 id="恢复"><a href="#恢复" class="headerlink" title="恢复"></a>恢复</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">telepresence leave bill # stop `bill` intercept</span><br><span class="line"></span><br><span class="line">telepresence quit -s # stop all local telepresence daemons</span><br></pre></td></tr></table></figure>
-
-<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuZ2V0YW1iYXNzYWRvci5pby9kb2NzL3RlbGVwcmVzZW5jZQ==">https://www.getambassador.io/docs/telepresence<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2024/03/06/deploy-tailscale-derper-with-docker/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="starudream">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰狂澜's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 星辰狂澜's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/03/06/deploy-tailscale-derper-with-docker/" class="post-title-link" itemprop="url">使用 Docker 部署私有 Derper</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-03-06 10:10:20" itemprop="dateCreated datePublished" datetime="2024-03-06T10:10:20+08:00">2024-03-06</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>自建 <code>Tailscale</code> 的 <code>Derper</code> 节点并开启认证，需要在 <code>Derper</code> 节点也安装 <code>Tailscale</code> 客户端。</p>
-<h2 id="Docker-Compose"><a href="#Docker-Compose" class="headerlink" title="Docker Compose"></a>Docker Compose</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&quot;3&quot;</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">tailscale:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">tailscale/tailscale</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">tailscale</span></span><br><span class="line">    <span class="attr">privileged:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;./tailscale/data:/var/lib/tailscale&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;./tailscale/tmp:/tmp&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;/dev/net/tun:/dev/net/tun&quot;</span></span><br><span class="line">    <span class="attr">cap_add:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">net_admin</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">sys_module</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">TS_AUTHKEY:</span> <span class="string">&quot;从 https://login.tailscale.com/admin/settings/keys 获取&quot;</span></span><br><span class="line">      <span class="attr">TS_STATE_DIR:</span> <span class="string">&quot;/var/lib/tailscale&quot;</span></span><br><span class="line">      <span class="attr">TS_USERSPACE:</span> <span class="string">&quot;false&quot;</span></span><br><span class="line">  <span class="attr">derper:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">starudream/derper</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">derper</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">command:</span> <span class="string">/tailscale/derper</span> <span class="string">-a</span> <span class="string">:80</span> <span class="string">-verify-clients</span></span><br><span class="line">    <span class="attr">depends_on:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">tailscale</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;3478:3478/udp&quot;</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;./tailscale/tmp:/var/run/tailscale&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p><code>Derper</code> 的镜像请 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3N0YXJ1ZHJlYW0vZG9ja2VyLWltYWdl">于此<i class="fa fa-external-link-alt"></i></span> 查看。</p>
-<p>当前版本 <code>1.60.1</code> 中 <code>tailscaled.sock</code> 在 <code>var/run/tailscale/tailscaled.sock</code> 只是一个指向 <code>/tmp/tailscaled.sock</code> 的链接。</p>
-<h2 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h2><p>不使用 <code>Derper</code> 内置 <code>SSL</code> 证书，使用 <code>nginx</code> 反向代理，需要注意 <code>proxy_set_header Upgrade $http_upgrade;</code> 开启 <code>Websocket</code>。</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">  <span class="comment"># ...</span></span><br><span class="line">  <span class="section">location</span> / &#123;</span><br><span class="line">    <span class="attribute">proxy_pass</span> http://derper:80;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> Host <span class="variable">$host</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Real-PORT <span class="variable">$remote_port</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Forwarded-Proto <span class="variable">$scheme</span>;</span><br><span class="line">    <span class="comment"># websocket</span></span><br><span class="line">    <span class="attribute">proxy_http_version</span> <span class="number">1</span>.<span class="number">1</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> Upgrade <span class="variable">$http_upgrade</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> Connection <span class="variable">$connection_upgrade</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Access-Controls"><a href="#Access-Controls" class="headerlink" title="Access Controls"></a>Access Controls</h2><p>最后在 <span class="exturl" data-url="aHR0cHM6Ly9sb2dpbi50YWlsc2NhbGUuY29tL2FkbWluL2FjbHMvZmlsZQ==">https://login.tailscale.com/admin/acls/file<i class="fa fa-external-link-alt"></i></span> 修改配置文件，添加 <span class="exturl" data-url="aHR0cHM6Ly9wa2cuZ28uZGV2L3RhaWxzY2FsZS5jb20vdGFpbGNmZyNERVJQTWFw">DERPMap<i class="fa fa-external-link-alt"></i></span> 配置。</p>
-<p><code>OmitDefaultRegions</code> 会忽略官方的 <code>Derper</code> 节点，自建建议开启以保护隐私。</p>
-<p>下面的配置文件示例，分成内网与公网两个配置，<code>Tailscale</code> 客户端会通过延迟自动选择使用内网还是公网。</p>
-<p><code>Nodes</code> 内详细配置请看 <span class="exturl" data-url="aHR0cHM6Ly9wa2cuZ28uZGV2L3RhaWxzY2FsZS5jb20vdGFpbGNmZyNERVJQTm9kZQ==">DERPNode<i class="fa fa-external-link-alt"></i></span>。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  // ... acls ssh</span><br><span class="line">	&quot;derpMap&quot;: &#123;</span><br><span class="line">		&quot;OmitDefaultRegions&quot;: true,</span><br><span class="line">		&quot;Regions&quot;: &#123;</span><br><span class="line">			&quot;900&quot;: &#123;</span><br><span class="line">				&quot;RegionID&quot;:   900,</span><br><span class="line">				&quot;RegionCode&quot;: &quot;private&quot;,</span><br><span class="line">				&quot;Nodes&quot;: [</span><br><span class="line">					&#123;</span><br><span class="line">						&quot;Name&quot;:     &quot;private-aliyun&quot;,</span><br><span class="line">						&quot;RegionID&quot;: 900,</span><br><span class="line">						&quot;HostName&quot;: &quot;derper.52xckl.cn&quot;,</span><br><span class="line">						&quot;IPV4&quot;:     &quot;内网ip 172.17.0.1&quot;,</span><br><span class="line">						&quot;STUNPort&quot;: 3478,</span><br><span class="line">						&quot;DERPPort&quot;: 443</span><br><span class="line">					&#125;</span><br><span class="line">				]</span><br><span class="line">			&#125;,</span><br><span class="line">			&quot;901&quot;: &#123;</span><br><span class="line">				&quot;RegionID&quot;:   901,</span><br><span class="line">				&quot;RegionCode&quot;: &quot;public&quot;,</span><br><span class="line">				&quot;Nodes&quot;: [</span><br><span class="line">					&#123;</span><br><span class="line">						&quot;Name&quot;:     &quot;public-aliyun&quot;,</span><br><span class="line">						&quot;RegionID&quot;: 901,</span><br><span class="line">						&quot;HostName&quot;: &quot;derper.52xckl.cn&quot;,</span><br><span class="line">						&quot;IPV4&quot;:     &quot;公网ip&quot;,</span><br><span class="line">						&quot;STUNPort&quot;: 3478,</span><br><span class="line">						&quot;DERPPort&quot;: 443</span><br><span class="line">					&#125;</span><br><span class="line">				]</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it tailscale tailscale netcheck</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Report:</span><br><span class="line">	* UDP: true</span><br><span class="line">	* IPv4: yes, 172.19.0.1:34143</span><br><span class="line">	* IPv6: no, unavailable in OS</span><br><span class="line">	* MappingVariesByDestIP: true</span><br><span class="line">	* HairPinning: false</span><br><span class="line">	* PortMapping:</span><br><span class="line">	* Nearest DERP:</span><br><span class="line">	* DERP latency:</span><br><span class="line">		- private: 200µs   ()</span><br><span class="line">		- public: 3.1ms   ()</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it tailscale tailscale ping &lt;node name&gt;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pong from &lt;node name&gt; (&lt;node ip&gt;) via DERP(public) in 11ms</span><br><span class="line">pong from &lt;node name&gt; (&lt;node ip&gt;) via DERP(public) in 11ms</span><br><span class="line">pong from &lt;node name&gt; (&lt;node ip&gt;) via DERP(public) in 11ms</span><br></pre></td></tr></table></figure>
-
-<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly90YWlsc2NhbGUuY29tL2tiLzExMTgvY3VzdG9tLWRlcnAtc2VydmVycw==">https://tailscale.com/kb/1118/custom-derp-servers<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2024/02/19/gitlab-dind-as-service-hc/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="starudream">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰狂澜's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 星辰狂澜's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/02/19/gitlab-dind-as-service-hc/" class="post-title-link" itemprop="url">gitlab runner 使用 dind 作为 service 时的健康检查出错</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-02-19 16:49:56" itemprop="dateCreated datePublished" datetime="2024-02-19T16:49:56+08:00">2024-02-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>解决不必要的 30s 超时等待时间</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">FROM docker:20-dind as upstream</span><br><span class="line"></span><br><span class="line">FROM scratch</span><br><span class="line"></span><br><span class="line">COPY --from=upstream / /</span><br><span class="line"></span><br><span class="line">VOLUME /var/lib/docker</span><br><span class="line"></span><br><span class="line">EXPOSE 2376</span><br><span class="line"></span><br><span class="line">ENV DOCKER_TLS_CERTDIR=/certs</span><br><span class="line"></span><br><span class="line">ENTRYPOINT [&quot;dockerd-entrypoint.sh&quot;]</span><br><span class="line"></span><br><span class="line">CMD []</span><br></pre></td></tr></table></figure>
-
-<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRsYWIuY29tL2dpdGxhYi1vcmcvZ2l0bGFiLXJ1bm5lci8tL2lzc3Vlcy8yOTEzMCNub3RlXzEwMjgzMzE1NjQ=">https://gitlab.com/gitlab-org/gitlab-runner/-/issues/29130#note_1028331564<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2RvY2tlci1saWJyYXJ5L2RvY2tlci9ibG9iLzBkMWMyMTAwZDEyZGEyZTdlNDU4Y2RmZjE4ZDc0MWY2MjVjZTI3ZDYvMjAuMTAvZGluZC9Eb2NrZXJmaWxl">https://github.com/docker-library/docker/blob/0d1c2100d12da2e7e458cdff18d741f625ce27d6/20.10/dind/Dockerfile<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2024/02/19/elk-common-problem/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="starudream">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰狂澜's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 星辰狂澜's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/02/19/elk-common-problem/" class="post-title-link" itemprop="url">elk 常见问题</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-02-19 16:45:12" itemprop="dateCreated datePublished" datetime="2024-02-19T16:45:12+08:00">2024-02-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="common"><a href="#common" class="headerlink" title="common"></a>common</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/usr/bin/env bash</span></span><br><span class="line"></span><br><span class="line">method=$1</span><br><span class="line">if [ -z &quot;$method&quot; ]; then</span><br><span class="line">  method=&quot;GET&quot;</span><br><span class="line">fi</span><br><span class="line">path=$2</span><br><span class="line">if [[ $path == *\?* ]]; then</span><br><span class="line">  path=&quot;$path&amp;pretty&quot;</span><br><span class="line">else</span><br><span class="line">  path=&quot;$path?pretty&quot;</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">curl -v -u &quot;elastic:p1ssw0rd&quot; -X &quot;$method&quot; -H &quot;Content-Type: application/json&quot; &quot;$&#123;@:2&#125;&quot; &quot;http://localhost:9200/$path&quot;</span><br></pre></td></tr></table></figure>
-
-<h2 id="index-setting"><a href="#index-setting" class="headerlink" title="index setting"></a>index setting</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">./curl.sh PUT _index_template/logstash -d &#x27;&#123;</span><br><span class="line">  &quot;template&quot;: &#123;</span><br><span class="line">    &quot;settings&quot;: &#123;</span><br><span class="line">      &quot;index&quot;: &#123;</span><br><span class="line">        &quot;lifecycle&quot;: &#123;</span><br><span class="line">          &quot;name&quot;: &quot;90-days-default&quot;,</span><br><span class="line">          &quot;rollover_alias&quot;: &quot;90days&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;refresh_interval&quot;: &quot;5s&quot;,</span><br><span class="line">        &quot;number_of_replicas&quot;: &quot;0&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;index_patterns&quot;: [</span><br><span class="line">    &quot;logstash-*&quot;</span><br><span class="line">  ]</span><br><span class="line">&#125;&#x27;</span><br></pre></td></tr></table></figure>
-
-<h2 id="index-health-is-yellow"><a href="#index-health-is-yellow" class="headerlink" title="index health is yellow"></a>index health is yellow</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./curl.sh PUT _settings -d &#x27;&#123;</span><br><span class="line">  &quot;index.number_of_replicas&quot;: 0</span><br><span class="line">&#125;&#x27;</span><br></pre></td></tr></table></figure>
-
-<h2 id="index-has-exceeded-1000000-maximum-allowed-to-be-analyzed-for-highlighting"><a href="#index-has-exceeded-1000000-maximum-allowed-to-be-analyzed-for-highlighting" class="headerlink" title="index has exceeded [1000000] - maximum allowed to be analyzed for highlighting"></a>index has exceeded [1000000] - maximum allowed to be analyzed for highlighting</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./curl.sh PUT _settings -d &#x27;&#123;</span><br><span class="line">  &quot;index.highlight.max_analyzed_offset&quot;: 100000000</span><br><span class="line">&#125;&#x27;</span><br></pre></td></tr></table></figure>
-
-<h2 id="this-action-would-add-2-shards-but-this-cluster-currently-has-1000-1000"><a href="#this-action-would-add-2-shards-but-this-cluster-currently-has-1000-1000" class="headerlink" title="this action would add [2] shards, but this cluster currently has [1000]&#x2F;[1000]"></a>this action would add [2] shards, but this cluster currently has [1000]&#x2F;[1000]</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">./curl.sh PUT _cluster/settings -d &#x27;&#123;</span><br><span class="line">  &quot;persistent&quot;: &#123;</span><br><span class="line">    &quot;cluster.max_shards_per_node&quot;: 1000000</span><br><span class="line">  &#125;</span><br><span class="line">&#125;&#x27;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Can’t-store-an-async-search-response-larger-than-10485760-bytes"><a href="#Can’t-store-an-async-search-response-larger-than-10485760-bytes" class="headerlink" title="Can’t store an async search response larger than [10485760] bytes."></a>Can’t store an async search response larger than [10485760] bytes.</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">./curl.sh PUT _cluster/settings -d &#x27;&#123;</span><br><span class="line">  &quot;persistent&quot;: &#123;</span><br><span class="line">    &quot;search.max_async_search_response_size&quot;: &quot;50mb&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;&#x27;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>

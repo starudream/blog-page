@@ -2,6 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.starudream.cn/2024/11/13/install-ollama-with-docker-compose/</loc>
+    
+    <lastmod>2024-11-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.starudream.cn/2024/11/13/linux-install-nvidia-driver-and-container-toolkit/</loc>
+    
+    <lastmod>2024-11-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.starudream.cn/2024/11/13/shell-push-archive-files-to-docker-registry/</loc>
+    
+    <lastmod>2024-11-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.starudream.cn/2024/11/13/install-docker-registry/</loc>
+    
+    <lastmod>2024-11-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.starudream.cn/2024/11/13/linux-extend-file-systems/</loc>
     
     <lastmod>2024-11-13</lastmod>
@@ -920,6 +956,27 @@
   </url>
   
   <url>
+    <loc>https://blog.starudream.cn/tags/ollama/</loc>
+    <lastmod>2024-11-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.starudream.cn/tags/ai/</loc>
+    <lastmod>2024-11-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.starudream.cn/tags/llvm/</loc>
+    <lastmod>2024-11-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.starudream.cn/tags/linux/</loc>
     <lastmod>2024-11-13</lastmod>
     <changefreq>weekly</changefreq>
@@ -942,6 +999,27 @@
   
   <url>
     <loc>https://blog.starudream.cn/tags/ops/</loc>
+    <lastmod>2024-11-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.starudream.cn/tags/gpu/</loc>
+    <lastmod>2024-11-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.starudream.cn/tags/nvidia/</loc>
+    <lastmod>2024-11-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.starudream.cn/tags/container/</loc>
     <lastmod>2024-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
