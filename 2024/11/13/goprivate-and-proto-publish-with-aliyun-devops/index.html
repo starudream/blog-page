@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <meta name="google-site-verification" content="bciBjT6ILjXYXC5qLY6HSGD1vVybtrtXHrhfZt7MWyQ">
+  <meta name="baidu-site-verification" content="codeva-mhXQnOLm3E">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.starudream.cn","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.21.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":true,"nav":null,"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":true}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Proto &amp; Buf buf.yaml  12345678910111213141516# yaml-language-server: $schema&#x3D;https:&#x2F;&#x2F;json.schemastore.org&#x2F;buf.jsonversion: v2deps:  - buf.build&#x2F;googleapis&#x2F;googleapis  - buf.build&#x2F;envoyproxy&#x2F;protoc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用云效流水线功能实现 Go 私有库和 Proto 中心仓库自动发布">
+<meta property="og:url" content="https://blog.starudream.cn/2024/11/13/goprivate-and-proto-publish-with-aliyun-devops/index.html">
+<meta property="og:site_name" content="星辰狂澜&#39;s Blog">
+<meta property="og:description" content="Proto &amp; Buf buf.yaml  12345678910111213141516# yaml-language-server: $schema&#x3D;https:&#x2F;&#x2F;json.schemastore.org&#x2F;buf.jsonversion: v2deps:  - buf.build&#x2F;googleapis&#x2F;googleapis  - buf.build&#x2F;envoyproxy&#x2F;protoc">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.starudream.cn/images/87-1.png">
+<meta property="og:image" content="https://blog.starudream.cn/images/87-2.png">
+<meta property="article:published_time" content="2024-11-13T02:30:52.000Z">
+<meta property="article:modified_time" content="2024-11-13T02:30:52.000Z">
+<meta property="article:author" content="starudream">
+<meta property="article:tag" content="aliyun">
+<meta property="article:tag" content="devops">
+<meta property="article:tag" content="flow">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.starudream.cn/images/87-1.png">
+
+
+<link rel="canonical" href="https://blog.starudream.cn/2024/11/13/goprivate-and-proto-publish-with-aliyun-devops/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.starudream.cn/2024/11/13/goprivate-and-proto-publish-with-aliyun-devops/","path":"2024/11/13/goprivate-and-proto-publish-with-aliyun-devops/","title":"使用云效流水线功能实现 Go 私有库和 Proto 中心仓库自动发布"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>使用云效流水线功能实现 Go 私有库和 Proto 中心仓库自动发布 | 星辰狂澜's Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PGY31186CW"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-PGY31186CW","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?3afbb3c0d73525e370bb1324ff774f74"></script>
+
+
+
+
+
+
+<script src="/live2d/autoload.js"></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">星辰狂澜's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">85</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">68</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Proto-Buf"><span class="nav-number">1.</span> <span class="nav-text">Proto &amp; Buf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%81%E6%B0%B4%E7%BA%BF"><span class="nav-number">2.</span> <span class="nav-text">流水线</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E8%BF%9E%E6%8E%A5%E7%AE%A1%E7%90%86"><span class="nav-number">2.1.</span> <span class="nav-text">服务连接管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%84%E5%BB%BA%E9%9B%86%E7%BE%A4"><span class="nav-number">2.2.</span> <span class="nav-text">构建集群</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E5%B9%B6%E5%8F%91%E5%B8%83-Proto"><span class="nav-number">2.3.</span> <span class="nav-text">生成并发布 Proto</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GoPrivate"><span class="nav-number">3.</span> <span class="nav-text">GoPrivate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Configuration"><span class="nav-number">4.</span> <span class="nav-text">Configuration</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ssh-key"><span class="nav-number">4.1.</span> <span class="nav-text">ssh key</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#netrc"><span class="nav-number">4.2.</span> <span class="nav-text">netrc</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Backend"><span class="nav-number">5.</span> <span class="nav-text">Backend</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="starudream"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">starudream</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">68</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">85</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3N0YXJ1ZHJlYW0=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;starudream"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmp1c3R3YW5nc2hlbmdAZ21haWwuY29t" title="E-Mail → mailto:justwangsheng@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></span>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2024/11/13/goprivate-and-proto-publish-with-aliyun-devops/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="starudream">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="使用云效流水线功能实现 Go 私有库和 Proto 中心仓库自动发布 | 星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用云效流水线功能实现 Go 私有库和 Proto 中心仓库自动发布
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-11-13 10:30:52" itemprop="dateCreated datePublished" datetime="2024-11-13T10:30:52+08:00">2024-11-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="Proto-Buf"><a href="#Proto-Buf" class="headerlink" title="Proto &amp; Buf"></a>Proto &amp; Buf</h2><ul>
+<li><code>buf.yaml</code></li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># yaml-language-server: $schema=https://json.schemastore.org/buf.json</span></span><br><span class="line"></span><br><span class="line"><span class="attr">version:</span> <span class="string">v2</span></span><br><span class="line"><span class="attr">deps:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">buf.build/googleapis/googleapis</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">buf.build/envoyproxy/protoc-gen-validate</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">buf.build/grpc-ecosystem/grpc-gateway</span></span><br><span class="line"><span class="attr">lint:</span></span><br><span class="line">  <span class="attr">use:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">BASIC</span></span><br><span class="line">  <span class="attr">ignore_only:</span></span><br><span class="line">    <span class="attr">IMPORT_NO_PUBLIC:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">common/common.proto</span></span><br><span class="line"><span class="attr">breaking:</span></span><br><span class="line">  <span class="attr">use:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">FILE</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>buf.gen.yaml</code></li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># yaml-language-server: $schema=https://json.schemastore.org/buf.gen.json</span></span><br><span class="line"></span><br><span class="line"><span class="attr">version:</span> <span class="string">v2</span></span><br><span class="line"><span class="attr">plugins:</span></span><br><span class="line">  <span class="comment"># https://github.com/protocolbuffers/protobuf-go</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">local:</span> <span class="string">protoc-gen-go</span></span><br><span class="line">    <span class="attr">out:</span> <span class="string">gen_go</span></span><br><span class="line">    <span class="attr">opt:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">paths=source_relative</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># https://github.com/grpc/grpc-go</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">local:</span> <span class="string">protoc-gen-go-grpc</span></span><br><span class="line">    <span class="attr">out:</span> <span class="string">gen_go</span></span><br><span class="line">    <span class="attr">opt:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">paths=source_relative</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># github.com/envoyproxy/protoc-gen-validate</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">local:</span> <span class="string">protoc-gen-validate</span></span><br><span class="line">    <span class="attr">out:</span> <span class="string">gen_go</span></span><br><span class="line">    <span class="attr">opt:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">paths=source_relative</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">lang=go</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway</span></span><br><span class="line">  <span class="comment"># - local: protoc-gen-grpc-gateway</span></span><br><span class="line">  <span class="comment">#   out: gen_go</span></span><br><span class="line">  <span class="comment">#   opt:</span></span><br><span class="line">  <span class="comment">#     - paths=source_relative</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># github.com/go-kratos/kratos/cmd/protoc-gen-go-http/v2</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">local:</span> <span class="string">protoc-gen-go-http</span></span><br><span class="line">    <span class="attr">out:</span> <span class="string">gen_go</span></span><br><span class="line">    <span class="attr">opt:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">paths=source_relative</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">local:</span> <span class="string">protoc-gen-openapiv2</span></span><br><span class="line">    <span class="attr">strategy:</span> <span class="string">all</span></span><br><span class="line">    <span class="attr">out:</span> <span class="string">gen_doc</span></span><br><span class="line">    <span class="attr">opt:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">allow_merge=true</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">include_package_in_tags=true</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">fqn_for_openapi_name=true</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">use_go_templates=true</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">disable_default_errors=true</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">enums_as_ints=true</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">output_format=yaml</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">preserve_rpc_order=true</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="流水线"><a href="#流水线" class="headerlink" title="流水线"></a>流水线</h2><h3 id="服务连接管理"><a href="#服务连接管理" class="headerlink" title="服务连接管理"></a>服务连接管理</h3><img data-src="/images/87-1.png" alt="webui" style="max-height:600px;"/>
+
+<h3 id="构建集群"><a href="#构建集群" class="headerlink" title="构建集群"></a>构建集群</h3><img data-src="/images/87-2.png" alt="webui" style="max-height:600px;"/>
+
+<h3 id="生成并发布-Proto"><a href="#生成并发布-Proto" class="headerlink" title="生成并发布 Proto"></a>生成并发布 Proto</h3><p>将 <code>api-pb</code> 所生成的 <code>go</code> 代码推送至 <code>api-go</code> 仓库，以便 <code>goprivate</code> 使用。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">defaultWorkspace:</span> <span class="string">api_pb</span></span><br><span class="line"></span><br><span class="line"><span class="attr">sources:</span></span><br><span class="line">  <span class="attr">api_pb:</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">codeup</span></span><br><span class="line">    <span class="attr">endpoint:</span> <span class="string">git@codeup.aliyun.com:starudream/os/api-pb.git</span></span><br><span class="line">    <span class="attr">certificate:</span></span><br><span class="line">      <span class="attr">type:</span> <span class="string">serviceConnection</span></span><br><span class="line">      <span class="attr">serviceConnection:</span> <span class="string">$&#123;云效Codeup服务连接ID&#125;</span></span><br><span class="line">    <span class="attr">triggerEvents:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">push</span></span><br><span class="line">  <span class="attr">api_go:</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">codeup</span></span><br><span class="line">    <span class="attr">endpoint:</span> <span class="string">git@codeup.aliyun.com:starudream/os/api-go.git</span></span><br><span class="line">    <span class="attr">certificate:</span></span><br><span class="line">      <span class="attr">type:</span> <span class="string">serviceConnection</span></span><br><span class="line">      <span class="attr">serviceConnection:</span> <span class="string">$&#123;云效Codeup服务连接ID&#125;</span></span><br><span class="line">    <span class="attr">triggerEvents:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">tagPush</span> <span class="comment"># 防止 push 时触发该工作流</span></span><br><span class="line"></span><br><span class="line"><span class="attr">stages:</span></span><br><span class="line">  <span class="attr">proto:</span></span><br><span class="line">    <span class="attr">jobs:</span></span><br><span class="line">      <span class="attr">gen:</span></span><br><span class="line">        <span class="attr">timeoutMinutes:</span> <span class="number">30</span></span><br><span class="line">        <span class="attr">runsOn:</span></span><br><span class="line">          <span class="attr">group:</span> <span class="string">private/$&#123;私有构建集群ID&#125;</span></span><br><span class="line">        <span class="attr">steps:</span></span><br><span class="line">          <span class="attr">gen:</span></span><br><span class="line">            <span class="attr">step:</span> <span class="string">CustomEnvironmentBuild</span></span><br><span class="line">            <span class="attr">with:</span></span><br><span class="line">              <span class="attr">image:</span> <span class="string">registry.cn-shanghai.aliyuncs.com/starudream/go-dev</span></span><br><span class="line">              <span class="attr">privateRegistry:</span> <span class="literal">true</span></span><br><span class="line">              <span class="attr">certificate:</span></span><br><span class="line">                <span class="attr">type:</span> <span class="string">serviceConnection</span></span><br><span class="line">                <span class="attr">serviceConnection:</span> <span class="string">$&#123;ACR服务连接ID&#125;</span></span><br><span class="line">              <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">                go version</span></span><br><span class="line"><span class="string">                buf --version</span></span><br><span class="line"><span class="string">                make clean gen</span></span><br><span class="line"><span class="string">                tar -czf pb_gen_$&#123;PIPELINE_ID&#125;_$&#123;BUILD_NUMBER&#125;.tar.gz gen_go gen_doc</span></span><br><span class="line"><span class="string">                mkdir -p /cache/proto/ &amp;&amp; mv -f pb_gen_$&#123;PIPELINE_ID&#125;_$&#123;BUILD_NUMBER&#125;.tar.gz /cache/proto/</span></span><br><span class="line"><span class="string"></span></span><br><span class="line">      <span class="attr">pub:</span></span><br><span class="line">        <span class="attr">timeoutMinutes:</span> <span class="number">30</span></span><br><span class="line">        <span class="attr">runsOn:</span></span><br><span class="line">          <span class="attr">group:</span> <span class="string">private/$&#123;私有构建集群ID&#125;</span></span><br><span class="line">          <span class="attr">vm:</span> <span class="literal">true</span></span><br><span class="line">        <span class="attr">needs:</span> <span class="string">gen</span></span><br><span class="line">        <span class="attr">steps:</span></span><br><span class="line">          <span class="attr">go:</span></span><br><span class="line">            <span class="attr">step:</span> <span class="string">Command</span></span><br><span class="line">            <span class="attr">with:</span></span><br><span class="line">              <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">                pushd /data/yunxiao/cache/proto/ &gt;/dev/null</span></span><br><span class="line"><span class="string">                rm -rf $&#123;PIPELINE_ID&#125;_$&#123;BUILD_NUMBER&#125; &amp;&amp; mkdir -p $&#123;PIPELINE_ID&#125;_$&#123;BUILD_NUMBER&#125;</span></span><br><span class="line"><span class="string">                tar -xzf pb_gen_$&#123;PIPELINE_ID&#125;_$&#123;BUILD_NUMBER&#125;.tar.gz -C $&#123;PIPELINE_ID&#125;_$&#123;BUILD_NUMBER&#125;</span></span><br><span class="line"><span class="string">                mv -f $&#123;WORK_SPACE&#125;/api_go/.git $&#123;PIPELINE_ID&#125;_$&#123;BUILD_NUMBER&#125;/gen_go/.git</span></span><br><span class="line"><span class="string"></span></span><br><span class="line">                <span class="string">pushd</span> <span class="string">$&#123;PIPELINE_ID&#125;_$&#123;BUILD_NUMBER&#125;/gen_go</span> <span class="string">&gt;/dev/null</span></span><br><span class="line">                <span class="string">git</span> <span class="string">config</span> <span class="string">--global</span> <span class="string">user.name</span> <span class="string">&quot;ci-bot&quot;</span></span><br><span class="line">                <span class="string">git</span> <span class="string">config</span> <span class="string">--global</span> <span class="string">user.email</span> <span class="string">&quot;ci-bot@mail.starudream.cn&quot;</span></span><br><span class="line">                <span class="string">git</span> <span class="string">add</span> <span class="string">.</span> <span class="string">&amp;&amp;</span> <span class="string">git</span> <span class="string">commit</span> <span class="string">-m</span> <span class="string">&quot;$&#123;CI_COMMIT_ID_1&#125; -&gt; $&#123;CI_COMMIT_TITLE_1&#125;&quot;</span> <span class="string">&amp;&amp;</span> <span class="string">git</span> <span class="string">push</span></span><br><span class="line">                <span class="string">popd</span> <span class="string">&gt;/dev/null</span></span><br><span class="line"></span><br><span class="line">                <span class="string">rm</span> <span class="string">-rf</span> <span class="string">$&#123;PIPELINE_ID&#125;_$&#123;BUILD_NUMBER&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="GoPrivate"><a href="#GoPrivate" class="headerlink" title="GoPrivate"></a>GoPrivate</h2><h2 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">go env -w CGO_ENABLED=0</span><br><span class="line">go env -w GO111MODULE=on</span><br><span class="line">go env -w GOPRIVATE=codeup.aliyun.com</span><br><span class="line">go env -w GOPROXY=https://goproxy.cn,direct</span><br></pre></td></tr></table></figure>
+
+<h3 id="ssh-key"><a href="#ssh-key" class="headerlink" title="ssh key"></a>ssh key</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">replace codeup.aliyun.com/starudream/os/api-go =&gt; codeup.aliyun.com/starudream/os/api-go.git</span><br></pre></td></tr></table></figure>
+
+<p>需要手动指定版本，不能更新，比较麻烦。</p>
+<h3 id="netrc"><a href="#netrc" class="headerlink" title="netrc"></a>netrc</h3><ul>
+<li><code>windows</code>: <code>$HOME/_netrc</code></li>
+<li><code>linux</code>: <code>$HOME/.netrc</code></li>
+</ul>
+<p>可以使用 <code>go get -u</code> 自动更新。</p>
+<h2 id="Backend"><a href="#Backend" class="headerlink" title="Backend"></a>Backend</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">module codeup.aliyun.<span class="keyword">com</span>/starudream/os/backend</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="number">1.23</span>.<span class="number">0</span></span><br><span class="line"></span><br><span class="line">require (</span><br><span class="line">	codeup.aliyun.<span class="keyword">com</span>/starudream/os/api-<span class="keyword">go</span> v0.<span class="number">0.0</span>-<span class="number">20241111023212</span>-d66b05b24117</span><br><span class="line">	codeup.aliyun.<span class="keyword">com</span>/starudream/os/lib-<span class="keyword">go</span> v0.<span class="number">0.0</span>-<span class="number">20241111082247</span>-<span class="number">43</span>cf457f0683</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="starudream 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.png" alt="starudream 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>原作者： </strong>starudream
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://blog.starudream.cn/2024/11/13/goprivate-and-proto-publish-with-aliyun-devops/" title="使用云效流水线功能实现 Go 私有库和 Proto 中心仓库自动发布">https://blog.starudream.cn/2024/11/13/goprivate-and-proto-publish-with-aliyun-devops/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="https://twitter.com/StarUDream">
+            <span class="icon">
+              <i class="fab fa-twitter"></i>
+            </span>
+
+            <span class="label">Twitter</span>
+          </a>
+      </div>
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="https://t.me/wangsheng">
+            <span class="icon">
+              <i class="fab fa-telegram"></i>
+            </span>
+
+            <span class="label">Telegram</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/aliyun/" rel="tag"># aliyun</a>
+              <a href="/tags/devops/" rel="tag"># devops</a>
+              <a href="/tags/flow/" rel="tag"># flow</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/11/13/install-ollama-with-docker-compose/" rel="prev" title="使用 Docker Compose 安装 Ollama 及模型">
+                  <i class="fa fa-angle-left"></i> 使用 Docker Compose 安装 Ollama 及模型
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2018 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">starudream</span>
+  </div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9waXNjZXMv">NexT.Pisces</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL3N0YXJ1ZHJlYW0=" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+  <script src="/js/third-party/pace.js"></script>
+
+
+  
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":false,"archive":false,"delay":true,"timeout":3000,"priority":true,"url":"https://blog.starudream.cn/2024/11/13/goprivate-and-proto-publish-with-aliyun-devops/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"starudream","repo":"blog-page","client_id":"f978993f513b3b2f2e2b","client_secret":"464c6da99b2dba07b66b8f8187c8b3be32de88b9","admin_user":"starudream","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"f97c2261e2570ab83485f29381489d75"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

@@ -92,7 +92,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">82</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">67</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">85</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">68</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -157,7 +157,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">67</span>
+          <span class="site-state-item-count">68</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -168,7 +168,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">82</span>
+        <span class="site-state-item-count">85</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -200,6 +200,116 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2024/11/13/linux-extend-file-systems/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="starudream">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/11/13/linux-extend-file-systems/" class="post-title-link" itemprop="url">在 Linux 中扩容分区、逻辑卷、文件系统</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-11-13 09:31:41" itemprop="dateCreated datePublished" datetime="2024-11-13T09:31:41+08:00">2024-11-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ul>
+<li><code>fdisk -l</code></li>
+</ul>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">root@dev215 [~]# fdisk -l</span><br><span class="line">GPT PMBR size mismatch (209715199 != 419430399) will be corrected by write.</span><br><span class="line">The backup GPT table is not on the end of the device.</span><br><span class="line">Disk /dev/sda: 200 GiB, 214748364800 bytes, 419430400 sectors</span><br><span class="line">Disk model: QEMU HARDDISK</span><br><span class="line">Units: sectors of 1 * 512 = 512 bytes</span><br><span class="line">Sector size (logical/physical): 512 bytes / 512 bytes</span><br><span class="line">I/O size (minimum/optimal): 512 bytes / 512 bytes</span><br><span class="line">Disklabel type: gpt</span><br><span class="line">Disk identifier: 406F0824-6F10-4C6F-8522-FFF0A017AA44</span><br><span class="line"></span><br><span class="line">Device       Start       End   Sectors Size Type</span><br><span class="line">/dev/sda1     2048      4095      2048   1M BIOS boot</span><br><span class="line">/dev/sda2     4096   2101247   2097152   1G Linux filesystem</span><br><span class="line">/dev/sda3  2101248 209713151 207611904  99G Linux LVM</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Disk /dev/mapper/opencloudos-root: 66.52 GiB, 71424802816 bytes, 139501568 sectors</span><br><span class="line">Units: sectors of 1 * 512 = 512 bytes</span><br><span class="line">Sector size (logical/physical): 512 bytes / 512 bytes</span><br><span class="line">I/O size (minimum/optimal): 512 bytes / 512 bytes</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Disk /dev/mapper/opencloudos-home: 32.48 GiB, 34871443456 bytes, 68108288 sectors</span><br><span class="line">Units: sectors of 1 * 512 = 512 bytes</span><br><span class="line">Sector size (logical/physical): 512 bytes / 512 bytes</span><br><span class="line">I/O size (minimum/optimal): 512 bytes / 512 bytes</span><br></pre></td></tr></table></figure>
+
+<p><code>Disklabel type</code> 为 <code>dos</code> 表示为 MBR 分区，为 <code>gpt</code> 表示为 GPT 分区。</p>
+<ul>
+<li><code>lsblk</code></li>
+</ul>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">root@dev215 [~]# lsblk</span><br><span class="line">NAME                 MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS</span><br><span class="line">sda                    8:0    0  200G  0 disk</span><br><span class="line">├─sda1                 8:1    0    1M  0 part</span><br><span class="line">├─sda2                 8:2    0    1G  0 part /boot</span><br><span class="line">└─sda3                 8:3    0   99G  0 part</span><br><span class="line">  ├─opencloudos-root 251:0    0 66.5G  0 lvm  /</span><br><span class="line">  └─opencloudos-home 251:1    0 32.5G  0 lvm  /home</span><br></pre></td></tr></table></figure>
+
+<h2 id="扩容分区"><a href="#扩容分区" class="headerlink" title="扩容分区"></a>扩容分区</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y cloud-utils-growpart gdisk</span><br></pre></td></tr></table></figure>
+
+<h3 id="MBR"><a href="#MBR" class="headerlink" title="MBR"></a>MBR</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LC_ALL=en_US.UTF-8 growpart /dev/vdb 1</span><br></pre></td></tr></table></figure>
+
+<h3 id="GPT"><a href="#GPT" class="headerlink" title="GPT"></a>GPT</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LC_ALL=en_US.UTF-8 growpart /dev/sda 3</span><br></pre></td></tr></table></figure>
+
+<p>出现以 <code>CHANGED</code> 开头的信息表示扩容成功。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">root@dev215 [/data]# growpart /dev/sda 3</span><br><span class="line">CHANGED: partition=3 start=2101248 old: size=207611904 end=209713151 new: size=417329119 end=419430366</span><br><span class="line"></span><br><span class="line">root@dev215 [/data]# lsblk</span><br><span class="line">NAME                 MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS</span><br><span class="line">sda                    8:0    0  200G  0 disk</span><br><span class="line">├─sda1                 8:1    0    1M  0 part</span><br><span class="line">├─sda2                 8:2    0    1G  0 part /boot</span><br><span class="line">└─sda3                 8:3    0  199G  0 part</span><br><span class="line">  ├─opencloudos-root 251:0    0 66.5G  0 lvm  /</span><br><span class="line">  └─opencloudos-home 251:1    0 32.5G  0 lvm  /home</span><br></pre></td></tr></table></figure>
+
+<h2 id="扩容逻辑卷"><a href="#扩容逻辑卷" class="headerlink" title="扩容逻辑卷"></a>扩容逻辑卷</h2><p>在上面的 <code>lsblk</code> 信息中，实际上根目录 <code>/</code> 和 <code>/home</code> 的类型都是 <code>lvm</code>。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pvresize /dev/sda3</span><br><span class="line">lvextend -L +100G /dev/opencloudos/root</span><br><span class="line">xfs_growfs /</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line">root@dev215 [/data]# pvs</span><br><span class="line">  PV         VG          Fmt  Attr PSize    PFree</span><br><span class="line">  /dev/sda3  opencloudos lvm2 a--  &lt;199.00g 100.00g</span><br><span class="line">  </span><br><span class="line">root@dev215 [/data]# pvresize /dev/sda3</span><br><span class="line">  Physical volume &quot;/dev/sda3&quot; changed</span><br><span class="line">  1 physical volume(s) resized or updated / 0 physical volume(s) not resized</span><br><span class="line">  </span><br><span class="line">root@dev215 [/data]# lvdisplay</span><br><span class="line">  --- Logical volume ---</span><br><span class="line">  LV Path                /dev/opencloudos/home</span><br><span class="line">  LV Name                home</span><br><span class="line">  VG Name                opencloudos</span><br><span class="line">  LV UUID                Mrv5DQ-JeQx-mKdM-Vn9u-qOtw-Yl9k-TbkTjH</span><br><span class="line">  LV Write Access        read/write</span><br><span class="line">  LV Creation host, time dev215, 2024-11-01 10:35:13 +0800</span><br><span class="line">  LV Status              available</span><br><span class="line">  # open                 1</span><br><span class="line">  LV Size                &lt;32.48 GiB</span><br><span class="line">  Current LE             8314</span><br><span class="line">  Segments               1</span><br><span class="line">  Allocation             inherit</span><br><span class="line">  Read ahead sectors     auto</span><br><span class="line">  - currently set to     256</span><br><span class="line">  Block device           251:1</span><br><span class="line"></span><br><span class="line">  --- Logical volume ---</span><br><span class="line">  LV Path                /dev/opencloudos/root</span><br><span class="line">  LV Name                root</span><br><span class="line">  VG Name                opencloudos</span><br><span class="line">  LV UUID                pmaZSg-3JnI-yXfm-8N5Z-arW7-mstK-P0Atir</span><br><span class="line">  LV Write Access        read/write</span><br><span class="line">  LV Creation host, time dev215, 2024-11-01 10:35:14 +0800</span><br><span class="line">  LV Status              available</span><br><span class="line">  # open                 1</span><br><span class="line">  LV Size                &lt;66.52 GiB</span><br><span class="line">  Current LE             17029</span><br><span class="line">  Segments               1</span><br><span class="line">  Allocation             inherit</span><br><span class="line">  Read ahead sectors     auto</span><br><span class="line">  - currently set to     256</span><br><span class="line">  Block device           251:0</span><br><span class="line"></span><br><span class="line">root@dev215 [/data]# lvextend -L +100G /dev/opencloudos/root</span><br><span class="line">  Size of logical volume opencloudos/root changed from &lt;66.52 GiB (17029 extents) to &lt;166.52 GiB (42629 extents).</span><br><span class="line">  Logical volume opencloudos/root successfully resized.</span><br><span class="line"></span><br><span class="line">root@dev215 [/data]# lvdisplay</span><br><span class="line">  --- Logical volume ---</span><br><span class="line">  LV Path                /dev/opencloudos/home</span><br><span class="line">  LV Name                home</span><br><span class="line">  VG Name                opencloudos</span><br><span class="line">  LV UUID                Mrv5DQ-JeQx-mKdM-Vn9u-qOtw-Yl9k-TbkTjH</span><br><span class="line">  LV Write Access        read/write</span><br><span class="line">  LV Creation host, time dev215, 2024-11-01 10:35:13 +0800</span><br><span class="line">  LV Status              available</span><br><span class="line">  # open                 1</span><br><span class="line">  LV Size                &lt;32.48 GiB</span><br><span class="line">  Current LE             8314</span><br><span class="line">  Segments               1</span><br><span class="line">  Allocation             inherit</span><br><span class="line">  Read ahead sectors     auto</span><br><span class="line">  - currently set to     256</span><br><span class="line">  Block device           251:1</span><br><span class="line"></span><br><span class="line">  --- Logical volume ---</span><br><span class="line">  LV Path                /dev/opencloudos/root</span><br><span class="line">  LV Name                root</span><br><span class="line">  VG Name                opencloudos</span><br><span class="line">  LV UUID                pmaZSg-3JnI-yXfm-8N5Z-arW7-mstK-P0Atir</span><br><span class="line">  LV Write Access        read/write</span><br><span class="line">  LV Creation host, time dev215, 2024-11-01 10:35:14 +0800</span><br><span class="line">  LV Status              available</span><br><span class="line">  # open                 1</span><br><span class="line">  LV Size                &lt;166.52 GiB</span><br><span class="line">  Current LE             42629</span><br><span class="line">  Segments               1</span><br><span class="line">  Allocation             inherit</span><br><span class="line">  Read ahead sectors     auto</span><br><span class="line">  - currently set to     256</span><br><span class="line">  Block device           251:0</span><br><span class="line"></span><br><span class="line">root@dev215 [/data]# pvs</span><br><span class="line">  PV         VG          Fmt  Attr PSize    PFree</span><br><span class="line">  /dev/sda3  opencloudos lvm2 a--  &lt;199.00g    0</span><br></pre></td></tr></table></figure>
+
+<h2 id="扩容文件系统"><a href="#扩容文件系统" class="headerlink" title="扩容文件系统"></a>扩容文件系统</h2><h3 id="ext"><a href="#ext" class="headerlink" title="ext*"></a>ext*</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">resize2fs /dev/vdb1</span><br></pre></td></tr></table></figure>
+
+<h3 id="xfs"><a href="#xfs" class="headerlink" title="xfs"></a>xfs</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install -y xfsprogs</span><br><span class="line">xfs_growfs /mnt</span><br></pre></td></tr></table></figure>
+
+<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly93ZWIuYXJjaGl2ZS5vcmcvd2ViLzIwMjQxMTEzMDE1NTM4L2h0dHBzOi8vaGVscC5hbGl5dW4uY29tL3poL2Vjcy91c2VyLWd1aWRlL2V4dGVuZC10aGUtcGFydGl0aW9ucy1hbmQtZmlsZS1zeXN0ZW1zLW9mLWRpc2tzLW9uLWEtbGludXgtaW5zdGFuY2U=">https://web.archive.org/web/20241113015538/https://help.aliyun.com/zh/ecs/user-guide/extend-the-partitions-and-file-systems-of-disks-on-a-linux-instance<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93ZWIuYXJjaGl2ZS5vcmcvd2ViLzIwMjQxMTEzMDE1ODUxL2h0dHBzOi8vaGVscC5hbGl5dW4uY29tL3poL2Vjcy91c2UtY2FzZXMvZXh0ZW5kLWFuLWx2LWJ5LXVzaW5nLWx2bQ==">https://web.archive.org/web/20241113015851/https://help.aliyun.com/zh/ecs/use-cases/extend-an-lv-by-using-lvm<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -507,94 +617,6 @@
           <h2 id="etc-systemd-system-my-application-service"><a href="#etc-systemd-system-my-application-service" class="headerlink" title="/etc/systemd/system/my-application.service"></a><code>/etc/systemd/system/my-application.service</code></h2><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Unit]</span></span><br><span class="line"><span class="attr">Description</span>=ApplicationName</span><br><span class="line"></span><br><span class="line"><span class="section">[Service]</span></span><br><span class="line"><span class="attr">StartLimitInterval</span>=<span class="number">5</span></span><br><span class="line"><span class="attr">StartLimitBurst</span>=<span class="number">10</span></span><br><span class="line"><span class="attr">Restart</span>=always</span><br><span class="line"><span class="attr">RestartSec</span>=<span class="number">120</span></span><br><span class="line"><span class="attr">StandardOutput</span>=append:/data/project/logs/stdout.log</span><br><span class="line"><span class="attr">StandardError</span>=append:/data/project/logs/stderr.log</span><br><span class="line"><span class="attr">WorkingDirectory</span>=/opt/project</span><br><span class="line"><span class="attr">ExecStart</span>=/usr/local/java/jdk-<span class="number">21.0</span>.<span class="number">3</span>+<span class="number">9</span>-jre/bin/java \</span><br><span class="line">            -XX:+ExitOnOutOfMemoryError \</span><br><span class="line">            -XX:+HeapDumpOnOutOfMemoryError \</span><br><span class="line">            -XX:<span class="attr">HeapDumpPath</span>=/data/project/dumps/oom.bin \</span><br><span class="line">            <span class="attr">-Dspring.profiles.active</span>= \</span><br><span class="line">            <span class="attr">-Dspring.config.location</span>=classpath:application.yml,/opt/project/application.yml \</span><br><span class="line">            <span class="attr">-Dlogging.config</span>=/opt/project/logback.xml \</span><br><span class="line">            -jar /opt/project/project.jar</span><br><span class="line"></span><br><span class="line"><span class="section">[Install]</span></span><br><span class="line"><span class="attr">WantedBy</span>=multi-user.target</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">systemctl daemon-reload</span><br><span class="line"></span><br><span class="line">systemctl status my-application.service</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">开机自启动</span></span><br><span class="line">systemctl enable my-application.service</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2024/06/26/gradle-spring-thin/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="starudream">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰狂澜's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 星辰狂澜's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/06/26/gradle-spring-thin/" class="post-title-link" itemprop="url">基于 Gradle 构建 spring-boot-thin-launcher</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-06-26 14:53:29" itemprop="dateCreated datePublished" datetime="2024-06-26T14:53:29+08:00">2024-06-26</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="build-gradle"><a href="#build-gradle" class="headerlink" title="build.gradle"></a><code>build.gradle</code></h2><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">plugins &#123;</span><br><span class="line">    id <span class="string">&#x27;java&#x27;</span></span><br><span class="line">    id <span class="string">&#x27;maven-publish&#x27;</span></span><br><span class="line">    id <span class="string">&#x27;org.springframework.boot&#x27;</span> version <span class="string">&#x27;3.3.1&#x27;</span></span><br><span class="line">    id <span class="string">&#x27;io.spring.dependency-management&#x27;</span> version <span class="string">&#x27;1.1.5&#x27;</span></span><br><span class="line">    id <span class="string">&#x27;org.springframework.boot.experimental.thin-launcher&#x27;</span> version <span class="string">&#x27;1.0.31.RELEASE&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bootJar &#123;</span><br><span class="line">  archiveFileName = <span class="string">&quot;$&#123;project.name&#125;.jar&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">thinJar &#123;</span><br><span class="line">  archiveFileName = <span class="string">&quot;$&#123;project.name&#125;-thin.jar&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">thinResolvePrepare &#123;</span><br><span class="line">  delete file(<span class="string">&#x27;thin&#x27;</span>)</span><br><span class="line">  into file(<span class="string">&#x27;thin&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">publishing &#123;</span><br><span class="line">  publications &#123;</span><br><span class="line">    maven(MavenPublication) &#123;</span><br><span class="line">      from components.java</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">generatePomFileForMavenPublication &#123;</span><br><span class="line">  destination = file(<span class="string">&#x27;pom.xml&#x27;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="生成-pom-xml"><a href="#生成-pom-xml" class="headerlink" title="生成 pom.xml"></a>生成 <code>pom.xml</code></h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./gradlew generatePomFileForMavenPublication</span><br></pre></td></tr></table></figure>
-
-<h2 id="编译生成-thin-jar-包"><a href="#编译生成-thin-jar-包" class="headerlink" title="编译生成 thin jar 包"></a>编译生成 thin jar 包</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./gradlew clean thinResolvePrepare</span><br></pre></td></tr></table></figure>
-
-<h2 id="缓存-maven-依赖"><a href="#缓存-maven-依赖" class="headerlink" title="缓存 maven 依赖"></a>缓存 maven 依赖</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./mvnw dependency:resolve</span><br></pre></td></tr></table></figure>
-
-<h2 id="生成-thin-jar-依赖结构"><a href="#生成-thin-jar-依赖结构" class="headerlink" title="生成 thin jar 依赖结构"></a>生成 thin jar 依赖结构</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -Dthin.dryrun=true -Dthin.root=thin -Dthin.repo=https://maven.aliyun.com/repository/public -jar thin/$&#123;project.name&#125;-thin.jar</span><br></pre></td></tr></table></figure>
-
-<h2 id="可能需要的命令"><a href="#可能需要的命令" class="headerlink" title="可能需要的命令"></a>可能需要的命令</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rsync -avzh thin/repository/ server:/opt/project/repository/</span><br><span class="line"></span><br><span class="line">scp thin/$&#123;project.name&#125;-thin.jar server:/opt/project/$&#123;project.name&#125;.jar</span><br></pre></td></tr></table></figure>
 
       
     </div>

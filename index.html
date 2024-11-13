@@ -92,7 +92,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">82</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">67</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">85</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">68</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -157,7 +157,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">67</span>
+          <span class="site-state-item-count">68</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -168,7 +168,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">82</span>
+        <span class="site-state-item-count">85</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -200,6 +200,111 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2024/11/13/goprivate-and-proto-publish-with-aliyun-devops/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="starudream">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/11/13/goprivate-and-proto-publish-with-aliyun-devops/" class="post-title-link" itemprop="url">使用云效流水线功能实现 Go 私有库和 Proto 中心仓库自动发布</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-11-13 10:30:52" itemprop="dateCreated datePublished" datetime="2024-11-13T10:30:52+08:00">2024-11-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="Proto-Buf"><a href="#Proto-Buf" class="headerlink" title="Proto &amp; Buf"></a>Proto &amp; Buf</h2><ul>
+<li><code>buf.yaml</code></li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># yaml-language-server: $schema=https://json.schemastore.org/buf.json</span></span><br><span class="line"></span><br><span class="line"><span class="attr">version:</span> <span class="string">v2</span></span><br><span class="line"><span class="attr">deps:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">buf.build/googleapis/googleapis</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">buf.build/envoyproxy/protoc-gen-validate</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">buf.build/grpc-ecosystem/grpc-gateway</span></span><br><span class="line"><span class="attr">lint:</span></span><br><span class="line">  <span class="attr">use:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">BASIC</span></span><br><span class="line">  <span class="attr">ignore_only:</span></span><br><span class="line">    <span class="attr">IMPORT_NO_PUBLIC:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">common/common.proto</span></span><br><span class="line"><span class="attr">breaking:</span></span><br><span class="line">  <span class="attr">use:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">FILE</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>buf.gen.yaml</code></li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># yaml-language-server: $schema=https://json.schemastore.org/buf.gen.json</span></span><br><span class="line"></span><br><span class="line"><span class="attr">version:</span> <span class="string">v2</span></span><br><span class="line"><span class="attr">plugins:</span></span><br><span class="line">  <span class="comment"># https://github.com/protocolbuffers/protobuf-go</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">local:</span> <span class="string">protoc-gen-go</span></span><br><span class="line">    <span class="attr">out:</span> <span class="string">gen_go</span></span><br><span class="line">    <span class="attr">opt:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">paths=source_relative</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># https://github.com/grpc/grpc-go</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">local:</span> <span class="string">protoc-gen-go-grpc</span></span><br><span class="line">    <span class="attr">out:</span> <span class="string">gen_go</span></span><br><span class="line">    <span class="attr">opt:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">paths=source_relative</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># github.com/envoyproxy/protoc-gen-validate</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">local:</span> <span class="string">protoc-gen-validate</span></span><br><span class="line">    <span class="attr">out:</span> <span class="string">gen_go</span></span><br><span class="line">    <span class="attr">opt:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">paths=source_relative</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">lang=go</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway</span></span><br><span class="line">  <span class="comment"># - local: protoc-gen-grpc-gateway</span></span><br><span class="line">  <span class="comment">#   out: gen_go</span></span><br><span class="line">  <span class="comment">#   opt:</span></span><br><span class="line">  <span class="comment">#     - paths=source_relative</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># github.com/go-kratos/kratos/cmd/protoc-gen-go-http/v2</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">local:</span> <span class="string">protoc-gen-go-http</span></span><br><span class="line">    <span class="attr">out:</span> <span class="string">gen_go</span></span><br><span class="line">    <span class="attr">opt:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">paths=source_relative</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">local:</span> <span class="string">protoc-gen-openapiv2</span></span><br><span class="line">    <span class="attr">strategy:</span> <span class="string">all</span></span><br><span class="line">    <span class="attr">out:</span> <span class="string">gen_doc</span></span><br><span class="line">    <span class="attr">opt:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">allow_merge=true</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">include_package_in_tags=true</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">fqn_for_openapi_name=true</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">use_go_templates=true</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">disable_default_errors=true</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">enums_as_ints=true</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">output_format=yaml</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">preserve_rpc_order=true</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="流水线"><a href="#流水线" class="headerlink" title="流水线"></a>流水线</h2><h3 id="服务连接管理"><a href="#服务连接管理" class="headerlink" title="服务连接管理"></a>服务连接管理</h3><img data-src="/images/87-1.png" alt="webui" style="max-height:600px;"/>
+
+<h3 id="构建集群"><a href="#构建集群" class="headerlink" title="构建集群"></a>构建集群</h3><img data-src="/images/87-2.png" alt="webui" style="max-height:600px;"/>
+
+<h3 id="生成并发布-Proto"><a href="#生成并发布-Proto" class="headerlink" title="生成并发布 Proto"></a>生成并发布 Proto</h3><p>将 <code>api-pb</code> 所生成的 <code>go</code> 代码推送至 <code>api-go</code> 仓库，以便 <code>goprivate</code> 使用。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">defaultWorkspace:</span> <span class="string">api_pb</span></span><br><span class="line"></span><br><span class="line"><span class="attr">sources:</span></span><br><span class="line">  <span class="attr">api_pb:</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">codeup</span></span><br><span class="line">    <span class="attr">endpoint:</span> <span class="string">git@codeup.aliyun.com:starudream/os/api-pb.git</span></span><br><span class="line">    <span class="attr">certificate:</span></span><br><span class="line">      <span class="attr">type:</span> <span class="string">serviceConnection</span></span><br><span class="line">      <span class="attr">serviceConnection:</span> <span class="string">$&#123;云效Codeup服务连接ID&#125;</span></span><br><span class="line">    <span class="attr">triggerEvents:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">push</span></span><br><span class="line">  <span class="attr">api_go:</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">codeup</span></span><br><span class="line">    <span class="attr">endpoint:</span> <span class="string">git@codeup.aliyun.com:starudream/os/api-go.git</span></span><br><span class="line">    <span class="attr">certificate:</span></span><br><span class="line">      <span class="attr">type:</span> <span class="string">serviceConnection</span></span><br><span class="line">      <span class="attr">serviceConnection:</span> <span class="string">$&#123;云效Codeup服务连接ID&#125;</span></span><br><span class="line">    <span class="attr">triggerEvents:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">tagPush</span> <span class="comment"># 防止 push 时触发该工作流</span></span><br><span class="line"></span><br><span class="line"><span class="attr">stages:</span></span><br><span class="line">  <span class="attr">proto:</span></span><br><span class="line">    <span class="attr">jobs:</span></span><br><span class="line">      <span class="attr">gen:</span></span><br><span class="line">        <span class="attr">timeoutMinutes:</span> <span class="number">30</span></span><br><span class="line">        <span class="attr">runsOn:</span></span><br><span class="line">          <span class="attr">group:</span> <span class="string">private/$&#123;私有构建集群ID&#125;</span></span><br><span class="line">        <span class="attr">steps:</span></span><br><span class="line">          <span class="attr">gen:</span></span><br><span class="line">            <span class="attr">step:</span> <span class="string">CustomEnvironmentBuild</span></span><br><span class="line">            <span class="attr">with:</span></span><br><span class="line">              <span class="attr">image:</span> <span class="string">registry.cn-shanghai.aliyuncs.com/starudream/go-dev</span></span><br><span class="line">              <span class="attr">privateRegistry:</span> <span class="literal">true</span></span><br><span class="line">              <span class="attr">certificate:</span></span><br><span class="line">                <span class="attr">type:</span> <span class="string">serviceConnection</span></span><br><span class="line">                <span class="attr">serviceConnection:</span> <span class="string">$&#123;ACR服务连接ID&#125;</span></span><br><span class="line">              <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">                go version</span></span><br><span class="line"><span class="string">                buf --version</span></span><br><span class="line"><span class="string">                make clean gen</span></span><br><span class="line"><span class="string">                tar -czf pb_gen_$&#123;PIPELINE_ID&#125;_$&#123;BUILD_NUMBER&#125;.tar.gz gen_go gen_doc</span></span><br><span class="line"><span class="string">                mkdir -p /cache/proto/ &amp;&amp; mv -f pb_gen_$&#123;PIPELINE_ID&#125;_$&#123;BUILD_NUMBER&#125;.tar.gz /cache/proto/</span></span><br><span class="line"><span class="string"></span></span><br><span class="line">      <span class="attr">pub:</span></span><br><span class="line">        <span class="attr">timeoutMinutes:</span> <span class="number">30</span></span><br><span class="line">        <span class="attr">runsOn:</span></span><br><span class="line">          <span class="attr">group:</span> <span class="string">private/$&#123;私有构建集群ID&#125;</span></span><br><span class="line">          <span class="attr">vm:</span> <span class="literal">true</span></span><br><span class="line">        <span class="attr">needs:</span> <span class="string">gen</span></span><br><span class="line">        <span class="attr">steps:</span></span><br><span class="line">          <span class="attr">go:</span></span><br><span class="line">            <span class="attr">step:</span> <span class="string">Command</span></span><br><span class="line">            <span class="attr">with:</span></span><br><span class="line">              <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">                pushd /data/yunxiao/cache/proto/ &gt;/dev/null</span></span><br><span class="line"><span class="string">                rm -rf $&#123;PIPELINE_ID&#125;_$&#123;BUILD_NUMBER&#125; &amp;&amp; mkdir -p $&#123;PIPELINE_ID&#125;_$&#123;BUILD_NUMBER&#125;</span></span><br><span class="line"><span class="string">                tar -xzf pb_gen_$&#123;PIPELINE_ID&#125;_$&#123;BUILD_NUMBER&#125;.tar.gz -C $&#123;PIPELINE_ID&#125;_$&#123;BUILD_NUMBER&#125;</span></span><br><span class="line"><span class="string">                mv -f $&#123;WORK_SPACE&#125;/api_go/.git $&#123;PIPELINE_ID&#125;_$&#123;BUILD_NUMBER&#125;/gen_go/.git</span></span><br><span class="line"><span class="string"></span></span><br><span class="line">                <span class="string">pushd</span> <span class="string">$&#123;PIPELINE_ID&#125;_$&#123;BUILD_NUMBER&#125;/gen_go</span> <span class="string">&gt;/dev/null</span></span><br><span class="line">                <span class="string">git</span> <span class="string">config</span> <span class="string">--global</span> <span class="string">user.name</span> <span class="string">&quot;ci-bot&quot;</span></span><br><span class="line">                <span class="string">git</span> <span class="string">config</span> <span class="string">--global</span> <span class="string">user.email</span> <span class="string">&quot;ci-bot@mail.starudream.cn&quot;</span></span><br><span class="line">                <span class="string">git</span> <span class="string">add</span> <span class="string">.</span> <span class="string">&amp;&amp;</span> <span class="string">git</span> <span class="string">commit</span> <span class="string">-m</span> <span class="string">&quot;$&#123;CI_COMMIT_ID_1&#125; -&gt; $&#123;CI_COMMIT_TITLE_1&#125;&quot;</span> <span class="string">&amp;&amp;</span> <span class="string">git</span> <span class="string">push</span></span><br><span class="line">                <span class="string">popd</span> <span class="string">&gt;/dev/null</span></span><br><span class="line"></span><br><span class="line">                <span class="string">rm</span> <span class="string">-rf</span> <span class="string">$&#123;PIPELINE_ID&#125;_$&#123;BUILD_NUMBER&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="GoPrivate"><a href="#GoPrivate" class="headerlink" title="GoPrivate"></a>GoPrivate</h2><h2 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">go env -w CGO_ENABLED=0</span><br><span class="line">go env -w GO111MODULE=on</span><br><span class="line">go env -w GOPRIVATE=codeup.aliyun.com</span><br><span class="line">go env -w GOPROXY=https://goproxy.cn,direct</span><br></pre></td></tr></table></figure>
+
+<h3 id="ssh-key"><a href="#ssh-key" class="headerlink" title="ssh key"></a>ssh key</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">replace codeup.aliyun.com/starudream/os/api-go =&gt; codeup.aliyun.com/starudream/os/api-go.git</span><br></pre></td></tr></table></figure>
+
+<p>需要手动指定版本，不能更新，比较麻烦。</p>
+<h3 id="netrc"><a href="#netrc" class="headerlink" title="netrc"></a>netrc</h3><ul>
+<li><code>windows</code>: <code>$HOME/_netrc</code></li>
+<li><code>linux</code>: <code>$HOME/.netrc</code></li>
+</ul>
+<p>可以使用 <code>go get -u</code> 自动更新。</p>
+<h2 id="Backend"><a href="#Backend" class="headerlink" title="Backend"></a>Backend</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">module codeup.aliyun.<span class="keyword">com</span>/starudream/os/backend</span><br><span class="line"></span><br><span class="line"><span class="keyword">go</span> <span class="number">1.23</span>.<span class="number">0</span></span><br><span class="line"></span><br><span class="line">require (</span><br><span class="line">	codeup.aliyun.<span class="keyword">com</span>/starudream/os/api-<span class="keyword">go</span> v0.<span class="number">0.0</span>-<span class="number">20241111023212</span>-d66b05b24117</span><br><span class="line">	codeup.aliyun.<span class="keyword">com</span>/starudream/os/lib-<span class="keyword">go</span> v0.<span class="number">0.0</span>-<span class="number">20241111082247</span>-<span class="number">43</span>cf457f0683</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -537,116 +642,6 @@
 
 <p><code>registry-ui</code> 默认附带一个 <code>nginx</code>，反向代理了 <code>registry</code>，如果没有其他网关可以设置为 <code>80</code> 端口直接使用。</p>
 <h2 id="nginx-反代配置"><a href="#nginx-反代配置" class="headerlink" title="nginx 反代配置"></a>nginx 反代配置</h2><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">http</span> &#123;</span><br><span class="line">    <span class="section">server</span> &#123;</span><br><span class="line">        <span class="attribute">listen</span> <span class="number">8080</span>;</span><br><span class="line"></span><br><span class="line">        <span class="section">location</span> /v2/ &#123;</span><br><span class="line">            <span class="attribute">proxy_pass</span> http://10.252.25.215:5000;</span><br><span class="line">            <span class="attribute">proxy_set_header</span> Host <span class="variable">$host</span>;</span><br><span class="line">            <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">            <span class="attribute">proxy_set_header</span> X-Real-PORT <span class="variable">$remote_port</span>;</span><br><span class="line">            <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">            <span class="attribute">proxy_set_header</span> X-Forwarded-Proto <span class="variable">$scheme</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="section">location</span> /registry/ &#123;</span><br><span class="line">            <span class="attribute">proxy_pass</span> http://10.252.25.215:5001/;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2024/11/13/linux-extend-file-systems/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="starudream">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰狂澜's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 星辰狂澜's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/11/13/linux-extend-file-systems/" class="post-title-link" itemprop="url">在 Linux 中扩容分区、逻辑卷、文件系统</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-11-13 09:31:41" itemprop="dateCreated datePublished" datetime="2024-11-13T09:31:41+08:00">2024-11-13</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ul>
-<li><code>fdisk -l</code></li>
-</ul>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">root@dev215 [~]# fdisk -l</span><br><span class="line">GPT PMBR size mismatch (209715199 != 419430399) will be corrected by write.</span><br><span class="line">The backup GPT table is not on the end of the device.</span><br><span class="line">Disk /dev/sda: 200 GiB, 214748364800 bytes, 419430400 sectors</span><br><span class="line">Disk model: QEMU HARDDISK</span><br><span class="line">Units: sectors of 1 * 512 = 512 bytes</span><br><span class="line">Sector size (logical/physical): 512 bytes / 512 bytes</span><br><span class="line">I/O size (minimum/optimal): 512 bytes / 512 bytes</span><br><span class="line">Disklabel type: gpt</span><br><span class="line">Disk identifier: 406F0824-6F10-4C6F-8522-FFF0A017AA44</span><br><span class="line"></span><br><span class="line">Device       Start       End   Sectors Size Type</span><br><span class="line">/dev/sda1     2048      4095      2048   1M BIOS boot</span><br><span class="line">/dev/sda2     4096   2101247   2097152   1G Linux filesystem</span><br><span class="line">/dev/sda3  2101248 209713151 207611904  99G Linux LVM</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Disk /dev/mapper/opencloudos-root: 66.52 GiB, 71424802816 bytes, 139501568 sectors</span><br><span class="line">Units: sectors of 1 * 512 = 512 bytes</span><br><span class="line">Sector size (logical/physical): 512 bytes / 512 bytes</span><br><span class="line">I/O size (minimum/optimal): 512 bytes / 512 bytes</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Disk /dev/mapper/opencloudos-home: 32.48 GiB, 34871443456 bytes, 68108288 sectors</span><br><span class="line">Units: sectors of 1 * 512 = 512 bytes</span><br><span class="line">Sector size (logical/physical): 512 bytes / 512 bytes</span><br><span class="line">I/O size (minimum/optimal): 512 bytes / 512 bytes</span><br></pre></td></tr></table></figure>
-
-<p><code>Disklabel type</code> 为 <code>dos</code> 表示为 MBR 分区，为 <code>gpt</code> 表示为 GPT 分区。</p>
-<ul>
-<li><code>lsblk</code></li>
-</ul>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">root@dev215 [~]# lsblk</span><br><span class="line">NAME                 MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS</span><br><span class="line">sda                    8:0    0  200G  0 disk</span><br><span class="line">├─sda1                 8:1    0    1M  0 part</span><br><span class="line">├─sda2                 8:2    0    1G  0 part /boot</span><br><span class="line">└─sda3                 8:3    0   99G  0 part</span><br><span class="line">  ├─opencloudos-root 251:0    0 66.5G  0 lvm  /</span><br><span class="line">  └─opencloudos-home 251:1    0 32.5G  0 lvm  /home</span><br></pre></td></tr></table></figure>
-
-<h2 id="扩容分区"><a href="#扩容分区" class="headerlink" title="扩容分区"></a>扩容分区</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y cloud-utils-growpart gdisk</span><br></pre></td></tr></table></figure>
-
-<h3 id="MBR"><a href="#MBR" class="headerlink" title="MBR"></a>MBR</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LC_ALL=en_US.UTF-8 growpart /dev/vdb 1</span><br></pre></td></tr></table></figure>
-
-<h3 id="GPT"><a href="#GPT" class="headerlink" title="GPT"></a>GPT</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LC_ALL=en_US.UTF-8 growpart /dev/sda 3</span><br></pre></td></tr></table></figure>
-
-<p>出现以 <code>CHANGED</code> 开头的信息表示扩容成功。</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">root@dev215 [/data]# growpart /dev/sda 3</span><br><span class="line">CHANGED: partition=3 start=2101248 old: size=207611904 end=209713151 new: size=417329119 end=419430366</span><br><span class="line"></span><br><span class="line">root@dev215 [/data]# lsblk</span><br><span class="line">NAME                 MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS</span><br><span class="line">sda                    8:0    0  200G  0 disk</span><br><span class="line">├─sda1                 8:1    0    1M  0 part</span><br><span class="line">├─sda2                 8:2    0    1G  0 part /boot</span><br><span class="line">└─sda3                 8:3    0  199G  0 part</span><br><span class="line">  ├─opencloudos-root 251:0    0 66.5G  0 lvm  /</span><br><span class="line">  └─opencloudos-home 251:1    0 32.5G  0 lvm  /home</span><br></pre></td></tr></table></figure>
-
-<h2 id="扩容逻辑卷"><a href="#扩容逻辑卷" class="headerlink" title="扩容逻辑卷"></a>扩容逻辑卷</h2><p>在上面的 <code>lsblk</code> 信息中，实际上根目录 <code>/</code> 和 <code>/home</code> 的类型都是 <code>lvm</code>。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pvresize /dev/sda3</span><br><span class="line">lvextend -L +100G /dev/opencloudos/root</span><br><span class="line">xfs_growfs /</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line">root@dev215 [/data]# pvs</span><br><span class="line">  PV         VG          Fmt  Attr PSize    PFree</span><br><span class="line">  /dev/sda3  opencloudos lvm2 a--  &lt;199.00g 100.00g</span><br><span class="line">  </span><br><span class="line">root@dev215 [/data]# pvresize /dev/sda3</span><br><span class="line">  Physical volume &quot;/dev/sda3&quot; changed</span><br><span class="line">  1 physical volume(s) resized or updated / 0 physical volume(s) not resized</span><br><span class="line">  </span><br><span class="line">root@dev215 [/data]# lvdisplay</span><br><span class="line">  --- Logical volume ---</span><br><span class="line">  LV Path                /dev/opencloudos/home</span><br><span class="line">  LV Name                home</span><br><span class="line">  VG Name                opencloudos</span><br><span class="line">  LV UUID                Mrv5DQ-JeQx-mKdM-Vn9u-qOtw-Yl9k-TbkTjH</span><br><span class="line">  LV Write Access        read/write</span><br><span class="line">  LV Creation host, time dev215, 2024-11-01 10:35:13 +0800</span><br><span class="line">  LV Status              available</span><br><span class="line">  # open                 1</span><br><span class="line">  LV Size                &lt;32.48 GiB</span><br><span class="line">  Current LE             8314</span><br><span class="line">  Segments               1</span><br><span class="line">  Allocation             inherit</span><br><span class="line">  Read ahead sectors     auto</span><br><span class="line">  - currently set to     256</span><br><span class="line">  Block device           251:1</span><br><span class="line"></span><br><span class="line">  --- Logical volume ---</span><br><span class="line">  LV Path                /dev/opencloudos/root</span><br><span class="line">  LV Name                root</span><br><span class="line">  VG Name                opencloudos</span><br><span class="line">  LV UUID                pmaZSg-3JnI-yXfm-8N5Z-arW7-mstK-P0Atir</span><br><span class="line">  LV Write Access        read/write</span><br><span class="line">  LV Creation host, time dev215, 2024-11-01 10:35:14 +0800</span><br><span class="line">  LV Status              available</span><br><span class="line">  # open                 1</span><br><span class="line">  LV Size                &lt;66.52 GiB</span><br><span class="line">  Current LE             17029</span><br><span class="line">  Segments               1</span><br><span class="line">  Allocation             inherit</span><br><span class="line">  Read ahead sectors     auto</span><br><span class="line">  - currently set to     256</span><br><span class="line">  Block device           251:0</span><br><span class="line"></span><br><span class="line">root@dev215 [/data]# lvextend -L +100G /dev/opencloudos/root</span><br><span class="line">  Size of logical volume opencloudos/root changed from &lt;66.52 GiB (17029 extents) to &lt;166.52 GiB (42629 extents).</span><br><span class="line">  Logical volume opencloudos/root successfully resized.</span><br><span class="line"></span><br><span class="line">root@dev215 [/data]# lvdisplay</span><br><span class="line">  --- Logical volume ---</span><br><span class="line">  LV Path                /dev/opencloudos/home</span><br><span class="line">  LV Name                home</span><br><span class="line">  VG Name                opencloudos</span><br><span class="line">  LV UUID                Mrv5DQ-JeQx-mKdM-Vn9u-qOtw-Yl9k-TbkTjH</span><br><span class="line">  LV Write Access        read/write</span><br><span class="line">  LV Creation host, time dev215, 2024-11-01 10:35:13 +0800</span><br><span class="line">  LV Status              available</span><br><span class="line">  # open                 1</span><br><span class="line">  LV Size                &lt;32.48 GiB</span><br><span class="line">  Current LE             8314</span><br><span class="line">  Segments               1</span><br><span class="line">  Allocation             inherit</span><br><span class="line">  Read ahead sectors     auto</span><br><span class="line">  - currently set to     256</span><br><span class="line">  Block device           251:1</span><br><span class="line"></span><br><span class="line">  --- Logical volume ---</span><br><span class="line">  LV Path                /dev/opencloudos/root</span><br><span class="line">  LV Name                root</span><br><span class="line">  VG Name                opencloudos</span><br><span class="line">  LV UUID                pmaZSg-3JnI-yXfm-8N5Z-arW7-mstK-P0Atir</span><br><span class="line">  LV Write Access        read/write</span><br><span class="line">  LV Creation host, time dev215, 2024-11-01 10:35:14 +0800</span><br><span class="line">  LV Status              available</span><br><span class="line">  # open                 1</span><br><span class="line">  LV Size                &lt;166.52 GiB</span><br><span class="line">  Current LE             42629</span><br><span class="line">  Segments               1</span><br><span class="line">  Allocation             inherit</span><br><span class="line">  Read ahead sectors     auto</span><br><span class="line">  - currently set to     256</span><br><span class="line">  Block device           251:0</span><br><span class="line"></span><br><span class="line">root@dev215 [/data]# pvs</span><br><span class="line">  PV         VG          Fmt  Attr PSize    PFree</span><br><span class="line">  /dev/sda3  opencloudos lvm2 a--  &lt;199.00g    0</span><br></pre></td></tr></table></figure>
-
-<h2 id="扩容文件系统"><a href="#扩容文件系统" class="headerlink" title="扩容文件系统"></a>扩容文件系统</h2><h3 id="ext"><a href="#ext" class="headerlink" title="ext*"></a>ext*</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">resize2fs /dev/vdb1</span><br></pre></td></tr></table></figure>
-
-<h3 id="xfs"><a href="#xfs" class="headerlink" title="xfs"></a>xfs</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install -y xfsprogs</span><br><span class="line">xfs_growfs /mnt</span><br></pre></td></tr></table></figure>
-
-<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly93ZWIuYXJjaGl2ZS5vcmcvd2ViLzIwMjQxMTEzMDE1NTM4L2h0dHBzOi8vaGVscC5hbGl5dW4uY29tL3poL2Vjcy91c2VyLWd1aWRlL2V4dGVuZC10aGUtcGFydGl0aW9ucy1hbmQtZmlsZS1zeXN0ZW1zLW9mLWRpc2tzLW9uLWEtbGludXgtaW5zdGFuY2U=">https://web.archive.org/web/20241113015538/https://help.aliyun.com/zh/ecs/user-guide/extend-the-partitions-and-file-systems-of-disks-on-a-linux-instance<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly93ZWIuYXJjaGl2ZS5vcmcvd2ViLzIwMjQxMTEzMDE1ODUxL2h0dHBzOi8vaGVscC5hbGl5dW4uY29tL3poL2Vjcy91c2UtY2FzZXMvZXh0ZW5kLWFuLWx2LWJ5LXVzaW5nLWx2bQ==">https://web.archive.org/web/20241113015851/https://help.aliyun.com/zh/ecs/use-cases/extend-an-lv-by-using-lvm<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
 
       
     </div>
