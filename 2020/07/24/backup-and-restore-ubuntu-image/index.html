@@ -272,7 +272,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">diskutil list</span><br></pre></td></tr></table></figure>
 
 <p>运行下面的命令进行打包，将 <code>N</code> 替换为上面查到的号码，等待完成即可。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">dd</span> bs=1m <span class="keyword">if</span>=/dev/rdiskN of=ubuntu.img</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">dd</span> bs=1m <span class="keyword">if</span>=/dev/rdiskN of=ubuntu.img</span><br></pre></td></tr></table></figure>
 
 <h3 id="压缩"><a href="#压缩" class="headerlink" title="压缩"></a>压缩</h3><p>一般来说，上面打包的生成的 <code>.img</code> 大小为 <code>TF</code> 卡容量，若写入小容量卡会发生错误，所以要清除无用的空间。</p>
 <p>如果是 <code>linux</code> 系统，可以跳过这一步，直接执行下方的命令，<code>windows</code> 以及 <code>mac</code> 可使用 <code>docker</code> 来执行。</p>
@@ -281,7 +281,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">apt update</span><br><span class="line">apt install parted</span><br><span class="line"><span class="built_in">cd</span> /shrink</span><br><span class="line">./pishrink.sh in.img out.img</span><br></pre></td></tr></table></figure>
 
 <p>等待完成后，发现 <code>.img</code> 有明显的缩小。</p>
-<h2 id="恢复"><a href="#恢复" class="headerlink" title="恢复"></a>恢复</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">dd</span> bs=1m <span class="keyword">if</span>=ubuntu.img of=/dev/rdiskN</span><br></pre></td></tr></table></figure>
+<h2 id="恢复"><a href="#恢复" class="headerlink" title="恢复"></a>恢复</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">dd</span> bs=1m <span class="keyword">if</span>=ubuntu.img of=/dev/rdiskN</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0RyZXdzaWYvUGlTaHJpbms=">Drewsif&#x2F;PiShrink<i class="fa fa-external-link-alt"></i></span></li>

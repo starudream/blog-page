@@ -91,7 +91,7 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">diskutil list</span><br></pre></td></tr></table></figure>
 
 <p>运行下面的命令进行打包，将 <code>N</code> 替换为上面查到的号码，等待完成即可。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo <span class="built_in">dd</span> bs=1m <span class="keyword">if</span>=/dev/rdiskN of=ubuntu.img</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">dd</span> bs=1m <span class="keyword">if</span>=/dev/rdiskN of=ubuntu.img</span><br></pre></td></tr></table></figure>
 
 <h3 id="压缩"><a href="#压缩" class="headerlink" title="压缩"></a>压缩</h3><p>一般来说，上面打包的生成的 <code>.img</code> 大小为 <code>TF</code> 卡容量，若写入小容量卡会发生错误，所以要清除无用的空间。</p>
 <p>如果是 <code>linux</code> 系统，可以跳过这一步，直接执行下方的命令，<code>windows</code> 以及 <code>mac</code> 可使用 <code>docker</code> 来执行。</p>
@@ -100,7 +100,7 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt update</span><br><span class="line">apt install parted</span><br><span class="line"><span class="built_in">cd</span> /shrink</span><br><span class="line">./pishrink.sh in.img out.img</span><br></pre></td></tr></table></figure>
 
 <p>等待完成后，发现 <code>.img</code> 有明显的缩小。</p>
-<h2 id="恢复"><a href="#恢复" class="headerlink" title="恢复"></a>恢复</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo <span class="built_in">dd</span> bs=1m <span class="keyword">if</span>=ubuntu.img of=/dev/rdiskN</span><br></pre></td></tr></table></figure>
+<h2 id="恢复"><a href="#恢复" class="headerlink" title="恢复"></a>恢复</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">dd</span> bs=1m <span class="keyword">if</span>=ubuntu.img of=/dev/rdiskN</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0RyZXdzaWYvUGlTaHJpbms=">Drewsif&#x2F;PiShrink<i class="fa fa-external-link-alt"></i></span></li>
@@ -806,7 +806,7 @@
 <h2 id="初始化-master-节点"><a href="#初始化-master-节点" class="headerlink" title="初始化 master 节点"></a>初始化 master 节点</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">kubeadm init \</span><br><span class="line">    --kubernetes-version=1.18.2 \</span><br><span class="line">    --apiserver-advertise-address=192.168.140.28 \</span><br><span class="line">    --apiserver-bind-port 6443 \</span><br><span class="line">    --pod-network-cidr=10.244.0.0/16 \</span><br><span class="line">    --image-repository registry.aliyuncs.com/google_containers</span><br></pre></td></tr></table></figure>
 
 <p>当出现 <code>Your Kubernetes control-plane has initialized successfully!</code> 即安装成功，并且在下面有相关配置。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p <span class="variable">$HOME</span>/.kube</span><br><span class="line">sudo <span class="built_in">cp</span> -i /etc/kubernetes/admin.conf <span class="variable">$HOME</span>/.kube/config</span><br><span class="line">sudo <span class="built_in">chown</span> $(<span class="built_in">id</span> -u):$(<span class="built_in">id</span> -g) <span class="variable">$HOME</span>/.kube/config</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p <span class="variable">$HOME</span>/.kube</span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">cp</span> -i /etc/kubernetes/admin.conf <span class="variable">$HOME</span>/.kube/config</span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">chown</span> $(<span class="built_in">id</span> -u):$(<span class="built_in">id</span> -g) <span class="variable">$HOME</span>/.kube/config</span><br></pre></td></tr></table></figure>
 
 <p>还有最后一条命令在添加 k8s node 节点时使用到</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">kubeadm <span class="built_in">join</span> 192.168.140.28:6443 --token xxx --discovery-token-ca-cert-hash sha256:xxx</span><br></pre></td></tr></table></figure>
@@ -1043,7 +1043,7 @@
     <title>Mac 源码安装 node 时 `No Xcode or CLT version detected!` 错误</title>
     <url>/2021/06/18/mac-node-no-xcode-detected/</url>
     <content><![CDATA[<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>重新安装 <code>Xcode Tools</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo <span class="built_in">rm</span> -rf $(xcode-select -p)</span><br><span class="line">sudo xcode-select --install</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">rm</span> -rf $(xcode-select -p)</span><br><span class="line"><span class="built_in">sudo</span> xcode-select --install</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>技术</category>
