@@ -92,7 +92,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">85</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">68</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">86</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">69</span></a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -157,7 +157,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">68</span>
+          <span class="site-state-item-count">69</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -168,7 +168,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">85</span>
+        <span class="site-state-item-count">86</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -200,6 +200,105 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2023/11/09/miyoushe-salt-2.62.2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="starudream">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 星辰狂澜's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/11/09/miyoushe-salt-2.62.2/" class="post-title-link" itemprop="url">米游社 2.62.2 版本 salt 获取</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-09 09:24:50" itemprop="dateCreated datePublished" datetime="2023-11-09T09:24:50+08:00">2023-11-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>首先从 <span class="exturl" data-url="aHR0cHM6Ly93d3cubWl5b3VzaGUuY29tLw==">miyoushe<i class="fa fa-external-link-alt"></i></span> 官网下载 apk，然后使用 jadx 反编译 apk。</p>
+<p>从 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1VJR0Ytb3JnL21paG95by1hcGktY29sbGVjdC9pc3N1ZXMvMQ==">文章<i class="fa fa-external-link-alt"></i></span> 中可知生成 <code>DS</code> 算法的位置位于 <code>com.mihoyo.hyperion.net</code> 包内，</p>
+<p>使用 <code>jadx</code> 打开到对应目录，可以找到 <code>bbbbb.a2222</code>、 <code>aaaaa.a2222</code>、 <code>aaaaa.b5555</code>，分别为 <code>DS1</code> <code>DS2</code> 的算法实现。</p>
+<img data-src="/images/44-1.png" alt="预览" style="max-height:600px;"/>
+
+<p>右键方法名，选择 <code>Find Usage</code>，可以看到对应的实现。</p>
+<img data-src="/images/44-2.png" alt="预览" style="max-height:600px;"/>
+<img data-src="/images/44-3.png" alt="预览" style="max-height:600px;"/>
+<img data-src="/images/44-4.png" alt="预览" style="max-height:600px;"/>
+
+<p>可以看到 <code>DS</code> <code>LK2</code> <code>K2</code> 相关的加密算法，通过相关函数输入到 <code>bbbbb.a2222</code> 方法中，找到函数的参数，即为 <code>salt</code>。</p>
+<img data-src="/images/44-5.png" alt="预览" style="max-height:600px;"/>
+
+<p>下面以 <code>DS</code> 为例，把传入 <code>bbbbb.a2222</code> 方法的方法与参数拷贝出来，稍加修改，得到下面的代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collection;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        System.out.println(f1(f276382k));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span>[] f276382k = &#123;<span class="number">192</span>, -<span class="number">74</span>, <span class="number">180</span>, <span class="number">222</span>, <span class="number">90</span>, <span class="number">198</span>, -<span class="number">177147</span>, -<span class="number">84</span>, -<span class="number">66</span>, <span class="number">126</span>, <span class="number">168</span>, <span class="number">156</span>, <span class="number">186</span>, <span class="number">66</span>, -<span class="number">88</span>, -<span class="number">4782969</span>, <span class="number">126</span>, <span class="number">216</span>, -<span class="number">98</span>, -<span class="number">118</span>, -<span class="number">88</span>, -<span class="number">4782969</span>, -<span class="number">86</span>, <span class="number">180</span>, <span class="number">216</span>, <span class="number">102</span>, <span class="number">156</span>, <span class="number">126</span>, -<span class="number">100</span>, -<span class="number">59049</span>, -<span class="number">177147</span>, <span class="number">198</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">f1</span><span class="params">(<span class="type">int</span>[] iArr)</span> &#123;</span><br><span class="line">        <span class="type">int</span> i11;</span><br><span class="line">        <span class="type">StringBuilder</span> <span class="variable">sb2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line">        ArrayList&lt;Number&gt; arrayList = <span class="keyword">new</span> <span class="title class_">ArrayList</span>(iArr.length);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i12 : iArr) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i12 &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                i11 = ((<span class="type">double</span>) (-i12)) &gt;= Math.pow(<span class="number">3.0d</span>, <span class="number">6.0d</span>) ? (<span class="type">int</span>) (((Math.log(-i12) / Math.log(<span class="number">3.0d</span>)) - <span class="number">6</span>) + <span class="number">48</span>) : ~i12;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                i11 = (i12 / <span class="number">3</span>) + <span class="number">48</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            arrayList.add(Integer.valueOf(i11));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">ArrayList</span> <span class="variable">arrayList2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ArrayList</span>(Z(arrayList, <span class="number">10</span>));</span><br><span class="line">        <span class="keyword">for</span> (Number number : arrayList) &#123;</span><br><span class="line">            sb2.append((<span class="type">char</span>) number.intValue());</span><br><span class="line">            arrayList2.add(sb2);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">String</span> <span class="variable">sb3</span> <span class="operator">=</span> sb2.toString();</span><br><span class="line">        <span class="keyword">return</span> sb3;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> &lt;T&gt; <span class="type">int</span> <span class="title function_">Z</span><span class="params">(Iterable&lt;? extends T&gt; iterable, <span class="type">int</span> i11)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> iterable <span class="keyword">instanceof</span> Collection ? ((Collection) iterable).size() : i11;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行后得到 <code>pIlzNr5SAZhdnFW8ZxauW8UlxRdZc45r</code> 即为 <code>salt</code>，带入到相关 <code>api</code> 验证一下，成功。</p>
+<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NreWxvdC9qYWR4">https://github.com/skylot/jadx<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1VJR0Ytb3JnL21paG95by1hcGktY29sbGVjdC9pc3N1ZXMvMQ==">https://github.com/UIGF-org/mihoyo-api-collect/issues/1<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0F6dXJlOTkvR2Vuc2hpblBsYXllclF1ZXJ5L2lzc3Vlcy8yMA==">https://github.com/Azure99/GenshinPlayerQuery/issues/20<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -508,87 +607,6 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CATTLE_NEW_SIGNED_CERT_EXPIRATION_DAYS=&quot;3650&quot;</span><br></pre></td></tr></table></figure>
 
 <p>该变量在 <code>k3s server</code> 重新签发证书时有效，或者在安装之前设置。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.starudream.cn/2023/07/21/pve-hidden-no-valid-subscription/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="starudream">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="星辰狂澜's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 星辰狂澜's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/07/21/pve-hidden-no-valid-subscription/" class="post-title-link" itemprop="url">PVE 移除 No valid subscription 提示</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-07-21 16:01:35" itemprop="dateCreated datePublished" datetime="2023-07-21T16:01:35+08:00">2023-07-21</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/share/javascript/proxmox-widget-toolkit</span><br><span class="line">cp proxmoxlib.js proxmoxlib.js.bak</span><br><span class="line">vim proxmoxlib.js</span><br></pre></td></tr></table></figure>
-
-<p>将 <code>No valid subscription</code> 前面的 <code>Ext.Msg.show</code> 替换为 <code>void</code></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl reload pveproxy.service</span><br></pre></td></tr></table></figure>
 
       
     </div>

@@ -1301,6 +1301,25 @@
       </tags>
   </entry>
   <entry>
+    <title>在 nexus3 中使用 nginx 配置代理可以访问 docker proxy 并推送至 docker hosted</title>
+    <url>/2024/11/28/nexus3-docker-proxy-and-group/</url>
+    <content><![CDATA[<img data-src="/images/69-1.png" alt="admin" style="max-height:600px;"/>
+
+<p><code>docker pull</code> 通过 <code>docker-group</code> 既可以拉取 <code>docker-hosted</code> 镜像又可以拉取 <code>docker-proxy</code> 的镜像。</p>
+<p>由于 <code>nexus3</code> 的限制，如果只代理至 <code>docker-group</code> 的话，无法推送镜像，所以需要将推送代理至 <code>docker-hosted</code>。</p>
+<p>默认的 <code>GET</code> 与 <code>HEAD</code> 请求代理至 <code>docker-group</code>，其余的 <code>PUT</code> <code>POST</code> 请求代理至 <code>docker-group</code>。</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">http &#123;</span><br><span class="line"></span><br><span class="line">    map $request_method $repo_name &#123;</span><br><span class="line">        default hosted;</span><br><span class="line">        GET group;</span><br><span class="line">        HEAD group;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    server &#123;</span><br><span class="line"></span><br><span class="line">        location /v2/ &#123;</span><br><span class="line">            client_max_body_size 8000M;</span><br><span class="line">            rewrite /v2/(.*) /repository/docker-$repo_name/v2/$1 break;</span><br><span class="line">            proxy_pass http://$&#123;IP&#125;:8081;</span><br><span class="line">            proxy_set_header Host $host;</span><br><span class="line">            proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">            proxy_set_header X-Real-PORT $remote_port;</span><br><span class="line">            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">            proxy_set_header X-Forwarded-Proto $scheme;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>nginx</tag>
+        <tag>nexus3</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Nginx location 的一些例子</title>
     <url>/2022/08/04/nginx-location-proxy-example/</url>
     <content><![CDATA[<h2 id="proxy-pass"><a href="#proxy-pass" class="headerlink" title="proxy_pass"></a>proxy_pass</h2><p>在 <code>nginx</code> 中配置 <code>proxy_pass</code> 代理转发时，如果在 <code>proxy_pass</code> 后面的 url 加 <code>/</code>，表示绝对根路径；如果没有 <code>/</code>，表示相对路径。</p>
