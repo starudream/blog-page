@@ -310,22 +310,6 @@
       </tags>
   </entry>
   <entry>
-    <title>使用 Docker 部署 TeamSpeak 3</title>
-    <url>/2020/04/14/deploy-teamspeak/</url>
-    <content><![CDATA[<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name teamspeak \</span><br><span class="line">    --restart always \</span><br><span class="line">    -p 9987:9987/udp \</span><br><span class="line">    -v /opt/docker/teamspeak:/var/ts3server \</span><br><span class="line">    -e TS3SERVER_LICENSE=accept \</span><br><span class="line">    -e TS3SERVER_SERVERADMIN_PASSWORD=PLACEHOLD \</span><br><span class="line">    teamspeak:latest</span><br></pre></td></tr></table></figure>
-
-<h2 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h2><p>使用以下命令查看 <code>Query Admin Account</code> 相关登录用户密码以及 <code>Privilege Key</code>。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker logs teamspeak</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-        <tag>teamspeak</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux 禁用 IPV6</title>
     <url>/2020/04/15/disable-ipv6-linux/</url>
     <content><![CDATA[<h2 id="验证是否开启-ipv6"><a href="#验证是否开启-ipv6" class="headerlink" title="验证是否开启 ipv6"></a>验证是否开启 ipv6</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ifconfig -a | grep inet6</span></span><br><span class="line">inet6 fe80::42:b8ff:feb5:4214  prefixlen 64  scopeid 0x20&lt;<span class="built_in">link</span>&gt;</span><br><span class="line">inet6 fe80::5054:ff:fec3:d3bb  prefixlen 64  scopeid 0x20&lt;<span class="built_in">link</span>&gt;</span><br><span class="line">inet6 ::1  prefixlen 128  scopeid 0x10&lt;host&gt;</span><br></pre></td></tr></table></figure>
@@ -349,6 +333,22 @@
         <tag>ubuntu</tag>
         <tag>centos</tag>
         <tag>ipv6</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用 Docker 部署 TeamSpeak 3</title>
+    <url>/2020/04/14/deploy-teamspeak/</url>
+    <content><![CDATA[<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name teamspeak \</span><br><span class="line">    --restart always \</span><br><span class="line">    -p 9987:9987/udp \</span><br><span class="line">    -v /opt/docker/teamspeak:/var/ts3server \</span><br><span class="line">    -e TS3SERVER_LICENSE=accept \</span><br><span class="line">    -e TS3SERVER_SERVERADMIN_PASSWORD=PLACEHOLD \</span><br><span class="line">    teamspeak:latest</span><br></pre></td></tr></table></figure>
+
+<h2 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h2><p>使用以下命令查看 <code>Query Admin Account</code> 相关登录用户密码以及 <code>Privilege Key</code>。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker logs teamspeak</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>teamspeak</tag>
       </tags>
   </entry>
   <entry>
@@ -792,55 +792,6 @@
       </tags>
   </entry>
   <entry>
-    <title>在 k8s 上使用 istio 管控</title>
-    <url>/2020/05/14/install-istio-with-k8s/</url>
-    <content><![CDATA[<p>使用上一篇文章成功安装 <code>k8s</code> 和 <code>calico</code> 后，使用 <code>istio</code> 管控微服务。</p>
-<h2 id="下载-istio"><a href="#下载-istio" class="headerlink" title="下载 istio"></a>下载 istio</h2><ul>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9pc3Rpby5pby9kb2NzL3NldHVwL2dldHRpbmctc3RhcnRlZC8=">https://istio.io/docs/setup/getting-started/<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-<li><p>Istio 1.5.4</p>
-</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -L https://istio.io/downloadIstio | sh -</span><br><span class="line"><span class="comment"># 或者从 `https://github.com/istio/istio/releases/latest` 选择版本下载后解压 `tar zxf istio-*.tar.gz`</span></span><br><span class="line"><span class="built_in">cd</span> istio-*</span><br><span class="line"><span class="comment"># 并将目录下 bin 的路径加入环境变量 `PATH`</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PWD</span>/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9pc3Rpby5pby9kb2NzL3NldHVwL2luc3RhbGwvaXN0aW9jdGwv">https://istio.io/docs/setup/install/istioctl/<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-<p>使用默认配置安装</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">istioctl manifest apply</span><br></pre></td></tr></table></figure>
-
-<p>验证是否安装成功</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">istioctl manifest generate &gt; istio.yaml</span><br><span class="line">istioctl verify-install -f istio.yaml</span><br></pre></td></tr></table></figure>
-
-<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><p>这里简单地引用了 <code>gitea</code> 作为部署镜像，若为微服务，修改相应路由即可。</p>
-<h3 id="创建-test-namespaces"><a href="#创建-test-namespaces" class="headerlink" title="创建 test namespaces"></a>创建 <code>test</code> namespaces</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">kubectl create namespace <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="创建-configmaps"><a href="#创建-configmaps" class="headerlink" title="创建 configmaps"></a>创建 configmaps</h3><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># config.yaml</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">ConfigMap</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">config</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">data:</span></span><br><span class="line">  <span class="attr">DB_TYPE:</span> <span class="string">sqlite3</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">kubectl apply -f config.yaml</span><br></pre></td></tr></table></figure>
-
-<h3 id="部署-1"><a href="#部署-1" class="headerlink" title="部署"></a>部署</h3><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># gitea.yaml</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Service</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">web</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">ClusterIP</span></span><br><span class="line">  <span class="attr">ports:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">http-web</span></span><br><span class="line">      <span class="attr">port:</span> <span class="number">80</span></span><br><span class="line">      <span class="attr">targetPort:</span> <span class="number">3000</span></span><br><span class="line">  <span class="attr">selector:</span></span><br><span class="line">    <span class="attr">app:</span> <span class="string">web</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">apps/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Deployment</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">web</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">replicas:</span> <span class="number">1</span></span><br><span class="line">  <span class="attr">selector:</span></span><br><span class="line">    <span class="attr">matchLabels:</span></span><br><span class="line">      <span class="attr">app:</span> <span class="string">web</span></span><br><span class="line">  <span class="attr">template:</span></span><br><span class="line">    <span class="attr">metadata:</span></span><br><span class="line">      <span class="attr">labels:</span></span><br><span class="line">        <span class="attr">app:</span> <span class="string">web</span></span><br><span class="line">    <span class="attr">spec:</span></span><br><span class="line">      <span class="attr">containers:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">test</span></span><br><span class="line">          <span class="attr">image:</span> <span class="string">gitea/gitea:latest</span></span><br><span class="line">          <span class="attr">ports:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">port</span></span><br><span class="line">              <span class="attr">containerPort:</span> <span class="number">3000</span></span><br><span class="line">          <span class="attr">envFrom:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="attr">configMapRef:</span></span><br><span class="line">                <span class="attr">name:</span> <span class="string">config</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">networking.istio.io/v1beta1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">VirtualService</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">web</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">hosts:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&quot;*&quot;</span></span><br><span class="line">  <span class="attr">gateways:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">istio-system/istio-ingressgateway</span></span><br><span class="line">  <span class="attr">http:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">match:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">uri:</span></span><br><span class="line">            <span class="attr">prefix:</span> <span class="string">&quot;/&quot;</span></span><br><span class="line">      <span class="attr">route:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">destination:</span></span><br><span class="line">            <span class="attr">host:</span> <span class="string">web</span></span><br><span class="line">            <span class="attr">port:</span></span><br><span class="line">              <span class="attr">number:</span> <span class="number">80</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">kubectl apply -f gitea.yaml</span><br></pre></td></tr></table></figure>
-
-<h3 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h3><p>修改 <code>istio-ingressgateway</code> 的 <code>LoadBalancer</code> 为 <code>NodePort</code> 将端口暴露出去。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">kubectl edit service istio-ingressgateway -n istio-system</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">kubectl get service -n istio-system</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">istio</span>-ingressgateway   NodePort    <span class="number">10.96.203.60</span>    &lt;none&gt;        <span class="number">80</span>:<span class="number">31893</span>/TCP   <span class="number">25</span>m</span><br></pre></td></tr></table></figure>
-
-<p>最后访问 <code>http://$&#123;ip&#125;:31893/</code> 就可以看到 <code>Gitea</code> 的页面了。</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>kubernetes</tag>
-        <tag>istio</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CentOS 安装 Kubernetes</title>
     <url>/2020/05/09/install-kubernetes/</url>
     <content><![CDATA[<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><h3 id="安装-Docker"><a href="#安装-Docker" class="headerlink" title="安装 Docker"></a>安装 Docker</h3><p>上一篇文章 <a href="https://blog.starudream.cn/2020/05/09/12-install-docker/">安装 docker</a></p>
@@ -916,6 +867,55 @@
       <tags>
         <tag>kubernetes</tag>
         <tag>centos</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在 k8s 上使用 istio 管控</title>
+    <url>/2020/05/14/install-istio-with-k8s/</url>
+    <content><![CDATA[<p>使用上一篇文章成功安装 <code>k8s</code> 和 <code>calico</code> 后，使用 <code>istio</code> 管控微服务。</p>
+<h2 id="下载-istio"><a href="#下载-istio" class="headerlink" title="下载 istio"></a>下载 istio</h2><ul>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9pc3Rpby5pby9kb2NzL3NldHVwL2dldHRpbmctc3RhcnRlZC8=">https://istio.io/docs/setup/getting-started/<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p>Istio 1.5.4</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -L https://istio.io/downloadIstio | sh -</span><br><span class="line"><span class="comment"># 或者从 `https://github.com/istio/istio/releases/latest` 选择版本下载后解压 `tar zxf istio-*.tar.gz`</span></span><br><span class="line"><span class="built_in">cd</span> istio-*</span><br><span class="line"><span class="comment"># 并将目录下 bin 的路径加入环境变量 `PATH`</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PWD</span>/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9pc3Rpby5pby9kb2NzL3NldHVwL2luc3RhbGwvaXN0aW9jdGwv">https://istio.io/docs/setup/install/istioctl/<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<p>使用默认配置安装</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">istioctl manifest apply</span><br></pre></td></tr></table></figure>
+
+<p>验证是否安装成功</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">istioctl manifest generate &gt; istio.yaml</span><br><span class="line">istioctl verify-install -f istio.yaml</span><br></pre></td></tr></table></figure>
+
+<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><p>这里简单地引用了 <code>gitea</code> 作为部署镜像，若为微服务，修改相应路由即可。</p>
+<h3 id="创建-test-namespaces"><a href="#创建-test-namespaces" class="headerlink" title="创建 test namespaces"></a>创建 <code>test</code> namespaces</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">kubectl create namespace <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="创建-configmaps"><a href="#创建-configmaps" class="headerlink" title="创建 configmaps"></a>创建 configmaps</h3><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># config.yaml</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">ConfigMap</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">config</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">data:</span></span><br><span class="line">  <span class="attr">DB_TYPE:</span> <span class="string">sqlite3</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">kubectl apply -f config.yaml</span><br></pre></td></tr></table></figure>
+
+<h3 id="部署-1"><a href="#部署-1" class="headerlink" title="部署"></a>部署</h3><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># gitea.yaml</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Service</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">web</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">ClusterIP</span></span><br><span class="line">  <span class="attr">ports:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">http-web</span></span><br><span class="line">      <span class="attr">port:</span> <span class="number">80</span></span><br><span class="line">      <span class="attr">targetPort:</span> <span class="number">3000</span></span><br><span class="line">  <span class="attr">selector:</span></span><br><span class="line">    <span class="attr">app:</span> <span class="string">web</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">apps/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Deployment</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">web</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">replicas:</span> <span class="number">1</span></span><br><span class="line">  <span class="attr">selector:</span></span><br><span class="line">    <span class="attr">matchLabels:</span></span><br><span class="line">      <span class="attr">app:</span> <span class="string">web</span></span><br><span class="line">  <span class="attr">template:</span></span><br><span class="line">    <span class="attr">metadata:</span></span><br><span class="line">      <span class="attr">labels:</span></span><br><span class="line">        <span class="attr">app:</span> <span class="string">web</span></span><br><span class="line">    <span class="attr">spec:</span></span><br><span class="line">      <span class="attr">containers:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">test</span></span><br><span class="line">          <span class="attr">image:</span> <span class="string">gitea/gitea:latest</span></span><br><span class="line">          <span class="attr">ports:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">port</span></span><br><span class="line">              <span class="attr">containerPort:</span> <span class="number">3000</span></span><br><span class="line">          <span class="attr">envFrom:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="attr">configMapRef:</span></span><br><span class="line">                <span class="attr">name:</span> <span class="string">config</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">networking.istio.io/v1beta1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">VirtualService</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">web</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">hosts:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&quot;*&quot;</span></span><br><span class="line">  <span class="attr">gateways:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">istio-system/istio-ingressgateway</span></span><br><span class="line">  <span class="attr">http:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">match:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">uri:</span></span><br><span class="line">            <span class="attr">prefix:</span> <span class="string">&quot;/&quot;</span></span><br><span class="line">      <span class="attr">route:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">destination:</span></span><br><span class="line">            <span class="attr">host:</span> <span class="string">web</span></span><br><span class="line">            <span class="attr">port:</span></span><br><span class="line">              <span class="attr">number:</span> <span class="number">80</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">kubectl apply -f gitea.yaml</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h3><p>修改 <code>istio-ingressgateway</code> 的 <code>LoadBalancer</code> 为 <code>NodePort</code> 将端口暴露出去。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">kubectl edit service istio-ingressgateway -n istio-system</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">kubectl get service -n istio-system</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">istio</span>-ingressgateway   NodePort    <span class="number">10.96.203.60</span>    &lt;none&gt;        <span class="number">80</span>:<span class="number">31893</span>/TCP   <span class="number">25</span>m</span><br></pre></td></tr></table></figure>
+
+<p>最后访问 <code>http://$&#123;ip&#125;:31893/</code> 就可以看到 <code>Gitea</code> 的页面了。</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>kubernetes</tag>
+        <tag>istio</tag>
       </tags>
   </entry>
   <entry>
@@ -1530,6 +1530,19 @@
       </tags>
   </entry>
   <entry>
+    <title>在 Chrome 地址栏中显示完整网址</title>
+    <url>/2020/06/28/show-full-path-in-chrome/</url>
+    <content><![CDATA[<p>打开 <code>chrome://flags/#omnibox-context-menu-show-full-urls</code> 地址，将 <code>Context menu show full URLs</code> 设置为 <code>Enabled</code>。</p>
+<p>重启 <code>Chrome</code> 后，在地址栏右击勾选 <code>总是显示完整网址</code>。</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>chrome</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>脚本将镜像文件推送到 Docker Registry</title>
     <url>/2024/11/13/shell-push-archive-files-to-docker-registry/</url>
     <content><![CDATA[<h2 id="Import"><a href="#Import" class="headerlink" title="Import"></a>Import</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/usr/bin/env bash</span></span><br><span class="line"></span><br><span class="line">set -e</span><br><span class="line"></span><br><span class="line">REGISTRY=&quot;hub.starudream.local&quot;</span><br><span class="line"></span><br><span class="line">function load() &#123;</span><br><span class="line">  if [ ! -f &quot;$1&quot; ]; then</span><br><span class="line">    echo &quot;file not found: $1&quot;</span><br><span class="line">    exit 1</span><br><span class="line">  fi</span><br><span class="line">  res=$(docker image load -i &quot;$1&quot; 2&gt;/dev/null | grep &quot;Loaded image:&quot; || true)</span><br><span class="line">  images=$&#123;res//Loaded image: /&#125;</span><br><span class="line">  for image in $images; do</span><br><span class="line">    echo &quot;-&gt; loaded $image&quot;</span><br><span class="line">    if [ -z $REGISTRY ]; then</span><br><span class="line">      continue</span><br><span class="line">    fi</span><br><span class="line">    cnt=$(echo &quot;$image&quot; | awk -F/ &quot;&#123;print NF-1&#125;&quot;)</span><br><span class="line">    name=$image</span><br><span class="line">    case $cnt in</span><br><span class="line">    0)</span><br><span class="line">      name=&quot;library/$image&quot;</span><br><span class="line">      ;;</span><br><span class="line">    1) ;;</span><br><span class="line">    *)</span><br><span class="line">      part=$&#123;image%/*&#125;</span><br><span class="line">      left=$&#123;part%/*&#125;</span><br><span class="line">      name=$&#123;image/$left\//&#125;</span><br><span class="line">      ;;</span><br><span class="line">    esac</span><br><span class="line">    docker image tag &quot;$image&quot; &quot;$REGISTRY/$name&quot;</span><br><span class="line">    docker image push &quot;$REGISTRY/$name&quot;</span><br><span class="line">    echo &quot;=&gt; pushed $image to $REGISTRY/$name&quot;</span><br><span class="line">    docker image rm &quot;$REGISTRY/$name&quot;</span><br><span class="line">    docker image rm &quot;$image&quot; || true</span><br><span class="line">  done</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">cnt=$(grep -c $REGISTRY /etc/hosts || true)</span><br><span class="line">if [ &quot;$cnt&quot; -eq 0 ]; then</span><br><span class="line">  REGISTRY=&quot;&quot;</span><br><span class="line">elif [ &quot;$PUSH_REGISTRY&quot; = 0 ]; then</span><br><span class="line">  REGISTRY=&quot;&quot;</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">if [ -z &quot;$1&quot; ]; then</span><br><span class="line">  files=$(find . -type f -name &quot;*.tar.gz&quot; | sort -u)</span><br><span class="line">  for file in $files; do</span><br><span class="line">    echo &quot;&gt;&gt; found $file&quot;</span><br><span class="line">    load &quot;$file&quot;</span><br><span class="line">  done</span><br><span class="line">else</span><br><span class="line">  load &quot;$1&quot;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
@@ -1542,19 +1555,6 @@
       <tags>
         <tag>docker</tag>
         <tag>registry</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在 Chrome 地址栏中显示完整网址</title>
-    <url>/2020/06/28/show-full-path-in-chrome/</url>
-    <content><![CDATA[<p>打开 <code>chrome://flags/#omnibox-context-menu-show-full-urls</code> 地址，将 <code>Context menu show full URLs</code> 设置为 <code>Enabled</code>。</p>
-<p>重启 <code>Chrome</code> 后，在地址栏右击勾选 <code>总是显示完整网址</code>。</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>chrome</tag>
       </tags>
   </entry>
   <entry>
