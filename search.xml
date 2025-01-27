@@ -601,39 +601,6 @@
       </tags>
   </entry>
   <entry>
-    <title>小米笔记本 Air 安装黑苹果</title>
-    <url>/2021/11/01/hack-mac-in-mi-notebook-air-gen1/</url>
-    <content><![CDATA[<p><strong>该教程适用于 2016 年小米笔记本 Air 13.3，CPU 为 i5-6200U</strong></p>
-<p><em>与 2021-10-31 日测试安装 MacOS Big Sur 11.6 成功</em></p>
-<h2 id="制作-MacOS-镜像"><a href="#制作-MacOS-镜像" class="headerlink" title="制作 MacOS 镜像"></a>制作 MacOS 镜像</h2><p>可以参考上一篇文章下载官方的安装镜像。</p>
-<p>或者使用其他人修改过的镜像，比如 <span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmRhbGlhbnNreS5uZXQvbWFjT1MtQmlnU3VyLTExLjYtMjBHMTY1LVJlbGVhc2UtdmVyc2lvbi13aXRoLU9DLTAuNy4zLWFuZC1DbG92ZXItNTEzOS1hbmQtUEUtb3JpZ2luYWwtaW1hZ2UuaHRtbA==">黑果小兵 MacOS 11.6<i class="fa fa-external-link-alt"></i></span> ，然后使用 <code>etcher</code> 制作镜像。</p>
-<h2 id="替换-EFI-文件"><a href="#替换-EFI-文件" class="headerlink" title="替换 EFI 文件"></a>替换 EFI 文件</h2><p>从 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3dodGllaGFjay9YaWFvTWktQWlyLmdpdA==">GitHub<i class="fa fa-external-link-alt"></i></span> 上下载最新的代码，将其中的 <code>EFI</code> 文件拷贝到刚才制作完成镜像的 U 盘中，<code>覆盖</code> 其中的 <code>EFI</code> 文件夹。</p>
-<h2 id="升级-BIOS-至-A06"><a href="#升级-BIOS-至-A06" class="headerlink" title="升级 BIOS 至 A06"></a>升级 BIOS 至 A06</h2><p>首先不插入 U 盘，开机按 <code>F2</code> 进入 <code>BIOS</code> 设置页面，查看当前 <code>BIOS</code> 版本，如果是 <code>A05</code> 需要将 <code>BIOS</code> 升级，如果是 <code>A06</code> 则无需升级进行下一步。</p>
-<p>从 <span class="exturl" data-url="aHR0cHM6Ly9wYW4uYmFpZHUuY29tL3MvMUtNLThxS0xEQlFTOVFwVERHZUpNNVE=">百度云<i class="fa fa-external-link-alt"></i></span> ，提取码 <code>z7ec</code> 下载 <code>VFBI0A06.zip</code> 文件拷贝至 U 盘。</p>
-<p>重新启动，进入 <code>Windows PE</code> 系统，运行其中的可执行文件，电脑会自动重启并升级 <code>BIOS</code>。升级完成后重新启动 <code>F2</code> 进入 <code>BIOS</code> 设置页面查看对应版本是否是 <code>A06</code>。</p>
-<h2 id="解锁-CFG-LOCK"><a href="#解锁-CFG-LOCK" class="headerlink" title="解锁 CFG LOCK"></a>解锁 CFG LOCK</h2><p>插入 U 盘，开机按 <code>F12</code>，选择 U 盘进入界面后，选择 <code>Modified GRUB Shell</code>，首先 <code>setup_var 0x84A</code> 查看当前是否开启 <code>CFG LOCK</code>，在输出中有 <code>0x01</code> 则需要输入 <code>setup_var 0x84A 0x00</code> 进行解锁。</p>
-<h2 id="安装-MacOS"><a href="#安装-MacOS" class="headerlink" title="安装 MacOS"></a>安装 MacOS</h2><p>重新启动，按 <code>F12</code> 选择 <code>Install MacOS Big Sur</code> 进入。</p>
-<p>首先选择 <code>磁盘工具</code> 将内置磁盘格式化为 <code>APFS</code>，然后返回开始安装，在安装过程中会自动重启几次，在开机启动项中选择对应的启动项继续，直至见到 MacOS 配置页面，完成配置后进入系统。</p>
-<h2 id="拷贝-EFI-至笔记本"><a href="#拷贝-EFI-至笔记本" class="headerlink" title="拷贝 EFI 至笔记本"></a>拷贝 EFI 至笔记本</h2><p>打开终端，输入 <code>diskutil list</code> 查看磁盘列表，一般来说 <code>/dev/disk0s1</code> 都是一个名为 <code>EFI</code> 的磁盘。</p>
-<p>使用 <code>sudo diskutil mount /dev/disk0s1</code> 命令挂载该磁盘。将上面拷贝至 U 盘 <code>EFI</code> 文件夹的内容同样拷贝到该磁盘。</p>
-<p>退出 U 盘，重新启动，如果能正确引导进入系统则安装成功。</p>
-<p>如果无法进入系统，重新插入 U 盘，重新配置引导文件。</p>
-<h2 id="参考连接"><a href="#参考连接" class="headerlink" title="参考连接"></a>参考连接</h2><ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3dodGllaGFjay9YaWFvTWktQWly">https://github.com/whtiehack/XiaoMi-Air<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3Nha291bGEvWGlhb01pLUFpci02MjAwVQ==">https://github.com/sakoula/XiaoMi-Air-6200U<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2pvaG5ueW5jMTMvWGlhb21pLU5vdGVib29rLUFpci0xR2Vu">https://github.com/johnnync13/Xiaomi-Notebook-Air-1Gen<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmRhbGlhbnNreS5uZXQv">https://blog.daliansky.net<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>mi</tag>
-        <tag>mac</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>在 HTTPS 的反向代理 Nginx 后运行 HTTP Harbor</title>
     <url>/2022/05/18/harbor-behind-nginx-reverse-proxy/</url>
     <content><![CDATA[<p>以下基于 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvaGFyYm9yL2hhcmJvci9yZWxlYXNlcy90YWcvdjIuNS4w">Harbor v2.5.0<i class="fa fa-external-link-alt"></i></span>。</p>
@@ -672,6 +639,39 @@
       <tags>
         <tag>docker</tag>
         <tag>registry</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>小米笔记本 Air 安装黑苹果</title>
+    <url>/2021/11/01/hack-mac-in-mi-notebook-air-gen1/</url>
+    <content><![CDATA[<p><strong>该教程适用于 2016 年小米笔记本 Air 13.3，CPU 为 i5-6200U</strong></p>
+<p><em>与 2021-10-31 日测试安装 MacOS Big Sur 11.6 成功</em></p>
+<h2 id="制作-MacOS-镜像"><a href="#制作-MacOS-镜像" class="headerlink" title="制作 MacOS 镜像"></a>制作 MacOS 镜像</h2><p>可以参考上一篇文章下载官方的安装镜像。</p>
+<p>或者使用其他人修改过的镜像，比如 <span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmRhbGlhbnNreS5uZXQvbWFjT1MtQmlnU3VyLTExLjYtMjBHMTY1LVJlbGVhc2UtdmVyc2lvbi13aXRoLU9DLTAuNy4zLWFuZC1DbG92ZXItNTEzOS1hbmQtUEUtb3JpZ2luYWwtaW1hZ2UuaHRtbA==">黑果小兵 MacOS 11.6<i class="fa fa-external-link-alt"></i></span> ，然后使用 <code>etcher</code> 制作镜像。</p>
+<h2 id="替换-EFI-文件"><a href="#替换-EFI-文件" class="headerlink" title="替换 EFI 文件"></a>替换 EFI 文件</h2><p>从 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3dodGllaGFjay9YaWFvTWktQWlyLmdpdA==">GitHub<i class="fa fa-external-link-alt"></i></span> 上下载最新的代码，将其中的 <code>EFI</code> 文件拷贝到刚才制作完成镜像的 U 盘中，<code>覆盖</code> 其中的 <code>EFI</code> 文件夹。</p>
+<h2 id="升级-BIOS-至-A06"><a href="#升级-BIOS-至-A06" class="headerlink" title="升级 BIOS 至 A06"></a>升级 BIOS 至 A06</h2><p>首先不插入 U 盘，开机按 <code>F2</code> 进入 <code>BIOS</code> 设置页面，查看当前 <code>BIOS</code> 版本，如果是 <code>A05</code> 需要将 <code>BIOS</code> 升级，如果是 <code>A06</code> 则无需升级进行下一步。</p>
+<p>从 <span class="exturl" data-url="aHR0cHM6Ly9wYW4uYmFpZHUuY29tL3MvMUtNLThxS0xEQlFTOVFwVERHZUpNNVE=">百度云<i class="fa fa-external-link-alt"></i></span> ，提取码 <code>z7ec</code> 下载 <code>VFBI0A06.zip</code> 文件拷贝至 U 盘。</p>
+<p>重新启动，进入 <code>Windows PE</code> 系统，运行其中的可执行文件，电脑会自动重启并升级 <code>BIOS</code>。升级完成后重新启动 <code>F2</code> 进入 <code>BIOS</code> 设置页面查看对应版本是否是 <code>A06</code>。</p>
+<h2 id="解锁-CFG-LOCK"><a href="#解锁-CFG-LOCK" class="headerlink" title="解锁 CFG LOCK"></a>解锁 CFG LOCK</h2><p>插入 U 盘，开机按 <code>F12</code>，选择 U 盘进入界面后，选择 <code>Modified GRUB Shell</code>，首先 <code>setup_var 0x84A</code> 查看当前是否开启 <code>CFG LOCK</code>，在输出中有 <code>0x01</code> 则需要输入 <code>setup_var 0x84A 0x00</code> 进行解锁。</p>
+<h2 id="安装-MacOS"><a href="#安装-MacOS" class="headerlink" title="安装 MacOS"></a>安装 MacOS</h2><p>重新启动，按 <code>F12</code> 选择 <code>Install MacOS Big Sur</code> 进入。</p>
+<p>首先选择 <code>磁盘工具</code> 将内置磁盘格式化为 <code>APFS</code>，然后返回开始安装，在安装过程中会自动重启几次，在开机启动项中选择对应的启动项继续，直至见到 MacOS 配置页面，完成配置后进入系统。</p>
+<h2 id="拷贝-EFI-至笔记本"><a href="#拷贝-EFI-至笔记本" class="headerlink" title="拷贝 EFI 至笔记本"></a>拷贝 EFI 至笔记本</h2><p>打开终端，输入 <code>diskutil list</code> 查看磁盘列表，一般来说 <code>/dev/disk0s1</code> 都是一个名为 <code>EFI</code> 的磁盘。</p>
+<p>使用 <code>sudo diskutil mount /dev/disk0s1</code> 命令挂载该磁盘。将上面拷贝至 U 盘 <code>EFI</code> 文件夹的内容同样拷贝到该磁盘。</p>
+<p>退出 U 盘，重新启动，如果能正确引导进入系统则安装成功。</p>
+<p>如果无法进入系统，重新插入 U 盘，重新配置引导文件。</p>
+<h2 id="参考连接"><a href="#参考连接" class="headerlink" title="参考连接"></a>参考连接</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3dodGllaGFjay9YaWFvTWktQWly">https://github.com/whtiehack/XiaoMi-Air<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3Nha291bGEvWGlhb01pLUFpci02MjAwVQ==">https://github.com/sakoula/XiaoMi-Air-6200U<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2pvaG5ueW5jMTMvWGlhb21pLU5vdGVib29rLUFpci0xR2Vu">https://github.com/johnnync13/Xiaomi-Notebook-Air-1Gen<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmRhbGlhbnNreS5uZXQv">https://blog.daliansky.net<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>mi</tag>
+        <tag>mac</tag>
       </tags>
   </entry>
   <entry>
