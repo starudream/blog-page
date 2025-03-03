@@ -753,45 +753,6 @@
       </tags>
   </entry>
   <entry>
-    <title>基于 Docker 安装 GitLab 和 GitLab-Runner</title>
-    <url>/2019/12/13/install-gitlab-and-gitlab-runner/</url>
-    <content><![CDATA[<h2 id="安装-docker-并拉取相关镜像"><a href="#安装-docker-并拉取相关镜像" class="headerlink" title="安装 docker 并拉取相关镜像"></a>安装 docker 并拉取相关镜像</h2><ul>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9odWIuZG9ja2VyLmNvbS9yL2dpdGxhYi9naXRsYWItY2U=">gitlab&#x2F;gitlab-ce<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9odWIuZG9ja2VyLmNvbS9yL2dpdGxhYi9naXRsYWItcnVubmVy">gitlab&#x2F;gitlab-runner<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker pull gitlab/gitlab-ce</span><br><span class="line">docker pull gitlab/gitlab-runner</span><br></pre></td></tr></table></figure>
-
-<h2 id="运行-docker-镜像"><a href="#运行-docker-镜像" class="headerlink" title="运行 docker 镜像"></a>运行 docker 镜像</h2><ul>
-<li>GitLab CE</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name gitlab \</span><br><span class="line">    --restart always \</span><br><span class="line">    -p 127.0.0.1:50080:80 \</span><br><span class="line">    -p 127.0.0.1:50022:22 \</span><br><span class="line">    -m 2048m \</span><br><span class="line">    -v /opt/docker/gitlab/config:/etc/gitlab \</span><br><span class="line">    -v /opt/docker/gitlab/logs:/var/log/gitlab \</span><br><span class="line">    -v /opt/docker/gitlab/data:/var/opt/gitlab \</span><br><span class="line">    gitlab/gitlab-ce:latest</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name gitlab-runner \</span><br><span class="line">    --<span class="built_in">link</span> gitlab:gitlab \</span><br><span class="line">    --restart always \</span><br><span class="line">    -m 1024m \</span><br><span class="line">    -v /var/run/docker.sock:/var/run/docker.sock \</span><br><span class="line">    -v /opt/docker/gitlab-runner/config:/etc/gitlab-runner \</span><br><span class="line">    gitlab/gitlab-runner:latest</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>GitLab EE</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name gitlab \</span><br><span class="line">    --restart always \</span><br><span class="line">    -p 127.0.0.1:50080:80 \</span><br><span class="line">    -p 127.0.0.1:50022:22 \</span><br><span class="line">    -m 2048m \</span><br><span class="line">    -v /opt/docker/gitlab/config:/etc/gitlab \</span><br><span class="line">    -v /opt/docker/gitlab/logs:/var/log/gitlab \</span><br><span class="line">    -v /opt/docker/gitlab/data:/var/opt/gitlab \</span><br><span class="line">    -v /opt/docker/gitlab/.license_encryption_key.pub:/opt/gitlab/embedded/service/gitlab-rails/.license_encryption_key.pub \</span><br><span class="line">    gitlab/gitlab-ee:latest</span><br></pre></td></tr></table></figure>
-
-<h2 id="注册-gitlab-runner"><a href="#注册-gitlab-runner" class="headerlink" title="注册 gitlab-runner"></a>注册 gitlab-runner</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it gitlab-runner gitlab-runner register</span><br><span class="line"><span class="comment"># 之后访问地址 http://code.52xckl.cn/admin/runners 配置即可</span></span><br><span class="line"><span class="comment"># 配置地址可以使用 http://gitlab 内网</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ul>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmdpdGxhYi5jb20vb21uaWJ1cy9kb2NrZXIv">gitlab<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmdpdGxhYi5jb20vcnVubmVyL2luc3RhbGwvZG9ja2VyLmh0bWw=">gitlab-runner<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>gitlab</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>在 k8s 上使用 istio 管控</title>
     <url>/2020/05/14/install-istio-with-k8s/</url>
     <content><![CDATA[<p>使用上一篇文章成功安装 <code>k8s</code> 和 <code>calico</code> 后，使用 <code>istio</code> 管控微服务。</p>
@@ -838,6 +799,45 @@
       <tags>
         <tag>kubernetes</tag>
         <tag>istio</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>基于 Docker 安装 GitLab 和 GitLab-Runner</title>
+    <url>/2019/12/13/install-gitlab-and-gitlab-runner/</url>
+    <content><![CDATA[<h2 id="安装-docker-并拉取相关镜像"><a href="#安装-docker-并拉取相关镜像" class="headerlink" title="安装 docker 并拉取相关镜像"></a>安装 docker 并拉取相关镜像</h2><ul>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9odWIuZG9ja2VyLmNvbS9yL2dpdGxhYi9naXRsYWItY2U=">gitlab&#x2F;gitlab-ce<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9odWIuZG9ja2VyLmNvbS9yL2dpdGxhYi9naXRsYWItcnVubmVy">gitlab&#x2F;gitlab-runner<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker pull gitlab/gitlab-ce</span><br><span class="line">docker pull gitlab/gitlab-runner</span><br></pre></td></tr></table></figure>
+
+<h2 id="运行-docker-镜像"><a href="#运行-docker-镜像" class="headerlink" title="运行 docker 镜像"></a>运行 docker 镜像</h2><ul>
+<li>GitLab CE</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name gitlab \</span><br><span class="line">    --restart always \</span><br><span class="line">    -p 127.0.0.1:50080:80 \</span><br><span class="line">    -p 127.0.0.1:50022:22 \</span><br><span class="line">    -m 2048m \</span><br><span class="line">    -v /opt/docker/gitlab/config:/etc/gitlab \</span><br><span class="line">    -v /opt/docker/gitlab/logs:/var/log/gitlab \</span><br><span class="line">    -v /opt/docker/gitlab/data:/var/opt/gitlab \</span><br><span class="line">    gitlab/gitlab-ce:latest</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name gitlab-runner \</span><br><span class="line">    --<span class="built_in">link</span> gitlab:gitlab \</span><br><span class="line">    --restart always \</span><br><span class="line">    -m 1024m \</span><br><span class="line">    -v /var/run/docker.sock:/var/run/docker.sock \</span><br><span class="line">    -v /opt/docker/gitlab-runner/config:/etc/gitlab-runner \</span><br><span class="line">    gitlab/gitlab-runner:latest</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>GitLab EE</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name gitlab \</span><br><span class="line">    --restart always \</span><br><span class="line">    -p 127.0.0.1:50080:80 \</span><br><span class="line">    -p 127.0.0.1:50022:22 \</span><br><span class="line">    -m 2048m \</span><br><span class="line">    -v /opt/docker/gitlab/config:/etc/gitlab \</span><br><span class="line">    -v /opt/docker/gitlab/logs:/var/log/gitlab \</span><br><span class="line">    -v /opt/docker/gitlab/data:/var/opt/gitlab \</span><br><span class="line">    -v /opt/docker/gitlab/.license_encryption_key.pub:/opt/gitlab/embedded/service/gitlab-rails/.license_encryption_key.pub \</span><br><span class="line">    gitlab/gitlab-ee:latest</span><br></pre></td></tr></table></figure>
+
+<h2 id="注册-gitlab-runner"><a href="#注册-gitlab-runner" class="headerlink" title="注册 gitlab-runner"></a>注册 gitlab-runner</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it gitlab-runner gitlab-runner register</span><br><span class="line"><span class="comment"># 之后访问地址 http://code.52xckl.cn/admin/runners 配置即可</span></span><br><span class="line"><span class="comment"># 配置地址可以使用 http://gitlab 内网</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ul>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmdpdGxhYi5jb20vb21uaWJ1cy9kb2NrZXIv">gitlab<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmdpdGxhYi5jb20vcnVubmVyL2luc3RhbGwvZG9ja2VyLmh0bWw=">gitlab-runner<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>gitlab</tag>
       </tags>
   </entry>
   <entry>
@@ -1389,29 +1389,6 @@
       </tags>
   </entry>
   <entry>
-    <title>PVE 修改 hostname</title>
-    <url>/2023/07/21/pve-change-hostname/</url>
-    <content><![CDATA[<p>安装 <span class="exturl" data-url="aHR0cHM6Ly9wdmUucHJveG1veC5jb20vd2lraS9SZW5hbWluZ19hX1BWRV9ub2Rl">官方教程<i class="fa fa-external-link-alt"></i></span> 可以在没有虚拟机的 <code>PVE</code> 上修改 <code>hostname</code>。</p>
-<p>具体操作是依次修改下面的文件，将其中的 <code>old-hostname</code> 替换为 <code>new-hostname</code>：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nano /etc/hosts</span><br><span class="line">nano /etc/hostname</span><br><span class="line">nano /etc/pve/corosync.conf</span><br><span class="line">nano /etc/mailname</span><br><span class="line">nano /etc/postfix/main.cf</span><br></pre></td></tr></table></figure>
-
-<p>同时将 <code>/var/lib/rrdcached/db/pve2-&#123;node,storage&#125;/old-hostname</code> 的内容复制到 <code>/var/lib/rrdcached/db/pve2-&#123;node,storage&#125;/new-hostname</code> 并删除旧目录。</p>
-<hr>
-<p><strong>以下操作非常危险，很可能造成数据损坏，正确的做法应该是将虚拟机备份恢复到其他机器上</strong></p>
-<hr>
-<p>如果机器上有虚拟机则需要做以下额外的操作才可以在 <code>WebUI</code> 中看到正确的节点。</p>
-<p>进入 <code>/etc/pve/nodes</code> 目录，将 <code>old-hostname</code> 下的文件夹内的内容移动到 <code>new-hostname</code> 相应的文件夹下</p>
-<p>重启后尝试启动虚拟机，如果出现错误 <code>TASK ERROR: activating LV &#39;pve/vm-xxx&#39; failed:   Activation of logical volume pve/vm-xxx is prohibited while logical volume pve/data_tmeta is active.</code> 尝试使用以下命令：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">lvchange -an pve/data_tdata</span><br><span class="line">lvchange -an pve/data_tmeta</span><br><span class="line">lvchange -ay</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>pve</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>PVE 启动 IOMMU</title>
     <url>/2023/07/21/pve-enable-iommu/</url>
     <content><![CDATA[<h2 id="INTEL"><a href="#INTEL" class="headerlink" title="INTEL"></a>INTEL</h2><ol>
@@ -1493,6 +1470,29 @@
       <tags>
         <tag>kubernetes</tag>
         <tag>kubectl</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PVE 修改 hostname</title>
+    <url>/2023/07/21/pve-change-hostname/</url>
+    <content><![CDATA[<p>安装 <span class="exturl" data-url="aHR0cHM6Ly9wdmUucHJveG1veC5jb20vd2lraS9SZW5hbWluZ19hX1BWRV9ub2Rl">官方教程<i class="fa fa-external-link-alt"></i></span> 可以在没有虚拟机的 <code>PVE</code> 上修改 <code>hostname</code>。</p>
+<p>具体操作是依次修改下面的文件，将其中的 <code>old-hostname</code> 替换为 <code>new-hostname</code>：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nano /etc/hosts</span><br><span class="line">nano /etc/hostname</span><br><span class="line">nano /etc/pve/corosync.conf</span><br><span class="line">nano /etc/mailname</span><br><span class="line">nano /etc/postfix/main.cf</span><br></pre></td></tr></table></figure>
+
+<p>同时将 <code>/var/lib/rrdcached/db/pve2-&#123;node,storage&#125;/old-hostname</code> 的内容复制到 <code>/var/lib/rrdcached/db/pve2-&#123;node,storage&#125;/new-hostname</code> 并删除旧目录。</p>
+<hr>
+<p><strong>以下操作非常危险，很可能造成数据损坏，正确的做法应该是将虚拟机备份恢复到其他机器上</strong></p>
+<hr>
+<p>如果机器上有虚拟机则需要做以下额外的操作才可以在 <code>WebUI</code> 中看到正确的节点。</p>
+<p>进入 <code>/etc/pve/nodes</code> 目录，将 <code>old-hostname</code> 下的文件夹内的内容移动到 <code>new-hostname</code> 相应的文件夹下</p>
+<p>重启后尝试启动虚拟机，如果出现错误 <code>TASK ERROR: activating LV &#39;pve/vm-xxx&#39; failed:   Activation of logical volume pve/vm-xxx is prohibited while logical volume pve/data_tmeta is active.</code> 尝试使用以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">lvchange -an pve/data_tdata</span><br><span class="line">lvchange -an pve/data_tmeta</span><br><span class="line">lvchange -ay</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>pve</tag>
       </tags>
   </entry>
   <entry>
