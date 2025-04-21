@@ -1274,6 +1274,19 @@
       </tags>
   </entry>
   <entry>
+    <title>修改主题 Pisces</title>
+    <url>/2019/12/19/motify-theme-pisces/</url>
+    <content><![CDATA[<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"><span class="comment">--- a/themes/next/layout/_scripts/pjax.swig</span></span><br><span class="line"><span class="comment">+++ b/themes/next/layout/_scripts/pjax.swig</span></span><br><span class="line"><span class="meta">@@ -15,8 +15,8 @@</span> var pjax = new Pjax(&#123;</span><br><span class="line">   scrollTo : !CONFIG.bookmark.enable</span><br><span class="line"> &#125;);</span><br><span class="line"></span><br><span class="line"><span class="deletion">-window.addEventListener(&#x27;pjax:success&#x27;, () =&gt; &#123;</span></span><br><span class="line"><span class="deletion">-  document.querySelectorAll(&#x27;script[pjax], script#page-configurations, #pjax script&#x27;).forEach(element =&gt; &#123;</span></span><br><span class="line"><span class="addition">+window.addEventListener(&#x27;pjax:success&#x27;, function() &#123;</span></span><br><span class="line"><span class="addition">+  document.querySelectorAll(&#x27;script[pjax], script#page-configurations, #pjax script&#x27;).forEach(function(element) &#123;</span></span><br><span class="line">     var code = element.text || element.textContent || element.innerHTML || &#x27;&#x27;;</span><br><span class="line">     var parent = element.parentNode;</span><br><span class="line">     parent.removeChild(element);</span><br><span class="line"></span><br><span class="line"><span class="comment">--- a/themes/next/layout/_third-party/comments/disqus.swig</span></span><br><span class="line"><span class="comment">+++ b/themes/next/layout/_third-party/comments/disqus.swig</span></span><br><span class="line"><span class="meta">@@ -41,7 +41,7 @@</span></span><br><span class="line">         // load directly when there&#x27;s no a scrollbar</span><br><span class="line">         window.addEventListener(&#x27;load&#x27;, loadComments, false);</span><br><span class="line">       &#125; else &#123;</span><br><span class="line"><span class="deletion">-        var disqus_scroll = () =&gt; &#123;</span></span><br><span class="line"><span class="addition">+        var disqus_scroll = function() &#123;</span></span><br><span class="line">           // offsetTop may changes because of manually resizing browser window or lazy loading images.</span><br><span class="line">           var offsetTop = document.getElementById(&#x27;comments&#x27;).offsetTop - window.innerHeight;</span><br><span class="line">           var scrollTop = window.scrollY;</span><br><span class="line"></span><br><span class="line"><span class="comment">--- a/themes/next/layout/_third-party/quicklink.swig</span></span><br><span class="line"><span class="comment">+++ b/themes/next/layout/_third-party/quicklink.swig</span></span><br><span class="line"><span class="meta">@@ -3,12 +3,12 @@</span></span><br><span class="line">   &lt;script src=&quot;&#123;&#123; quicklink_uri &#125;&#125;&quot;&gt;&lt;/script&gt;</span><br><span class="line">   &lt;script&gt;</span><br><span class="line">     &#123;%- if page.quicklink.delay %&#125;</span><br><span class="line"><span class="deletion">-      window.addEventListener(&#x27;load&#x27;, () =&gt; &#123;</span></span><br><span class="line"><span class="addition">+      window.addEventListener(&#x27;load&#x27;, function() &#123;</span></span><br><span class="line">     &#123;%- endif %&#125;</span><br><span class="line">       quicklink(&#123;</span><br><span class="line">         timeout: &#123;&#123; page.quicklink.timeout &#125;&#125;,</span><br><span class="line">         priority: &#123;&#123; page.quicklink.priority &#125;&#125;,</span><br><span class="line"><span class="deletion">-        ignores: [uri =&gt; uri.includes(&#x27;#&#x27;),uri =&gt; uri == &#x27;&#123;&#123; url | replace(&#x27;index.html&#x27;, &#x27;&#x27;) &#125;&#125;&#x27;,&#123;&#123; page.quicklink.ignores &#125;&#125;]</span></span><br><span class="line"><span class="addition">+        ignores: [function(uri) &#123; return uri.includes(&#x27;#&#x27;) &#125;, function(uri) &#123; return uri === &#x27;&#123;&#123; url | replace(&#x27;index.html&#x27;, &#x27;&#x27;) &#125;&#125;&#x27; &#125;, &#123;&#123; page.quicklink.ignores &#125;&#125;]</span></span><br><span class="line">       &#125;);</span><br><span class="line">     &#123;%- if page.quicklink.delay %&#125;</span><br><span class="line">       &#125;);</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>主题</category>
+      </categories>
+      <tags>
+        <tag>theme</tag>
+        <tag>pisces</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>在 MyBatisPlus 中使用 Wrapper 更新时自动填充字段失效</title>
     <url>/2024/06/27/mybatis-plus-autometa-when-wrapper/</url>
     <content><![CDATA[<p>因为 <code>mp</code> 只能在传入 <code>Entity</code> 的情况下自动填充字段。</p>
@@ -1285,19 +1298,6 @@
       <tags>
         <tag>java</tag>
         <tag>mybatis-plus</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>修改主题 Pisces</title>
-    <url>/2019/12/19/motify-theme-pisces/</url>
-    <content><![CDATA[<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"><span class="comment">--- a/themes/next/layout/_scripts/pjax.swig</span></span><br><span class="line"><span class="comment">+++ b/themes/next/layout/_scripts/pjax.swig</span></span><br><span class="line"><span class="meta">@@ -15,8 +15,8 @@</span> var pjax = new Pjax(&#123;</span><br><span class="line">   scrollTo : !CONFIG.bookmark.enable</span><br><span class="line"> &#125;);</span><br><span class="line"></span><br><span class="line"><span class="deletion">-window.addEventListener(&#x27;pjax:success&#x27;, () =&gt; &#123;</span></span><br><span class="line"><span class="deletion">-  document.querySelectorAll(&#x27;script[pjax], script#page-configurations, #pjax script&#x27;).forEach(element =&gt; &#123;</span></span><br><span class="line"><span class="addition">+window.addEventListener(&#x27;pjax:success&#x27;, function() &#123;</span></span><br><span class="line"><span class="addition">+  document.querySelectorAll(&#x27;script[pjax], script#page-configurations, #pjax script&#x27;).forEach(function(element) &#123;</span></span><br><span class="line">     var code = element.text || element.textContent || element.innerHTML || &#x27;&#x27;;</span><br><span class="line">     var parent = element.parentNode;</span><br><span class="line">     parent.removeChild(element);</span><br><span class="line"></span><br><span class="line"><span class="comment">--- a/themes/next/layout/_third-party/comments/disqus.swig</span></span><br><span class="line"><span class="comment">+++ b/themes/next/layout/_third-party/comments/disqus.swig</span></span><br><span class="line"><span class="meta">@@ -41,7 +41,7 @@</span></span><br><span class="line">         // load directly when there&#x27;s no a scrollbar</span><br><span class="line">         window.addEventListener(&#x27;load&#x27;, loadComments, false);</span><br><span class="line">       &#125; else &#123;</span><br><span class="line"><span class="deletion">-        var disqus_scroll = () =&gt; &#123;</span></span><br><span class="line"><span class="addition">+        var disqus_scroll = function() &#123;</span></span><br><span class="line">           // offsetTop may changes because of manually resizing browser window or lazy loading images.</span><br><span class="line">           var offsetTop = document.getElementById(&#x27;comments&#x27;).offsetTop - window.innerHeight;</span><br><span class="line">           var scrollTop = window.scrollY;</span><br><span class="line"></span><br><span class="line"><span class="comment">--- a/themes/next/layout/_third-party/quicklink.swig</span></span><br><span class="line"><span class="comment">+++ b/themes/next/layout/_third-party/quicklink.swig</span></span><br><span class="line"><span class="meta">@@ -3,12 +3,12 @@</span></span><br><span class="line">   &lt;script src=&quot;&#123;&#123; quicklink_uri &#125;&#125;&quot;&gt;&lt;/script&gt;</span><br><span class="line">   &lt;script&gt;</span><br><span class="line">     &#123;%- if page.quicklink.delay %&#125;</span><br><span class="line"><span class="deletion">-      window.addEventListener(&#x27;load&#x27;, () =&gt; &#123;</span></span><br><span class="line"><span class="addition">+      window.addEventListener(&#x27;load&#x27;, function() &#123;</span></span><br><span class="line">     &#123;%- endif %&#125;</span><br><span class="line">       quicklink(&#123;</span><br><span class="line">         timeout: &#123;&#123; page.quicklink.timeout &#125;&#125;,</span><br><span class="line">         priority: &#123;&#123; page.quicklink.priority &#125;&#125;,</span><br><span class="line"><span class="deletion">-        ignores: [uri =&gt; uri.includes(&#x27;#&#x27;),uri =&gt; uri == &#x27;&#123;&#123; url | replace(&#x27;index.html&#x27;, &#x27;&#x27;) &#125;&#125;&#x27;,&#123;&#123; page.quicklink.ignores &#125;&#125;]</span></span><br><span class="line"><span class="addition">+        ignores: [function(uri) &#123; return uri.includes(&#x27;#&#x27;) &#125;, function(uri) &#123; return uri === &#x27;&#123;&#123; url | replace(&#x27;index.html&#x27;, &#x27;&#x27;) &#125;&#125;&#x27; &#125;, &#123;&#123; page.quicklink.ignores &#125;&#125;]</span></span><br><span class="line">       &#125;);</span><br><span class="line">     &#123;%- if page.quicklink.delay %&#125;</span><br><span class="line">       &#125;);</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>主题</category>
-      </categories>
-      <tags>
-        <tag>theme</tag>
-        <tag>pisces</tag>
       </tags>
   </entry>
   <entry>
@@ -1467,6 +1467,19 @@
       </tags>
   </entry>
   <entry>
+    <title>kubectl 重启某个 Namespace 下的所有 Deployment</title>
+    <url>/2024/02/19/restart-all-deployment-in-namespace/</url>
+    <content><![CDATA[<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">NAMESPACE=&quot;arc-os&quot;</span><br><span class="line">for DEPLOY in $(kubectl get deployments -n $NAMESPACE | tail -n +2 | cut -d &#x27; &#x27; -f 1); do kubectl rollout restart deployments/$DEPLOY -n $NAMESPACE; done</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>kubernetes</tag>
+        <tag>kubectl</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>PVE 在存在虚拟机的情况下添加到集群</title>
     <url>/2023/07/21/pve-join-cluster-if-exists-vms/</url>
     <content><![CDATA[<p><strong>此操作危险，不建议使用</strong></p>
@@ -1480,19 +1493,6 @@
       </categories>
       <tags>
         <tag>pve</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>kubectl 重启某个 Namespace 下的所有 Deployment</title>
-    <url>/2024/02/19/restart-all-deployment-in-namespace/</url>
-    <content><![CDATA[<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">NAMESPACE=&quot;arc-os&quot;</span><br><span class="line">for DEPLOY in $(kubectl get deployments -n $NAMESPACE | tail -n +2 | cut -d &#x27; &#x27; -f 1); do kubectl rollout restart deployments/$DEPLOY -n $NAMESPACE; done</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>kubernetes</tag>
-        <tag>kubectl</tag>
       </tags>
   </entry>
   <entry>
