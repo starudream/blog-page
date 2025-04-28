@@ -199,19 +199,6 @@
       </tags>
   </entry>
   <entry>
-    <title>部署 Docker Registry</title>
-    <url>/2023/07/21/deploy-docker-regsitry/</url>
-    <content><![CDATA[<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">  --name registry \</span><br><span class="line">  --restart always \</span><br><span class="line">  -p 5000:5000 \</span><br><span class="line">  -v &quot;$&#123;STORAGE_DATA_DIR&#125;/registry&quot;:/var/lib/registry \</span><br><span class="line">  registry:2.8.2</span><br><span class="line"></span><br><span class="line">docker run -d \</span><br><span class="line">  --name registry-ui \</span><br><span class="line">  --restart always \</span><br><span class="line">  -p 5001:80 \</span><br><span class="line">  -e SINGLE_REGISTRY=true \</span><br><span class="line">  -e SHOW_CONTENT_DIGEST=true \</span><br><span class="line">  -e NGINX_PROXY_PASS_URL=&quot;http://$&#123;REGISTER_IP_ADDR&#125;:5000&quot; \</span><br><span class="line">  joxit/docker-registry-ui:2.5.0</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-        <tag>registry</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>使用 GitHub Actions 部署 Hexo</title>
     <url>/2020/04/10/deploy-hexo-with-github-actions/</url>
     <content><![CDATA[<p>首先需要在 <code>GitHub</code> 上建立两个仓库，一个 <code>公有</code>，一个 <code>私有</code>。</p>
@@ -228,6 +215,19 @@
       <tags>
         <tag>hexo</tag>
         <tag>github</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>部署 Docker Registry</title>
+    <url>/2023/07/21/deploy-docker-regsitry/</url>
+    <content><![CDATA[<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">  --name registry \</span><br><span class="line">  --restart always \</span><br><span class="line">  -p 5000:5000 \</span><br><span class="line">  -v &quot;$&#123;STORAGE_DATA_DIR&#125;/registry&quot;:/var/lib/registry \</span><br><span class="line">  registry:2.8.2</span><br><span class="line"></span><br><span class="line">docker run -d \</span><br><span class="line">  --name registry-ui \</span><br><span class="line">  --restart always \</span><br><span class="line">  -p 5001:80 \</span><br><span class="line">  -e SINGLE_REGISTRY=true \</span><br><span class="line">  -e SHOW_CONTENT_DIGEST=true \</span><br><span class="line">  -e NGINX_PROXY_PASS_URL=&quot;http://$&#123;REGISTER_IP_ADDR&#125;:5000&quot; \</span><br><span class="line">  joxit/docker-registry-ui:2.5.0</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>registry</tag>
       </tags>
   </entry>
   <entry>
@@ -501,25 +501,6 @@
       </tags>
   </entry>
   <entry>
-    <title>gitlab runner 使用 dind 作为 service 时的健康检查出错</title>
-    <url>/2024/02/19/gitlab-dind-as-service-hc/</url>
-    <content><![CDATA[<p>解决不必要的 30s 超时等待时间</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">FROM docker:20-dind as upstream</span><br><span class="line"></span><br><span class="line">FROM scratch</span><br><span class="line"></span><br><span class="line">COPY --from=upstream / /</span><br><span class="line"></span><br><span class="line">VOLUME /var/lib/docker</span><br><span class="line"></span><br><span class="line">EXPOSE 2376</span><br><span class="line"></span><br><span class="line">ENV DOCKER_TLS_CERTDIR=/certs</span><br><span class="line"></span><br><span class="line">ENTRYPOINT [&quot;dockerd-entrypoint.sh&quot;]</span><br><span class="line"></span><br><span class="line">CMD []</span><br></pre></td></tr></table></figure>
-
-<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRsYWIuY29tL2dpdGxhYi1vcmcvZ2l0bGFiLXJ1bm5lci8tL2lzc3Vlcy8yOTEzMCNub3RlXzEwMjgzMzE1NjQ=">https://gitlab.com/gitlab-org/gitlab-runner/-/issues/29130#note_1028331564<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2RvY2tlci1saWJyYXJ5L2RvY2tlci9ibG9iLzBkMWMyMTAwZDEyZGEyZTdlNDU4Y2RmZjE4ZDc0MWY2MjVjZTI3ZDYvMjAuMTAvZGluZC9Eb2NrZXJmaWxl">https://github.com/docker-library/docker/blob/0d1c2100d12da2e7e458cdff18d741f625ce27d6/20.10/dind/Dockerfile<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-        <tag>gitlab runner</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>使用云效流水线功能实现 Go 私有库和 Proto 中心仓库自动发布</title>
     <url>/2024/11/13/goprivate-and-proto-publish-with-aliyun-devops/</url>
     <content><![CDATA[<h2 id="Proto-Buf"><a href="#Proto-Buf" class="headerlink" title="Proto &amp; Buf"></a>Proto &amp; Buf</h2><ul>
@@ -560,6 +541,25 @@
         <tag>aliyun</tag>
         <tag>devops</tag>
         <tag>flow</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>gitlab runner 使用 dind 作为 service 时的健康检查出错</title>
+    <url>/2024/02/19/gitlab-dind-as-service-hc/</url>
+    <content><![CDATA[<p>解决不必要的 30s 超时等待时间</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">FROM docker:20-dind as upstream</span><br><span class="line"></span><br><span class="line">FROM scratch</span><br><span class="line"></span><br><span class="line">COPY --from=upstream / /</span><br><span class="line"></span><br><span class="line">VOLUME /var/lib/docker</span><br><span class="line"></span><br><span class="line">EXPOSE 2376</span><br><span class="line"></span><br><span class="line">ENV DOCKER_TLS_CERTDIR=/certs</span><br><span class="line"></span><br><span class="line">ENTRYPOINT [&quot;dockerd-entrypoint.sh&quot;]</span><br><span class="line"></span><br><span class="line">CMD []</span><br></pre></td></tr></table></figure>
+
+<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRsYWIuY29tL2dpdGxhYi1vcmcvZ2l0bGFiLXJ1bm5lci8tL2lzc3Vlcy8yOTEzMCNub3RlXzEwMjgzMzE1NjQ=">https://gitlab.com/gitlab-org/gitlab-runner/-/issues/29130#note_1028331564<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2RvY2tlci1saWJyYXJ5L2RvY2tlci9ibG9iLzBkMWMyMTAwZDEyZGEyZTdlNDU4Y2RmZjE4ZDc0MWY2MjVjZTI3ZDYvMjAuMTAvZGluZC9Eb2NrZXJmaWxl">https://github.com/docker-library/docker/blob/0d1c2100d12da2e7e458cdff18d741f625ce27d6/20.10/dind/Dockerfile<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>gitlab runner</tag>
       </tags>
   </entry>
   <entry>
@@ -1467,19 +1467,6 @@
       </tags>
   </entry>
   <entry>
-    <title>kubectl 重启某个 Namespace 下的所有 Deployment</title>
-    <url>/2024/02/19/restart-all-deployment-in-namespace/</url>
-    <content><![CDATA[<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">NAMESPACE=&quot;arc-os&quot;</span><br><span class="line">for DEPLOY in $(kubectl get deployments -n $NAMESPACE | tail -n +2 | cut -d &#x27; &#x27; -f 1); do kubectl rollout restart deployments/$DEPLOY -n $NAMESPACE; done</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>kubernetes</tag>
-        <tag>kubectl</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>PVE 在存在虚拟机的情况下添加到集群</title>
     <url>/2023/07/21/pve-join-cluster-if-exists-vms/</url>
     <content><![CDATA[<p><strong>此操作危险，不建议使用</strong></p>
@@ -1493,6 +1480,19 @@
       </categories>
       <tags>
         <tag>pve</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>kubectl 重启某个 Namespace 下的所有 Deployment</title>
+    <url>/2024/02/19/restart-all-deployment-in-namespace/</url>
+    <content><![CDATA[<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">NAMESPACE=&quot;arc-os&quot;</span><br><span class="line">for DEPLOY in $(kubectl get deployments -n $NAMESPACE | tail -n +2 | cut -d &#x27; &#x27; -f 1); do kubectl rollout restart deployments/$DEPLOY -n $NAMESPACE; done</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>kubernetes</tag>
+        <tag>kubectl</tag>
       </tags>
   </entry>
   <entry>
