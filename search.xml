@@ -310,6 +310,22 @@
       </tags>
   </entry>
   <entry>
+    <title>使用 Docker 部署 TeamSpeak 3</title>
+    <url>/2020/04/14/deploy-teamspeak/</url>
+    <content><![CDATA[<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name teamspeak \</span><br><span class="line">    --restart always \</span><br><span class="line">    -p 9987:9987/udp \</span><br><span class="line">    -v /opt/docker/teamspeak:/var/ts3server \</span><br><span class="line">    -e TS3SERVER_LICENSE=accept \</span><br><span class="line">    -e TS3SERVER_SERVERADMIN_PASSWORD=PLACEHOLD \</span><br><span class="line">    teamspeak:latest</span><br></pre></td></tr></table></figure>
+
+<h2 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h2><p>使用以下命令查看 <code>Query Admin Account</code> 相关登录用户密码以及 <code>Privilege Key</code>。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker logs teamspeak</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>teamspeak</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux 禁用 IPV6</title>
     <url>/2020/04/15/disable-ipv6-linux/</url>
     <content><![CDATA[<h2 id="验证是否开启-ipv6"><a href="#验证是否开启-ipv6" class="headerlink" title="验证是否开启 ipv6"></a>验证是否开启 ipv6</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ifconfig -a | grep inet6</span></span><br><span class="line">inet6 fe80::42:b8ff:feb5:4214  prefixlen 64  scopeid 0x20&lt;<span class="built_in">link</span>&gt;</span><br><span class="line">inet6 fe80::5054:ff:fec3:d3bb  prefixlen 64  scopeid 0x20&lt;<span class="built_in">link</span>&gt;</span><br><span class="line">inet6 ::1  prefixlen 128  scopeid 0x10&lt;host&gt;</span><br></pre></td></tr></table></figure>
@@ -333,22 +349,6 @@
         <tag>ubuntu</tag>
         <tag>centos</tag>
         <tag>ipv6</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用 Docker 部署 TeamSpeak 3</title>
-    <url>/2020/04/14/deploy-teamspeak/</url>
-    <content><![CDATA[<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">    --name teamspeak \</span><br><span class="line">    --restart always \</span><br><span class="line">    -p 9987:9987/udp \</span><br><span class="line">    -v /opt/docker/teamspeak:/var/ts3server \</span><br><span class="line">    -e TS3SERVER_LICENSE=accept \</span><br><span class="line">    -e TS3SERVER_SERVERADMIN_PASSWORD=PLACEHOLD \</span><br><span class="line">    teamspeak:latest</span><br></pre></td></tr></table></figure>
-
-<h2 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h2><p>使用以下命令查看 <code>Query Admin Account</code> 相关登录用户密码以及 <code>Privilege Key</code>。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker logs teamspeak</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-        <tag>teamspeak</tag>
       </tags>
   </entry>
   <entry>
@@ -947,15 +947,6 @@
       </tags>
   </entry>
   <entry>
-    <title>简单介绍</title>
-    <url>/2019/11/20/introduction/</url>
-    <content><![CDATA[<p>博客使用 <code>Hexo</code>，搭建在 <code>Github Pages</code>，源代码部署在 <code>GitLab</code> 上，使用相关 <code>CI</code> 自动化部署。</p>
-<h2 id="自动化部署"><a href="#自动化部署" class="headerlink" title="自动化部署"></a>自动化部署</h2><h3 id="config-yml"><a href="#config-yml" class="headerlink" title="_config.yml"></a><code>_config.yml</code></h3><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://$&#123;username&#125;:$&#123;token|password&#125;@github.com/starudream/blog.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br><span class="line">  <span class="attr">message:</span> <span class="string">update</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">$&#123;name&#125;</span></span><br><span class="line">  <span class="attr">email:</span> <span class="string">$&#123;email&#125;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="gitlab-ci-yml"><a href="#gitlab-ci-yml" class="headerlink" title=".gitlab-ci.yml"></a><code>.gitlab-ci.yml</code></h3><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">image:</span> <span class="string">node:lts-alpine</span></span><br><span class="line"></span><br><span class="line"><span class="attr">github:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">publish</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">apk</span> <span class="string">add</span> <span class="string">--no-cache</span> <span class="string">git</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">git</span> <span class="string">config</span> <span class="string">--global</span> <span class="string">user.name</span> <span class="string">$&#123;name&#125;</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">git</span> <span class="string">config</span> <span class="string">--global</span> <span class="string">user.email</span> <span class="string">$&#123;email&#125;</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">git</span> <span class="string">clone</span> <span class="string">https://$&#123;name&#125;:$&#123;token|password&#125;@github.com/starudream/blog.git</span> <span class="string">.deploy_git</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">npm</span> <span class="string">install</span> <span class="string">&amp;&amp;</span> <span class="string">npm</span> <span class="string">install</span> <span class="string">hexo-cli</span> <span class="string">-g</span> <span class="string">&amp;&amp;</span> <span class="string">hexo</span> <span class="string">clean</span> <span class="string">&amp;&amp;</span> <span class="string">hexo</span> <span class="string">deploy</span></span><br><span class="line">  <span class="attr">only:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">master</span></span><br><span class="line"></span><br><span class="line"><span class="attr">stages:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">publish</span></span><br><span class="line"></span><br><span class="line"><span class="attr">cache:</span></span><br><span class="line">  <span class="attr">paths:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">node_modules</span></span><br></pre></td></tr></table></figure>
-]]></content>
-  </entry>
-  <entry>
     <title>Linux 创建虚拟网卡</title>
     <url>/2020/05/18/install-virtual-network/</url>
     <content><![CDATA[<h2 id="安装相关依赖"><a href="#安装相关依赖" class="headerlink" title="安装相关依赖"></a>安装相关依赖</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt install -y uml-utilities bridge-utils</span><br></pre></td></tr></table></figure>
@@ -980,6 +971,15 @@
       <tags>
         <tag>linux</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>简单介绍</title>
+    <url>/2019/11/20/introduction/</url>
+    <content><![CDATA[<p>博客使用 <code>Hexo</code>，搭建在 <code>Github Pages</code>，源代码部署在 <code>GitLab</code> 上，使用相关 <code>CI</code> 自动化部署。</p>
+<h2 id="自动化部署"><a href="#自动化部署" class="headerlink" title="自动化部署"></a>自动化部署</h2><h3 id="config-yml"><a href="#config-yml" class="headerlink" title="_config.yml"></a><code>_config.yml</code></h3><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://$&#123;username&#125;:$&#123;token|password&#125;@github.com/starudream/blog.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br><span class="line">  <span class="attr">message:</span> <span class="string">update</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">$&#123;name&#125;</span></span><br><span class="line">  <span class="attr">email:</span> <span class="string">$&#123;email&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="gitlab-ci-yml"><a href="#gitlab-ci-yml" class="headerlink" title=".gitlab-ci.yml"></a><code>.gitlab-ci.yml</code></h3><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">image:</span> <span class="string">node:lts-alpine</span></span><br><span class="line"></span><br><span class="line"><span class="attr">github:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">publish</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">apk</span> <span class="string">add</span> <span class="string">--no-cache</span> <span class="string">git</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">git</span> <span class="string">config</span> <span class="string">--global</span> <span class="string">user.name</span> <span class="string">$&#123;name&#125;</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">git</span> <span class="string">config</span> <span class="string">--global</span> <span class="string">user.email</span> <span class="string">$&#123;email&#125;</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">git</span> <span class="string">clone</span> <span class="string">https://$&#123;name&#125;:$&#123;token|password&#125;@github.com/starudream/blog.git</span> <span class="string">.deploy_git</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">npm</span> <span class="string">install</span> <span class="string">&amp;&amp;</span> <span class="string">npm</span> <span class="string">install</span> <span class="string">hexo-cli</span> <span class="string">-g</span> <span class="string">&amp;&amp;</span> <span class="string">hexo</span> <span class="string">clean</span> <span class="string">&amp;&amp;</span> <span class="string">hexo</span> <span class="string">deploy</span></span><br><span class="line">  <span class="attr">only:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">master</span></span><br><span class="line"></span><br><span class="line"><span class="attr">stages:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">publish</span></span><br><span class="line"></span><br><span class="line"><span class="attr">cache:</span></span><br><span class="line">  <span class="attr">paths:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">node_modules</span></span><br></pre></td></tr></table></figure>
+]]></content>
   </entry>
   <entry>
     <title>Istio 保留 x-request-id</title>
